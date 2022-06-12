@@ -9,9 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "gsap": "npm:@gsap/shockingly@^3.10.4",
     "next": "12.1.6",
+    "next-transpile-modules": "^9.0.0",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "react-draggable": "^4.4.5",
+    "react-flip-toolkit": "^7.0.14",
+    "react-player": "^2.9.0",
+    "react-xarrows": "^2.0.2",
+    "screenfull": "^5.1.0",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "eslint": "8.16.0",

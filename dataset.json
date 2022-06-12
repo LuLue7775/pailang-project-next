@@ -1,0 +1,351 @@
+{   
+    "pages": {
+        "first":["0", "1", "2"],
+        "second":["0", "1"],
+        "third":["0"]
+    },
+    "first": [
+        {"title": "first template- first topic", "titleLines": {}, "leftCol":{}},
+        {"title": "first template- second topic", "titleLines": {}, "leftCol":{}},
+        {"title": "first template- thirf topic", "titleLines": {}, "leftCol":{}}
+    ],
+    "second": [
+        {"title": "second template- first topic", "titleLines": {}, "leftCol":{}},
+        {"title": "second template- second topic", "titleLines": {}, "leftCol":{}}
+    ],
+    "third": [
+        {"title": "third template- first topic", "titleLines": {}, "leftCol":{}}
+    ],
+
+
+    "homePage": {
+        "titleLines": {
+            "mainTitle": { "h1Title": "Chronicle of a Closed/Open World", "subTitle": "封閉／開放世界年表" },
+            "lines": [
+                ["陳璽安、吳其育 Zian Chen, Wu Chi-Yu ", "8.29–9.25, 2022"],
+                ["製作單位 Produced by BLEED", "策展 Curated by Lukas Brasiskis"]
+            ]
+        },
+        "leftCol": {
+            "enContent": [
+                "In 1815, the powerful volcanic eruption of Mount Tambora—a volcano located in present-day Indonesia—produced an enormous amount of ash that shrouded the Northern Hemisphere, causing a period of significant climate change in the following year known as the Year Without a Summer. Records showed widespread harvest failures and famines across Europe and Asia. At the time, Mary Shelley and a group of Gothic writers trapped indoors in Geneva due to persistent heavy rain started developing speculative writings about the apocalypse and their imagination of science fiction. In a science fiction universe, readers tolerate sudden inexplicable appearance or disappearance of things unknown under certain narrative presuppositions of the universe, which well mirrored.",
+                "London in the 19th century suffered from severe air pollution consequent to the spread of the Industrial Revolution. The air was so noxious that even garden plants could hardly survive. Some Londoners began using fully-glazed cases—Wardian cases—to protect plants from external pollutants. They then accidentally discovered that these cases not only worked well for the said purpose but also found great use in transporting plants by watercraft across the oceans. With the new Wardian cases, tea plant seeds and tender young plants previously unable to endure long, large-scale sea journeys across different regions could be set on deck to benefit from the moisture circulated within the mobile greenhouse that kept them watered and alive.[1] People who traveled from Europe, a temperate zone, to tropical areas having difficulties adapting to a new environment with different temperatures and humidity levels were inclined to associate the variations in ecosystems with that in cultures. Signs showing that the reasoning mind shaped by a temperate zone was incompatible with the tropical further enhanced the perceptions of microorganisms and alien entities in the air of a foreign land as etiological agents that subvert the rational world. ",
+                "In 1860, Dutch colonial officer Multatuli published Max Havelaar, a novel detailing systemic poverty induced by the colonial government’s implementation of the cultivation system and a tax collection system in which the collecting agents were paid by commission. The reform brought about because of the novel eventually ended the cultivation system. It further impacted the Indonesian National Awakening in the 1940s and even became a symbol to call for fair trade later in the 1980s. In 1857, the British empire that also faced challenges against the legitimacy of its colonial rule, on the other hand, resorted to the study of comparative law to negotiate between a common law system that could accommodate particular world views and a civil law system that stressed universalism. In fact, it was exactly through these legal issues such as the cultivation system, taxation, and property rights that the settlers prompted the native’s identity into formation. Bearing in mind the course of world history propelled by monsoons (in Southeast Asia), could we re-read Yao-Chang Chen’s novel Lady Butterfly of Formosa—set in Taiwan in the 1860s and based upon the Treaty of South Cape—in light of the aforementioned relational dynamics?",
+                "In Witch Way, writer Badai has fabricated a grand epic narrative of wars between plants through the eyes of an indigenous native Bunun spirit medium. Given Badai’s thoughts, the real witch way/journey could possibly be understood as the history of camphor trees fighting against other entities. Widespread camphor trees once covered Taiwan’s hill ranges of middle-lower altitude and provided a perfect environment for developing hunting grounds. Settlers exploited camphor trees and looted many other species at the same time—forcing hunters into displacement or becoming laborers. Moreover, the close bond between Formosan dogs and the indigenous people took a serious hit upon the implementation of gun regulations and the import of Japanese dogs. After nearly a century of forest exploitation, small bushes of tea plantations stood in place of disappeared camphor forests. It was not until 1916 did the Japanese colonial government entertain the possibility of camphor tree’s eventual extinction and start afforestation programs. It is not difficult to imagine how significant the booming camphor industry was at that time. The Suzuki Trading Company (Suzuki Shoten) flourishing with a monopoly right to market Taiwanese camphor, for instance, had faced a major financial crisis so severe that even the mother country was affected because the company was too big to fail. During the war, Japan’s film industry policies demanded the Monopoly Bureau of Taiwan Governor-General Office provide camphor specifically to Fujifilm in order to increase Japan’s local production of film rolls. These film rolls were mostly used in the shooting of movie series encouraged by the national motion picture program. Perhaps the spirits of camphor trees in Witch Way had eventually become film rolls that were made of campho",
+                "After Georges Bataille published his opinions about the Marshall Plan in the journal, Critique, heated debates were sparked off in the circle of French economists about whether the plan was a type of imperialistic arrangement. Based upon his theory of what he called general economy, Bataille argued that the excessive and non-recoverable part of the US’s economy—the surplus—was destined to an outpouring of the country’s wealth that must be spent through this plan. Bataille admired the sun, for it sustained the growth of all organisms with the superabundance of energy. Contrarily, human being’s labor was not accumulative in its essence but an act to simply consume surpluses. Nonetheless, what might accurately stand for the US’s national vision was not (the abundance model of) the sun but (the scarcity model of) petroleum. After the Marshall Plan, petroleum resources once prompted people to believe in the infinite future growth of capitalism. The 1970 World Exposition in Osaka, Japan, which Japanese author Taichi Sakaiya played a key role in organizing, marked the pinnacle of Japan’s ambition to declare standardized mass production. However, Taichi Sakaiya’s Sci-fi fiction Yudan! depicted a different scenario where carbon-based fuel ran out completely while oil crises in reality had led to the transformation of the semiconductor industry in Taiwan."
+            ],
+            "enNote": [
+                "Sun Yuan-heng, The Odes of Miasma and Landscape",
+                "As a reminder that racial purity fantasies and refusal to accept immigrants as full citizens actually drive policy now in the “progressive” “developed” world, see Hakim, “Sex Education in Europe Turns to Urging More Births.” In response to this piece, science writer Rusten Hogness posted on his Facebook page on April 9, 2015, “What is wrong with our imaginations and with our ability to look out for one another (human and non-human alike) if we can’t find ways to address issues raised by changing age distributions without making ever more human babies? We need to find ways to celebrate young folks who decide not to have kids, not add nationalism to the already potent mix of pro-natalist pressures on them”(https:// www.facebook.com/rusten.hogness?fref=ts, accessed March 17, 2016)."
+            ],
+            "enBio" : [
+                "Apyang Imiq, a member of the Truku people of eastern Taiwan, currently runs a community development organi- zation and its tourist experience agency. His name, Apyang, comes from the Truku pronunciation of the Mandarin ping along with the common prefix A. He’s fond of his name, of his childhood among the Ciyakang, and especially of writing about his people. For his essay collection Growing Up in Rangah Qhuni (Chiuko Press,"
+            ],
+            "chContent" : [
+                "1815年，印尼坦博拉火山的大爆發讓火山灰籠罩整個北半球，接下來的一年則是著名的無夏之年，歐洲與亞洲都有飢荒的紀錄。當時，受連綿不絕的大雨困在日內瓦的瑪麗・雪萊與一群哥德作家們開始發展出世界終結的寫作與科幻的想像。在科幻世界的敘事設定中，讀者可以接受未知事物沒有任何原因地突然到來，或者倏地從世界上消失。科幻的開端確實也是如此。也許，末日科幻確實能代表兩百年前人們的心情，因為在這場災難之前，歐洲才因為莫斯科的焦土戰，得以從多年的拿破崙戰事中脫身，卻在氣溫驟降的年份，見證亞洲的霍亂流行。",
+                "19世紀的倫敦籠罩在工業革命的重度空污中，連花園中的植物都難以存活。有倫敦的居民開始嘗試用密封玻璃箱隔絕外界污染，並意外發現這不但行得通，而且還能夠運用在搬運植物時船上的跨海航程。在大規模的跨域旅行中，原本只能短暫存活的茶樹種子，與無法適應長時間海上旅行的幼苗，在行動溫室中透過水氣循環得以長期存活。自溫帶歐洲行至熱帶地區的人們，在無法適應不同溫、濕度空氣的情況下，將生物樣態的差異與文明連結起來。來自於溫帶思維不見容於熱帶的種種徵候，連同異地氣體中的微生物與異種物質，將其視為破壞理性世界的致病因子。",
+                "1860年，荷蘭官員穆爾塔圖利（Multatuli）發表了小說《馬格斯・哈弗拉爾》（Max Havelaar），詳述殖民地政府的定植制度以及稅收代理制度引發的系統性貧困。小說帶來的改革最終讓定植制度走入歷史，也在往後影響1940年代的印尼獨立運動，甚至在80年代成為公平貿易的象徵。1857年，同樣面臨殖民正當性危機的英國則以比較法學的發展，來調解容納特殊宇宙論的習慣法和普遍主義的民法。事實上，正是由於定植制度、稅收，所有權等法律問題，移住民才能夠創造出原住民的身分。在季風驅動的世界史尺度下，我們能夠以這樣的關係構成，重新閱讀陳耀昌以1860年代台灣南岬之盟為背景的《魁儡花》嗎？",
+                "作家巴代（Badai）在《巫旅》中藉布農靈媒之視野，寫了一場史詩時長的植物戰爭。延伸巴代的思路，也許真正的巫旅應是樟樹與其他更多物質之間的鬥爭史。曾遍佈台灣中低海拔丘陵地帶的樟樹為獵場的形成提供了絕佳環境。移住民奪取樟樹，也同時掠奪多個物種：讓獵人迫遷，或者成為工人，原先台灣犬一度與原住民建立的夥伴關係也因為槍枝管制和日本犬的引進而遭受衝擊；在接近一個世紀的濫伐後，樟樹沒了便種植低矮的茶樹。到了1916年，日殖政府甚至開始預想樟樹或許會因此滅絕，並展開造林。不難想像當時樟腦產業興盛的程度，特別是考慮到樟腦銷售起家的鈴木商店，其規模曾大到引發一場延燒回殖民地母國的金融危機。戰爭期間，日本的電影政策要求專賣局對富士公司特供樟腦，提升本土膠卷的產能，並用以拍攝一系列映畫國策下的電影。也許，《巫旅》中的樟樹靈最終就成了由樟腦製作而成的膠卷。",
+                "巴塔耶曾於《批評》期刊（Critique）上，針對戰後的馬歇爾計劃是否為一種帝國部署，舌戰法國經濟學界。他的著眼點基於普遍經濟學，認為美國本身的積累早已超過無法再增長的規模，必須透過這一政策，將國家的財富贈送出去。巴塔耶崇拜太陽，認為太陽提供萬物生長，人類的勞動行為本質上並非積累，純粹就是在消耗過剩。不過，也許真正能夠準確代表美國的國家視野的並不是太陽，而是石油。馬歇爾計劃之後，石油能源一度促使人們認為資本主義能夠無限增長。堺屋太一策劃的大阪世博會正是日本宣告標準化規模生產的高峰。但另一方面，堺屋太一的科幻小說《油斷》也描繪炭基能源枯竭的場景，而石油危機也引發台灣在矽晶圓產業的轉型。"
+            ],
+            "chNote": [
+                "Sun Yuan-heng,The Odes of Miasma and Landscape, https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL"
+            ],
+            "chBio" : [
+                "程廷是太魯閣族人，現任社區發展協會理事及部落遊體驗公司負責人。Apyang來源漢字的「平」，用太魯 閣語發音，變成有音律的pyang，A是稱謂小名的習慣。他喜歡自己的名字，喜歡長在支亞干，更喜歡用文字 和它一起生活。他曾出版散文集《我長在打開的樹洞》(九歌，2022)，並以此獲得台灣文學獎蓓蕾獎 及Openbook好書獎等榮譽。"
+            ]
+        },
+        "rightCol": {
+             "topic1": [
+                { "id": "0", "node": {"type":"img", "content": ["url"] }, 
+                "desciption":["1634 The establishment of Dejima trading post", "出島建立"], 
+                "connectTo":["2", "4"], "connectTail": true, "dashness": [false], "outline":"rect" },
+                { "id": "1", "node": {"type":"img", "content": ["url"] }, 
+                  "desciption":["1634 The establishment of Dejima trading post", "出島建立"], 
+                  "connectTo":[], "connectTail": false, "dashness": [false], "outline":"rect" },
+                { "id": "2", "node": {"type":"text", "content": ["Mountains full of zhang produce toxins.", "Gloomy weather and thick fog poisons trunks.", "Scorching sunset turns into dead gray.", "Strong wind blows in vain for decades.", "Sun Yuan-heng, Song of Zhang Mountains and Waters (1708)" ] }, "desciption":["瘴山若霧結胚胎，窮陰深墨堆枯煤。", "赤日沈為死灰色，勁風萬古無由開。", "〈瘴氣山水歌〉孫元衡 (1708)"], 
+                    "connectTo":[], "connectTail": false, "dashness": [false], "outline":"rect" },
+                { "id": "3", "node": {"type":"text", "content": ["Eruption of Mount Tambora, Indonesia, 1815"] }, "desciption":["坦博拉火山爆發，印尼，1815"], 
+                    "connectTo":["0", "4", "5"], "connectTail": true, "dashness": [false], "outline":"rect" },
+                { "id": "4", "node": {"type":"text", "content": ["Year Without a Summer, Northern Hemisphere, 1816"] }, "desciption":["無夏之年，北半球，1816"], 
+                    "connectTo":["5"], "connectTail": true, "dashness": [false], "outline":"rect" },
+                { "id": "5", "node": {"type":"text", "content": ["The Daoguang Depression, China, 1823-1834"] }, "desciption":["道光蕭條，中國，1823-1834"], "connectTo":[], "connectTail": false, "dashness": [false], "outline":"rect" },
+                { "id": "6", "node": {"type":"text", "content": ["Asiatic Cholera, Asia, 1817-1824"] }, "desciption":["第一次霍亂大流行，亞洲，1817-1824"], "connectTo":["7"], "connectTail": true, "dashness": [false], "outline":"rect" },
+                { "id": "7", "node": {"type":"image", "content": ["url"] }, "desciption":["Edgar Allan Poe, The Masque of the Red Death (1842)", "愛倫・坡，《红死魔的面具》(1842)"], "connectTo":["8"], "connectTail": true, "dashness": [false], "outline":"rect" },
+                
+                { "id": "8", "node": {"type":"video", "content": ["url"] }, "desciption":["Wardian case, England, 1842", "沃德箱，英國，1842"], "connectTo":["9"], "connectTail": true, "dashness": [false], "outline":"rect" },
+                { "id": "9", "node": {"type":"text", "content": ["In the vibrant and lively scenery, no sound was heard. Intermittently, like the gasping of a malaria patient, the stifling breeze blew. All of these created in me a landscape, a symbol, giving me a feeling as if in a dream, creepy and eerie.", "Haruo Sato, Strange Tale of the Bridal Fan (1925)"] }, 
+                  "desciption":["激盪跳躍的景色中，靜闐聽不見任何聲響。間歇地，有如瘧疾患者的喘息似地，悶鬱的微風吹動。這一切，形成一種內在風景，一種象徵，給我一種如同夢境似的感覺，毛骨悚然。", "女誡扇綺譚 (1925)"], 
+                  "connectTo":[], "connectTail": false, "dashness": [false], "outline":"rect" }
+            ],           
+            "topic2": [
+                { "id": "2-0", "node": {"type":"img", "content": ["url"] }, "desciption":["Jianshi Tapung Fort, Taiwan, 1911", "尖石Tapung古堡，台灣，1911"], "connectTo":[], "connectTail": false, "dashness": [false], "outline":"rect" },
+               { "id": "2-1", "node": {"type":"img", "content": ["url"] }, "desciption":["Jianshi Tapung Fort, Taiwan, 1911", "尖石Tapung古堡，台灣，1911"], "connectTo":[], "connectTail": false, "dashness": [false], "outline":"rect" },
+               { "id": "2-2", "node": {"type":"text", "content": ["video url"] }, "desciption":["#Native Resources- Camphor"], "connectTo":["2-1", "2-3", "2-8"], "connectTail": true, "dashness": [false, false, true], "outline":"oval" },
+               { "id": "2-3", "node": {"type":"text", "content": ["Hans-Aborigines Boundary Marker, Taiwan, 1772"] }, "desciption":["漢番界碑，台灣，1722"], "connectTo":["2-4","2-8"], "connectTail": true, "dashness": [false, false], "outline":"rect" },
+               { "id": "2-4", "node": {"type":"text", "content": ["url"] }, "desciption":["Admiral Liu Stele, Taiwan, 1867", "劉明燈碑，台灣，1867"], "connectTo":["2-5"], "connectTail": true, "dashness": [false], "outline":"rect" },
+               { "id": "2-5", "node": {"type":"img", "content": ["The Daoguang Depression, China, 1823-1834"] }, "desciption":["Incidents of Monuments", "事件紀念碑"], "connectTo":[], "connectTail": false, "dashness": [false], "outline":"rect" },
+               { "id": "2-6", "node": {"type":"text", "content": ["Sino-French War, China, Vietnam and Taiwan, 1883-1885"] }, "desciption":["清法戰爭，中國、越南、台灣，1883-1885"], "connectTo":["2-5"], "connectTail": true, "dashness": [false], "outline":"rect" },
+               { "id": "2-7", "node": {"type":"text", "content": ["John Dodd, Journal of a blockaded", "resident in North Formosa (1888)"] }, "desciption":["約翰・陶德，《北台封鎖記》(1888)"], "connectTo":["2-5"], "connectTail": true, "dashness": [false], "outline":"rect" },
+               { "id": "2-8", "node": {"type":"text", "content": ["“A-Chien told him before he died, “From now on, we must learn to accept the alien groups to survive!” A-Chien passed away in agony in the winter of the year when the Madow tribe was engulfed in a sea of flames……”", "Wang Jia-siang, Daofeng Neihai (1997)"] }, "desciption":["阿兼臨終前對他說：「今後我們都要學習接納異族，才能存活！」阿兼在麻豆社淪為火海的那一年冬天傷心去世", "王家祥，《倒風內海》（1997）"], "connectTo":[], "connectTail": true, "dashness": [false], "outline":"rect" },
+               
+               { "id": "2-9", "node": {"type":"text", "content": ["Satire about my poverty, my hungry condition, bad food, it seems that is the reward of my moral freedom.", "Multatuli, Max Havelaar  (1860)"] }, 
+               "desciption":["飢餓災害經常發生在作為福利典範的地區。", "穆爾塔圖里，《馬格斯・哈弗拉爾》   (1860)"], "connectTo":["2-10"], "connectTail": true, "dashness": [true], "outline":"rect" },
+               { "id": "2-10", "node": {"type":"text", "content": ["url"] }, 
+               "desciption":["Stichting Max Havelaar, 1988, Netherlands", "公平貿易標章，1988，荷蘭"], "connectTo":[], "connectTail": false, "dashness": [false], "outline":"rect" },
+
+               { "id": "2-11", "node": {"type":"img", "content": ["url"] }, 
+               "desciption":["Afforestation of Stout Camphor Trees, Taiwan, 1911", "樟樹造林，台灣，1911"], "connectTo":["2-12"], "connectTail": true, "dashness": [true], "outline":"rect" },
+               { "id": "2-12", "node": {"type":"text", "content": ["Taiwan Seinou Kabushikigaisha/", "Taiwan Camphor Co., Taiwan, 1919-1934"] }, 
+               "desciption":["台灣樟腦株式會社，台灣，1919-1934"], "connectTo":["2-13", "2-14"], "connectTail": true, "dashness": [false, false], "outline":"rect" },
+               { "id": "2-13", "node": {"type":"img", "content": ["url"] }, 
+               "desciption":["Showa Financial Crisis, Japan, 1927", "昭和金融恐慌，日本，1927"], "connectTo":[], "connectTail": false, "dashness": [false], "outline":"rect" },
+               { "id": "2-14", "node": {"type":"img", "content": ["url"] }, 
+               "desciption":["Sayon, Aboriginal Female Fell down to River and Went Missing, Taiwan, 1938", "莎韻落溪，台灣，1938"], "connectTo":["2-15"], "connectTail": true, "dashness": [false], "outline":"rect" },
+               { "id": "2-15", "node": {"type":"img", "content": ["url"] }, 
+               "desciption":["清水宏，《莎韻之鐘》（1943）", "Hiroshi Shimizu, Sayon's Bell（1943）"], "connectTo":["2-16"], "connectTail": true, "dashness": [false], "outline":"rect" },
+               { "id": "2-16", "node": {"type":"text", "content": ["Screen Quotas System, Korea, 1966"] }, 
+               "desciption":["銀幕配額制，韓國，1966"], "connectTo":[], "connectTail": false, "dashness": [false], "outline":"rect" },
+
+               { "id": "2-17", "node": {"type":"img", "content": ["url"] }, 
+               "desciption":["Moore's Law by Gordon Moore (1965)", "戈登・摩爾「摩爾定律」(1965)"], "connectTo":["2-18"], "connectTail": true, "dashness": [false], "outline":"rect" },
+               { "id": "2-18", "node": {"type":"video", "content": ["url"] }, 
+               "desciption":["CGTN, Monologue of a soybean CGTN （2018）", "《大豆的獨白》（2018）", "https://www.youtube.com/watch?v=zurorwgU8fQ"], "connectTo":["2-19"], "connectTail": true, "dashness": [false], "outline":"rect" },
+               { "id": "2-19", "node": {"type":"text", "content": ["Sakaiya Taichi, Yudan! (1978)"] }, 
+               "desciption":["v"], "connectTo":["2-20"], "connectTail": true, "dashness": [false], "outline":"rect" },
+               { "id": "2-20", "node": {"type":"img", "content": ["url"] }, 
+               "desciption":["Expo '70, Japan, 1970", "大阪萬博，日本，1970"], "connectTo":["2-21"], "connectTail": true, "dashness": [false], "outline":"rect" },
+               { "id": "2-21", "node": {"type":"text", "content": ["The Club of Rome, Beyond the Limits（1972）"] }, 
+               "desciption":["羅馬俱樂部，《成長的極限》（1972）"], "connectTo":["2-22"], "connectTail": true, "dashness": [false], "outline":"rect" },
+               { "id": "2-22", "node": {"type":"text", "content": ["Marshall Plan, USA and Europe, 1947"] }, 
+               "desciption":["馬歇爾計劃，美國、歐洲，1947"], "connectTo":[], "connectTail": false, "dashness": [false], "outline":"rect" },
+               { "id": "2-23", "node": {"type":"text", "content": ["Many people say that this country is an island country. But now, for him, it should be a “sea country.” If everyone on the island spends a tenth of their time at sea, the island will become ten times larger. It is so pitiful to only live on the island."] }, 
+               "desciption":["Wu Ming-Yi, Eternal Mother  (2019)", "吳明益，〈恆久受孕的雌性〉  (2019)"], "connectTo":[], "connectTail": false, "dashness": [false], "outline":"rect" }
+           ]          
+        },
+        "footer": {
+            "logo": "",
+            "line": "白浪的定居殖民博物館-提案 由 台北當代藝術館 委託製作，為 BLEED 2022 的一部分。"
+        }
+    },
+    "secondPage": {
+        "titleLines": {
+            "mainTitle": { "h1Title": "Chronicle of a Closed/Open World", "subTitle": "封閉／開放世界年表" },
+            "lines": [
+                ["陳璽安、吳其育 Zian Chen, Wu Chi-Yu ", "8.29–9.25, 2022"],
+                ["製作單位 Produced by BLEED", "策展 Curated by Lukas Brasiskis"]
+            ]
+        }
+    },
+    "videoPage": {
+        "titleLines": {
+            "mainTitle": { "h1Title": "Mouthless Part I", "subTitle": "無嘴 一" },
+            "lines": [
+                ["Dorota Gawęda & Eglė Kulbokaitė", "2022.02.20-05.22"],
+                ["製作單位 Produced by Pro Helvetia Shanghai, Swiss Arts", "Council 瑞士文化基金會上海辦公室", "項目介紹 Introduced by Zian Chen 陳璽安"]
+            ]
+        },
+        "leftCol": {
+            "videoUrl":"https://vimeo.com/598654766",
+            "content": [
+                "Introduction",
+                "The Deep of Folk Knowledge: Mouthless Part 1 by Dorota Gaweda & Egle Kulbokaite",
+                "",
+                "In the opening scene of Mouthless Part 1 (2020), the performers sit or recline, reading on their phones. It feels like a queered version of the ordinary activities of Dorota Gawęda and Eglė Kulbokaitė’s Young Girl Reading Group, which holds weekly gatherings centered on feminist-inspired theory and fiction or writings about cybernetics and nature. The main narrative of the film is almost entirely comprised of extensive quotations borrowed from their reading group, such that it is somewhat reminiscent of experimental novels made up of footnotes. At times, the camera pans to the performers’ vampire make-up, which brings to mind Skin Shows: Gothic Horror and the Technology of Monsters, a popular book among theory enthusiasts. Yes, reading Adam Mickiewicz’s poetic drama Dziady in unison has the feeling of a religious ritual, but queer theorist Eve Kosofsky Sedgwick’s theoretical reflection on paranoid reading is similarly hypnotic. Next, they read fantastical texts about forests and trees. Their conjuring spells employ fragments of Donna Haraway’s writing about technologically enhanced primate vision. Here, the film cuts between various micro-organisms in a flow of shape-morphing post-production effects. In this series of indoor reading scenes, these cryptic performances consist of “reading, conjuring and haunting,” thereby bringing reading and ritual incantations infinitely closer to one another.  While their grotesque style of reading responds to the upswell in theory now happening in contemporary art, another aspect of Gawęda and Kulbokaitė’s twists on these feminist texts lies in the juxtaposition of elements such as Silvia Federici’s surveys of witch hunts as early capital accumulation and Eastern European folklore in which witchcraft persists.",
+                "Eastern European rites used to summon ghosts are reawakened throughout Part 1. The reader who plays the role of Ghost 1 closes her eyes and slowly reads a fragment of the mythical poem “Eglė, Queen of the Snakes” (27’47”) by Lithuanian poet Salomėja Nėris to summon Puszcza, the embodiment of Puszcza Białowieska, Europe’s last remaining primeval forest. In the scene, they sway like dancing palm branches before the embodiment of Puszcza speaks: “And when the ax came into the forest, the trees said: the handle is one of us.”  Gawęda and Kulbokaitė pick up the knowledge of their progenitrices to summon the spirits of the dead. They have the other four readers play eleven characters, who start to connect excerpts of different stories. Some of the characters have a strong presence, and others less so. The figure that aroushzes the most curiosity yet remains to be explored may be Mouthless, the title character. In ancient Greek legend, the Astomi, a mouthless nomadic tribe from the Ganges, survived by smelling fragrant plants, rather than eating or drinking.",
+                "On this note, I recently heard artist Ciwas Tahos describe the Atayal legend of the Temahahoi, a group that also lived on smells. Interestingly, they were a women-only Atayal society who were defended by trained bees and became pregnant by mountain winds. While Tahos used the Temahahoi as a springboard for fabulating a space for femininity and the environment within the male-dominated Atayal traditional cosmology, it’s not difficult to envisage Gawęda and Kulbokaitė’s Mouthless as a way of potentiating a faculty radically different from our phonocentric character and engaging in further dialogue with the environment using folk stories.",
+                "Of late, folk knowledge has become an important source of inspiration for critical thinking in the age of the Anthropocene. It has also been well-received in academic circles within settler-colonial states, where it is known as “indigenous knowledge.” I’d like to extend the discussion into the proximity between folk and indigenous knowledge, and I think Gawęda and Kulbokaitė’s practice can be seen as a peculiar case that lies beyond the settler/indigenous binary. Let’s first look at a parallel discussion in which folk knowledge met indigenous knowledge. In a conversation between members of the Karrabing Film Collective, indigenous Australian Rex Edmunds picked up the knowledge of his ancestors, while Elizabeth A. Povinelli responded by tracing her European ancestors to the Carisolo clan of northern Italy:",
+                "",
+                "RE: These people who are interested in some other kind of belonging, do they think clans are or aren’t fascist?",
+                "",
+                "EAP: That’s what I want to talk about. Like we’ve discussed before, there are a lot of similarities between Carisolo and Bamayak and Mabaluk. I pick up my relationship to Carisolo through my father’s father and follow the father-line all the way back. You pick up your relation to Bamayak and Mabaluk the same way",
+                "",
+                "[...]",
+                "",
+                "RE: I have a question for you, does your mob in Carisolo have totems? Dreamings? Like we do?",
+                "",
+                "EAP: Not anymore, if we did. Some people say that before Catholicism we had sacred trees and spirits. But that was sometime in the eighth century. At the church Santo Stefano in Carisolo there is a mural dating back to 1534 which shows Charlemagne (Carlo Magna) coming to Carisolo to convert the natives",
+                "",
+                "In this instance, the indigenous film collective’s practice and the indigenous knowledge of Bamayak and Mabaluk prompted Povinelli to trace her own folk knowledge to Carisolo and its connection to religious wars. Here, the profound connection that lies beyond a superficial coincidence in the folk narratives of the Temahahoi and the Astomi, I think, reflects the closeness of folk and indigenous knowledge.",
+                "Returning to the extensive reading list in Part 1 will help us to track the Eastern European folk knowledge that lurks within. Take Silvia Federici’s seminal Caliban and the Witch for example. Her book is illustrated with medieval prints of the witch trials and the enclosure movement. Don’t these images reflect the folk knowledge that was once held in these different places? In this book, Federici means to examine how capitalism regulated women and the ownership of land and property through the history of witch hunts in Europe. As a result, she critically reinforces Marxism, which is largely devoid of a feminist aspect. In contrast, one of the motivations for Part 1 is a potential connection between European witches and ecological (indigenous) knowledge. One of the characters in Mouthless, Ghost 2, is a historical figure named Barbli Bodmer of Wattenwyl that they found in the Fribourg Archives. We later discover that a reading of the original archival documents in the film (19’56”-23’56”) describes Bodmer admitting to fornication with the Devil in the forest and causing illness in humans and animals. The words are paired with images of an ever-changing, shape-shifting primeval forest, which gives the impression that some indistinct object is haunting the landscape in the AI-generated shadows. If we are to temporarily give the parlor game in Part 1 a name, it might be “multi-species entanglement” à la Arts of Living on a Damaged Planet. In this book, which is also quoted in Part 1, the haunted landscape manifests the ecological impact that disappearing species have on the land. (“No longer embraced by living buzzing bees, the flower is a speaker for the dead,” according to Haraway.)  However, while Gawęda and Kulbokaitė verbalize the specters of witches, the Puszcza, and its indigenous species, they also give voice to a range of texts. In this entanglement, Part 1 re-territorializes critical theories, transforming them into some kind of folk knowledge."
+            ]
+        }, 
+        "rightCol": {
+            "content": [
+                "MOUTHLESS Part I",
+                "无嘴 之一",
+                "by Dorota Gawęda and Eglė Kulbokaitė",
+                "",
+                "TRANSCRIPT",
+                "",
+                "TIME CODE (TEXT): 00:08 - 00:21",
+                "For folk narrative is NOT a linear chain of isolated tellings, going from one single performance on our time-space grid to the next single performance.",
+                "民间叙述不是一个个单独故事的线性组合，从一个时空场景直接就跳到下个场景那样的一场场演出。",
+                "TIME CODE (TEXT): 00:22 - 00:38 ",
+                "Instead it fits better into a non-linear system, where one performer varies the story from one telling to the next, and the performer's understudy starts to tell the story, also varying each performance in response to multiple factors.",
+                "相反，它更适合一个非线性的系统，表演者的故事每次都稍有不同，而后表演者的替身开始讲述故事，每次表演都因回应着多种因素而发生改变。",
+                "",
+                "TIME CODE (READING): 02:05 - 02:50",
+                "",
+                "Oh, rise, from the earth,",
+                "From the dark soil;",
+                "What legs, poor me, can I use to lift myself, ah",
+                "Oh, what arms to lean upon;",
+                "Ah, my soul, my little heart.",
+                "Oh, make your fingernails into spades,",
+                "Your palms into shovels;",
+                "Oh, throw the soil onto one side,",
+                "And the slab to the other.",
+                "Turn your hands into shovels. Dig yourself out. Return to me.",
+                "歌词：",
+                "哦，从地里升起吧，",
+                "从黑暗的土壤中；",
+                "可怜的我，能用哪条腿来撑起自己？", 
+                "哦，哪支胳膊臂膀可以倚靠；",
+                "啊，我的灵魂，我小小的心。",
+                "哦，让你的指甲变成铁锹，",
+                "让手掌变成铲子；",
+                "哦，把土壤铲到一边，",
+                "石板铲到另一边，",
+                "把你的手变成铲子。把你自己挖出来。回到我身边。",
+                "",
+                "TIME CODE (READING): 08:49 - 09:07",
+                "",
+                "Kas gi bus čia, kas gi bus čia",
+                "Naktį tamsią, naktį rūsčią?",
+                "",
+                "Ciemno wszędzie, głucho wszędzie:",
+                "Co to będzie, co to będzie?",
+                "",
+                "Dziady Adam Mickiewicz",
+                "",
+                "TIME CODE (READING): 09:13 - 09:20 ",
+                "",
+                "You know, I fell and found strange things here - roots, bushes… ",
+                "你知道吗，我在这儿感受到了一些奇怪的事物——树根，灌木……",
+                "TIME CODE (READING): 09:25 - 09:35",
+                "Has it occurred to you that plants can feel, know, even comprehend. The trees, the hazel-nut bush…",
+                "你可曾想过植物能有感觉，有认知，解语。树木，榛子灌木……",
+                "",
+                "TIME CODE (READING): 09:46 - 10:07",
+               "To inspire interest is to be guaranteed a paranoid reading, just as we must inevitably be suspicious of the interpretations we inspire. Paranoia is an inescapable interpretive doubling of presence. It sets a thief (and if necessary becomes one) to catch a thief; ",
+                "兴趣的产生，也伴随着偏执解读——就像我们总会对自己启发的一些见解有所猜疑。偏执总是以双倍的诠释而存在。它召唤小偷（甚至不惜成为那个小偷）来抓小偷。",
+                "TIME CODE (READING): 10:17 - 10:25",
+                "it mobilises guile against suspicion, suspicion against guile; it takes one to know one.",
+                "“它调用诡诈来对付猜疑，猜疑来对付诡诈；要以一者来了解另一者。”"
+                
+            ]
+        }
+    },
+
+    "agendaPage":{
+        "data": [
+            { "type": ["current", "video"], "image": "", 
+              "id": 1,
+              "content": [ "誌 Journal", "向在荣 Zairong Xiang", "Artistic media and spiritual mediam", "美学媒介与灵媒", "2021.12.23-2022.01.02 Extended 延長了", "EN CN" ]
+            },
+            { "type": ["current", "video"], "image": "", 
+              "id": 2,
+              "content": [ "圖 Scenography", "姚嘉善 Huan Wang", "Unrecognized, indissoluble life: on Long Time Between Sunsets and Underground Waves", "生命之不被辨识与不可降解——论《风下之乡》 ", "2021.06.10-2022.01.02", "EN CN"]
+            },
+            { "type": ["current", "journal"], "image": "", 
+              "id": 3,
+                "content": [ "誌 Journal", "翁佳 Jia Weng", "體操 Jia Weng: Breathing Gymnastics", "2021.07.25", "EN CN"]
+            },
+            { "type": ["current", "journal"], "image": "", 
+                "id": 4,
+                "content": [ "映 Video", "無嘴一 Mouthless Part I", "Dorota Gawęda & Eglė Kulbokaitė", "2022.9.25 → 11.7", "EN CN KR" ]
+            },
+            { "type": ["current", "journal"], "image": "", 
+                "id": 5,
+                "content": [ "圖 Scenography", "姚嘉善 Huan Wang", "Unrecognized, indissoluble life: on Long Time Between Sunsets and Underground Waves", "生命之不被辨识与不可降解——论《风下之乡》 ", "2021.06.10-2022.01.02", "EN CN" ]
+            },
+            { "type": ["past", "video"], "image": "", 
+                "id": 6,
+                "content": [ "誌 Journal", "向在荣 Zairong Xiang", "Artistic media and spiritual mediam", "美学媒介与灵媒", "2021.12.23-2022.01.02 Extended 延長了", "EN CN" ]
+            },
+            { "type": ["past", "scenography"], "image": "", 
+                "id": 7,
+                "content": [ "圖 Scenography", "姚嘉善 Huan Wang", "Unrecognized, indissoluble life: on Long Time Between Sunsets and Underground Waves", "生命之不被辨识与不可降解——论《风下之乡》 ", "2021.06.10-2022.01.02", "EN CN"]
+            },
+            { "type": ["past", "journal"], "image": "", 
+                "id": 8,
+                "content": [ "圖 Scenography", "姚嘉善 Huan Wang", "Unrecognized, indissoluble life: on Long Time Between Sunsets and Underground Waves", "生命之不被辨识与不可降解——论《风下之乡》 ", "2021.06.10-2022.01.02", "EN CN"]
+            },
+            { "type": ["past", "journal"], "image": "", 
+                "id": 9,
+                "content": [ "圖 Scenography", "姚嘉善 Huan Wang", "Unrecognized, indissoluble life: on Long Time Between Sunsets and Underground Waves", "生命之不被辨识与不可降解——论《风下之乡》 ", "2021.06.10-2022.01.02", "EN CN"]
+            },
+            { "type": ["upcoming", "video"], "image": "", 
+                "id": 10,
+                "content": [ "誌 Journal", "翁佳 Jia Weng", "體操 Jia Weng: Breathing Gymnastics", "2021.07.25", "EN CN"]
+            },
+            { "type": ["upcoming", "scenography"], "image": "", 
+                "id": 11,
+                "content": [ "誌 Journal", "翁佳 Jia Weng", "體操 Jia Weng: Breathing Gymnastics", "2021.07.25", "EN CN"]
+            },
+            { "type": ["upcoming", "journal"], "image": "", 
+                "id": 12,
+                "content": [ "誌 Journal", "翁佳 Jia Weng", "體操 Jia Weng: Breathing Gymnastics", "2021.07.25", "EN CN"]
+            },
+            { "type": ["upcoming", "journal"], "image": "", 
+                "id": 13,
+                "content": [ "誌 Journal", "翁佳 Jia Weng", "體操 Jia Weng: Breathing Gymnastics", "2021.07.25", "EN CN"]
+            },
+            { "type": ["upcoming", "scenography"], "image": "", 
+                "id": 14,
+                "content": [ "誌 Journal", "翁佳 Jia Weng", "體操 Jia Weng: Breathing Gymnastics", "2021.07.25", "EN CN"]
+            },
+            { "type": ["upcoming", "journal"], "image": "", 
+                "id": 15,
+                "content": [ "誌 Journal", "翁佳 Jia Weng", "體操 Jia Weng: Breathing Gymnastics", "2021.07.25", "EN CN"]
+            },
+            { "type": ["upcoming", "scenography"], "image": "", 
+                "id": 16,
+                "content": [ "誌 Journal", "翁佳 Jia Weng", "體操 Jia Weng: Breathing Gymnastics", "2021.07.25", "EN CN"]
+            },
+            { "type": ["upcoming", "video"], "image": "", 
+                "id": 17,
+                "content": [ "誌 Journal", "翁佳 Jia Weng", "體操 Jia Weng: Breathing Gymnastics", "2021.07.25", "EN CN"]
+            }
+        ]
+    },
+    "aboutPage" : {
+        "leftCol": [
+            { "titles": ["角色一", "Persona"], 
+              "content": 
+                { "image": "url",
+                  "en": ["The live versionist", "In the 1930s, the famous Taiwanese film director Ho Kee-ming had the experience of doing a tour of aboriginal tribal education films for the Japanese colonial government, while his relative Liu Liyi served as a film narrator for the aboriginal tribe. This experience also triggered He Jiming to start the production of the Wushe incident drama \"Green Mountain and Blue Blood\" (1957) in the future. In addition, Taiwanese director Huang Mingchuan tried the third film method in the 1990s to make independent films. Among them, Man from the West (1991) depicts the broken universe of contemporary Atayal aborigines. Critics commented that the film oscillated between the third and fourth films. The Whitecaps Museum hopes to speculate on the possibility of this type of film, dubbed \"Cinema 3.5.\""], 
+                  "ch": ["電影解說員","著名台語片導演何基明在30年代時，曾有為日殖政府做原住民部落教育電影巡回放映的經歷，親戚劉立意則擔任原住民部落的電影解說員。這段經歷也引發了何基明日後著手製作原住民武裝反日的霧社事件劇情片《青山碧血》（1957）。另外，台灣導演黃明川曾在90年代嘗試第三電影的方法，製作獨立電影。其中《西部來的人》（1991）描繪當代泰雅原住民的破碎宇宙。論者評述此電影擺盪在第三電影與第四電影之間。白浪博物館希望推想這一類電影的可能性，稱為「電影 3.5」。"] }
+            },
+            { "titles": ["角色二", "Persona"], 
+                "content": 
+                { "image": "url",
+                  "en": ["The live versionist", "In the 1930s, the famous Taiwanese film director Ho Kee-ming had the experience of doing a tour of aboriginal tribal education films for the Japanese colonial government, while his relative Liu Liyi served as a film narrator for the aboriginal tribe. This experience also triggered He Jiming to start the production of the Wushe incident drama \"Green Mountain and Blue Blood\" (1957) in the future. In addition, Taiwanese director Huang Mingchuan tried the third film method in the 1990s to make independent films. Among them, Man from the West (1991) depicts the broken universe of contemporary Atayal aborigines. Critics commented that the film oscillated between the third and fourth films. The Whitecaps Museum hopes to speculate on the possibility of this type of film, dubbed \"Cinema 3.5.\""], 
+                  "ch": ["唱遷移古調的台灣「在來」作物h和製漢語「在來」原指本地物種之意。不過，在台灣，包括稻米、鳳梨與芒果等在來種經濟作物實際上都不是台灣原生種。因此，台灣漢語的在來種便隱含了至少兩層以上的殖民歷史意涵。在來種是日本農學在研究殖民地經濟作物時無意間攜帶的殖民觀點。它也告訴我們台灣連續殖民的歷史：這些外來種以和製漢語命名為本地作物，意味這些經濟作物自身的遷移古調，還記錄了荷蘭在東南亞的物種交換史。"] }
+            }
+        ],
+        "middleCol": { 
+            "title": "Pailang Settlers Museum",
+            "en": "\"Pailang Settlers Museum\" (2022–) is a research-based multi-media practice in the Chinese language department, referred to as the Bailang Museum. The White Wave Museum organizes online special exhibitions from time to time, and produces a series of decolonization archives in conjunction with guided tours and experimental filmmaking. Our multimedia archival approach focuses on uncovering the ways in which settled colonialism organized ecological, species relationships. The name of the museum \"Bailang\" comes from the Taiwanese aborigines who call Han settlers by the Hokkien phonetic \"vilen\", which is pronounced like the Chinese self-effacing word \"you\". Language has evolved to contemporary times, and Bailang has become a neutral word in colloquial language, but the relations of things of settlement and colonization continue to this day, and are often hidden. The White Wave Museum attempts to display the present and hidden history at the same time, and flips the frame of viewing with the self-proclaimed White Wave. On the other hand, the White Wave culture has a different colonial dimension from a history of white immigration revealed by settler colonialism. The White Wave Museum's archival practice with guided tours is inspired by some characters between reality and reality, including: film debaters of aboriginal tribes, Taiwan's \"coming\" crops singing the ancient tune of migration, and national parks as guided tours Huntress, etc. The historical process of decolonization consciousness from birth to maturity is also reshaping our understanding of museum planning: museums are warehouses of historical evidence of settled colonialism. Curators should go into the warehouse to decipher the chain of evidence, not circumvent problems through the systematic loopholes of multiculturalism.",
+            "ch": "「白浪的定居殖民博物館」（2022–）是一個以研究為主的華語語系多媒體實踐，簡稱白浪博物館。白浪博物館不定期組織線上特展，並配合導覽、實驗電影製作而生產一系列去殖民化的檔案。我們的多媒體檔案手法著重在揭示定居殖民主義對生態、物種關係的組織方式。博物館的名稱「白浪」源自台灣原住民族借閩南語音「歹人」稱呼漢族定居者，其發音有如漢語自謙詞「鄙人」。語言演變至當代，白浪在口語中已經成為中性詞彙，不過，定居殖民化的事物關係則延續至今，並且時常隱而不顯。白浪博物館嘗試同時展示呈現與隱藏的歷史，並以白浪這樣的自稱來翻轉觀看的框架。另一方面，白浪文化與定居殖民主義揭示的一段白人移民歷史有不同的殖民維度。白浪博物館以導覽為手法的檔案實踐，受到一些介於虛實之間的角色所啟發，包括：原住民部落的電影辯士、唱遷移古調的台灣「在來」作物、國家公園做導覽解說的女獵人等。去殖民意識由生到熟的歷史過程，也在重新塑造我們對博物館策劃的理解：博物館是定居殖民歷史證物的倉庫。策展人應該進到倉庫去解讀證據鏈，而非藉由多元文化主義的系統漏洞繞開問題。 "
+        }, 
+        "rightCol": [
+            { "title": "《封閉世界設定集：在全球封鎖下環島》", 
+              "content": [
+                    "製作贊助：BLEED", "委託製作：立方計劃空間", "研究：吳其育、陳璽安", "腳本：吳其育、陳璽安", "研究助理：許修豪", "校對：李雨潔", "程式：吳宜瞱", "製片協力：許峰瑞、Alice Ay", "攝影：吳其育、黃湧恩", "旁白：陳彥鈞", "錄音：擎天信使音樂製作",
+                    "聲音設計：馮稚暝", "混音：馮稚暝", "翻譯：陳珮瑄、吳迺菲", "協力：胡力維", "特別感謝：吳明益", "感謝：鄭慧華、羅悅全、黃郁捷、陳湘汶、徐詩雨、蕭伯均、大南路工作室" ]
+            },
+            { "title": "Atlas of the Closed Worlds-A Trip around the Island under the Global Lockdown", 
+              "content": [
+                      "Support by BLEED", "Commission by TheCube Project Space", "Researchers: Wu Chi-Yu, Zian Chen", "Writers: Wu Chi-Yu, Zian Chen", "Research assistant: Shiu Shiou-Hau", "Proofreading: Li Yu-Chieh", "Programmer: Wu I-Yeh ", "Production assistants: Hsu Fong-Ray, Alice Ay", "Photographers: Wu Chi-Yu, Huang Yung-En", "Voice-over: Chen Yen-Chun", "Voice-over record: GTXS Studio",
+                      "Sound design: Feng Chih-Ming", "Sound remix: Feng Chih-Ming", "Translators: Chen Pei-Hsuan, Wu Nai-Fei", "Assist by Hu Liwei", "Special thanks to Wu Ming-Yi", "Thanks to Amy Cheng, Jeph Lo, Yujie Huang, Chen Hsiang-Wen, Hsu Shih-Yu, Hsiao Bo-Chun, Danan Road Studio" ]
+            },
+            { "title": "外稿作者 Collaborators", 
+              "content": ["51% Architecture  Adam Korcsmaros  Agency  Agnes Lin  Ahmed Al Areef Al Dhaheri Aileen Burns  Alice Ongaro  Anna Colin  Antonia Hirsch  Antony Hudek  Aram Moradian Ben White  Biljana Ciric  Boliang Shen  Brandon LaBelle  Carlotta Pierleoni Cathy de Toit  Chipo Chung  Christina Wõrner  Claire Hsu  Claire Pentecost Clara Cheung  Clarissa Ricci  Colin Fournier  Cristina Escoda  Crystal Yu David Berry  David Horvitz  Di Zhang  Dyala Nusseibeh  Eileen Simpson  Ellen Pau Elodie Fouqueau  Ema Lancaricova  Emily Pethick  Eric Wear  Esther Lu  Flora Pitrolo Florian Schneider  Frances Morris  Francesca Tarocco Galeria Miejska Arsenał w Poznaniu  Gandy gallery  Georges Massoud and Summer Islam Giulia Damiani  Hafiz Rancajale  Hammad Nasar  Helen Kaplinsky  Hilde Methi Hind Mezaina  Huang Chien-Hung  Huang I-Chieh  Ian Knox  Ingrid Chu  Isaac Leung Jan Moszumański  Jeremy Valentine  Jess Lau  Johan Lundh  Josh Milani  Judy Watson Kuba Szreder  Lana Shamma  Laurel Ptak  Leon Tan  Lisa Rosendhal Loser Liberation Zone  Louise Shelley  Luca Nasciuti  Lucia Cavorsi  Lucy Biddle Luke Gould  Lyndall Milani  Magdalena Ziółkowska  Malcolm Enright  Marek Wasilewski Maria Lind  Marilyn Strathern  Marina Vishmidt  Marsha Lui  Matteo Pasquinelli Matthew Stadler  Mattin  Mei Mei Xiao  Michael Leung  Michael Marriott  Michelle Wong Mike Sperlinger  Mimi Brown  Misal Adnan Yildiz  Mistura Allison  Neil Cummings Nigel Thrift  Nina Rac  Noor Habbab  Olga Żyminkowska  Open Music Archive Pauline Yau  Pei-Yi Lu  Peter Thomas  Phoebe Wong  Raghda Al Kabani  Ralph Rugoff Randi Grov Berger  Rasmus Fleischer  Rim Kalsoum  Robert Jack  Sampson Wong Sarah Lee  Sean Dockray  Shaikha Al Mazrou  Sophie Persson  Stefan Andersson Stephanie Rosenthal  Studio Abroad  Studio Volatire  Sue Giovanni  Sun Quan Huang Tess Maunder  Thomas Sutton  Tomasz Koszewnik  Valeria Facchin  Vivian Chow  Wen Yau Yining Yang  Yufan Zhang  Yuk Mui Law  Yutaka Yano  Zi Wut  Zian Chen Zofia Wiewiorowska  Zuqiang Peng "]
+            }
+
+        ]
+    }
+    
+}
