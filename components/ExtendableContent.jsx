@@ -72,7 +72,7 @@ const ContentSm = (props) => {
               {item} 
               </StyledTextContainer>
             : node.type === 'img' 
-                ? <StyledImageContainer key={i} className="thumbnail" data-flip-id="1" alt="" src="https://placehold.co/100x100"  {...props}  />
+                ? <StyledImageContainer key={i} className="thumbnail" data-flip-id="1" alt="" src="https://via.placeholder.com/100.png"  {...props}  />
                 : 'video'
             )
         }
@@ -97,7 +97,7 @@ const ContentSm = (props) => {
               {item} 
               </StyledTextContainer>
             : node.type === 'img' 
-                ? <StyledImageContainer key={i} alt="" src="https://placehold.co/600x600"  {...props}  />
+                ? <StyledImageContainer key={i} alt="" src="https://via.placeholder.com/600.png"  {...props}  />
                 : 'video'
             )
         }
@@ -107,16 +107,18 @@ const ContentSm = (props) => {
 
 const StyledDesc = styled.div`
     position: absolute; 
-    top:100px;
+    top:120px;
+    font-size: .8rem;
+
 `
 const StyledCompContainer = styled.div`
     position: absolute; 
 `
 const StyledCompSm = styled.div`
-    background: blue;
+    // background: #fff;
     font-size: 1rem;
-    height: 80px;
-    width: 300px;
+    height: 110px;
+    width: 340px;
     overflow: hidden;
 `
 const StyledCompLg = styled.div`

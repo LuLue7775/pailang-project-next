@@ -314,13 +314,13 @@
         "leftCol": [
             { "titles": ["角色一", "Persona"], 
               "content": 
-                { "image": "url",
+                { "image": "https://via.placeholder.com/250.png",
                   "en": ["The live versionist", "In the 1930s, the famous Taiwanese film director Ho Kee-ming had the experience of doing a tour of aboriginal tribal education films for the Japanese colonial government, while his relative Liu Liyi served as a film narrator for the aboriginal tribe. This experience also triggered He Jiming to start the production of the Wushe incident drama \"Green Mountain and Blue Blood\" (1957) in the future. In addition, Taiwanese director Huang Mingchuan tried the third film method in the 1990s to make independent films. Among them, Man from the West (1991) depicts the broken universe of contemporary Atayal aborigines. Critics commented that the film oscillated between the third and fourth films. The Whitecaps Museum hopes to speculate on the possibility of this type of film, dubbed \"Cinema 3.5.\""], 
                   "ch": ["電影解說員","著名台語片導演何基明在30年代時，曾有為日殖政府做原住民部落教育電影巡回放映的經歷，親戚劉立意則擔任原住民部落的電影解說員。這段經歷也引發了何基明日後著手製作原住民武裝反日的霧社事件劇情片《青山碧血》（1957）。另外，台灣導演黃明川曾在90年代嘗試第三電影的方法，製作獨立電影。其中《西部來的人》（1991）描繪當代泰雅原住民的破碎宇宙。論者評述此電影擺盪在第三電影與第四電影之間。白浪博物館希望推想這一類電影的可能性，稱為「電影 3.5」。"] }
             },
             { "titles": ["角色二", "Persona"], 
                 "content": 
-                { "image": "url",
+                { "image": "https://via.placeholder.com/250.png",
                   "en": ["The live versionist", "In the 1930s, the famous Taiwanese film director Ho Kee-ming had the experience of doing a tour of aboriginal tribal education films for the Japanese colonial government, while his relative Liu Liyi served as a film narrator for the aboriginal tribe. This experience also triggered He Jiming to start the production of the Wushe incident drama \"Green Mountain and Blue Blood\" (1957) in the future. In addition, Taiwanese director Huang Mingchuan tried the third film method in the 1990s to make independent films. Among them, Man from the West (1991) depicts the broken universe of contemporary Atayal aborigines. Critics commented that the film oscillated between the third and fourth films. The Whitecaps Museum hopes to speculate on the possibility of this type of film, dubbed \"Cinema 3.5.\""], 
                   "ch": ["唱遷移古調的台灣「在來」作物h和製漢語「在來」原指本地物種之意。不過，在台灣，包括稻米、鳳梨與芒果等在來種經濟作物實際上都不是台灣原生種。因此，台灣漢語的在來種便隱含了至少兩層以上的殖民歷史意涵。在來種是日本農學在研究殖民地經濟作物時無意間攜帶的殖民觀點。它也告訴我們台灣連續殖民的歷史：這些外來種以和製漢語命名為本地作物，意味這些經濟作物自身的遷移古調，還記錄了荷蘭在東南亞的物種交換史。"] }
             }

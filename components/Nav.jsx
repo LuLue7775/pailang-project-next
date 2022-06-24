@@ -1,15 +1,58 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router';
 import dataJson from '../dataset.json';
 import styled from "styled-components";
+import { LayoutGroup, AnimatePresence, motion } from 'framer-motion'
+import { useRouter } from 'next/router'
 
-export default function Header() {
+      
+const container = {
+    hidden: {  opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 1, delayChildren: 1, staggerDirection: -1, }
+    }
+  };
+
+const transition = {
+    ease: [0.5, 0.01, -0.05, 0.9],
+}
+const child = {
+    hidden: {
+        y: 400
+    },
+    visible: {
+        y: 0,
+        transition: { duration: 2, ...transition }
+    }
+};
+
+export default function Nav({ route }) {
     const { homePage, videoPage } = dataJson; 
+    let mainTitle = route !== '/video'  ? `${homePage.titleLines.mainTitle.h1Title}` : `${videoPage.titleLines.mainTitle.h1Title}`
+    // let titleSplit = Array.from(mainTitle);
 
-    const router = useRouter();
+    const router = useRouter()
+
+    const [isRouteChange, setRouteChange] = useState(false)
+    useEffect(() => {
+        const handleRouteChange = () => setRouteChange(false)
+        const handleRouteComplete = () => setRouteChange(true)
+
+        router.events.on('routeChangeStart', handleRouteChange)
+        router.events.on('routeChangeComplete', handleRouteComplete)
+    
+        // If the component is unmounted, unsubscribe
+        // from the event with the `off` method:
+        return () => {
+          router.events.off('routeChangeStart', handleRouteChange)
+          router.events.off('routeChangeComplete', handleRouteComplete)
+        }
+      }, [])
+
+
   return (
-    <StyledHeader className='header' route={router.pathname}>
+    <LayoutGroup type="crossfade">
         <StyledNavContainer className='nav-container'>
             <StyledNavLeft>
                 <Link href="/second">
@@ -17,7 +60,7 @@ export default function Header() {
                     <StyledNavItem> 誌 PAILANG`&apos;`S journal for live versioning </StyledNavItem>
                     </a>
                 </Link>
-                { router.pathname === '/second' && 
+                { route === '/second' && 
                     <Link href="/">
                         <StyledNavItem> 2F</StyledNavItem>
                     </Link>
@@ -42,29 +85,39 @@ export default function Header() {
             </StyledNavRight>
         </StyledNavContainer>
 
-        
-        <StyledTitleContainer className='titles' route={router.pathname} >
+       
+        <StyledTitleContainer layoutId="title" className='titles' route={route} >
             <Link href="/">
                 <a>
+                <AnimatePresence>
                 <StyledTitleContainer>
-                    <StyledTitle className='main-title'> 
-                        { router.pathname !== '/video' 
-                            ? `${homePage.titleLines.mainTitle.h1Title}`
-                            : `${videoPage.titleLines.mainTitle.h1Title}`
-                        }
-                    </StyledTitle>
+                    {isRouteChange && <StyledTitle 
+                        as={motion.h1}
+                        // layout
+                        initial={{ opacity: 0, translateY:50 }} 
+                        animate={{ 
+                            opacity: 1,
+                            translateY: 0,
+                            transition: {
+                                delay: 0.5 
+                            }
+                        }} 
+                    > 
+                        {mainTitle}
+                    </StyledTitle>}
                     <StyledSubTitle>
-                        { router.pathname !== '/video' 
+                        { route !== '/video' 
                             ? `${homePage.titleLines.mainTitle.subTitle}`
                             : `${videoPage.titleLines.mainTitle.subTitle}`
                         }
                     </StyledSubTitle>
                 </StyledTitleContainer>
+                </AnimatePresence>
                 </a>
             </Link>
 
             <StyledTitleLines>
-                { router.pathname !== '/video' 
+                { route !== '/video' 
                     ? homePage.titleLines.lines.map((line, i) => 
                         <div key={i}> {line.map((item, i) => ( <div key={i}>{item}</div>))} </div>
                     )
@@ -76,40 +129,17 @@ export default function Header() {
         </StyledTitleContainer>
         
 
-
-        
-    </StyledHeader>
+    </LayoutGroup>
   )
 };
 
 
 
-const StyledHeader = styled.div`
-    height: ${({ route }) => {
-        if (route === '/about') return '50px'
-        if (route === '/agenda') return '50px'
-        else return '250px'
-    } };
-    width: 100%;
-    overflow: hidden;
-    position: absolute;
-    z-index: 1;
-    padding: ${({ route }) => {
-        if (route === '/about') return '15px'
-        if (route === '/agenda') return '15px'
-        else return ''
-    } };
 
-    a { 
-        text-decoration: none; 
-        color: #F5F4F4EF;
-    }
-
-    background-color: transparent;
-`;
 const StyledTitleContainer = styled.div`
     height: auto;
     width: 100%;
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -119,22 +149,36 @@ const StyledTitleContainer = styled.div`
             if (route === '/agenda') return 'none'
             else return ''  
     } };
+    
+
+    font-family: 'Noto Serif TC', serif;
+    letter-spacing: 2px;
 `;
 
-const StyledTitle = styled.h1`
+const StyledTitle = styled(motion.h1)`
     color: #FFF;
     display:inline;
+
+    font-family: "RiccioneSerial";
+    font-size: 3rem;
+    // letter-spacing: 5px;
+    font-weight: 500;
+
+    overflow: hidden;
 `;
 
 const StyledSubTitle = styled.h3`
     color: #F5F4F4dF;
     display:inline;
+    
 `;
 const StyledTitleLines = styled.div`
     padding: 10px;
     color: #F5F4F4dF;
     font-size: .8rem;
     text-align: center;
+    font-weight: 300;
+
 `;
 
 
@@ -144,6 +188,8 @@ const StyledNavContainer = styled.div`
     justify-content: space-between;
     font-size: .6rem;
     color: #FFF;
+
+    font-family: 'Noto Serif TC', serif;
 `;
 const StyledNavLeft = styled.div`
     display: flex;

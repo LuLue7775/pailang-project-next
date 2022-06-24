@@ -1,25 +1,19 @@
 import React from 'react'
-import dataJson from '../dataset.json';
-
 import styled from "styled-components";
 
-export default function AboutRightElement() {
-    const { rightCol } = dataJson?.aboutPage;
+export default function AboutRightElement({ credits, parse }) {
 
     return (
         <StyledMidColContainer className='leftcol-container'>
-        { rightCol.map(( elem, i ) => (
+        { credits?.map(( elem, i ) => (
             <StyledElementContainer className='element-container' key={i}>
                 <StyledTitle> {elem.title} </StyledTitle>
                 <StyledElement className='persona-ch'>
-                    {elem.content.map((name, i) => (
-                        <div key={i} > { name } </div>
-                    ) )}
+                   { parse(elem.content) }
                 </StyledElement>
 
             </StyledElementContainer>
-        ))
-        }
+        )) || ""}
     </StyledMidColContainer>
     )
 }
@@ -33,7 +27,7 @@ const StyledMidColContainer = styled.div`
 const StyledElementContainer = styled.div`
     margin: 30px 0 30px 0;
     padding: 30px 0 30px 0;
-    border-top: 1px #85807f solid;
+    border-top: 1px #F8B724 solid;
 `;
 const StyledTitle = styled.div`
     font-size: .5px;

@@ -42,3 +42,44 @@ a {
   height: 100vh;
   width: 100%;
 }
+
+
+
+@font-face {
+  font-family: "RiccioneSerial" ;
+  src: url("/fonts/RiccioneSerialBold.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "RiccioneSerial" ;
+  src: url("/fonts/RiccioneSerialMedium.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "RiccioneSerial" ;
+  src: url("/fonts/RiccioneSerialXlight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: "RiccioneSerial" ;
+  src: url("/fonts/RiccioneSerialBoldItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "RiccioneSerial" ;
+  src: url("/fonts/RiccioneSerialItalic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "RiccioneSerial" ;
+  src: url("/fonts/RiccioneSerialLightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}

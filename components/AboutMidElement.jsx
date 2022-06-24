@@ -1,22 +1,16 @@
 import React from 'react'
-import dataJson from '../dataset.json';
 import styled from "styled-components";
 
-
-export default function AboutMidElement() {
-    const { middleCol } = dataJson?.aboutPage;
+export default function AboutMidElement({ content, content_zh, parse }) {
 
   return (
-
     <StyledMidColContainer>
         <StyledMidContent>
-            <StyledMidTitle> {middleCol.title} </StyledMidTitle>
-            <StyledMidEn> {middleCol.en} </StyledMidEn>
-            <StyledMidCh> {middleCol.ch} </StyledMidCh>
+            <StyledMidTitle> Pailang Settlers Museum </StyledMidTitle>
+            <StyledMidEn> {content && parse(content)} </StyledMidEn>
+            <StyledMidCh> {content_zh && parse(content_zh)} </StyledMidCh>
         </StyledMidContent>
     </StyledMidColContainer>
-
-
   )
 }
 
@@ -42,6 +36,9 @@ const StyledMidContent = styled.div`
 
 const StyledMidTitle = styled.h3`
     text-align: center;
+    font-family: "RiccioneSerial";
+    font-size: 1.3rem;
+    font-weight: 500;
 `;
 const StyledMidEn = styled.div`
     font-size:.6rem;

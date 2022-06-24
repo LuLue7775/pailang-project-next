@@ -3,11 +3,11 @@ import dataJson from '../dataset.json';
 import AgendaElement from '../components/AgendaElement';
 
 import styled from "styled-components";
-import {gsap} from 'gsap'
+import { gsap } from 'gsap'
 import Flip from 'gsap/dist/Flip'
 import Draggable from 'gsap/dist/Draggable'
 import AgendaFliterLabel from "../components/AgendaFliterLabel";
-
+import { motion } from "framer-motion";
 
 const filterData = {
   "all": { id: "allCheck", value: "all", label: "All", type:'all' },
@@ -78,28 +78,67 @@ export default function Agenda() {
 
   return (
     <StyledAgenda>
-    <StyledAgendaFilter> 
-      {Object.values(filterData).map((item, i) => 
-        <AgendaFliterLabel key={item?.id} item={item} filter={filter} setFilter={setFilter} filterData={filterData} filtersInitArray={filtersInitArray}/>
-      )}
-    </StyledAgendaFilter>
+      <StyledAgendaFilter
+        as={motion.div} 
+        whileHover={{ height: '60px', transition: { duration: 0.5, when: 'beforeChildren' } }}
 
-    <StyledAgendaGrid>
-      {data?.map((item, i) => (
-        <StyledAgendaBox 
-          key={item?.id} 
-          className={`agenda-boxes ${item.type[0]} ${item.type[1]}`} 
-          ref={ el => setRefs(el, boxRefs, data.length)} 
-          onClick={() => handleExpand(item?.id)}
-        >
-          <AgendaElement item={item} activeExpand={activeExpand}/>
-        </StyledAgendaBox>
-      ))}
+      > 
+        {Object.values(filterData).map((item, i) => 
+          <AgendaFliterLabel key={item?.id} item={item} filter={filter} setFilter={setFilter} filterData={filterData} filtersInitArray={filtersInitArray}/>
+        )}
+      </StyledAgendaFilter>
+
+      <StyledAgendaGrid
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 3,
+          delay: .3,
+          ease: "easeInOut",
+          staggerChildren: 0.3,
+        }}
+      >
+        {data?.map((item, i) => (
+          <StyledAgendaBox 
+            key={item?.id} 
+            className={`agenda-boxes ${item.type[0]} ${item.type[1]}`} 
+            ref={ el => setRefs(el, boxRefs, data.length)} 
+            onClick={() => handleExpand(item?.id)}
+          >
+            <AgendaElement item={item} activeExpand={activeExpand}/>
+          </StyledAgendaBox>
+        ))}
 
 
-    </StyledAgendaGrid>
+      </StyledAgendaGrid>
     </StyledAgenda>
   )
+}
+
+
+export async function getStaticProps() {
+  const DIRECTUS_API = process.env.DIRECTUS
+  
+  const fetchData = async( route ) => {
+      const res = await fetch(`${ DIRECTUS_API + route }`, {
+          method: 'GET', 
+          headers: { 'Content-Type': 'application/json' }
+      })
+      const resJson = await res.json()
+      
+      if ( resJson.errors ) throw resJson.errors
+      return resJson
+  }
+
+  const data = await fetchData('/agenda').catch((e) => console.log(e))
+
+  return {
+    props: {
+      data,
+    }, 
+    revalidate: 60    
+  }
 }
 
 
@@ -113,6 +152,10 @@ const StyledAgenda = styled.div`
   ::-webkit-scrollbar { width: 0; }
   scrollbar-width: none; /* Firefox */
 
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 200;
+  letter-spacing: 1px;
+
 `
 const StyledAgendaGrid = styled.div`
   display: grid;
@@ -123,11 +166,16 @@ const StyledAgendaGrid = styled.div`
   align-items: start;
 `;
 
-const StyledAgendaFilter = styled.div`
-  width:100%;
-  background: rgb(207,204,204);
+const StyledAgendaFilter = styled(motion.div)`
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 50px 2px 50px;
 
+  width:100%;
+  height: 30px;
+  background: #4C2B1F;
+  color: #FFF;
 `;
 
 const StyledAgendaBox = styled.div`
@@ -136,38 +184,6 @@ const StyledAgendaBox = styled.div`
   max-height: 500px;
   max-width: 500px;
   overflow:hidden;
-
-`;
-
-
-const StyledAgendaLeftCol = styled.div`
-    border-right: 1px #85807f solid;
-    height: 100%;
-    overflow-y:scroll;
-    overflow-x:hidden;
-    ::-webkit-scrollbar { width: 0; }
-    scrollbar-width: none; /* Firefox */
-
-`;
-
-
-const StyledAgendaMidCol = styled.div`
-    border-right: 1px #85807f solid;
-    height: 100%;
-    overflow-y:scroll;
-    overflow-x:hidden;
-    ::-webkit-scrollbar { width: 0; }
-    scrollbar-width: none; /* Firefox */
-
-`;
-
-const StyledAgendaRightCol = styled.div`
-    border-right: 1px #85807f solid;
-    height: 100%;
-    overflow-y:scroll;
-    overflow-x:hidden;
-    ::-webkit-scrollbar { width: 0; }
-    scrollbar-width: none; /* Firefox */
 
 `;
 

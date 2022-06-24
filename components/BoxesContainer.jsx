@@ -17,7 +17,7 @@ export default function BoxesContainer({elementsData, handleRefs, detailRef}) {
               className={`box${i} connect-${elem.connectTail}`}
               key={`box${elem.id}` }
               ref={elem => setRefs(elem, handleRefs, elementsData.length)}
-          > {elem.id} 
+          > 
             <ExtendableContent 
                   boxIndex={i} 
                   id={elem.id} 
@@ -34,14 +34,15 @@ export default function BoxesContainer({elementsData, handleRefs, detailRef}) {
 
 const StyledBoxContainer = styled.div`
     position: relative;
-    padding: 5px; 
     height: 120px;
-    width: 100px;
     max-width: 350px;
-    inline-size: 370px;
+    padding-left: 45px; 
+    padding-right: 45px;
     overflowWrap: break-word;
     z-index: ${({fullScreen}) => ( fullScreen ? '50' : '0')};
-    color: #FFF;
-    border: 1px solid #FFF;
+    color: #F8B724;
+    background-color: #F8B72450;
+    border: 1px solid #F8B724;
 
+    border-radius: 10px;
 `;
