@@ -28,10 +28,6 @@ export default function Journal({ data }) {
       });
     }, [spring]);
 
-  useEffect(() => {
-    setCurrentTitle(data?.title)
-  }, [])
-
   return (
     <StyledContainer>
       <ArticlesHeader data={data} slideTo={slideTo}/>

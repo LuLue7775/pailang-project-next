@@ -6,10 +6,6 @@ import Draggable from 'react-draggable';
 
 import { Flipper, Flipped } from 'react-flip-toolkit'
 
-import { gsap } from 'gsap/dist/gsap'
-import { CSSPlugin } from 'gsap/CSSPlugin'
-gsap.registerPlugin(CSSPlugin);
-
 const setPos = [
     { x: 250, y: 0 }, 
     { x: -250, y: 100 },
@@ -41,11 +37,6 @@ const  DraggableBox = ({boxIndex, id, node, desciption, elemPos = { x: 100, y: 1
     const [fullScreen, setFullScreen] = useState(false);
     const toggleFullScreen = () => setFullScreen(prevState => !prevState);
 
-    // useEffect(() => {
-    //     if (posRef.current) {
-    //         gsap.to(posRef.current, { x:-100, y:200, opacity:.5, duration:1, delay:2, ease: "power3.inOut" } );
-    //     }
-    // },[posRef.current]);
 
     return (
         <Draggable onDrag={updateXarrow} onStop={updateXarrow} ref={posRef}

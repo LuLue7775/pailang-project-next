@@ -1,11 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import styled from "styled-components";
-import {gsap} from 'gsap';
-import { CSSRulePlugin } from "gsap/CSSRulePlugin";
-gsap.registerPlugin(CSSRulePlugin);
 
 const modalAnimation = (ref) => {
-    gsap.to(ref, {y: '-200%', ease: "back.inOut(4)", duration: 1.5, opacity:0, display: 'none' });
+
 };
 
 export default function ModalStart({ modalShow }) {

@@ -91,6 +91,7 @@ function updatePath( draggedIndex, draggedID, allElementsData, nodeRefs, pathRef
   }
 
 export default function NodeBoxAndSVG({allElementsData, elementData, node_i, nodeRefs, pathRefs, nodePosRefs}) {
+  console.log(elementData?.content, ":", elementData?._value)
   const router = useRouter()
 
   const [windowDimensions, setWindowDimensions] = useState(() => getWindowDimensions());
@@ -162,8 +163,6 @@ export default function NodeBoxAndSVG({allElementsData, elementData, node_i, nod
               dragMomentum={false}
           > 
             <StyledID> {elementData?.id} </StyledID>
-
-         
 
            <NodeExpandArea id={elementData.id} isOpen={isOpen} toggleOpen={toggleOpen} content={elementData?.content} name={elementData?.content_zh}/>
           </StyledBoxContainer>

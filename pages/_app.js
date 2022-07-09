@@ -5,12 +5,8 @@ import styled, { keyframes } from "styled-components";
 import ModalStart from '../components/ModalStart';
 import { useRouter } from 'next/router';
 
-import { gsap } from 'gsap';
-import { CSSRulePlugin } from "gsap/dist/CSSRulePlugin";
-
 import { AnimatePresence } from 'framer-motion'
 
-gsap.registerPlugin(CSSRulePlugin);
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -93,9 +89,7 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `;
-/**
- * Make these gsap to animate elements one by one.
- */
+
 const StyledContent = styled.div` 
     animation-delay: 2s;
     animation: ${({modalShow})=> modalShow ? '' : fadeIn } .3s linear ;

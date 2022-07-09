@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 
-const withTM = require('next-transpile-modules')(['gsap']);
 
-module.exports = withTM({
+module.exports = {
   reactStrictMode: true,
   compiler: {
     // ssr and displayName are configured by default
@@ -16,5 +15,5 @@ module.exports = withTM({
     // formats: [ 'image/jpg', 'image/png'],
   },
 
-})
+}
 

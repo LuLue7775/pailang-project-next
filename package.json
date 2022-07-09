@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "framer-motion": "^6.3.13",
-    "gsap": "npm:@gsap/shockingly@^3.10.4",
     "html-react-parser": "^1.4.14",
     "next": "12.1.6",
     "next-transpile-modules": "^9.0.0",
