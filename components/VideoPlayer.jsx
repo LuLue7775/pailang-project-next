@@ -5,7 +5,7 @@ import ReactPlayer from "react-player/lazy";
 import screenfull from 'screenfull';
 
 export const VideoPlayer = React.forwardRef((props, ref) => {
-    const { leftCol } = props;
+    const { video } = props;
 
     const [playing, setPlaying] = useState(false);
     const [played, setPlayed] = useState(0);
@@ -57,7 +57,7 @@ export const VideoPlayer = React.forwardRef((props, ref) => {
       {isWindow && <ReactPlayer 
         id="react-player"
         ref={ref}
-        url={leftCol?.videoUrl}
+        url={video}
         className='react-player'
         width='100%'
         height='100%'
@@ -71,16 +71,16 @@ export const VideoPlayer = React.forwardRef((props, ref) => {
             <StyledButton onClick={handlePlayPause}>
                 {playing 
                 ?
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#F8B724" className="pause" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#FFB304" className="pause" viewBox="0 0 16 16">
                       <path d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5zm4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
                 </svg> 
                  : 
-                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#F8B724" className="play" viewBox="0 0 16 16">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#FFB304" className="play" viewBox="0 0 16 16">
                       <path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
                 </svg>
                  }</StyledButton>
             <StyledButton onClick={handleClickFullscreen}>
-                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#F8B724" className="play" viewBox="0 0 16 16">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FFB304" className="play" viewBox="0 0 16 16">
                     <path fillRule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"/>
                 </svg>
             </StyledButton>
@@ -127,7 +127,7 @@ const ReactController = styled.div`
 const StyledButton = styled.button`
   height: 50px;
   width: 60px;
-  border: 1px solid #F8B724;
+  border: 1px solid #FFB304;
   background: none;
   &:hover { 
     cursor: pointer;
@@ -148,12 +148,12 @@ const StyledInput = styled.input`
         box-shadow: 1px 1px 1px #002200;
         background: #B5A999;
         border-radius: 1px;
-        border: 1px solid #F8B724;
+        border: 1px solid #FFB304;
       }
 
     ::-webkit-slider-thumb {
         box-shadow: 3px 3px 3px #B6B207;
-        border: 2px solid #F8B724;
+        border: 2px solid #FFB304;
         height: 23px;
         width: 23px;
         border-radius: 23px;

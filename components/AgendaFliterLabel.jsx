@@ -4,20 +4,20 @@ import { motion } from "framer-motion";
 
 export default function AgendaFliterLabel({ item, filter, setFilter, filtersInitArray }) {
 
-  let isChecked = item.value === "all"
-          ? (filter.length === filtersInitArray.length )
-          : filter.indexOf(item.value) > -1
+  let isChecked = filter.indexOf(item.value) > -1
+  //        item.value === "all"
+  //         ? (filter.length === filtersInitArray.length )
+  //         : filter.indexOf(item.value) > -1
 
   const handleFilterChange = ({ target }) => {
     const { value, checked } = target;
-    // console.log(value)
-    if (value === "all") {
-      if (checked) setFilter(filtersInitArray);
-      else setFilter([]);
-    } else {
+    // if (value === "all") {
+    //   if (checked) setFilter(filtersInitArray);
+    //   else setFilter([]);
+    // } else {
       if (checked) setFilter([].concat(filter, value)); // "all" will still be in filter if it's not unchecked by hand. so we need to clear it first.
       else setFilter( filter.filter(e => e !== "all" && e !== value) );
-    }
+    // }
   }
 
   return (
@@ -34,27 +34,21 @@ export default function AgendaFliterLabel({ item, filter, setFilter, filtersInit
         checked={isChecked}
         onChange={handleFilterChange}        
       />
-      <p>
-
-      {item?.label}
-      </p>
+      <div>  {item?.label}  </div>
     </StyledLabel>
   )
 }
 
 const StyledLabel = styled(motion.div)`
   position: relative;
-
-  width: 120px;
-  height: 100%;
-  background:${({ checked }) => checked ? '#F8B72450' : '#f3f3f3a0' } ;
+  // width: 100%;
+  background:${({ checked }) => checked ? '#FFB304' : '#0a0323a0' } ;
   
-  border: 1px solid #F8B724;
-  border-radius: 10px;
+  border: 1px solid #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: .8rem;
+  font-size: .6rem;
 
 `;
 

@@ -14,7 +14,7 @@ const parseConnectID = (id) => {
 }
 
 
-export default function PageOneRightCol() {
+export default function JournalRightCol() {
 
     const { rightCol } = dataJson?.homePage;
 
@@ -39,7 +39,7 @@ export default function PageOneRightCol() {
 
 
   return (
-    <StyledPageOneRightCol className='topicOne' > 
+    <StyledJournalRightCol className='topicOne' > 
        { rightCol &&
         Object.keys(rightCol)?.map( (topic, i) => (
             <Xwrapper key={i}>
@@ -70,11 +70,11 @@ export default function PageOneRightCol() {
             ))}
             </Xwrapper>
         )) }
-    </StyledPageOneRightCol>
+    </StyledJournalRightCol>
   )
 }
 
-const StyledPageOneRightCol = styled.div`
+const StyledJournalRightCol = styled.div`
     position: relative;
     // height: ${ ({nodeQuantity}) => `${nodeQuantity*2000}px` };
     height: auto;

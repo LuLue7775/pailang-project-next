@@ -1,15 +1,14 @@
-html,
+@import url('https://fonts.googleapis.com/css2?family=Baskervville&family=Gotu&family=Noto+Sans+TC:wght@100;300&family=Noto+Serif+TC:wght@200;400;600&display=swap');
+
+html {
+  font-size: 16px;
+}
+
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-
   
-    user-select: none;
-    height: 100%;
-    overflow: hidden;
-    
+  user-select: none;    
   }
 
 a {
@@ -22,6 +21,18 @@ a {
   box-sizing: border-box;
   
 }
+
+:root {
+  --title-font-en: 'Ogg';
+  --title-font-zh: 'Noto Serif TC'
+  --subtitle-font-en: 'Baskervville';
+  --subtitle-font-zh: 'Noto Serif TC'
+  --main-font-en: 'Gotu';
+  --main-font-zh: 'Noto Sans TC'
+  --main-color: #DF6000;
+}
+
+
 
 .App {
   font-family: sans-serif;
@@ -38,48 +49,50 @@ a {
   text-align: center;
 }
 
-.canvas {
-  height: 100vh;
-  width: 100%;
+
+h1 {
+  font-family: var( --title-font-en, serif);
+  font-size: 6rem;
+}
+h2 {
+  font-family: var( --title-font-zh, serif);
+  font-size: 1.5rem;
+  font-weight: 100;
 }
 
+h3 {
+  font-family: var(--subtitle-font-en, serif);
+  font-size: 2rem;
+}
+h4 {
+  font-family: var(--subtitle-font-zh, serif);
+  font-size: 1.2rem;
+}
 
+div.en {
+  font-family: 'Gotu', sans-serif;
+
+}
+
+div.zh {
+  font-family: 'Noto Serif TC', sans-serif;
+  font-size: .6rem;
+  letter-spacing: 2px;
+}
 
 @font-face {
-  font-family: "RiccioneSerial" ;
-  src: url("/fonts/RiccioneSerialBold.ttf") format("truetype");
+  font-family: "Ogg";
+  src: url("/fonts/OggBold.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
-  font-family: "RiccioneSerial" ;
-  src: url("/fonts/RiccioneSerialMedium.ttf") format("truetype");
+  font-family: "Ogg" ;
+  src: url("/fonts/OggRegular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
-@font-face {
-  font-family: "RiccioneSerial" ;
-  src: url("/fonts/RiccioneSerialXlight.ttf") format("truetype");
-  font-weight: 200;
-  font-style: normal;
-}
 
-
-@font-face {
-  font-family: "RiccioneSerial" ;
-  src: url("/fonts/RiccioneSerialBoldItalic.ttf") format("truetype");
-  font-weight: 500;
-  font-style: italic;
-}
-@font-face {
-  font-family: "RiccioneSerial" ;
-  src: url("/fonts/RiccioneSerialItalic.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic;
-}
-@font-face {
-  font-family: "RiccioneSerial" ;
-  src: url("/fonts/RiccioneSerialLightItalic.ttf") format("truetype");
-  font-weight: 300;
-  font-style: italic;
+table {
+  border-collapse: collapse;
 }

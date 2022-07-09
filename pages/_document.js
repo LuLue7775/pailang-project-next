@@ -6,46 +6,19 @@ export default function Document() {
       <Head>
         <link
             rel="preload"
-            href="/fonts/RiccioneSerialBold.ttf"
+            href="/fonts/OggBold.ttf"
             as="font"
             type="font/ttf"
             crossOrigin="anonymous"
         />
         <link
             rel="preload"
-            href="/fonts/RiccioneSerialBoldItalic.ttf"
+            href="/fonts/OggRegular.ttf"
             as="font"
             type="font/ttf"
             crossOrigin="anonymous"
         />
-        <link
-            rel="preload"
-            href="/fonts/RiccioneSerialItalic.ttf"
-            as="font"
-            type="font/ttf"
-            crossOrigin="anonymous"
-        />
-        <link
-            rel="preload"
-            href="/fonts/RiccioneSerialLightItalic.ttf"
-            as="font"
-            type="font/ttf"
-            crossOrigin="anonymous"
-        />
-        <link
-            rel="preload"
-            href="/fonts/RiccioneSerialMedium.ttf"
-            as="font"
-            type="font/ttf"
-            crossOrigin="anonymous"
-        />
-        <link
-            rel="preload"
-            href="/fonts/RiccioneSerialXlight.ttf"
-            as="font"
-            type="font/ttf"
-            crossOrigin="anonymous"
-        />
+
 
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>

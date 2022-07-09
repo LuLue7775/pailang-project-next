@@ -86,7 +86,7 @@ const StyledVideo = styled.div`
 const StyledLeftCol = styled(motion.div)`
   position: relative;
   height: auto;
-  border-right:  ${({ isMobile }) => isMobile ? "" : "1px #F8B724 dashed"} ;
+  border-right:  ${({ isMobile }) => isMobile ? "" : "1px #FFB304 dashed"} ;
   padding: 20px;
   font-size: .5px;
   color: #FFF;
@@ -110,7 +110,7 @@ const StyledVideoContainer = styled.div`
   width: 100%;
   border-radius: 10px;
   background-color: #0000005F;
-  border: 1px solid #F8B724;
+  border: 1px solid #FFB304;
 
 `;
 

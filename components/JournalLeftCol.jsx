@@ -3,9 +3,10 @@ import styled from "styled-components";
 
 import dataJson from '../dataset.json';
 
-export default function PageOneLeftCol() {
+export default function JournalLeftCol() {
     const { enContent, enNote, enBio, chContent, chNote, chBio } = dataJson?.homePage?.leftCol;
     /**
+     * @TODO AFTER pulling data from directus, add classname for en/zh
      * All async request will be using react-query
      */
 
@@ -67,13 +68,12 @@ export default function PageOneLeftCol() {
 const StyledLeftColContainer = styled.div`
   display: flex;
   flex-direction: column;
-  color: #FFF;
+  color: #000;
 
 `;
 const StyledContentItems = styled.div`
   display: flex;
   flex-direction: column;
-  color: #F5F4F4EF;
   padding: 20px;
 `;
 
@@ -93,7 +93,6 @@ const StyledNote = styled.div`
 
 `;
 const StyledContentSmItems = styled.div`
-  color: #F5F4F4EF;
   padding: 20px;
   margin: 0 50px 0 25px;
   font-size: .9rem;

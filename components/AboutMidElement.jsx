@@ -7,8 +7,8 @@ export default function AboutMidElement({ content, content_zh, parse }) {
     <StyledMidColContainer>
         <StyledMidContent>
             <StyledMidTitle> Pailang Settlers Museum </StyledMidTitle>
-            <StyledMidEn> {content && parse(content)} </StyledMidEn>
-            <StyledMidCh> {content_zh && parse(content_zh)} </StyledMidCh>
+            <StyledMidEn className='en'> {content && parse(content)} </StyledMidEn>
+            <StyledMidCh className='zh'> {content_zh && parse(content_zh)} </StyledMidCh>
         </StyledMidContent>
     </StyledMidColContainer>
   )
@@ -36,9 +36,7 @@ const StyledMidContent = styled.div`
 
 const StyledMidTitle = styled.h3`
     text-align: center;
-    font-family: "RiccioneSerial";
-    font-size: 1.3rem;
-    font-weight: 500;
+
 `;
 const StyledMidEn = styled.div`
     font-size:.6rem;

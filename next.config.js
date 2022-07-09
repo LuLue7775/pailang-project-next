@@ -12,7 +12,8 @@ module.exports = withTM({
     DIRECTUS: process.env.DIRECTUS,
   },
   images: {
-    domains: ['via.placeholder.com'],
+    domains: ['via.placeholder.com', 'assets.vercel.com', '127.0.0.1' ],
+    // formats: [ 'image/jpg', 'image/png'],
   },
 
 })

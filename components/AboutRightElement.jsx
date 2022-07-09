@@ -1,14 +1,16 @@
 import React from 'react'
 import styled from "styled-components";
+import { LineSVGFull } from './Svgs';
 
 export default function AboutRightElement({ credits, parse }) {
 
     return (
-        <StyledMidColContainer className='leftcol-container'>
+        <StyledMidColContainer className='leftcol-container zh'>
         { credits?.map(( elem, i ) => (
             <StyledElementContainer className='element-container' key={i}>
+                <LineSVGFull /> 
                 <StyledTitle> {elem.title} </StyledTitle>
-                <StyledElement className='persona-ch'>
+                <StyledElement className='persona-ch '>
                    { parse(elem.content) }
                 </StyledElement>
 
@@ -27,7 +29,6 @@ const StyledMidColContainer = styled.div`
 const StyledElementContainer = styled.div`
     margin: 30px 0 30px 0;
     padding: 30px 0 30px 0;
-    border-top: 1px #F8B724 solid;
 `;
 const StyledTitle = styled.div`
     font-size: .5px;

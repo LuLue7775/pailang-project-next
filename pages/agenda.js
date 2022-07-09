@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
-import dataJson from '../dataset.json';
 import AgendaElement from '../components/AgendaElement';
 
 import styled from "styled-components";
-import { gsap } from 'gsap'
-import Flip from 'gsap/dist/Flip'
-import Draggable from 'gsap/dist/Draggable'
 import AgendaFliterLabel from "../components/AgendaFliterLabel";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, onHover  } from "framer-motion";
+import AgendaTable from "../components/AgendaTable";
 
 const filterData = {
-  "all": { id: "allCheck", value: "all", label: "All", type:'all' },
-  "current": { id: "currentCheck", value: "current", label: "Current", type: "time" },
-  "upcoming": { id: "upcomingCheck", value: "upcoming", label: "Upcoming", type: "time" },
-  "past": { id: "pastCheck", value: "past", label: "Past", type: "time" },
+  // "all": { id: "allCheck", value: "all", label: "All", type:'all' },
+  "published": { id: "currentCheck", value: "published", label: "Current", type: "time" },
+  "draft": { id: "upcomingCheck", value: "draft", label: "Upcoming", type: "time" },
+  "archived": { id: "pastCheck", value: "archived", label: "Past", type: "time" },
   "video": { id: "videoCheck", value: "video", label: "Video", type: "form" },
   "journal": { id: "journalCheck", value: "journal", label: "Journal", type: "form" },
   "scenography": { id: "scenographyCheck", value: "scenography", label: "Scenography", type: "form" }
 };
+
+const time = ["published", "draft", "archived"];
+const form = ["video", "journal", "scenography"];
 
 const filtersInitArray = Object.keys(filterData);
 
@@ -26,92 +26,123 @@ const setRefs = (el, ref, dataLength) => {
   ref.current.push(el);
 };
 
+const contentWrapVariant = {
+  initial:{ opacity: 0 },
+  exit:{ opacity: 0, },
+  animate:{ 
+    opacity: 1 ,
+    transition: { duration: 2, delay:.3 } 
+  }
+}
 
-export default function Agenda() {
-  const { data } = dataJson?.agendaPage;
 
+export default function Agenda({ data }) {
+
+  const [filteredData, setFilteredData] = useState(data);
   const [filter, setFilter] = useState(filtersInitArray);
+ 
+  const [expandContent, setExpandContent] = useState({});
+  const [activeExpand, setActiveExpand] = useState(null); 
   const boxRefs = useRef([]);
 
-  const [activeExpand, setActiveExpand] = useState(null); 
-
+/**
+ * Sorting
+ */
   useEffect(() => {
-    gsap.registerPlugin(Flip, Draggable);
-
-    const state = Flip.getState(boxRefs.current);
-
     const timeFilter = filter.reduce((timeFilter, factor) => {if (filterData[factor].type === "time"){ timeFilter.push(factor)} return timeFilter }, []  )
-    const formFilter = filter.reduce((timeFilter, factor) => {if (filterData[factor].type === "form"){ timeFilter.push(factor)} return timeFilter }, []  )
-    const boxMatches =  boxRefs.current
-        .filter(box => {
-          var isContain = false;
-          for (let i=0; i<timeFilter.length; i++ ) {
-            if ( box.classList.contains(timeFilter[i]) ) { isContain = true; break; }
-          }
-          return isContain;
-        })
-        .filter(box => {
-          var isContain = false;
-          for (let i=0; i<formFilter.length; i++ ) {
-            if ( box.classList.contains(formFilter[i]) ) { isContain = true; break; }
-          }
-          return isContain;
-        })
-
-      boxRefs.current?.forEach(box => {
-        box.style.display = boxMatches.indexOf(box) === -1 ? "none" : "block"; 
-      })
-
-    Flip.from(state, {
-        duration: 1,
-        scale: true,
-        absolute: true,
-        ease: "power1.inOut", 
-        onEnter: elements => gsap.fromTo(elements, {opacity: 0, scale: 0}, {opacity: 1, scale: 1, duration: 1}),
-        onLeave: elements => gsap.to(elements, {opacity: 0, scale: 0, duration: 1})
-      });
+    const typeFilter = filter.reduce((timeFilter, factor) => {if (filterData[factor].type === "form"){ timeFilter.push(factor)} return timeFilter }, []  )
+    const filterResult = data?.filter( data => {
+      var isContain = false;
+      for (let i=0; i<timeFilter.length; i++ ) {
+        if ( timeFilter[i] === data.status ) { isContain = true; break; }
+      }
+      return isContain;
+    }).filter( data => {
+      var isContain = false;
+      for (let i=0; i<typeFilter.length; i++ ) {
+        if ( typeFilter[i] === data.type ) { isContain = true; break; }
+      }
+      return isContain;
+    })
+    
+    setFilteredData(filterResult)
+    setExpandContent({})
+    setActiveExpand(null)
   }, [filter])
 
-  const handleExpand = (id) => {
-    setActiveExpand(id)
+  /**
+ * Selecting
+ */
+  const handleExpand = (expandIndex) => {
+    setActiveExpand(expandIndex)
   };
+
+  useEffect(() => {
+    setExpandContent({
+      id : data[activeExpand]?.id,
+      title : data[activeExpand]?.title,
+      title_zh : data[activeExpand]?.title_zh,
+      type : data[activeExpand]?.type,
+      start_date : data[activeExpand]?.start_date,
+      end_date : data[activeExpand]?.end_date,
+      artist : data[activeExpand]?.artist,
+      producer : data[activeExpand]?.producer,
+      curator : data[activeExpand]?.curator,
+      language : data[activeExpand]?.language,
+    })
+  }, [activeExpand])
 
   return (
     <StyledAgenda>
-      <StyledAgendaFilter
-        as={motion.div} 
-        whileHover={{ height: '60px', transition: { duration: 0.5, when: 'beforeChildren' } }}
+      <StyledAgendaWrap>
+        <StyledAgendaTable>
+          <AgendaTable expandContent={expandContent} />
+        </StyledAgendaTable>
 
-      > 
-        {Object.values(filterData).map((item, i) => 
-          <AgendaFliterLabel key={item?.id} item={item} filter={filter} setFilter={setFilter} filterData={filterData} filtersInitArray={filtersInitArray}/>
-        )}
-      </StyledAgendaFilter>
+        <StyledAgendaFilter> 
+            <StyledMainGrid  whileHover={{ height: "20px" }} >  
+              <StyledFilterName as={motion.div}> filter by schedule </StyledFilterName>
+              <StyledHiddenGrid as={motion.div}>
+                {time.map( (el, i) => 
+                    <AgendaFliterLabel key={i} item={filterData[el]} filter={filter} setFilter={setFilter} filtersInitArray={filtersInitArray}/>)
+                }
+            </StyledHiddenGrid>
 
-      <StyledAgendaGrid
-        as={motion.div}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          duration: 3,
-          delay: .3,
-          ease: "easeInOut",
-          staggerChildren: 0.3,
-        }}
-      >
-        {data?.map((item, i) => (
-          <StyledAgendaBox 
-            key={item?.id} 
-            className={`agenda-boxes ${item.type[0]} ${item.type[1]}`} 
-            ref={ el => setRefs(el, boxRefs, data.length)} 
-            onClick={() => handleExpand(item?.id)}
-          >
-            <AgendaElement item={item} activeExpand={activeExpand}/>
-          </StyledAgendaBox>
-        ))}
+            </StyledMainGrid>
 
+            <StyledMainGrid  whileHover={{ height: "20px" }}>
+                <StyledFilterName as={motion.div}> filter by event type </StyledFilterName>
+                <StyledHiddenGrid  as={motion.div}>
+                {form.map( (el, i) => 
+                    <AgendaFliterLabel key={i} item={filterData[el]} filter={filter} setFilter={setFilter} filtersInitArray={filtersInitArray}/> )
+                }
+                </StyledHiddenGrid>
+            </StyledMainGrid>
 
-      </StyledAgendaGrid>
+        </StyledAgendaFilter>
+      </StyledAgendaWrap>
+
+      <AnimatePresence >
+        <StyledAgendaGrid>
+          {filteredData?.map((item, i) => (
+              <StyledContentWrap 
+                  as={motion.div}
+                  variants={contentWrapVariant}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  
+                  key={`${i}-${item?.id}`} 
+                  onClick={() => handleExpand(i)} 
+                  ref={ el => setRefs(el, boxRefs, data.length)}
+                  className={`agenda-boxes ${item.type} ${item.status}`} 
+                  >
+                <AgendaElement item={item} activeExpand={activeExpand} expandIndex={i} />
+
+              </StyledContentWrap>
+          ))}
+        </StyledAgendaGrid>
+      </AnimatePresence>
     </StyledAgenda>
   )
 }
@@ -135,7 +166,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      data,
+      data: data?.data || {}
     }, 
     revalidate: 60    
   }
@@ -143,47 +174,93 @@ export async function getStaticProps() {
 
 
 const StyledAgenda = styled.div`
-  width:100vw;
-  height: 100vh;
-  color: #000;
-  background: rgb(207,204,204);
-  background: radial-gradient(circle, rgba(207,204,204,1) 29%, rgba(255,255,255,1) 93%);
-  overflow-y:scroll;
-  ::-webkit-scrollbar { width: 0; }
-  scrollbar-width: none; /* Firefox */
+    display: grid;
+    grid-template-columns: 33% 66%;
+    
+    width:100%;
+    height: calc(100vh - 60px);
+    color: #000;
 
-  font-family: 'Noto Serif TC', serif;
-  font-weight: 200;
-  letter-spacing: 1px;
-
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 200;
+    letter-spacing: 1px;
 `
-const StyledAgendaGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  position: relative;
-  gap: 1.4rem;
-  place-items: center;
-  align-items: start;
+
+const StyledAgendaWrap = styled.div`
+    display: grid;
+    grid-template-rows: 60vh 25vh;
+
+    justify-items: end;
+    align-content: end;
+    padding-bottom: 1rem;
+    font-size: .4rem;
+`
+const StyledAgendaTable = styled.table`
+    width: 90%;
+    color: #000;
+    border-right: 1px solid #000;
+    border-bottom: 2px solid #000;
+    overflow: hidden;
 `;
 
 const StyledAgendaFilter = styled(motion.div)`
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    margin-top: 1px;
+
+    width: 80%;
+    height: 200px;
+    color: #000;
+    border: 1px solid #000;
+    overflow: hidden;
+`;
+
+const StyledFilterName = styled(motion.div)`
+   height: 100%;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+`;
+const StyledMainGrid = styled(motion.div)`
+    height: 100px;
+    width: 100%;
+    border-bottom: 1px solid #000;
+    z-index: 1;    
+    background: #fff;
+    border: 1px solid #000;
+`;
+const StyledHiddenGrid = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height:50px;
+    z-index: -1;    
+    
+`;
+
+
+
+const StyledAgendaGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 300px;
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  padding: 2px 50px 2px 50px;
+  gap: 1.4rem;
+  margin:  20px;
+  place-items: center;
+  align-items: start;
 
-  width:100%;
-  height: 30px;
-  background: #4C2B1F;
-  color: #FFF;
+  overflow-y:scroll;
+  ::-webkit-scrollbar { width: 0; }
+  scrollbar-width: none; /* Firefox */
 `;
 
-const StyledAgendaBox = styled.div`
-  height: auto;
-  width: 100%;
-  max-height: 500px;
-  max-width: 500px;
-  overflow:hidden;
 
-`;
 
+const StyledContentWrap = styled(motion.div)`
+    position: relative;  
+    width: 85%;
+    height: min(300px, 100%);
+    overflow: hidden;
+
+`
