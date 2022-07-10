@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect, useLayoutEffect  } from 'react'
-import useMediaQuery from '../../utils/hooks';
+import { useMediaQuery } from '../../utils/hooks';
 import VideoPlayer from '../../components/VideoPlayer';
 import { UpChevronSVG } from '../../components/Svgs';
-import { fetchData } from '../../utils/functions';
+import { fetchData, slideTo } from '../../utils/functions';
 
 import styled from "styled-components";
 import { motion, useSpring } from 'framer-motion'
-
 import parse from 'html-react-parser';
 import ArticlesHeader from '../../components/ArticlesHeader';
 
@@ -17,14 +16,7 @@ export default function Video({ data }) {
 
   const videoPlayerRef = useRef(null);
 
-  const spring = useSpring(0, { damping: 100, stiffness: 1000    });
-
-  function slideTo(to) {
-    spring.set(window.pageYOffset, false);
-    setTimeout(() => {
-      spring.set(to);
-    }, 50);
-  }
+  const spring = useSpring(0, { damping: 100, stiffness: 1000 });
   
   useLayoutEffect(() => {
       spring.onChange(latest => {
@@ -35,10 +27,10 @@ export default function Video({ data }) {
 
   return (
     <StyledContainer>
-      <ArticlesHeader data={data} slideTo={slideTo}/>
+      <ArticlesHeader data={data} slideTo={slideTo} spring={spring}/>
 
       <>
-        <StyledChevron onClick={() => slideTo(0)}> 
+        <StyledChevron onClick={() => slideTo(0, spring)}> 
             <UpChevronSVG/>
         </StyledChevron>
         <StyledVideo id="section2" isMobile={isMobile}>

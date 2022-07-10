@@ -3,7 +3,7 @@ import styled from "styled-components";
 import NodesContainer from '../../components/NodesContainer';
 import ArticlesHeader from '../../components/ArticlesHeader';
 import { UpChevronSVG } from "../../components/Svgs";
-import { fetchData } from '../../utils/functions';
+import { fetchData, slideTo } from '../../utils/functions';
 
 import { useSpring } from "framer-motion";
 
@@ -11,13 +11,6 @@ import { useSpring } from "framer-motion";
 export default function Scenography({ data }) {
 
     const spring = useSpring(0, { damping: 100, stiffness: 1000    });
-
-    function slideTo(to) {
-      spring.set(window.pageYOffset, false);
-      setTimeout(() => {
-        spring.set(to);
-      }, 50);
-    }
     
     useLayoutEffect(() => {
         spring.onChange(latest => {
@@ -27,9 +20,9 @@ export default function Scenography({ data }) {
 
   return (
     <StyledContainer>
-        <ArticlesHeader data={data} slideTo={slideTo}/>
+        <ArticlesHeader data={data} slideTo={slideTo} spring={spring}/>
         <div>
-            <StyledChevron onClick={() => slideTo(0)}> 
+            <StyledChevron onClick={() => slideTo(0, spring)}> 
                 <UpChevronSVG/>
             </StyledChevron>
 

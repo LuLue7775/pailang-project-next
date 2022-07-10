@@ -12,3 +12,19 @@ export async function fetchData( route ){
     if ( resJson.errors ) throw resJson.errors
     return resJson
 }
+
+export function ErrorHandler({error}) {
+    return (
+      <div role="alert">
+        <p>An error occurred:</p>
+        <pre>{error.message}</pre>
+      </div>
+    )
+  }
+  
+export function slideTo(to, spring) {
+  spring.set(window.pageYOffset, false);
+  setTimeout(() => {
+    spring.set(to);
+  }, 50);
+}

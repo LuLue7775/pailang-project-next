@@ -52,6 +52,9 @@ const expand = {
             className='react-player'
             width='100%'
             height='100%'
+            volume={0.8}
+            controls={false}
+
           />}
         </>
       )

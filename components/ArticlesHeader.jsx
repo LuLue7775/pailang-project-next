@@ -3,9 +3,7 @@ import { LeftCrossSVG, RightCrossSVG, LineSVG, DownChevronSVG } from './Svgs';
 import styled from "styled-components";
 
 
-export default function ArticlesHeader({ data, slideTo }) {
-
-
+export default function ArticlesHeader({ data, slideTo, spring }) {
 
   return (
     <StyledHeader>
@@ -26,7 +24,7 @@ export default function ArticlesHeader({ data, slideTo }) {
             <RightCrossSVG/>
         </StyledSubtitles>
         
-        <div onClick={() => slideTo( document.getElementById("section2").offsetTop )}>
+        <div onClick={() => slideTo( document.getElementById("section2").offsetTop, spring )}>
             <DownChevronSVG />
         </div>
     </StyledHeader>

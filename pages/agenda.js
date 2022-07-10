@@ -37,8 +37,6 @@ const contentWrapVariant = {
   }
 }
 
-
-
 export default function Agenda({ data }) {
 
   const [filteredData, setFilteredData] = useState(data);
@@ -132,9 +130,6 @@ export default function Agenda({ data }) {
       language : data[activeExpandData]?.language || '',
     })
   }, [activeExpand])
-
-
-
 
   return (
     <StyledAgenda>

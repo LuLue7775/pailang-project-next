@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useLayoutEffect  } from 'react'
-import useMediaQuery from '../utils/hooks';
+import { useMediaQuery } from '../utils/hooks';
 import VideoPlayer from '../components/VideoPlayer';
 
 import styled from "styled-components";
