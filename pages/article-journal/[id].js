@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect } from 'react'
 import JournalLeftCol from '../../components/JournalLeftCol';
-import JournalRightCol from '../../components/JournalRightCol';
+import { fetchData } from '../../utils/functions';
 import { UpChevronSVG } from '../../components/Svgs';
 import styled from "styled-components";
 import { motion, useSpring } from "framer-motion";
@@ -77,19 +77,6 @@ export default function Journal({ data }) {
 
 export async function getStaticProps({ params }) {
     const id = params.id;
-
-    const DIRECTUS_API = process.env.DIRECTUS
-    
-    const fetchData = async( route ) => {
-        const res = await fetch(`${ DIRECTUS_API + route }`, {
-            method: 'GET', 
-            headers: { 'Content-Type': 'application/json' }
-        })
-        const resJson = await res.json()
-        
-        if ( resJson.errors ) throw resJson.errors
-        return resJson
-    }
 
     const data = await fetchData(`/article-journal/${id}`).catch(err => console.error(err) ) 
 

@@ -2,6 +2,7 @@ import React from 'react'
 import AboutLeftElement from '../components/AboutLeftElement';
 import AboutMidElement from '../components/AboutMidElement';
 import AboutRightElement from '../components/AboutRightElement';
+import { fetchData } from '../utils/functions';
 
 import styled from "styled-components";
 import { motion } from 'framer-motion'
@@ -13,71 +14,24 @@ export default function About({ data }) {
 // console.log(data)
   return (
     <StyledAbout>
-      <StyledAboutLeftCol
-        // as={motion.div}
-
-        // initial={{ y:"100%" }}
-        // animate={{ y: 0 }}
-        // transition={{
-        //   type:"spring",
-        //   stiffness: 400,
-        //   damping: 100,
-        //   duration: 3,
-        //   ease: "easeInOut"
-        // }}
-      >
+      <StyledAboutLeftCol>
         <AboutLeftElement roles={roles} parse={parse}/>
       </StyledAboutLeftCol>
 
-      <StyledAboutMidCol
-        // as={motion.div}
-        // initial={{ y:"-100%" }}
-        // animate={{ y: 0 }}
-        // transition={{
-        //   type:"spring",
-        //   stiffness: 400,
-        //   damping: 100,
-        //   duration: 3,
-        //   ease: "easeInOut"
-        // }}
-        >
+      <StyledAboutMidCol>
         <StyledSideLines/>
 
         <AboutMidElement content={content} content_zh={content_zh} parse={parse}/>
       </StyledAboutMidCol>
 
-      <StyledAboutRightCol
-        // as={motion.div}
-        // initial={{ y:"100%" }}
-        // animate={{ y: 0 }}
-        // transition={{
-        //   type:"spring",
-        //   stiffness: 400,
-        //   damping: 100,
-        //   duration: 3,
-        //   ease: "easeInOut"
-        // }}
-        >
+      <StyledAboutRightCol>
         <AboutRightElement credits={credits} parse={parse}/>
       </StyledAboutRightCol>
     </StyledAbout>
   )
 }
 
-export async function getStaticProps() {
-  const DIRECTUS_API = process.env.DIRECTUS
-  
-  const fetchData = async( route ) => {
-      const res = await fetch(`${ DIRECTUS_API + route }`, {
-          method: 'GET', 
-          headers: { 'Content-Type': 'application/json' }
-      })
-      const resJson = await res.json()
-      
-      if ( resJson.errors ) throw resJson.errors
-      return resJson
-  }
-
+export async function getStaticProps() {  
   const data = await fetchData('/about').catch((e) => console.log(e))
 
   return {

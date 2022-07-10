@@ -133,48 +133,51 @@ export default function NodeBoxAndSVG({allElementsData, elementData, node_i, nod
          */
     }, [])
 
-    
-
 
   return (
     <AnimatePresence>
           <StyledBoxContainer
-
             style={{ x, y }} 
-
-            // randomx={boxPos[node_i].x}
             borderstyle={elementData?.border_style}
             className='zh'
             key={`box${elementData?.id}` }
             id={elementData?.id}
             ref={elementData => setRefs(elementData, nodeRefs, allElementsData?.length) }
             as={motion.div}
-
-            //   initial={{ x: 0, y:0  }}
-            //   animate={{ x: `${boxPos[node_i].x}px`, y: `${boxPos[node_i].y}px`    }}
-            //   onAnimationComplete={() => updatePath(node_i, elementData[node_i]?.id, elementData, nodeRefs, pathRefs, containerRef)}
-
-              drag
-            //   dragConstraints={containerRef}
-            //   dragTransition={{ bounceStiffness: 300, bounceDamping: 10}}
-            //   dragElastic={0.5}
-              whileTap={{ cursor: "grabbing", zIndex: 10  }}
-              dragMomentum={false}
+            drag
+            whileTap={{ cursor: "grabbing", zIndex: 10  }}
+            dragMomentum={false}
           > 
             <StyledID> {elementData?.id} </StyledID>
 
-           <NodeExpandAreaAndName id={elementData.id} isOpen={isOpen} toggleOpen={toggleOpen} content={elementData?._value} name={elementData?.name} name_zh={elementData?.name_zh}/>
+           <NodeExpandAreaAndName 
+              id={elementData.id} 
+              isOpen={isOpen} 
+              toggleOpen={toggleOpen} 
+              content={elementData?._value} 
+              type={elementData?.type} 
+              name={elementData?.name} 
+              name_zh={elementData?.name_zh}
+              source={elementData?.source}
+            />
           </StyledBoxContainer>
+
         
           <StyledSvgArea className='svg-area' elementAmount={allElementsData?.length}>  
             {
                 elementData?.connectors.map((lineObj, i) => 
+                
                 <StyledPath 
                     linestyle={lineObj?.border_style}
                     key={`svg-${elementData.id}-${i}`}
                     id={`${elementData.id}-${lineObj.connected_node}`}
                     className={`${elementData.id} path`} 
                     ref={elementData => setRefs(elementData, pathRefs)}
+                    strokeDasharray= { 
+                      lineObj?.line_style === "dashed" 
+                      ? "10, 10"
+                      : lineObj?.line_style === "dotted" ? "2, 2" : "0, 0" 
+                    }
                     />   )   
             }
             </StyledSvgArea>
@@ -186,7 +189,7 @@ export default function NodeBoxAndSVG({allElementsData, elementData, node_i, nod
 
 const StyledBoxContainer = styled(motion.div)`
     position: absolute;
-    height: 120px;
+    height: 140px;
     width: 350px;
     padding-left: 10px; 
     overflow-wrap: break-word;

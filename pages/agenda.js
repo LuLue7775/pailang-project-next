@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import AgendaElement from '../components/AgendaElement';
+import { fetchData } from '../utils/functions';
 
 import styled from "styled-components";
 import AgendaFliterLabel from "../components/AgendaFliterLabel";
@@ -37,16 +38,23 @@ const contentWrapVariant = {
 }
 
 
+
 export default function Agenda({ data }) {
 
   const [filteredData, setFilteredData] = useState(data);
   const [filter, setFilter] = useState(filtersInitArray);
  
-  const [expandContent, setExpandContent] = useState({});
   const [activeExpand, setActiveExpand] = useState(null); 
+  const [activeExpandData, setActiveExpandData] = useState(null); 
+  const [expandContent, setExpandContent] = useState({});
   const boxRefs = useRef([]);
+  const typeLengthRef = useRef({
+    journalLength: 0,  
+    ScenographyLength: 0, 
+    videoLength: 0
+  })
 
-/**
+  /**
  * Sorting
  */
   useEffect(() => {
@@ -71,40 +79,75 @@ export default function Agenda({ data }) {
     setActiveExpand(null)
   }, [filter])
 
-  /**
+/**
  * Selecting
  */
-  const handleExpand = (expandIndex) => {
-    setActiveExpand(expandIndex)
-  };
+
+  const getLengthOfEachType = () => {
+    let length = {
+      journalLength: 0,  
+      ScenographyLength: 0, 
+      videoLength: 0
+    }
+
+    boxRefs.current?.forEach(( box, i ) => {
+      if (box.id.startsWith('journal')) length.journalLength ++
+      if (box.id.startsWith('scenography')) length.ScenographyLength ++
+      if (box.id.startsWith('video')) length.videoLength ++
+    })
+    
+    typeLengthRef.current = length
+  }
+
 
   useEffect(() => {
+    getLengthOfEachType()
+  }, [])
+
+  const getExpandDataIndexByID = (boxID) => {
+    if (boxID.startsWith('journal'))  return parseInt(boxID.split('-')[1]) -1
+    else if (boxID.startsWith('scenography')) return typeLengthRef.current.journalLength + parseInt(boxID.split('-')[1]) -1 
+    else if (boxID.startsWith('video')) return typeLengthRef.current.journalLength + typeLengthRef.current.ScenographyLength + parseInt(boxID.split('-')[1]) -1
+  }
+
+  const handleExpand = (expandIndex, id) => {
+    setActiveExpand(expandIndex)
+    setActiveExpandData( getExpandDataIndexByID( id ) )
+  };
+
+  /**
+   * @TODO use useReducer
+   */
+  useEffect(() => {
     setExpandContent({
-      id : data[activeExpand]?.id || null,
-      title : data[activeExpand]?.title || '',
-      title_zh : data[activeExpand]?.title_zh || '',
-      type : data[activeExpand]?.type || '',
-      start_date : data[activeExpand]?.start_date || '',
-      end_date : data[activeExpand]?.end_date || '',
-      artist : data[activeExpand]?.artist || '',
-      producer : data[activeExpand]?.producer || '',
-      curator : data[activeExpand]?.curator || '',
-      language : data[activeExpand]?.language || '',
+      id : data[activeExpandData]?.id || null,
+      title : data[activeExpandData]?.title || '',
+      title_zh : data[activeExpandData]?.title_zh || '',
+      type : data[activeExpandData]?.type || '',
+      start_date : data[activeExpandData]?.start_date || '',
+      end_date : data[activeExpandData]?.end_date || '',
+      artist : data[activeExpandData]?.artist || '',
+      producer : data[activeExpandData]?.producer || '',
+      curator : data[activeExpandData]?.curator || '',
+      language : data[activeExpandData]?.language || '',
     })
   }, [activeExpand])
+
+
+
 
   return (
     <StyledAgenda>
       <StyledAgendaWrap>
         <StyledAgendaTableWrap>
           <AgendaTable expandContent={expandContent} />
-          <button>
+          { expandContent?.id && <button>
             <Link href={`http://localhost:3000/article-${expandContent?.type}/${expandContent?.id}`}>
                 <a>
                     <div> VIEW </div>
                 </a>
             </Link>
-          </button>
+          </button>}
         </StyledAgendaTableWrap>
 
         <StyledAgendaFilter> 
@@ -141,9 +184,10 @@ export default function Agenda({ data }) {
                   exit="exit"
                   
                   key={`${i}-${item?.id}`} 
-                  onClick={() => handleExpand(i)} 
+                  id={`${item.type}-${item?.id}`}
+                  onClick={() => handleExpand(i, `${item.type}-${item?.id}`)} 
                   ref={ el => setRefs(el, boxRefs, data.length)}
-                  className={`agenda-boxes ${item.type} ${item.status}`} 
+                  className={`${item.type} ${item.status}`} 
                   >
                 <AgendaElement item={item} activeExpand={activeExpand} expandIndex={i} />
 
@@ -157,19 +201,6 @@ export default function Agenda({ data }) {
 
 
 export async function getStaticProps() {
-  const DIRECTUS_API = process.env.DIRECTUS
-
-  const fetchData = async( route ) => {
-      const res = await fetch(`${ DIRECTUS_API + route }`, {
-          method: 'GET', 
-          headers: { 'Content-Type': 'application/json' }
-      })
-      const resJson = await res.json()
-      
-      if ( resJson.errors ) throw resJson.errors
-      return resJson
-  }
-
   const data = await fetchData('/agenda').catch((e) => console.log(e))
 
   return {

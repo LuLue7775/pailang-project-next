@@ -3,6 +3,8 @@ import styled from "styled-components";
 import NodesContainer from '../../components/NodesContainer';
 import ArticlesHeader from '../../components/ArticlesHeader';
 import { UpChevronSVG } from "../../components/Svgs";
+import { fetchData } from '../../utils/functions';
+
 import { useSpring } from "framer-motion";
 
 
@@ -39,19 +41,6 @@ export default function Scenography({ data }) {
 
 export async function getStaticProps({ params }) {
     const id = params.id;
-
-    const DIRECTUS_API = process.env.DIRECTUS
-    
-    const fetchData = async( route ) => {
-        const res = await fetch(`${ DIRECTUS_API + route }`, {
-            method: 'GET', 
-            headers: { 'Content-Type': 'application/json' }
-        })
-        const resJson = await res.json()
-        
-        if ( resJson.errors ) throw resJson.errors
-        return resJson
-    }
 
     const data = await fetchData(`/article-scenography/${id}`).catch(err => console.error(err) ) 
 

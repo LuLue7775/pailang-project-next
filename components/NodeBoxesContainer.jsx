@@ -22,8 +22,6 @@ const getWindowDimensions = () => {
   return { width, height };
 }
 
-
-
 export default function NodeBoxesContainer({elementsData, nodeRefs, pathRefs, containerRef, updatePath}) {
   const [windowDimensions, setWindowDimensions] = useState(() => getWindowDimensions());
   const [boxPos, setBoxPos] = useState(genRandomPos(windowDimensions?.width, elementsData));
@@ -76,8 +74,6 @@ export default function NodeBoxesContainer({elementsData, nodeRefs, pathRefs, co
               onDrag={() => updatePath(node_i, elementsData[node_i]?.id, elementsData, nodeRefs, pathRefs, containerRef) }
           > 
             <StyledID> {elem.id} </StyledID>
-
-         
 
            <NodeExpandArea id={elem.id} isOpen={isOpen} toggleOpen={toggleOpen} content={elem?.content} name={elem?.content_zh}/>
 

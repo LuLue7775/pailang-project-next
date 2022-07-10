@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useLayoutEffect  } from 'react'
 import useMediaQuery from '../../utils/hooks';
 import VideoPlayer from '../../components/VideoPlayer';
 import { UpChevronSVG } from '../../components/Svgs';
+import { fetchData } from '../../utils/functions';
 
 import styled from "styled-components";
 import { motion, useSpring } from 'framer-motion'
@@ -90,19 +91,6 @@ export default function Video({ data }) {
 
 export async function getStaticProps({ params }) {
     const id = params.id;
-
-    const DIRECTUS_API = process.env.DIRECTUS
-    
-    const fetchData = async( route ) => {
-        const res = await fetch(`${ DIRECTUS_API + route }`, {
-            method: 'GET', 
-            headers: { 'Content-Type': 'application/json' }
-        })
-        const resJson = await res.json()
-        
-        if ( resJson.errors ) throw resJson.errors
-        return resJson
-    }
 
     const data = await fetchData(`/article-video/${id}`).catch(err => console.error(err) ) 
     return {
