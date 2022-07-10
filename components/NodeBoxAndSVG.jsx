@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { useRouter } from 'next/router'
 
 import { motion, AnimatePresence, useMotionValue } from "framer-motion";
-import NodeExpandArea from './NodeExpandArea';
+import NodeExpandAreaAndName from './NodeExpandAreaAndName';
 
 const setRefs = (el, ref, dataLength) => {
   if (ref.current.length === dataLength) return;
@@ -12,13 +12,12 @@ const setRefs = (el, ref, dataLength) => {
 
 const genRandomPos = (viewW, topic1, route) => {
     const randomRange = route.startsWith('/article-journal') ? viewW/4 : (viewW - 300)
-  /**
-   * @TODO on /journal +200 should be viewW/4 
-   */
-  return topic1?.map((item, i) => {
-      return { x: parseInt(Math.random()*randomRange ), y: 200*i }
-  })
+
+    return topic1?.map((item, i) => {
+        return { x: parseInt(Math.random()*randomRange ), y: 200*i }
+    })
 }
+
 const getWindowDimensions = () => {
   if( typeof window === "undefined") return
   const { innerWidth: width, innerHeight: height } = window;
@@ -91,7 +90,7 @@ function updatePath( draggedIndex, draggedID, allElementsData, nodeRefs, pathRef
   }
 
 export default function NodeBoxAndSVG({allElementsData, elementData, node_i, nodeRefs, pathRefs, nodePosRefs}) {
-  console.log(elementData?.content, ":", elementData?._value)
+  // console.log(elementData?.content, ":", elementData?._value)
   const router = useRouter()
 
   const [windowDimensions, setWindowDimensions] = useState(() => getWindowDimensions());
@@ -164,7 +163,7 @@ export default function NodeBoxAndSVG({allElementsData, elementData, node_i, nod
           > 
             <StyledID> {elementData?.id} </StyledID>
 
-           <NodeExpandArea id={elementData.id} isOpen={isOpen} toggleOpen={toggleOpen} content={elementData?.content} name={elementData?.content_zh}/>
+           <NodeExpandAreaAndName id={elementData.id} isOpen={isOpen} toggleOpen={toggleOpen} content={elementData?._value} name={elementData?.name} name_zh={elementData?.name_zh}/>
           </StyledBoxContainer>
         
           <StyledSvgArea className='svg-area' elementAmount={allElementsData?.length}>  

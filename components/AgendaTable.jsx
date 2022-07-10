@@ -24,9 +24,10 @@ const childVariant = {
   
 export default function AgendaTable({ expandContent }) {
     const { title, title_zh, start_date, end_date, type, artist, producer, curator, language, id } = expandContent
-
+    // const dbRoot = process.env.NEXT_PUBLIC_DEV
   return (
     <AnimatePresence>
+        <StyledAgendaTable>
         <StyledAgendaTitle> 
             <motion.div variants={childVariant} key={title}>
             { title } <br /> { title_zh } 
@@ -63,15 +64,17 @@ export default function AgendaTable({ expandContent }) {
                 <motion.td variants={childVariant} key={id}>{ language } </motion.td>
             </motion.tr>
 
-            <Link href={`http://localhost:3000/article-${type}/${id}`}>
-                <a>
-                    <div> VIEW </div>
-                </a>
-            </Link>
+
         </motion.tbody>
+        </StyledAgendaTable>
     </AnimatePresence>
   )
 }
+
+const StyledAgendaTable = styled.table`
+    width: 100%;
+    height: 70%;
+`
 
 const StyledAgendaTitle = styled(motion.caption)`
     // height: 60px;

@@ -32,7 +32,7 @@ const expand = {
   
 
   
-export default function NodeExpandArea({ id, isOpen, toggleOpen, content, name}) {
+export default function NodeExpandAreaAndName({ id, isOpen, toggleOpen, content, name, name_zh}) {
   return (
     <>
     <StyledExpandContainer

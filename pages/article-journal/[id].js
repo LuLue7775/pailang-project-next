@@ -11,7 +11,7 @@ import NodesContainer from '../../components/NodesContainer';
 
 
 export default function Journal({ data }) {
-    // console.log(data)
+    console.log(data)
   const spring = useSpring(0, { damping: 100, stiffness: 1000    });
     
 

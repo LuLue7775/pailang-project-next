@@ -5,6 +5,7 @@ import styled from "styled-components";
 import AgendaFliterLabel from "../components/AgendaFliterLabel";
 import { motion, AnimatePresence, onHover  } from "framer-motion";
 import AgendaTable from "../components/AgendaTable";
+import Link from "next/link";
 
 const filterData = {
   // "all": { id: "allCheck", value: "all", label: "All", type:'all' },
@@ -79,25 +80,32 @@ export default function Agenda({ data }) {
 
   useEffect(() => {
     setExpandContent({
-      id : data[activeExpand]?.id,
-      title : data[activeExpand]?.title,
-      title_zh : data[activeExpand]?.title_zh,
-      type : data[activeExpand]?.type,
-      start_date : data[activeExpand]?.start_date,
-      end_date : data[activeExpand]?.end_date,
-      artist : data[activeExpand]?.artist,
-      producer : data[activeExpand]?.producer,
-      curator : data[activeExpand]?.curator,
-      language : data[activeExpand]?.language,
+      id : data[activeExpand]?.id || null,
+      title : data[activeExpand]?.title || '',
+      title_zh : data[activeExpand]?.title_zh || '',
+      type : data[activeExpand]?.type || '',
+      start_date : data[activeExpand]?.start_date || '',
+      end_date : data[activeExpand]?.end_date || '',
+      artist : data[activeExpand]?.artist || '',
+      producer : data[activeExpand]?.producer || '',
+      curator : data[activeExpand]?.curator || '',
+      language : data[activeExpand]?.language || '',
     })
   }, [activeExpand])
 
   return (
     <StyledAgenda>
       <StyledAgendaWrap>
-        <StyledAgendaTable>
+        <StyledAgendaTableWrap>
           <AgendaTable expandContent={expandContent} />
-        </StyledAgendaTable>
+          <button>
+            <Link href={`http://localhost:3000/article-${expandContent?.type}/${expandContent?.id}`}>
+                <a>
+                    <div> VIEW </div>
+                </a>
+            </Link>
+          </button>
+        </StyledAgendaTableWrap>
 
         <StyledAgendaFilter> 
             <StyledMainGrid  whileHover={{ height: "20px" }} >  
@@ -150,7 +158,7 @@ export default function Agenda({ data }) {
 
 export async function getStaticProps() {
   const DIRECTUS_API = process.env.DIRECTUS
-  
+
   const fetchData = async( route ) => {
       const res = await fetch(`${ DIRECTUS_API + route }`, {
           method: 'GET', 
@@ -195,7 +203,7 @@ const StyledAgendaWrap = styled.div`
     padding-bottom: 1rem;
     font-size: .4rem;
 `
-const StyledAgendaTable = styled.table`
+const StyledAgendaTableWrap = styled.div`
     width: 90%;
     color: #000;
     border-right: 1px solid #000;

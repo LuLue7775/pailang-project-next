@@ -50,7 +50,7 @@ const slideVariant = {
 
 export default function AgendaElement({ item, activeExpand, expandIndex }) {
   const { title, title_zh, cover, start_date, end_date, type} = item;
-  const [isExpand, setExpand] = useState(false);
+  const [isexpand, setExpand] = useState(false);
 
   useEffect(() => {
     if ( activeExpand === expandIndex ) setExpand(true);
@@ -61,10 +61,10 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
   return (
       <>
           <StyledImgContainer 
-            isExpand={isExpand} 
+            isexpand={isexpand} 
             as={motion.div}
             variants={imgWrapVariant}
-            animate={isExpand ? "open" : "closed"}
+            animate={isexpand ? "open" : "closed"}
             initial="initial"
             >
             { cover && 
@@ -72,15 +72,15 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
                 alt="" 
                 width="100%"
                 height="100%"
-                src={ `http://127.0.0.1:8055${cover}`}
+                src={ cover }
                 layout="responsive"
-                
+                crossOrigin="true"
                 // loading="eager"
                 // style={{objectFit: "cover", maxHeight: 300 }}
               />}
           </StyledImgContainer>
           
-          <StyledSlide as={motion.div} variants={slideVariant} animate={isExpand ? "open" : "closed" }> </StyledSlide>
+          <StyledSlide as={motion.div} variants={slideVariant} animate={isexpand ? "open" : "closed" }> </StyledSlide>
 
           <div>
             <StyledSm className="zh">{type} </StyledSm>
@@ -96,7 +96,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
   const StyledImgContainer = styled(motion.div)`
     position: relative;  
     width: min(300px, 100%);
-    // height: ${({ isExpand }) => isExpand ? '300px' : '100px'};
+    // height: ${({ isexpand }) => isexpand ? '300px' : '100px'};
 
     background-color: #000;
     margin: 10px 0 10px 0;
