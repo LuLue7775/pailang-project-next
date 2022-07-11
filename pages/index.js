@@ -105,7 +105,7 @@ export default function Home({ modalData,  randomArticleData}) {
           initial="initial"
         >
             <Image 
-              src="/homeBG2.jpg" 
+              src="/homeBG.jpg" 
               alt="gradient" 
               height="100vh"
               width="100vw"

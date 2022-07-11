@@ -1,8 +1,10 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext } from 'react'
+import { CursorContext } from '../context/cursorContext';
 import styled from "styled-components";
 import { EllipseBtnSVG } from './Svgs';
 
 export default function ModalStart({ setModalShow, modalData }) {
+    const { hoverEvent, setHoverEvent } =  useContext(CursorContext)
     const modalRef = useRef()
     const { title, title_zh, content, content_zh } = modalData || {}
 
@@ -16,7 +18,10 @@ export default function ModalStart({ setModalShow, modalData }) {
                 <div className='ch'> { content_zh } </div>
                 <div className='en'> { content } </div>
             </StyledModalContent>
-            <div onClick={() => setModalShow(false) }> 
+            <div onClick={() => setModalShow(false)}
+                onMouseOver={() => setHoverEvent("expand")}
+                onMouseLeave={() => setHoverEvent("default")}  
+            > 
                 <EllipseBtnSVG texts={"Start"}/>
             
              </div>
