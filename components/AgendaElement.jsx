@@ -20,7 +20,6 @@ const imgWrapVariant = {
   initial: {
     height: "100px",
   },
-
 }
 
 

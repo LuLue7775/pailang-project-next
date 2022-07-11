@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import styled from "styled-components";
+import { EllipseBtnSVG } from './Svgs';
 
 export default function ModalStart({ setModalShow, modalData }) {
     const modalRef = useRef()
@@ -15,7 +16,10 @@ export default function ModalStart({ setModalShow, modalData }) {
                 <div className='ch'> { content_zh } </div>
                 <div className='en'> { content } </div>
             </StyledModalContent>
-            <button onClick={() => setModalShow(false) }> OK </button>
+            <div onClick={() => setModalShow(false) }> 
+                <EllipseBtnSVG texts={"Start"}/>
+            
+             </div>
         </StyledModal>
     )
 }

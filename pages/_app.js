@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Nav from '../components/Nav';
 import '../styles/globals.css';
-import styled, { keyframes } from "styled-components";
-import ModalStart from '../components/ModalStart';
+import styled from "styled-components";
 import { useRouter } from 'next/router';
-
-import { AnimatePresence } from 'framer-motion'
-
 
 function MyApp({ Component, pageProps, data }) {
   const router = useRouter();
@@ -31,6 +27,7 @@ const StyledApp = styled.div`
     position:relative;
     width: 100%;
     color: #000;
+    
 `;
 const StyledHeader = styled.div`
     position: absolute;
@@ -51,6 +48,7 @@ const StyledLayout = styled.div`
     position:relative;
     bottom: 0;
     z-index: 0;
+    
   } };
 `;
 

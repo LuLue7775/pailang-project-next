@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from 'react'
+import { useState, useLayoutEffect, useEffect, useRef } from 'react'
 import { fetchData, slideTo } from '../utils/functions'
 import styled from "styled-components";
 import { motion, useSpring } from "framer-motion";
@@ -7,6 +7,7 @@ import ModalStart from '../components/ModalStart';
 import Image from 'next/image';
 import ArticlesHeader from '../components/ArticlesHeader';
 import JournalContent from '../components/JournalContent';
+import Cursor from '../components/Cursor';
 
 const coverVariant = {
   initial: {
@@ -47,7 +48,8 @@ const modalVariant = {
 }
 
 export default function Home({ modalData,  randomArticleData}) {
-  
+
+  const containerRef = useRef()
   const [modalShow, setModalShow] = useState(true); //default true
   const spring = useSpring(0, { damping: 100, stiffness: 1000 });
     
@@ -57,9 +59,20 @@ export default function Home({ modalData,  randomArticleData}) {
     });
   }, [spring]);
 
+  useEffect(() => {
+    function handleRefresh() {
+      window.scrollTo( 0, 0 )
+    }
+    window.addEventListener("beforeunload", handleRefresh);
+    return () => {
+      window.removeEventListener("beforeunload", handleRefresh);
+    };
+  }, [])
+
+
+
   return (
-    <StyledContainer className='home-container' >
- 
+    <StyledContainer className='home-container'>
         <StyledCover 
           as={motion.div}
           variants={coverVariant}
@@ -85,6 +98,7 @@ export default function Home({ modalData,  randomArticleData}) {
         <ArticlesHeader data={randomArticleData} slideTo={slideTo} spring={spring}/>
         <JournalContent data={randomArticleData} spring={spring}/>
         
+        {/* <Cursor/> */}
     </StyledContainer>
 
   )
@@ -115,4 +129,5 @@ const StyledCover = styled(motion.div)`
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  
 `

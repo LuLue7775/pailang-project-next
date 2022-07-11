@@ -1,44 +1,12 @@
 import { useEffect, useState } from 'react'
-import dataJson from '../dataset.json';
 import Image from 'next/image'
-import { LineSVGFull } from './Svgs';
-
-import styled from "styled-components";
+import { LineSVGFull } from './Svgs'
+import { containerLeftMotion, BGMotion } from '../utils/framerVariants'
+import styled from "styled-components"
 import { motion } from 'framer-motion'
 
-/**
- * @TODO tweak gradient
- * @TODO apply to other two col
- * @TODO text reflow solution? 
- */
 
-const containerMotion = {
-    rest: { x:"0", zIndex:0,  },
-    hover: {
-        x:"5%", 
-        scale:1.1, 
-        width:"50%",
-        transition: { duration: 1 }, zIndex:10,
-        transition: {
-            type: "tween",
-            ease: "easeInOut",
-            duration: 0.8
-          }
-    },
-}
 
-const BGMotion = {
-    rest: { opacity: 0, ease: "easeOut", duration: 0.2, type: "tween" },
-    hover: {
-      opacity: 1,
-      transition: {
-        duration: 2,
-        type: "tween",
-        ease: "easeIn"
-      }
-    }
-  };
-  
 
 export default function AboutLeftElement({ roles, parse }) {
     const [ scrollHeight, setScrollHeight ] = useState();
@@ -52,14 +20,12 @@ export default function AboutLeftElement({ roles, parse }) {
         id="left"
         className='leftcol-container'
         as={motion.div}
-        variants={containerMotion}
+        variants={containerLeftMotion}
         initial="rest"
         whileHover="hover"
         animate="rest"
     >
     <MotionBG variants={BGMotion} scrollHeight={scrollHeight} />
-
-
         { roles?.map(( elem, i ) => (
             <StyledPersonaContainer className='persona-container' key={i}>
                 <LineSVGFull />
@@ -97,29 +63,22 @@ const MotionBG = styled(motion.div)`
     z-index:-1;
     height: ${({ scrollHeight }) => scrollHeight &&  `${scrollHeight}px`};
     width: 100%;
-    background-color: #c5b99e;
+    background-color: #fff;
 
     background-image:
-      radial-gradient(circle farthest-side  at 30% 89%, rgba(250, 170, 50,1) 0px, transparent 50%),
-      radial-gradient(circle farthest-corner at 35% 0%, rgba(225, 100, 97,1) 0px, transparent 50%),
+      radial-gradient(circle farthest-side at 10% 89%, rgba(250, 170, 50,1) 0px, transparent 50%),
+      radial-gradient(circle farthest-corner at 35% 0%,  rgba(250, 97, 55,1) 0px, transparent 50%),
       radial-gradient(at 93% 46%, rgba(255, 255, 255,1) 0px, transparent 50%),
-      radial-gradient(circle farthest-side  at 23% 49%,rgba(230, 70, 50,1) 0px, transparent 50%),
+      radial-gradient(circle farthest-side  at 23% 49%,rgba(247, 138, 119,1) 0px, transparent 50%),
       radial-gradient(at 17% 27%, rgba(255, 255, 255,1) 0px, transparent 50%),
-    //   radial-gradient(at 79% 30%,  rgba(230, 70, 50,1) 0px, transparent 50%),
+      radial-gradient(at 79% 30%,  rgba(230, 70, 50,1) 0px, transparent 50%),
       radial-gradient(at 26% 40%, hsla(36,65%,63%,1) 0px, transparent 50%);
 `;
 
-const MotionSvg = styled(motion.svg)`
-  height: 300px;
-  width: 300px;
-`;
-const MotionRect = styled(motion.rect)`
-  border-radius: 15px;
-`;
 
 const StyledLeftColContainer = styled(motion.div)`
-    height: 100%;
     position: absolute;
+    height: 100%;
     
     overflow-y:scroll;
     ::-webkit-scrollbar { width: 0; }

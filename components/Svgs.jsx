@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from "next/link";
 
 export function LineSVG() {
   return (
@@ -48,9 +49,19 @@ export function DownChevronSVG() {
 
 export function UpChevronSVG() {
   return (
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-  <path fillRule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
-</svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+    <path fillRule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+  </svg>
   )
 }
 
+export function EllipseBtnSVG({ texts }) {
+  return (
+    <a style={{ postion:"relative", display:"flex", justifyContent:"end" }}>
+      <svg height="80" width="200" >
+        <ellipse cx="100" cy="40" rx="60" ry="20" style={{fill:"none", stroke:"#000", strokeWidth:1, background:"transparent" }} />
+        <text  x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" width="200"fill="#000" style={{ fontSize: ".8rem" }}> {texts} </text>                    
+      </svg>
+    </a>
+  )
+}

@@ -54,7 +54,6 @@ export async function getStaticPaths() {
     height: 200vh;
     width: 100%;
     overflow: hidden;
-
   `
     /**
    * @TODO media query on height and fontsize

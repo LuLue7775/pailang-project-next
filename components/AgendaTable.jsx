@@ -28,44 +28,44 @@ export default function AgendaTable({ expandContent }) {
   return (
     <AnimatePresence>
         <StyledAgendaTable>
-        <StyledAgendaTitle> 
-            <motion.div variants={childVariant} key={title}>
-            { title } <br /> { title_zh } 
-            </motion.div>
-        </StyledAgendaTitle>
-        <motion.tbody
-            variants={tableVariant}
-            initial="initial"
-            exit="exit"
-            animate="animate"
-            >
-            <motion.tr >
-                <td>Date</td>
-                <motion.td variants={childVariant} key={id}>{ start_date } - { end_date }</motion.td>
-            </motion.tr>
-            <motion.tr  >
-                <td>Type</td>
-                <motion.td variants={childVariant} key={id}>{ type } </motion.td>
-            </motion.tr>
-            <motion.tr >
-                <td>Artist</td>
-                <motion.td variants={childVariant} key={id}>{artist}</motion.td>
-            </motion.tr>
-            <motion.tr >
-                <td>Producer</td>
-                <motion.td variants={childVariant} key={id}>{ producer } </motion.td>
-            </motion.tr>
-            <motion.tr >
-                <td>Curator</td>
-                <motion.td variants={childVariant} key={id}>{ curator } </motion.td>
-            </motion.tr>
-            <motion.tr >
-                <td>Language</td>
-                <motion.td variants={childVariant} key={id}>{ language } </motion.td>
-            </motion.tr>
+            <StyledAgendaTitle> 
+                <motion.div variants={childVariant} key={title}>
+                { title } <br /> { title_zh } 
+                </motion.div>
+            </StyledAgendaTitle>
+            <motion.tbody
+                variants={tableVariant}
+                initial="initial"
+                exit="exit"
+                animate="animate"
+                >
+                <motion.tr >
+                    <td>Date</td>
+                    <motion.td variants={childVariant} key={id}>{ start_date } - { end_date }</motion.td>
+                </motion.tr>
+                <motion.tr  >
+                    <td>Type</td>
+                    <motion.td variants={childVariant} key={id}>{ type } </motion.td>
+                </motion.tr>
+                <motion.tr >
+                    <td>Artist</td>
+                    <motion.td variants={childVariant} key={id}>{artist}</motion.td>
+                </motion.tr>
+                <motion.tr >
+                    <td>Producer</td>
+                    <motion.td variants={childVariant} key={id}>{ producer } </motion.td>
+                </motion.tr>
+                <motion.tr >
+                    <td>Curator</td>
+                    <motion.td variants={childVariant} key={id}>{ curator } </motion.td>
+                </motion.tr>
+                <motion.tr >
+                    <td>Language</td>
+                    <motion.td variants={childVariant} key={id}>{ language } </motion.td>
+                </motion.tr>
 
 
-        </motion.tbody>
+            </motion.tbody>
         </StyledAgendaTable>
     </AnimatePresence>
   )
@@ -73,7 +73,7 @@ export default function AgendaTable({ expandContent }) {
 
 const StyledAgendaTable = styled.table`
     width: 100%;
-    height: 70%;
+    height: 60%;
 `
 
 const StyledAgendaTitle = styled(motion.caption)`

@@ -136,13 +136,21 @@ export default function Agenda({ data }) {
       <StyledAgendaWrap>
         <StyledAgendaTableWrap>
           <AgendaTable expandContent={expandContent} />
-          { expandContent?.id && <button>
-            <Link href={`http://localhost:3000/article-${expandContent?.type}/${expandContent?.id}`}>
-                <a>
-                    <div> VIEW </div>
-                </a>
-            </Link>
-          </button>}
+          {expandContent?.id && 
+              <Link href={
+                !process.env.NODE_ENV || process.env.NODE_ENV === 'development' 
+                ?
+                `http://localhost:3000/article-${expandContent?.type}/${expandContent?.id}`
+                : `${process.env.NEXT_PUBLIC_DOMAIN}/article-${expandContent?.type}/${expandContent?.id} ` 
+                }>
+                  <a style={{ postion:"relative", display:"flex", justifyContent:"end" }}>
+                    <svg height="80" width="200" >
+                      <ellipse cx="100" cy="40" rx="60" ry="20" style={{fill:"none", stroke:"#000", strokeWidth:1, background:"transparent" }} />
+                      <text  x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" width="200"fill="#000" style={{ fontSize: ".8rem" }}> VIEW </text>                    
+                    </svg>
+                  </a>
+              </Link>
+          } 
         </StyledAgendaTableWrap>
 
         <StyledAgendaFilter> 
@@ -207,6 +215,16 @@ export async function getStaticProps() {
 }
 
 
+const StyledButton = styled.button`
+    width: auto;
+    height: 1.4rem;
+    background: transparent;
+    border: 1px double #000;
+
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 200;
+    letter-spacing: 1px;
+`
 const StyledAgenda = styled.div`
     display: grid;
     grid-template-columns: 33% 66%;
