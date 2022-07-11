@@ -1,9 +1,10 @@
-import React from 'react'
+import { useContext } from 'react'
 import { LeftCrossSVG, RightCrossSVG, LineSVG, DownChevronSVG } from './Svgs';
 import styled from "styled-components";
-
+import { CursorContext } from '../context/cursorContext';
 
 export default function ArticlesHeader({ data, slideTo, spring }) {
+  const { hoverEvent, setHoverEvent } =  useContext(CursorContext)
 
   return (
     <StyledHeader>
@@ -24,7 +25,10 @@ export default function ArticlesHeader({ data, slideTo, spring }) {
             <RightCrossSVG/>
         </StyledSubtitles>
         
-        <div onClick={() => slideTo( document.getElementById("section2").offsetTop, spring )}>
+        <div onClick={() => slideTo( document.getElementById("section2").offsetTop, spring )}
+            onMouseOver={() => setHoverEvent("expand")}
+            onMouseLeave={() => setHoverEvent("default")}  
+        >
             <DownChevronSVG />
         </div>
     </StyledHeader>

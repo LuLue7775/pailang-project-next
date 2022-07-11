@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useEffect, useRef } from 'react'
+import { useState, useLayoutEffect, useEffect, useRef, useContext } from 'react'
 import { fetchData, slideTo } from '../utils/functions'
 import styled from "styled-components";
 import { motion, useSpring } from "framer-motion";
@@ -8,6 +8,8 @@ import Image from 'next/image';
 import ArticlesHeader from '../components/ArticlesHeader';
 import JournalContent from '../components/JournalContent';
 import Cursor from '../components/Cursor';
+import { getRelativeCoordinates } from '../utils/functions';
+import { CursorContext } from '../context/cursorContext';
 
 const coverVariant = {
   initial: {
@@ -49,16 +51,27 @@ const modalVariant = {
 
 export default function Home({ modalData,  randomArticleData}) {
 
-  const containerRef = useRef()
-  const [modalShow, setModalShow] = useState(true); //default true
+  // Cursor efffect
+  const cursorAreaRef = useRef()
+  const [mousePosition, setMousePosition] = useState({})
+  const { hoverEvent, setHoverEvent } =  useContext(CursorContext)
+
+  const handleMouseMove = e => {
+    setMousePosition(getRelativeCoordinates(e, cursorAreaRef.current));
+  };
+
+  // Modal effect
+  const [modalShow, setModalShow] = useState(true); 
+
+  // Chevron effect
   const spring = useSpring(0, { damping: 100, stiffness: 1000 });
-    
   useLayoutEffect(() => {
     spring.onChange(latest => {
       window.scrollTo(0, latest);
     });
   }, [spring]);
 
+  // Scroll to top on refresh 
   useEffect(() => {
     function handleRefresh() {
       window.scrollTo( 0, 0 )
@@ -69,10 +82,22 @@ export default function Home({ modalData,  randomArticleData}) {
     };
   }, [])
 
-
+  
 
   return (
-    <StyledContainer className='home-container'>
+    <StyledContainer 
+      className='home-container'
+      as={motion.div}
+      id="cursor-area"
+      ref={cursorAreaRef}
+      onMouseMove={e => handleMouseMove(e)}
+      animate={{
+        rotateX: mousePosition.centerX * 20,
+        rotateY: mousePosition.centerY * 20
+      }}
+    >
+        <Cursor mousePosition={mousePosition} hoverEvent={hoverEvent} />
+
         <StyledCover 
           as={motion.div}
           variants={coverVariant}
@@ -95,10 +120,9 @@ export default function Home({ modalData,  randomArticleData}) {
             </motion.div>
         </StyledCover>
 
-        <ArticlesHeader data={randomArticleData} slideTo={slideTo} spring={spring}/>
-        <JournalContent data={randomArticleData} spring={spring}/>
+        <ArticlesHeader data={randomArticleData} slideTo={slideTo} spring={spring} />
+        <JournalContent data={randomArticleData} spring={spring} />
         
-        {/* <Cursor/> */}
     </StyledContainer>
 
   )
@@ -118,10 +142,12 @@ export async function getStaticProps() {
   }
 }
 
-const StyledContainer = styled.div`
+const StyledContainer = styled(motion.div)`
   height: 200vh;
   width: 100%;
   overflow: hidden;
+
+  perspective: 600; 
 `
 const StyledCover = styled(motion.div)`
   position: absolute;

@@ -75,8 +75,6 @@ const StyledVideo = styled.div`
   height: calc(100vh - 250px);
 
   overflow-y:scroll;
-  ::-webkit-scrollbar { width: 0; }
-  scrollbar-width: none; /* Firefox */
 
   font-family: 'Noto Serif TC', serif;
   font-weight: 200;

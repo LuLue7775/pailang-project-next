@@ -2,6 +2,7 @@
 
 html {
   font-size: 16px;
+  
 }
 
 body {
@@ -19,8 +20,9 @@ a {
 * {
   margin: 0;
   box-sizing: border-box;
-  
+  scrollbar-width: none; /* Firefox */
 }
+::-webkit-scrollbar { width: 0; };
 
 :root {
   --title-font-en: 'Ogg';

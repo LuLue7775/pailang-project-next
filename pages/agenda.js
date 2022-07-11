@@ -303,8 +303,6 @@ const StyledAgendaGrid = styled.div`
   align-items: start;
 
   overflow-y:scroll;
-  ::-webkit-scrollbar { width: 0; }
-  scrollbar-width: none; /* Firefox */
 `;
 
 

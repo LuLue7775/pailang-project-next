@@ -58,9 +58,6 @@ const StyledMidColContainer = styled.div`
     width: 33%;
     padding: 20px;
     overflow-y:scroll;
-    ::-webkit-scrollbar { width: 0; }
-    scrollbar-width: none; /* Firefox */
-
 `;
 
 const StyledElementContainer = styled.div`

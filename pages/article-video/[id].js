@@ -148,10 +148,6 @@ const StyledLeftCol = styled(motion.div)`
   
   height: 100%;
   overflow-y:scroll;
-  ::-webkit-scrollbar { width: 0; }
-  scrollbar-width: none; /* Firefox */
-
-
 `;
 const StyledLeftText = styled.div`
   position: relative;
@@ -164,9 +160,7 @@ const StyledRightCol = styled(motion.div)`
   
   height: 100%;
   overflow-y:scroll;
-  ::-webkit-scrollbar { width: 0; }
-  scrollbar-width: none; /* Firefox */
-  
+
   font-size: .5px;
 `;
 

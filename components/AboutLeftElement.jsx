@@ -81,9 +81,6 @@ const StyledLeftColContainer = styled(motion.div)`
     height: 100%;
     
     overflow-y:scroll;
-    ::-webkit-scrollbar { width: 0; }
-    scrollbar-width: none; /* Firefox */
-
     width: 33%;
 `;
 const StyledPersonaContainer = styled.div`

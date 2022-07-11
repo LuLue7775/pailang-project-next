@@ -6,9 +6,8 @@ import { motion } from 'framer-motion'
 export default function AboutMidElement({ content, content_zh, parse }) {
     const [ scrollHeight, setScrollHeight ] = useState();
     useEffect(() => {
-        setScrollHeight(document.getElementById('mid').scrollHeight )
+        setScrollHeight(document.getElementById('mid').scrollHeight +1000 )
     }, [])
-    
     
   return (
     <StyledMidColContainer
@@ -59,9 +58,6 @@ const StyledMidColContainer = styled.div`
     padding: 20px 30px 20px 30px;
 
     overflow-y:scroll;
-    ::-webkit-scrollbar { width: 0; }
-    scrollbar-width: none; /* Firefox */
-
 `;
 const StyledMidContent = styled.div`
     position: absolute;

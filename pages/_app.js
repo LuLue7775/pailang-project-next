@@ -3,20 +3,23 @@ import Nav from '../components/Nav';
 import '../styles/globals.css';
 import styled from "styled-components";
 import { useRouter } from 'next/router';
+import CursorProvider from '../context/cursorContext';
 
 function MyApp({ Component, pageProps, data }) {
   const router = useRouter();
 
   return (
-        <StyledApp className='app' id='app'>
-            <StyledHeader className='header' route={router.pathname}>
-              <Nav route={router.pathname} />
-            </StyledHeader>
-          
-            <StyledLayout route={router.pathname}>
-              <Component {...pageProps} />
-            </StyledLayout>
-        </StyledApp>    
+    <CursorProvider>
+     <StyledApp className='app' id='app'>
+          <StyledHeader className='header' route={router.pathname}>
+            <Nav route={router.pathname} />
+          </StyledHeader>
+        
+          <StyledLayout route={router.pathname}>
+            <Component {...pageProps} />
+          </StyledLayout>
+      </StyledApp>    
+    </CursorProvider>
   )
 }
 
@@ -27,7 +30,7 @@ const StyledApp = styled.div`
     position:relative;
     width: 100%;
     color: #000;
-    
+   
 `;
 const StyledHeader = styled.div`
     position: absolute;

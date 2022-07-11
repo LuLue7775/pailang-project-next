@@ -1,5 +1,6 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useContext } from 'react'
 import Image from 'next/image'
+import { CursorContext } from '../context/cursorContext'
 
 import styled from "styled-components"
 import { motion } from "framer-motion";
@@ -65,6 +66,7 @@ const expand = {
   
 export default function NodeExpandAreaAndName({ id, isOpen, toggleOpen, content, type, name, name_zh, source}) {
   const expandRef = useRef()
+  const { hoverEvent, setHoverEvent } =  useContext(CursorContext)
 
   const [isWindow, setWindow] = useState(false);
   useEffect(() => {
@@ -77,6 +79,8 @@ export default function NodeExpandAreaAndName({ id, isOpen, toggleOpen, content,
         as={motion.div}
         initial={false}
         animate={isOpen.includes(id) ? "open" : "closed"}
+        onMouseOver={() => setHoverEvent("expand")}
+        onMouseLeave={() => setHoverEvent("default")}  
     >
        
         <StyledExpand as={motion.div} onClick={() => expandRef.current?.scrollHeight > 120 && toggleOpen(id) } variants={expand} isOpen={isOpen.includes(id)} ref={expandRef} >
@@ -108,10 +112,6 @@ const StyledExpand = styled(motion.div)`
   margin: 10px;
   background-color: #000;
   overflow-y: ${({ isOpen }) => isOpen ? "scroll" : "hidden" };
-  ::-webkit-scrollbar { width: 0; }
-  scrollbar-width: none; /* Firefox */
-
-
 `;
 const StyledName = styled(motion.div)`
   position: absolute;

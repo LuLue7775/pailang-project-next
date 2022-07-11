@@ -71,9 +71,6 @@ const StyledAbout = styled.div`
 
 const StyledAboutLeftCol = styled(motion.div)`
     height: 100%;
-    ::-webkit-scrollbar { width: 0; }
-    scrollbar-width: none; /* Firefox */
-
 `;
 
 const StyledAboutMidCol = styled(motion.div)`
@@ -93,8 +90,5 @@ const StyledAboutRightCol = styled(motion.div)`
     height: 100%;
     overflow-y:scroll;
     overflow-x:hidden;
-    ::-webkit-scrollbar { width: 0; }
-    scrollbar-width: none; /* Firefox */
-
 `;
 

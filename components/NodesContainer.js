@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { UpChevronSVG } from './Svgs';
 
-export default function NodesContainer({ data, slideTo }) {
+export default function NodesContainer({ data }) {
 
     const nodeRefs = useRef([]);
     const pathRefs = useRef([]);
@@ -37,9 +37,6 @@ const StyledNodeContainer = styled(motion.div)`
     height:100vh;
     // height: ${({element_amount}) => element_amount*250  }px;  
     overflow-y:scroll;
-    ::-webkit-scrollbar { width: 0; }
-    scrollbar-width: none; /* Firefox */
-
     // background-color: #ffffffa0;
 
 `;

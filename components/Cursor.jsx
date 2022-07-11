@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useRef, useEffect } from "react";
+import { motion, transform } from "framer-motion";
 import { getRelativeCoordinates } from "../utils/functions";
+import styled from "styled-components";
 
 const css = {
     box: {
@@ -12,40 +13,89 @@ const css = {
     },
     fly: {
       position: "absolute",
-      width: "20px",
-      height: "20px",
+      width: "6px",
+      height: "6px",
       margin: "-10px",
       backgroundColor: "red",
-      borderRadius: 10
+      borderRadius: 10,
+      zIndex:"100",
+      pointerEvents: "none"
+    },
+    circle: {
+        position: "absolute",
+        margin: "-10px",
+        backgroundColor: "red",
+        borderRadius: 10,
+        zIndex:"100",
+        pointerEvents: "none",
+        backgroundColor: "transparent", 
+        width:80, 
+        height:80, 
+        border:"1px solid #00000070", 
+        borderRadius: "40px", 
+        left:"-30px" , 
+        top:"-30px"
     }
   };
 
-export default function Cursor() {
+  const circleAnimate = {
+    default: (mousePosition) => { return {
+        x: mousePosition.x,
+        y: mousePosition.y,
+      }
+    }, 
+    expand: (mousePosition) => ( {
+        x: mousePosition.x,
+        y: mousePosition.y,
+        scale: 2,
+        transition: { ease: [0.8, 0.01, -0.05, 0.95], }
+        }), 
 
-    const [mousePosition, setMousePosition] = useState({});
-    const boxRef = useRef();
-    const handleMouseMove = e => {
-      setMousePosition(getRelativeCoordinates(e, boxRef.current));
-    //   console.log('move')
-    };
+  }
+
+//   transition={{ 
+//     duration: 1.8,
+//     delay: 1,
+//     ease: [0.8, 0.01, -0.05, 0.95],
+//   }}
+
+export default function Cursor({mousePosition, hoverEvent}) {
+
+    const [CircleAnimate, setCircleAnimate] = useState({})
+// console.log(hoverEvent)
+    useEffect(() => {
+        if( hoverEvent === "default") setCircleAnimate({ ...circleAnimate.default(mousePosition)  })
+    }, [mousePosition])    
+
+    useEffect(() => {
+        switch (hoverEvent){
+            case "default":
+                setCircleAnimate({ ...circleAnimate.default(mousePosition)  })
+                return 
+            case "expand":
+                setCircleAnimate({ ...circleAnimate.expand(mousePosition) })
+                return 
+            // case "node":
+            //     setCircleAnimate({ ...nodeAnimate.default(mousePosition)  })
+            //     return 
+        default:
+            return
+        }
+    }, [hoverEvent])
 
     return (
-      <motion.div
-        id="cursor-area"
-        ref={boxRef}
-        style={{ ...css.box, perspective: 600 }}
-        onMouseMove={e => handleMouseMove(e)}
-        animate={{
-          rotateX: mousePosition.centerX * 20,
-          rotateY: mousePosition.centerY * 20
-        }}
-      >
+        <>
         <motion.div
           style={css.fly}
           animate={{
             x: mousePosition.x,
             y: mousePosition.y
           }}
+        />
+        <motion.div
+          style={ css.circle }
+          animate={CircleAnimate}
+    
         />
         <motion.div
           style={{ ...css.fly, backgroundColor: "gold" }}
@@ -63,12 +113,7 @@ export default function Cursor() {
           }}
           transition={{ type: "tween" }}
         />
-        {mousePosition.x} / {mousePosition.y}
-        <br />
-        {mousePosition.centerX} / {mousePosition.centerY}
-        <br />
-        {mousePosition.width} / {mousePosition.height}
-        <br />
-      </motion.div>
+        </>
     );
 }
+
