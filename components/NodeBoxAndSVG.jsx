@@ -11,10 +11,10 @@ const setRefs = (el, ref, dataLength) => {
 };
 
 const genRandomPos = (viewW, topic1, route) => {
-    const randomRange = route.startsWith('/article-journal') ? viewW/4 : (viewW - 300)
+    const randomRange = route.startsWith('/article-journal') ? viewW/6 : (viewW - 300)
 
     return topic1?.map((item, i) => {
-        return { x: parseInt(Math.random()*randomRange ), y: 200*i }
+        return { x: parseInt(Math.random()*randomRange), y: 200*i }
     })
 }
 
@@ -95,7 +95,6 @@ export default function NodeBoxAndSVG({allElementsData, elementData, node_i, nod
 
   const [windowDimensions, setWindowDimensions] = useState(() => getWindowDimensions());
   const [boxPos, setBoxPos] = useState(genRandomPos(windowDimensions?.width, allElementsData,  router.asPath));
-
   const [isOpen, setOpen] = useState([]);
 
   const toggleOpen = (id) => {
