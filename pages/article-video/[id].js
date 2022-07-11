@@ -141,7 +141,7 @@ const StyledChevron = styled.div`
 
 const StyledLeftCol = styled(motion.div)`
   position: relative;
-  border-right:  ${({ isMobile }) => isMobile ? "" : "1px #FFB304 dashed"} ;
+  border-right:  ${({ isMobile }) => isMobile ? "" : "1px rgba(250, 170, 50,1)  dashed"} ;
   padding: 20px;
   font-size: .5px;
   color: #000;
@@ -170,7 +170,7 @@ height: 450px;
 width: 100%;
 border-radius: 10px;
 background-color: #0000005F;
-border: 1px solid #FFB304;
+border: 1px solid rgba(250, 170, 50,1) ;
 
 `;
 

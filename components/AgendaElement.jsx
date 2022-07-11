@@ -114,6 +114,6 @@ const StyledSlide = styled(motion.div)`
    top: 0;
    height:100%;
    width:100%;
-   background-color: #FFB304a0;
+   background-color: rgba(250, 170, 50,1);
    z-index: -1;
    `

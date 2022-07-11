@@ -74,7 +74,7 @@ const StyledJournalRightCol = styled.div`
  
  height: 100%;
 
- border-left: 1px #FFB304 dashed;
+ border-left: 1px rgba(250, 170, 50,1)  dashed;
 
  overflow-y:scroll;
 `;

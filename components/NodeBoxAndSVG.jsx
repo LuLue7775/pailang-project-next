@@ -195,7 +195,7 @@ const StyledBoxContainer = styled(motion.div)`
     overflow-wrap: break-word;
     color: #FFF;
     background-color: #000;
-    border: 1px solid #FFB304;
+    border: 1px solid rgba(250, 170, 50,1) ;
     border-radius: ${({ borderstyle }) => borderstyle === "oval" ? "50px": "5px"};
   `;
 
@@ -203,12 +203,12 @@ const StyledID = styled(motion.div)`
   position: absolute;
   top: -15px;
   left: -15px;
-  color: #FFB304;
+  color: rgba(250, 170, 50,1) ;
 `;
 
 const StyledPath = styled.path`
-    fill: #FFB304;
-    stroke: #FFB304;
+    fill: rgba(250, 170, 50,1) ;
+    stroke: rgba(250, 170, 50,1) ;
 `
 
 const StyledSvgArea = styled.svg`
