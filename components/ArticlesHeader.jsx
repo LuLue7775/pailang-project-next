@@ -36,8 +36,8 @@ const AnimatedLetters = ({ title, disabled }) => (
 
 export default function ArticlesHeader({ data, slideTo, spring }) {
   const { hoverEvent, setHoverEvent } =  useContext(CursorContext)
-  const titleRef = useRef(  data?.title.length > 60 ? true : false )
-  const titleZhRef = useRef(  data?.title_zh.length > 40 ? true : false )
+  const titleRef = useRef(  data?.title?.length > 60 ? true : false )
+  const titleZhRef = useRef(  data?.title_zh?.length > 40 ? true : false )
   const { windowWidth } = useWindowSize()
 
 
