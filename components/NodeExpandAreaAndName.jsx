@@ -9,8 +9,8 @@ import ReactPlayer from "react-player/lazy";
 const expand = {
     open: () => 
     ({
-      width:'400px',
-      height:'400px',
+      width:'300px',
+      height:'300px',
       backgroundColor:'#eb8334',
       transition: {
         type: "spring",
@@ -18,8 +18,8 @@ const expand = {
       }
     }),
     closed: {
-      width:'300px',
-      height:'120px',
+      width:'250px',
+      height:'100px',
       transition: {
         delay: 0.5,
         type: "spring",
@@ -29,20 +29,21 @@ const expand = {
     }
   };
   
-  const parseContent = (type, content, isOpen, isWindow) => {
-    // console.log(content)
+  const parseContent = (type, content, isWindow) => {
     if (type === 'text') {
-      return content
+      return content || ''
     } else if ( type === 'image' ) {
       return (
-        <Image 
+       content &&
+         <Image 
           alt="" 
-          width={isOpen ? "100%" :  "300px"}
-          height={isOpen ? "100%" :  "200px"}
+          width="100%"
+          height="100%"
           src={ content }
-          layout={isOpen ? "responsive" :  "intrinsic"}
+          layout="responsive"
           crossOrigin="true"
         />
+      
       )
     }  else if ( type === 'video' ) {
       return ( 
@@ -64,7 +65,7 @@ const expand = {
   }
 
   
-export default function NodeExpandAreaAndName({ id, isOpen, toggleOpen, content, type, name, name_zh, source}) {
+export default function NodeExpandAreaAndName({ id, isOpen, toggleOpen, content, type }) {
   const expandRef = useRef()
   const { hoverEvent, setHoverEvent } =  useContext(CursorContext)
 
@@ -74,49 +75,38 @@ export default function NodeExpandAreaAndName({ id, isOpen, toggleOpen, content,
   }, [])
 
   return (
-    <>
-    <StyledExpandContainer
-        as={motion.div}
-        initial={false}
-        animate={isOpen.includes(id) ? "open" : "closed"}
-        onMouseOver={() => setHoverEvent("expand")}
-        onMouseLeave={() => setHoverEvent("default")}  
-    >
-       
-        <StyledExpand as={motion.div} onClick={() => expandRef.current?.scrollHeight > 120 && toggleOpen(id) } variants={expand} isOpen={isOpen.includes(id)} ref={expandRef} >
-          {content && parseContent(type, content, isOpen.includes(id), isWindow   ) } 
-          {source && 
-            <div onClick={ () => window.open(source) }>  view source </div>
-          }
-        </StyledExpand>
-        
-    </StyledExpandContainer>
-    <StyledName> 
-      <div>  {name} </div>
-      <div>  {name_zh} </div>      
-    </StyledName>
-    </>
+      <StyledExpandContainer
+          as={motion.div}
+          initial={false}
+          animate={isOpen.includes(id) ? "open" : "closed"}
+          onMouseOver={() => setHoverEvent("expand")}
+          onMouseLeave={() => setHoverEvent("default")}  
+      >     
+          <StyledExpand 
+            ref={expandRef} 
+            as={motion.div} 
+            onClick={() => expandRef.current?.scrollHeight > 100 && toggleOpen(id) } 
+            variants={expand} 
+            isOpen={isOpen.includes(id)} 
+            hasContent={content}
+          >
+            { parseContent(type, content, isWindow ) } 
+          </StyledExpand>
+      </StyledExpandContainer>
 )
 }
 
 const StyledExpandContainer = styled(motion.div)`
-  height: 120px;
-  width: 300px;
+  height: 100px;
+  width: 250px;
   z-index:1;
+  cursor: pointer;
 `;
 
 const StyledExpand = styled(motion.div)`
-  width:300px;
+  width: 100%;
   overflow: hidden;
-  padding:${({ isOpen }) => isOpen ? "20px" : "0 20px" };;
-  margin: 10px;
-  background-color: #000;
+  margin: 10px 10px 0 10px;
+  background-color: ${({ hasContent }) => hasContent ? "#000" : "transparent"};;
   overflow-y: ${({ isOpen }) => isOpen ? "scroll" : "hidden" };
-`;
-const StyledName = styled(motion.div)`
-  position: absolute;
-  top:100px;
-  padding-top: 40px;
-  color:#000;
-  z-index:-1;
 `;

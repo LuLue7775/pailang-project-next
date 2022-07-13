@@ -20,7 +20,12 @@ export default function JournalContent({ data, spring }) {
         </StyledChevron>
 
         <StyledJournalLeftCol className='left-col' > 
-            <JournalLeftCol content={data?.content} />
+            <JournalLeftCol 
+              content={data?.content} 
+              content_zh={data?.content_zh} 
+              comment={data?.comment} 
+              comment_zh={data?.comment_zh} 
+            />
         </StyledJournalLeftCol>
 
         <StyledJournalRightCol className='right-col'   > 
@@ -37,7 +42,7 @@ export default function JournalContent({ data, spring }) {
  const StyledJournal = styled.div`
    position: relative;
    display:grid;
-   grid-template-columns:2fr 3fr;
+   grid-template-columns:4fr 5fr;
    height: 100vh;
    width: 100%;
    padding-top: 60px;
@@ -74,7 +79,7 @@ const StyledJournalRightCol = styled.div`
  
  height: 100%;
 
- border-left: 1px rgba(250, 170, 50,1)  dashed;
+ border-left: 1px rgba(250, 170, 50,1)   dashed;
 
  overflow-y:scroll;
 `;

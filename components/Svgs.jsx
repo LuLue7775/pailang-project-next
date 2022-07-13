@@ -4,7 +4,7 @@ import Link from "next/link";
 export function LineSVG() {
   return (
     <svg className='line-svg' mlns="http://www.w3.org/2000/svg"
-      width="70%" height="40" stroke="#000" strokeWidth="1px" preserveAspectRatio="xMidYMid meet"> 
+      width="min(70%, 600px)" height="40" stroke="#000" strokeWidth="1px" preserveAspectRatio="xMidYMid meet"> 
       <path d="M0 0 H 1000 0"/>
       <path d="M0 5 H 1000 0"/>
     </svg>
@@ -63,5 +63,36 @@ export function EllipseBtnSVG({ texts }) {
         <text  x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" width="200"fill="#000" style={{ fontSize: ".8rem" }}> {texts} </text>                    
       </svg>
     </a>
+  )
+}
+
+export function DragHandleSVG() {
+  return (
+    <svg width="20" height="40" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"> 
+      <circle cx="2.5" cy="0.5" r=".6" fill="#f0e632" />
+      <circle cx="2.5" cy="2.5" r=".6" fill="#f0e632" />
+      <circle cx="2.5" cy="4.5" r=".6" fill="#f0e632" /> 
+      <circle cx="2.5" cy="6.499" r=".6" fill="#f0e632" /> 
+      <circle cx="2.5" cy="8.499" r=".6" fill="#f0e632" /> 
+      <circle cx="2.5" cy="10.498" r=".6" fill="#f0e632" /> 
+      <circle cx="2.5" cy="12.498" r=".6" fill="#f0e632" /> 
+      <circle cx="2.5" cy="14.498" r=".6" fill="#f0e632" /> 
+      <circle cx="4.5" cy="0.5" r=".6" fill="#f0e632" /> 
+      <circle cx="4.5" cy="2.5" r=".6" fill="#f0e632" /> 
+      <circle cx="4.5" cy="4.5" r=".6" fill="#f0e632" /> 
+      <circle cx="4.5" cy="6.499" r=".6" fill="#f0e632" /> 
+      <circle cx="4.5" cy="8.499" r=".6" fill="#f0e632" /> 
+      <circle cx="4.5" cy="10.498" r=".6" fill="#f0e632" /> 
+      <circle cx="4.5" cy="12.498" r=".6" fill="#f0e632" /> 
+      <circle cx="4.5" cy="14.498" r=".6" fill="#f0e632" /> 
+      <circle cx="6.499" cy="0.5" r=".6" fill="#f0e632" /> 
+      <circle cx="6.499" cy="2.5" r=".6" fill="#f0e632" /> 
+      <circle cx="6.499" cy="4.5" r=".6" fill="#f0e632" /> 
+      <circle cx="6.499" cy="6.499" r=".6" fill="#f0e632" /> 
+      <circle cx="6.499" cy="8.499" r=".6" fill="#f0e632" /> 
+      <circle cx="6.499" cy="10.498" r=".6" fill="#f0e632" /> 
+      <circle cx="6.499" cy="12.498" r=".6" fill="#f0e632" /> 
+      <circle cx="6.499" cy="14.498" r=".6" fill="#f0e632" /> 
+    </svg>
   )
 }

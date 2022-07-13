@@ -38,7 +38,7 @@ const StyledModal = styled.div`
     top: 0; 
     bottom: 0; 
     margin: auto;
-
+    padding-top: 20px;
     border-radius: 20px;
     background-color: #FFFFFF60;
     color: #000;

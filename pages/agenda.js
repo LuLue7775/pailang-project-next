@@ -1,4 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { CursorContext } from '../context/cursorContext'
+import { getRelativeCoordinates } from '../utils/functions'
+import Cursor from "../components/Cursor"
 import AgendaElement from '../components/AgendaElement';
 import { fetchData } from '../utils/functions';
 
@@ -51,6 +54,15 @@ export default function Agenda({ data }) {
     ScenographyLength: 0, 
     videoLength: 0
   })
+
+  // Cursor efffect
+  const cursorAreaRef = useRef()
+  const [mousePosition, setMousePosition] = useState({})
+  const { hoverEvent, setHoverEvent } =  useContext(CursorContext)
+
+  const handleMouseMove = e => {
+    setMousePosition(getRelativeCoordinates(e, cursorAreaRef.current));
+  };
 
   /**
  * Sorting
@@ -132,7 +144,19 @@ export default function Agenda({ data }) {
   }, [activeExpand])
 
   return (
-    <StyledAgenda>
+    <StyledAgenda
+    className='agenda-container'
+    as={motion.div}
+    id="cursor-area" 
+    ref={cursorAreaRef}
+    onMouseMove={e => handleMouseMove(e)}
+    animate={{
+      rotateX: mousePosition.centerX * 20,
+      rotateY: mousePosition.centerY * 20
+    }}
+  >
+    <Cursor mousePosition={mousePosition} hoverEvent={hoverEvent} />
+
       <StyledAgendaWrap>
         <StyledAgendaTableWrap>
           <AgendaTable expandContent={expandContent} />
@@ -191,6 +215,8 @@ export default function Agenda({ data }) {
                   onClick={() => handleExpand(i, `${item.type}-${item?.id}`)} 
                   ref={ el => setRefs(el, boxRefs, data.length)}
                   className={`${item.type} ${item.status}`} 
+                  onMouseOver={() => setHoverEvent("expand")}
+                  onMouseLeave={() => setHoverEvent("default")}  
                   >
                 <AgendaElement item={item} activeExpand={activeExpand} expandIndex={i} />
 
@@ -214,25 +240,14 @@ export async function getStaticProps() {
   }
 }
 
-
-const StyledButton = styled.button`
-    width: auto;
-    height: 1.4rem;
-    background: transparent;
-    border: 1px double #000;
-
-    font-family: 'Noto Serif TC', serif;
-    font-weight: 200;
-    letter-spacing: 1px;
-`
 const StyledAgenda = styled.div`
     display: grid;
     grid-template-columns: 33% 66%;
-    
+    padding-top: 20px;
     width:100%;
     height: calc(100vh - 60px);
     color: #000;
-
+  
     font-family: 'Noto Serif TC', serif;
     font-weight: 200;
     letter-spacing: 1px;
@@ -290,8 +305,6 @@ const StyledHiddenGrid = styled.div`
     
 `;
 
-
-
 const StyledAgendaGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -305,12 +318,10 @@ const StyledAgendaGrid = styled.div`
   overflow-y:scroll;
 `;
 
-
-
 const StyledContentWrap = styled(motion.div)`
     position: relative;  
     width: 85%;
     height: min(300px, 100%);
     overflow: hidden;
-
+    cursor: pointer;
 `

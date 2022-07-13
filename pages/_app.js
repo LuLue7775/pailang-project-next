@@ -1,7 +1,8 @@
 import React from 'react';
 import Nav from '../components/Nav';
-import '../styles/globals.css';
 import styled from "styled-components";
+import { GlobalStyles } from '../styles/globalStyles';
+import '../styles/globals.css';
 import { useRouter } from 'next/router';
 import CursorProvider from '../context/cursorContext';
 
@@ -10,7 +11,8 @@ function MyApp({ Component, pageProps, data }) {
 
   return (
     <CursorProvider>
-     <StyledApp className='app' id='app'>
+      <GlobalStyles/>
+      <StyledApp className='app' id='app'>
           <StyledHeader className='header' route={router.pathname}>
             <Nav route={router.pathname} />
           </StyledHeader>
@@ -18,7 +20,7 @@ function MyApp({ Component, pageProps, data }) {
           <StyledLayout route={router.pathname}>
             <Component {...pageProps} />
           </StyledLayout>
-      </StyledApp>    
+        </StyledApp>    
     </CursorProvider>
   )
 }
@@ -29,7 +31,6 @@ export default MyApp
 const StyledApp = styled.div`
     position:relative;
     width: 100%;
-    color: #000;
    
 `;
 const StyledHeader = styled.div`

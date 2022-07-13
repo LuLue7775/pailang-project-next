@@ -10,26 +10,9 @@ import JournalContent from '../components/JournalContent';
 import Cursor from '../components/Cursor';
 import { getRelativeCoordinates } from '../utils/functions';
 import { CursorContext } from '../context/cursorContext';
+import Cover from '../components/Cover';
 
-const coverVariant = {
-  initial: {
-    x: 0,
-  },
-  open: { 
-    x: 0,
-    transition: { 
-      duration: .5
-    }, 
-  },
-  closed: {
-    x:"-100%",
-    transition: { 
-      duration: 1.8,
-      delay: 1,
-      ease: [0.8, 0.01, -0.05, 0.95],
-    }, 
-   }
-}
+
 
 const modalVariant = {
   initial: {
@@ -50,7 +33,6 @@ const modalVariant = {
 }
 
 export default function Home({ modalData,  randomArticleData}) {
-
   // Cursor efffect
   const cursorAreaRef = useRef()
   const [mousePosition, setMousePosition] = useState({})
@@ -88,7 +70,7 @@ export default function Home({ modalData,  randomArticleData}) {
     <StyledContainer 
       className='home-container'
       as={motion.div}
-      id="cursor-area"
+      id="cursor-area" 
       ref={cursorAreaRef}
       onMouseMove={e => handleMouseMove(e)}
       animate={{
@@ -97,13 +79,7 @@ export default function Home({ modalData,  randomArticleData}) {
       }}
     >
         <Cursor mousePosition={mousePosition} hoverEvent={hoverEvent} />
-
-        <StyledCover 
-          as={motion.div}
-          variants={coverVariant}
-          animate={modalShow ? "open" : "closed"}
-          initial="initial"
-        >
+        <Cover modalShow={modalShow}> 
             <Image 
               src="/homeBG.jpg" 
               alt="gradient" 
@@ -111,15 +87,14 @@ export default function Home({ modalData,  randomArticleData}) {
               width="100vw"
               layout="responsive"
             />
-
             <motion.div
                 variants={modalVariant}
                 animate={modalShow ? "open" : "closed"}
             >
               {modalData && <ModalStart setModalShow={setModalShow} modalData={modalData}/>}
             </motion.div>
-        </StyledCover>
-
+        </Cover>
+{/** @TODO These two keep rerendering */}
         <ArticlesHeader data={randomArticleData} slideTo={slideTo} spring={spring} />
         <JournalContent data={randomArticleData} spring={spring} />
         
@@ -148,12 +123,4 @@ const StyledContainer = styled(motion.div)`
   overflow: hidden;
 
   perspective: 600; 
-`
-const StyledCover = styled(motion.div)`
-  position: absolute;
-  top: 0;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  
 `

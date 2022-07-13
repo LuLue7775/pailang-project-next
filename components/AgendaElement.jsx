@@ -112,8 +112,10 @@ const StyledTitle = styled.div`
 const StyledSlide = styled(motion.div)`
    position: absolute;
    top: 0;
+   margin:10px;
    height:100%;
    width:100%;
-   background-color: rgba(250, 170, 50,1);
+   max-width:310px;
+   background-color: rgba(250, 170, 50,1) ;
    z-index: -1;
    `

@@ -1,66 +1,29 @@
 import React, { useEffect, useRef } from 'react'
 import styled from "styled-components";
+import DOMPurify from 'isomorphic-dompurify';
 
-import dataJson from '../dataset.json';
-
-export default function JournalLeftCol() {
-    const { enContent, enNote, enBio, chContent, chNote, chBio } = dataJson?.homePage?.leftCol;
-    /**
-     * @TODO AFTER pulling data from directus, add classname for en/zh
-     * All async request will be using react-query
-     */
+export default function JournalLeftCol({ content, content_zh, comment, comment_zh }) {             
+  const sanitizedData = (data) => ({
+    __html: DOMPurify.sanitize(data)
+  })
+  
 
   return (
     <StyledLeftColContainer className="left-col-content">
-        { enContent?.map( (item, i) => (
-            <StyledContentItems className="en-item" key={i}> {item} </StyledContentItems>
-        )) }
+        <StyledContentItems className='en' dangerouslySetInnerHTML={sanitizedData(content)}  />
         
         <StyledSeperate/>
 
-        <StyledNote className="en-note">
-          { enNote?.map( (item, i) => (
-              <StyledContentSmItems key={i}>
-                <StyledNoteIndex> [{i}] </StyledNoteIndex>
-                <div> {item} </div>
-              </StyledContentSmItems>
-          )) }
+        <StyledNote >
+          <StyledContentSmItems dangerouslySetInnerHTML={sanitizedData(comment)}  />
         </StyledNote>
 
-        <StyledBio className="en-bio">
-            { enBio?.map( (item, i) => (
-              <StyledContentSmItems key={i}> 
-                <div> Bio </div>
-                {item} 
-              </StyledContentSmItems>
-          )) }
-        </StyledBio>
-
-        { chContent?.map( (item, i) => (
-            <StyledContentItems className="ch-item" key={i}> {item} </StyledContentItems>
-        )) }
-        
+        <StyledContentItems dangerouslySetInnerHTML={sanitizedData(content_zh)}  />
         <StyledSeperate/>
 
-        <StyledNote className="ch-note">
-          { chNote?.map( (item, i) => (
-              <StyledContentSmItems key={i}>
-                <StyledNoteIndex> [{i}] </StyledNoteIndex>
-                <div> {item} </div>
-              </StyledContentSmItems>
-          )) }
+        <StyledNote >
+          <StyledContentSmItems dangerouslySetInnerHTML={sanitizedData(comment_zh)}  />
         </StyledNote>
-
-        <StyledBio className="ch-bio">
-            { chBio?.map( (item, i) => (
-              <StyledContentSmItems key={i} > 
-                <div> Bio </div>
-                {item} 
-              </StyledContentSmItems>
-          )) }
-        </StyledBio>
-
-
     </StyledLeftColContainer>
   )
 }
@@ -69,27 +32,22 @@ const StyledLeftColContainer = styled.div`
   display: flex;
   flex-direction: column;
   color: #000;
-
+  letter-spacing: .1rem;
 `;
 const StyledContentItems = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  margin: 100px 0;
 `;
 
 const StyledSeperate = styled.div`
-  margin: 100px 25px 50px 25px;
+  margin: 100px 25px 0px 25px;
   border-bottom: 1px solid #85807f;
 `;
 
-const StyledNoteIndex = styled.p`
-  color: #F4D863;
-  font-weight: lighter;
-  font-size: .2rem;
-`;
-
 const StyledNote = styled.div`
-  margin: 100px 25px 50px 0;
+  margin: 100px 25px 200px 0;
 
 `;
 const StyledContentSmItems = styled.div`

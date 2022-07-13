@@ -30,7 +30,7 @@ export default function Journal({ data }) {
 
   return (
     <StyledContainer 
-      className='home-container'
+      className='journal-container'
       as={motion.div}
       id="cursor-area"
       ref={cursorAreaRef}

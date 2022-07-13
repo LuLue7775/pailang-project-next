@@ -1,28 +1,41 @@
 import { useEffect, useState } from 'react'
-import { containerMidMotion, BGMotion } from '../utils/framerVariants'
+import { containerMidMotion, BGMotion, containerTextMotion } from '../utils/framerVariants'
 import styled from "styled-components"
 import { motion } from 'framer-motion'
 
-export default function AboutMidElement({ content, content_zh, parse }) {
+export default function AboutMidElement({ content, content_zh, sanitizedData }) {
+    const [ isHovered, setHovered ] = useState(false);
+
+    // calculate scroll height
     const [ scrollHeight, setScrollHeight ] = useState();
     useEffect(() => {
         setScrollHeight(document.getElementById('mid').scrollHeight +1000 )
     }, [])
-    
+
+
   return (
     <StyledMidColContainer
+
         id="mid"
         as={motion.div}
         variants={containerMidMotion}
         initial="rest"
         whileHover="hover"
         animate="rest"
+        
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        isHovered={isHovered}
     >
-        <MotionBG variants={BGMotion} scrollHeight={scrollHeight} />
-        <StyledMidContent>
+        <MotionBG variants={BGMotion}  scrollHeight={scrollHeight} />
+        <StyledMidContent                
+            className='element-container' 
+            as={motion.div}
+            variants={containerTextMotion}
+        >   
             <StyledMidTitle> Pailang Settlers Museum </StyledMidTitle>
-            <StyledMidEn className='en'> {content && parse(content)} </StyledMidEn>
-            <StyledMidCh className='zh'> {content_zh && parse(content_zh)} </StyledMidCh>
+            <StyledMidEn className='en' dangerouslySetInnerHTML={ content && sanitizedData(content)}/> 
+            <StyledMidCh className='zh' dangerouslySetInnerHTML={ content_zh && sanitizedData(content_zh)}/> 
         </StyledMidContent>
     </StyledMidColContainer>
   )
@@ -31,42 +44,33 @@ export default function AboutMidElement({ content, content_zh, parse }) {
 
 const MotionBG = styled(motion.div)`
     position: absolute;
-    z-index:-1;
     height: ${({ scrollHeight }) => scrollHeight &&  `${scrollHeight}px`};
+    z-index:-1;
     width: 100%;
-    background-color: #fff;
-
-    background-image:
-      radial-gradient(circle farthest-side at 10% 89%, rgba(250, 170, 50,1) 0px, transparent 50%),
-      radial-gradient(circle farthest-corner at 35% 0%,  rgba(250, 97, 55,1) 0px, transparent 50%),
-      radial-gradient(at 93% 46%, rgba(255, 255, 255,1) 0px, transparent 50%),
-      radial-gradient(circle farthest-side  at 23% 49%,rgba(247, 138, 119,1) 0px, transparent 50%),
-      radial-gradient(at 17% 27%, rgba(255, 255, 255,1) 0px, transparent 50%),
-      radial-gradient(at 79% 30%,  rgba(230, 70, 50,1) 0px, transparent 50%),
-      radial-gradient(at 26% 40%, hsla(36,65%,63%,1) 0px, transparent 50%);
 `;
 
-const StyledMidColContainer = styled.div`
+const StyledMidColContainer = styled(motion.div)`
     position: absolute;
     height: 100%;
-    width: 35%;
+    width: 30%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px 30px 20px 30px;
 
     overflow-y:scroll;
+    ${({ isHovered }) =>  isHovered && "background-image: url('/about.jpg')" }    
+
 `;
 const StyledMidContent = styled.div`
     position: absolute;
-    top: 15vh; 
-    margin: 30px;
+    top: 0; 
 `;
 
 const StyledMidTitle = styled.h3`
     text-align: center;
+    padding: 100px 10px 10px 10px;
 
 `;
 const StyledMidEn = styled.div`

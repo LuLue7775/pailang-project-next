@@ -40,27 +40,27 @@ export default function AgendaTable({ expandContent }) {
                 animate="animate"
                 >
                 <motion.tr >
-                    <td>Date</td>
+                    <StyledAgendaTd>Date</StyledAgendaTd>
                     <motion.td variants={childVariant} key={id}>{ start_date } - { end_date }</motion.td>
                 </motion.tr>
                 <motion.tr  >
-                    <td>Type</td>
+                    <StyledAgendaTd>Type</StyledAgendaTd>
                     <motion.td variants={childVariant} key={id}>{ type } </motion.td>
                 </motion.tr>
                 <motion.tr >
-                    <td>Artist</td>
+                    <StyledAgendaTd>Artist</StyledAgendaTd>
                     <motion.td variants={childVariant} key={id}>{artist}</motion.td>
                 </motion.tr>
                 <motion.tr >
-                    <td>Producer</td>
+                    <StyledAgendaTd>Producer</StyledAgendaTd>
                     <motion.td variants={childVariant} key={id}>{ producer } </motion.td>
                 </motion.tr>
                 <motion.tr >
-                    <td>Curator</td>
+                    <StyledAgendaTd>Curator</StyledAgendaTd>
                     <motion.td variants={childVariant} key={id}>{ curator } </motion.td>
                 </motion.tr>
                 <motion.tr >
-                    <td>Language</td>
+                    <StyledAgendaTd>Language</StyledAgendaTd>
                     <motion.td variants={childVariant} key={id}>{ language } </motion.td>
                 </motion.tr>
 
@@ -74,6 +74,9 @@ export default function AgendaTable({ expandContent }) {
 const StyledAgendaTable = styled.table`
     width: 100%;
     height: 60%;
+`
+const StyledAgendaTd = styled.td`
+    padding-right: 10px
 `
 
 const StyledAgendaTitle = styled(motion.caption)`

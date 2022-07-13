@@ -1,17 +1,56 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useLayoutEffect, useState, useRef } from 'react'
 import { LeftCrossSVG, RightCrossSVG, LineSVG, DownChevronSVG } from './Svgs';
 import styled from "styled-components";
 import { CursorContext } from '../context/cursorContext';
+import { motion, AnimatePresence } from "framer-motion";
+import { useWindowSize } from '../utils/hooks';
+
+const letterAni = {
+  initial: { y: 400 },
+  animate: {
+    y: 0,
+    transition: {
+      ease: [0.6, 0.01, -0.05, 0.95],
+      duration: 1,
+    },
+  },
+};
+
+const AnimatedLetters = ({ title, disabled }) => (
+  <motion.span
+    className='row-title'
+    variants={disabled ? null : banner}
+    initial='initial'
+    animate='animate'>
+    {[...title].map((letter, i) => (
+      <motion.span
+        key={i}
+        className='row-letter'
+        variants={disabled ? null : letterAni}>
+        {letter}
+      </motion.span>
+    ))}
+  </motion.span>
+);
+
 
 export default function ArticlesHeader({ data, slideTo, spring }) {
   const { hoverEvent, setHoverEvent } =  useContext(CursorContext)
+  const titleRef = useRef(  data?.title.length > 60 ? true : false )
+  const titleZhRef = useRef(  data?.title_zh.length > 40 ? true : false )
+  const { windowWidth } = useWindowSize()
+
 
   return (
     <StyledHeader>
+        <LineSVG />
         <StyledTitles>
-            <LineSVG />
-            <StyledTitle>{ data?.title }</StyledTitle>
-            <h2>{ data?.title_zh }</h2>
+            <StyledTitle isTitleExceed={titleRef.current} windowWidth={windowWidth}>
+                { data?.title }
+            </StyledTitle>
+            <StyledTitleZh isTitleExceed={titleZhRef.current} windowWidth={windowWidth}>
+                { data?.title_zh }
+            </StyledTitleZh>
         </StyledTitles>
 
         <StyledSubtitles className='zh'>
@@ -50,14 +89,22 @@ const StyledHeader = styled.div`
 */
 const StyledTitles = styled.div`
   text-align: center;
-  height: clamp(200px, 55vh, 400px);
+  height: max(300px, 45vh);
   overflow: hidden;
+  width: 100%;
 `
 const StyledTitle = styled.h1` 
-  line-height: 6rem;
-
-
+  line-height: 5rem;
+  font-size: ${({isTitleExceed, windowWidth }) => isTitleExceed ? `min(${(windowWidth/20)*100/windowWidth}vw, 80px)` : 'min(8vw, 90px)' };
+  margin-bottom: 6px;
 `
+const StyledTitleZh = styled.h2` 
+  line-height: 5rem;
+  font-size: ${({isTitleExceed, windowWidth }) => isTitleExceed ? `min(${(windowWidth/60)*100/windowWidth}vw, 80px)` : 'min(2vw, 32px)' };
+  margin-bottom: 6px;
+`
+
+
 const StyledSubtitles = styled.div`
   width: 100%;
   height: 15vh;

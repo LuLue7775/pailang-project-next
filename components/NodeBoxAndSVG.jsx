@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
 import { useRouter } from 'next/router'
 
-import { motion, AnimatePresence, useMotionValue } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useDragControls } from "framer-motion";
 import NodeExpandAreaAndName from './NodeExpandAreaAndName';
+import { DragHandleSVG } from './Svgs';
 
 const setRefs = (el, ref, dataLength) => {
   if (ref.current.length === dataLength) return;
@@ -11,8 +12,9 @@ const setRefs = (el, ref, dataLength) => {
 };
 
 const genRandomPos = (viewW, topic1, route) => {
-    const randomRange = route.startsWith('/article-journal') ? viewW/6 : (viewW - 300)
-
+    const randomRange = route.startsWith('/article-journal') 
+                      ? viewW/9*4 
+                      : route==='/' ? viewW/9*4  : (viewW - 300)
     return topic1?.map((item, i) => {
         return { x: parseInt(Math.random()*randomRange), y: 200*i }
     })
@@ -26,16 +28,12 @@ const getWindowDimensions = () => {
 
 
 function updatePath( draggedIndex, draggedID, allElementsData, nodeRefs, pathRefs, nodePosRefs) { 
-
     // deal with just tail 
     allElementsData[draggedIndex].connectors?.forEach((lineObj) => {
         const selfHandleIndex = draggedIndex;
         const HandleConnectToID = lineObj.connected_node.toString();
         const HandleConnectToIndex = nodeRefs.current?.findIndex( handle =>  handle?.getAttribute("id") === HandleConnectToID) 
-        // console.log(HandleConnectToIndex)
-
         const tailSvgIndex = pathRefs.current?.findIndex((path) =>{ 
-            // console.log( path?.getAttribute("id")  , `${topic1[draggedIndex].id }-${HandleConnectToID}`  )
            return path?.getAttribute("id")  === `${draggedID}-${HandleConnectToID}` 
         });
 
@@ -47,7 +45,7 @@ function updatePath( draggedIndex, draggedID, allElementsData, nodeRefs, pathRef
         pathRefs.current[tailSvgIndex]?.setAttribute("d", data);
     })
 
-    // // check all head connected svg
+    // check all head connected svg
     allElementsData?.forEach((elem) => { 
         elem.connectors?.forEach((lineObj) => {
             if ( lineObj.connected_node === draggedID ) {
@@ -69,7 +67,7 @@ function updatePath( draggedIndex, draggedID, allElementsData, nodeRefs, pathRef
   } 
 
   function initialPath( draggedID, allElementsData, nodeRefs, pathRefs, nodePosRefs) { 
-        // // check all head connected svg
+        // check all head connected svg
         allElementsData?.forEach((elem) => { 
             elem.connectors?.forEach((lineObj) => {
                 const selfHandleIndex = nodeRefs.current?.findIndex( handle =>  handle?.getAttribute("id") === draggedID.toString()) 
@@ -89,22 +87,20 @@ function updatePath( draggedIndex, draggedID, allElementsData, nodeRefs, pathRef
         })
   }
 
-export default function NodeBoxAndSVG({allElementsData, elementData, node_i, nodeRefs, pathRefs, nodePosRefs}) {
-  // console.log(elementData?.content, ":", elementData?._value)
-  const router = useRouter()
+export default function NodeBoxAndSVG({ allElementsData, elementData, node_i, nodeRefs, pathRefs, nodePosRefs }) {
+    const router = useRouter()
 
-  const [windowDimensions, setWindowDimensions] = useState(() => getWindowDimensions());
-  const [boxPos, setBoxPos] = useState(genRandomPos(windowDimensions?.width, allElementsData,  router.asPath));
-  const [isOpen, setOpen] = useState([]);
-
-  const toggleOpen = (id) => {
-    if (isOpen.includes(id)) {
-      if( isOpen.indexOf(id) > -1 ) setOpen( isOpen => isOpen.splice(id, 1) );
-    } else {
-      setOpen( isOpen => { return [...isOpen, id] });
+    const [windowDimensions, setWindowDimensions] = useState(() => getWindowDimensions());
+    const [boxPos, setBoxPos] = useState(genRandomPos(windowDimensions?.width, allElementsData,  router.asPath));
+    const [isOpen, setOpen] = useState([]);
+    const [tooltip, setTooltip] = useState(false);
+    const toggleOpen = (id) => {
+      if (isOpen.includes(id)) {
+        if( isOpen.indexOf(id) > -1 ) setOpen( isOpen => isOpen.splice(id, 1) );
+      } else {
+        setOpen( isOpen => { return [...isOpen, id] });
+      }
     }
-  }
-
 
     const x = useMotionValue( boxPos[node_i].x )
     const y = useMotionValue(  boxPos[node_i].y )
@@ -126,88 +122,135 @@ export default function NodeBoxAndSVG({allElementsData, elementData, node_i, nod
         } )
         y.onChange(v => nodePosRefs.current[node_i].y = v )
 
-
-        /**
-         * @TODO unmount listener
-         */
     }, [])
 
 
   return (
     <AnimatePresence>
-          <StyledBoxContainer
-            style={{ x, y }} 
-            borderstyle={elementData?.border_style}
-            className='zh'
-            key={`box${elementData?.id}` }
-            id={elementData?.id}
-            ref={elementData => setRefs(elementData, nodeRefs, allElementsData?.length) }
-            as={motion.div}
-            drag
-            whileTap={{ cursor: "grabbing", zIndex: 10  }}
-            dragMomentum={false}
-          > 
-            <StyledID> {elementData?.id} </StyledID>
-
-           <NodeExpandAreaAndName 
-              id={elementData.id} 
-              isOpen={isOpen} 
-              toggleOpen={toggleOpen} 
-              content={elementData?._value} 
-              type={elementData?.type} 
-              name={elementData?.name} 
-              name_zh={elementData?.name_zh}
-              source={elementData?.source}
-            />
-          </StyledBoxContainer>
-
+      <StyledBoxContainer
+        style={{ x, y }} 
+        borderstyle={elementData?.border_style}
+        className='zh'
+        key={`box${elementData?.id}` }
+        id={elementData?.id}
+        ref={elementData => setRefs(elementData, nodeRefs, allElementsData?.length) }
+        as={motion.div}
+        whileTap={{ cursor: "grabbing", zIndex: 10  }}
+        drag
+        dragMomentum={false}
+        hasContent={elementData?._value ? true : false}
+      > 
+        <StyledDot />
+        <StyledHandle hasContent={elementData?._value ? true : false}>
+          <DragHandleSVG/>
+        </StyledHandle>
         
-          <StyledSvgArea className='svg-area' elementAmount={allElementsData?.length}>  
-            {
-                elementData?.connectors.map((lineObj, i) => 
-                
-                <StyledPath 
-                    linestyle={lineObj?.border_style}
-                    key={`svg-${elementData.id}-${i}`}
-                    id={`${elementData.id}-${lineObj.connected_node}`}
-                    className={`${elementData.id} path`} 
-                    ref={elementData => setRefs(elementData, pathRefs)}
-                    strokeDasharray= { 
-                      lineObj?.line_style === "dashed" 
-                      ? "10, 10"
-                      : lineObj?.line_style === "dotted" ? "2, 2" : "0, 0" 
-                    }
-                    />   )   
-            }
-            </StyledSvgArea>
+        <NodeExpandAreaAndName 
+          id={elementData?.id} 
+          isOpen={isOpen} 
+          toggleOpen={toggleOpen} 
+          content={elementData?._value} 
+          type={elementData?.type} 
+          source={elementData?.source}
+        />
+        
+        <StyledName 
+          hasContent={elementData?._value ? true : false } 
+          hasSource={elementData?.source ? true : false}
+          isOpen={isOpen}
+        > 
+          <div 
+            onClick={ () => elementData?.source && window.open(elementData?.source) }
+            onMouseOver={ () => setTooltip(true)}
+            onMouseLeave={ () => setTooltip(false)}
+          >  
+            <div>  {elementData?.name} </div>
+            <div>  {elementData?.name_zh} </div>     
+            { tooltip && elementData?.source && 
+              <StyledTooltip> view source </StyledTooltip> 
+            }   
+            
+          </div> 
+        </StyledName>
+
+
+      </StyledBoxContainer>
+
+    
+      <StyledSvgArea className='svg-area' elementAmount={allElementsData?.length}>  
+        {
+          elementData?.connectors.map((lineObj, i) =>         
+            <StyledPath 
+                linestyle={lineObj?.border_style}
+                key={`svg-${elementData?.id}-${i}`}
+                id={`${elementData?.id}-${lineObj.connected_node}`}
+                className={`${elementData.id} path`} 
+                ref={elementData => setRefs(elementData, pathRefs)}
+                strokeDasharray= { 
+                  lineObj?.line_style === "dashed" 
+                  ? "10, 10"
+                  : lineObj?.line_style === "dotted" ? "2, 2" : "0, 0" 
+                }
+                />   )   
+        }
+        </StyledSvgArea>
 
     </AnimatePresence>
   )
 }
 
 
+
 const StyledBoxContainer = styled(motion.div)`
     position: absolute;
-    height: 140px;
-    width: 350px;
-    padding-left: 10px; 
+
+    height: ${({ hasContent }) => hasContent ? "120px": "0"} ;
+    width: 280px;
+    display: flex;
+    justify-content: center;
     overflow-wrap: break-word;
     color: #FFF;
     background-color: #000;
-    border: 1px solid rgba(250, 170, 50,1) ;
+    
+    ${({ hasContent }) => hasContent ? "border: 1px solid rgba(250, 170, 50,1);": ""}
     border-radius: ${({ borderstyle }) => borderstyle === "oval" ? "50px": "5px"};
+    cursor: grab;
   `;
-
-const StyledID = styled(motion.div)`
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  color: rgba(250, 170, 50,1) ;
+  
+const StyledDot = styled(motion.div)`
+    position: absolute;
+    left: -3px;
+    top: 57px;
+    height: 5px;
+    width: 5px;
+    background-color: rgba(250, 170, 50,1);
 `;
 
+const StyledHandle = styled(motion.div)`
+    position: absolute;
+    left: 5px;
+    top: ${({ hasContent }) => hasContent ? "0": "120px"};
+    bottom:0;
+    margin: auto 0;
+    height: 50px;
+    width: 15px;
+    border-radius: 5px;
+`;
+
+const StyledName = styled(motion.div)`
+    position: absolute;
+    top: ${({ hasContent }) => hasContent ? "100px": "10px"} ;
+    padding-top: 20px;
+    padding-left: ${({ hasContent }) => hasContent ? "0px": "30px"} ;
+    color:#000;
+    z-index: ${({ isOpen }) => isOpen ? -1 : 2} ;
+    cursor: ${({ hasSource }) => hasSource ? "pointer": "none"} ;;
+`;
+
+
 const StyledPath = styled.path`
-    fill: rgba(250, 170, 50,1) ;
-    stroke: rgba(250, 170, 50,1) ;
+    fill: rgba(250, 170, 50,1)  ;
+    stroke: rgba(250, 170, 50,1)  ;
 `
 
 const StyledSvgArea = styled.svg`
@@ -222,3 +265,28 @@ const StyledSvgArea = styled.svg`
     overflow-y: scroll;
     z-index:-1;
 `
+const StyledTooltip = styled.div`
+    position: relative;
+    top:10px;
+    left: 10px;
+    height: 1.5rem;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(250, 170, 50,.6);
+    border-radius: 10px;
+
+    &:after {
+      border-right: solid 10px transparent;
+      border-left: solid 10px transparent;
+      border-bottom: solid 10px  rgba(250, 170, 50,.6);
+      transform: translateX(-50%);
+      position: absolute;
+      z-index: -1;
+      content: "";
+      bottom: 100%;
+      left: 50%;
+      height: 0;
+      width: 0;
+    }
+  `;
