@@ -3,6 +3,7 @@ export const containerLeftMotion = {
     rest: { x:"0", zIndex:0,  },
     hover: {
         x:"10%", 
+        width:"50%",
         scale:1.1, 
         transition: { duration: 1 }, 
         zIndex:10,
@@ -33,7 +34,9 @@ export const containerTextMotion = {
 export const containerMidMotion = {
     rest: { x:"0", zIndex:0,  },
     hover: {
+        x:"-20%", 
         scale:1.1, 
+        width:"50%",
         transition: { duration: 1 }, zIndex:10,
         transition: {
             type: "tween",
@@ -45,9 +48,9 @@ export const containerMidMotion = {
 export const containerRightMotion = {
     rest: { x:"0", zIndex:0,  },
     hover: {
-        // right:0,
+        right:0,
         scale:1.1, 
-        // width:"50%",
+        width:"50%",
         transition: { duration: 1 }, zIndex:10,
         transition: {
             type: "tween",

@@ -95,7 +95,7 @@ export default function Home({ modalData,  randomArticleData}) {
             </motion.div>
         </Cover>
 {/** @TODO These two keep rerendering */}
-        <ArticlesHeader data={randomArticleData} slideTo={slideTo} spring={spring} />
+        {!modalShow && <ArticlesHeader data={randomArticleData} slideTo={slideTo} spring={spring} />}
         <JournalContent data={randomArticleData} spring={spring} />
         
     </StyledContainer>

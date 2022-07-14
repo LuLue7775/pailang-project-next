@@ -42,5 +42,5 @@ const StyledCover = styled(motion.div)`
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  
+  z-index:1;
 `

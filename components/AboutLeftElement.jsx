@@ -5,8 +5,6 @@ import { containerLeftMotion, BGMotion, containerTextMotion } from '../utils/fra
 import styled from "styled-components"
 import { motion } from 'framer-motion'
 
-
-
 export default function AboutLeftElement({ roles, sanitizedData }) {
     const [ isHovered, setHovered ] = useState(false);
 
@@ -67,7 +65,8 @@ export default function AboutLeftElement({ roles, sanitizedData }) {
 
 const MotionBG = styled(motion.div)`
     position: absolute;
-    height: ${({ scrollHeight }) => scrollHeight &&  `${scrollHeight}px`};
+    // height: ${({ scrollHeight }) => scrollHeight &&  `${scrollHeight }px`};
+    height: auto;
     z-index:-1;
     width: 100%;
 `;
@@ -78,8 +77,9 @@ const StyledLeftColContainer = styled(motion.div)`
     height: 100%;
     overflow-y:scroll;
     width: 30%;
-    ${({ isHovered }) =>  isHovered && "background-image: url('/about.jpg')" }    
-
+    ${({ isHovered }) =>  isHovered && "background-image: url('/about.jpg')" };
+    background-size: cover;
+    background-repeat: no-repeat;
 `;
 const StyledPersonaContainer = styled(motion.div)`
 `;
@@ -98,7 +98,6 @@ const StyledImgContainer = styled.div`
 `;
 const StyledPersonaEn = styled.div`
     padding: 10px;
-    font-size:.6rem;
 `;
 const StyledPersonaCh = styled.div`
     padding: 10px;

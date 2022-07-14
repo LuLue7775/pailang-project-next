@@ -229,8 +229,9 @@ const StyledDot = styled(motion.div)`
 const StyledHandle = styled(motion.div)`
     position: absolute;
     left: 5px;
-    top: ${({ hasContent }) => hasContent ? "0": "120px"};
+    top: ${({ hasContent }) => hasContent && "0"};
     bottom:0;
+    opacity: ${({ hasContent }) => !hasContent && 0};
     margin: auto 0;
     height: 50px;
     width: 15px;

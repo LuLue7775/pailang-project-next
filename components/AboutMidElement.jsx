@@ -44,7 +44,8 @@ export default function AboutMidElement({ content, content_zh, sanitizedData }) 
 
 const MotionBG = styled(motion.div)`
     position: absolute;
-    height: ${({ scrollHeight }) => scrollHeight &&  `${scrollHeight}px`};
+    // height: ${({ scrollHeight }) => scrollHeight &&  `${scrollHeight}px`};
+    height: auto;
     z-index:-1;
     width: 100%;
 `;
@@ -60,7 +61,10 @@ const StyledMidColContainer = styled(motion.div)`
     justify-content: center;
 
     overflow-y:scroll;
-    ${({ isHovered }) =>  isHovered && "background-image: url('/about.jpg')" }    
+    ${({ isHovered }) =>  isHovered && "background-image: url('/about.jpg')" };    
+    background-size: cover;
+    background-repeat: no-repeat;
+
 
 `;
 const StyledMidContent = styled.div`
@@ -74,11 +78,9 @@ const StyledMidTitle = styled.h3`
 
 `;
 const StyledMidEn = styled.div`
-    font-size:.6rem;
     padding: 15px 0 15px 0;
 `;
 const StyledMidCh = styled.div`
-    font-size:.7rem;
     padding: 15px 0 15px 0;
 
 `;

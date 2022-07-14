@@ -87,7 +87,7 @@ export default function Video({ data }) {
 
           </StyledLeftCol>
           <StyledRightCol 
-            className='right-col'
+            className='right-col ch'
             as={motion.div}
             initial={{ x:"100%", y:"200px" }}
             animate={{ x: 0, y: 0 }}
@@ -114,12 +114,11 @@ export async function getStaticProps({ params }) {
       props: { 
           data: data?.data || {},
       },
+      revalidate: 60
     };
   }
 
 export async function getStaticPaths() {
-
-
     // const id = dataJson.pages.first;
     // console.log(id)
     return {
@@ -168,7 +167,6 @@ const StyledLeftCol = styled(motion.div)`
   position: relative;
   border-right:  ${({ isMobile }) => isMobile ? "" : "1px rgba(250, 170, 50,1)   dashed"} ;
   padding: 20px;
-  font-size: .5px;
   color: #000;
   
   height: 100%;
@@ -182,11 +180,9 @@ const StyledLeftText = styled.div`
 const StyledRightCol = styled(motion.div)`
   color: #000;
   padding: 20px;
-  
   height: 100%;
   overflow-y:scroll;
-
-  font-size: .5px;
+  font-size: .8rem;
 `;
 
 

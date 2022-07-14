@@ -23,7 +23,7 @@ export function LineSVGFull() {
 export function LeftCrossSVG() {
   return (
     <svg className='cross-svg' mlns="http://www.w3.org/2000/svg"
-        width="100%" height="100%" stroke="#00000090" strokeWidth="1" preserveAspectRatio="xMidYMid meet"> 
+        width="51" height="100" stroke="#00000090" strokeWidth="1" preserveAspectRatio="xMidYMid meet"> 
     <path d="M 0 50 H 10 50"/>
     <path d="M 50 0 V 50 100"/>
     </svg>
@@ -32,7 +32,7 @@ export function LeftCrossSVG() {
 export function RightCrossSVG() {
   return (
     <svg className='cross-svg' mlns="http://www.w3.org/2000/svg"
-        width="100%" height="100%" stroke="#00000090" strokeWidth="1" preserveAspectRatio="xMidYMid meet"> 
+        width="51" height="100" stroke="#00000090" strokeWidth="1" preserveAspectRatio="xMidYMid meet"> 
     <path d="M 0 50 H 10 50"/>
     <path d="M 1 0 V 50 100"/>
     </svg>

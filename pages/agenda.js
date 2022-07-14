@@ -260,7 +260,7 @@ const StyledAgendaWrap = styled.div`
     justify-items: end;
     align-content: end;
     padding-bottom: 1rem;
-    font-size: .4rem;
+    font-size: 0.8rem;
 `
 const StyledAgendaTableWrap = styled.div`
     width: 90%;
@@ -302,7 +302,6 @@ const StyledHiddenGrid = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     height:50px;
     z-index: -1;    
-    
 `;
 
 const StyledAgendaGrid = styled.div`

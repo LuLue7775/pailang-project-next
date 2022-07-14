@@ -15,7 +15,7 @@ export default function AboutRightElement({ credits, sanitizedData }) {
 
     
     return (
-        <StyledMidColContainer 
+        <StyledRightColContainer 
             className='leftcol-container zh'
             id="right"
             as={motion.div}
@@ -38,43 +38,46 @@ export default function AboutRightElement({ credits, sanitizedData }) {
                 variants={containerTextMotion}
             >
                 <LineSVGFull /> 
-                <StyledTitle> {elem?.title} </StyledTitle>
+                <StyledTitle className='zh'> {elem?.title} </StyledTitle>
                 <StyledElement 
-                    className='credit-ch ' 
+                    className='credit-ch zh' 
                     dangerouslySetInnerHTML={ sanitizedData(elem?.content)}
                 /> 
 
             </StyledElementContainer>
         )) || ""}
-    </StyledMidColContainer>
+    </StyledRightColContainer>
     )
 }
 const MotionBG = styled(motion.div)`
     position: absolute;
-    height: ${({ scrollHeight }) => scrollHeight &&  `${scrollHeight}px`};
+    // height: ${({ scrollHeight }) => scrollHeight &&  `${scrollHeight}px`};
+    height: auto;
+
     z-index:-1;
     width: 100%;
+    
 `;
 
-const StyledMidColContainer = styled.div`
+const StyledRightColContainer = styled.div`
     position: absolute;
+    right:0;
     height: 100%;
     width: 30%;
     overflow-y:scroll;
-    ${({ isHovered }) =>  isHovered && "background-image: url('/about.jpg')" }    
-
+    ${({ isHovered }) =>  isHovered && "background-image: url('/about.jpg')" };    
+    background-size: cover;
+    background-repeat: no-repeat;
 `;
 
 const StyledElementContainer = styled(motion.div)`
 
 `;
 const StyledTitle = styled.div`
-    font-size: .5px;
     font-weight: bold;
-    margin: 15px 0 15px 0;
+    padding: 15px 0 ;
 
 `;
 const StyledElement = styled.div`
-    font-size: .5px;
-    
+    padding: 20px 0;
 `;

@@ -89,11 +89,8 @@ const StyledAbout = styled.div`
     padding-top: 80px;
     width:100%;
     height:100vh;
-    // height: calc(100vh - 50px);
-
     color: #000;
     overflow: hidden;
-
 `;
 
 const StyledAboutLeftCol = styled(motion.div)`

@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
+html {
+    font-size: 16px;
+  }
+  
 :root {
     --title-font-en: 'Ogg';
     --title-font-zh: 'Noto Serif TC'

@@ -53,13 +53,13 @@ export default function Nav({ route }) {
 
   return (
     <LayoutGroup type="crossfade">
-        <StyledNavContainer className='nav-container'>
+        <StyledNavContainer className='nav-container '>
             <StyledNavLeft>
                 {
                     isArticle && 
                     <Link href={`/${parseURL}`}>
                         <a>
-                        <StyledNavItem> see next </StyledNavItem>
+                        <StyledNavItem> live versioning</StyledNavItem>
                         </a>
                     </Link>
                 }
@@ -88,8 +88,8 @@ const StyledNavContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: .6rem;
-    font-family: var(--subtitle-font-zh), serif;
+    font-size: .8rem;
+    font-family: var(--title-font-en), serif;
 `;
 const StyledNavLeft = styled.div`
     display: flex;
