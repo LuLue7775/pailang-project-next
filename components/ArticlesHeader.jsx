@@ -16,7 +16,7 @@ const banner = {
 };
 
 const letterAni = {
-  initial: { y: 400 },
+  initial: { y: 600 },
   animate: (i) => ({
     y: 0,
     transition: {

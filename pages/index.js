@@ -32,7 +32,7 @@ const modalVariant = {
    }
 }
 
-export default function Home({ modalData,  randomArticleData}) {
+export default function Home({ modalData, randomArticleData, modalShow, setModalShow}) {
   // Cursor efffect
   const cursorAreaRef = useRef()
   const [mousePosition, setMousePosition] = useState({})
@@ -42,8 +42,6 @@ export default function Home({ modalData,  randomArticleData}) {
     setMousePosition(getRelativeCoordinates(e, cursorAreaRef.current));
   };
 
-  // Modal effect
-  const [modalShow, setModalShow] = useState(true); 
 
   // Chevron effect
   const spring = useSpring(0, { damping: 100, stiffness: 1000 });

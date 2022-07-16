@@ -112,7 +112,7 @@ export default function NodeBoxAndSVG({ allElementsData, elementData, node_i, no
     useEffect(() => {
         if ( !nodePosRefs?.current ) return
         initialPath(allElementsData[node_i]?.id, allElementsData, nodeRefs, pathRefs, nodePosRefs)
-    }, [nodePosRefs?.current])
+    }, [elementData?.connectors])
 
     useEffect(() => {
         x.onChange(v => {
@@ -123,7 +123,6 @@ export default function NodeBoxAndSVG({ allElementsData, elementData, node_i, no
         y.onChange(v => nodePosRefs.current[node_i].y = v )
 
     }, [])
-
 
   return (
     <AnimatePresence>
@@ -172,28 +171,24 @@ export default function NodeBoxAndSVG({ allElementsData, elementData, node_i, no
             
           </div> 
         </StyledName>
-
-
       </StyledBoxContainer>
 
     
       <StyledSvgArea className='svg-area' elementAmount={allElementsData?.length}>  
-        {
-          elementData?.connectors.map((lineObj, i) =>         
-            <StyledPath 
-                linestyle={lineObj?.border_style}
-                key={`svg-${elementData?.id}-${i}`}
-                id={`${elementData?.id}-${lineObj.connected_node}`}
-                className={`${elementData.id} path`} 
-                ref={elementData => setRefs(elementData, pathRefs)}
-                strokeDasharray= { 
-                  lineObj?.line_style === "dashed" 
-                  ? "10, 10"
-                  : lineObj?.line_style === "dotted" ? "2, 2" : "0, 0" 
-                }
-                />   )   
-        }
-        </StyledSvgArea>
+        { elementData?.connectors.map((lineObj, i) =>         
+          <StyledPath 
+              linestyle={lineObj?.border_style}
+              key={`svg-${elementData?.id}-${i}`}
+              id={`${elementData?.id}-${lineObj.connected_node}`}
+              className={`${elementData.id} path`} 
+              ref={elementData => setRefs(elementData, pathRefs)}
+              strokeDasharray= { 
+                lineObj?.line_style === "dashed" 
+                ? "10, 10"
+                : lineObj?.line_style === "dotted" ? "2, 2" : "0, 0" 
+              }
+              />   )   }
+      </StyledSvgArea>
 
     </AnimatePresence>
   )
@@ -241,6 +236,7 @@ const StyledHandle = styled(motion.div)`
 const StyledName = styled(motion.div)`
     position: absolute;
     top: ${({ hasContent }) => hasContent ? "100px": "10px"} ;
+    left: 10px;
     padding-top: 20px;
     padding-left: ${({ hasContent }) => hasContent ? "0px": "30px"} ;
     color:#000;

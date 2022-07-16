@@ -26,9 +26,7 @@ const child = {
     }
 };
 
-export default function Nav({ route }) {
-    // let titleSplit = Array.from(mainTitle);
-
+export default function Nav({ modalShow }) {
     const router = useRouter()
     const [isRouteChange, setRouteChange] = useState(false)
 
@@ -64,8 +62,11 @@ export default function Nav({ route }) {
                     </Link>
                 }
             </StyledNavLeft>
+            
             <StyledNavRight>
-                <Link href="/about">
+               { !modalShow && 
+               <>
+               <Link href="/about">
                     <a>
                     <StyledNavItem> ABOUT </StyledNavItem>
                     </a>
@@ -75,6 +76,7 @@ export default function Nav({ route }) {
                     <StyledNavItem> AGENDA </StyledNavItem>
                     </a>
                 </Link>
+               </>}
             </StyledNavRight>
         </StyledNavContainer>
 
@@ -90,6 +92,7 @@ const StyledNavContainer = styled.div`
     align-items: center;
     font-size: .8rem;
     font-family: var(--title-font-en), serif;
+
 `;
 const StyledNavLeft = styled.div`
     display: flex;

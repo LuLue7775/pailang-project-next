@@ -1,4 +1,19 @@
 
+export const containerTextMotion = {
+  rest: { color: '#000'  },
+  hover: {
+      color: '#FFF',
+      backgroundColor:'#00000040',
+      padding: '100px 30px',
+      transition: {
+          delay: .4,
+          type: "tween",
+          ease: "easeInOut",
+          duration: 0.8
+        }
+  },
+}
+
 export const containerLeftMotion = {
     rest: { x:"0", zIndex:0,  },
     hover: {
@@ -8,27 +23,13 @@ export const containerLeftMotion = {
         transition: { duration: 1 }, 
         zIndex:10,
         transition: {
+            delay: 1,
             type: "tween",
             ease: "easeInOut",
-            duration: 0.8
+            duration: 1.2
           }
     },
     
-}
-
-export const containerTextMotion = {
-    rest: { color: '#000'  },
-    hover: {
-        color: '#FFF',
-        backgroundColor:'#00000040',
-        padding: '100px 10px',
-
-        transition: {
-            type: "tween",
-            ease: "easeInOut",
-            duration: 0.8
-          }
-    },
 }
 
 export const containerMidMotion = {
@@ -39,9 +40,10 @@ export const containerMidMotion = {
         width:"50%",
         transition: { duration: 1 }, zIndex:10,
         transition: {
+            delay: 1,
             type: "tween",
             ease: "easeInOut",
-            duration: 0.8
+            duration: 1.2
           }
     },
 }
@@ -53,9 +55,10 @@ export const containerRightMotion = {
         width:"50%",
         transition: { duration: 1 }, zIndex:10,
         transition: {
+            delay: 1,
             type: "tween",
             ease: "easeInOut",
-            duration: 0.8
+            duration: 1.2
           }
     },
 }

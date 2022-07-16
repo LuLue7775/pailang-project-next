@@ -49,10 +49,10 @@ export default function Agenda({ data }) {
   const [activeExpandData, setActiveExpandData] = useState(null); 
   const [expandContent, setExpandContent] = useState({});
   const boxRefs = useRef([]);
-  const typeLengthRef = useRef({
-    journalLength: 0,  
-    ScenographyLength: 0, 
-    videoLength: 0
+  const articleByTypeRef = useRef({
+    journal: [],  
+    Scenography: [], 
+    video: []
   })
 
   // Cursor efffect
@@ -90,34 +90,33 @@ export default function Agenda({ data }) {
   }, [filter])
 
 /**
- * Selecting
+ *  Categorize data so we can find data by id when box expands. 
+ *  (note: because there're same id in three types)
  */
-
-  const getLengthOfEachType = () => {
-    let length = {
-      journalLength: 0,  
-      ScenographyLength: 0, 
-      videoLength: 0
+  const categorizeDataByType = () => {
+    let article = {
+      journal: [],  
+      scenography: [], 
+      video: []
     }
-
-    boxRefs.current?.forEach(( box, i ) => {
-      if (box.id.startsWith('journal')) length.journalLength ++
-      if (box.id.startsWith('scenography')) length.ScenographyLength ++
-      if (box.id.startsWith('video')) length.videoLength ++
+      data?.forEach(( item, i ) => {
+      if ( item?.type === 'journal' ) article.journal.push(item)
+      if ( item?.type === 'scenography' ) article.scenography.push(item)
+      if ( item?.type === 'video' ) article.video.push(item)
     })
-    
-    typeLengthRef.current = length
+    articleByTypeRef.current = article
   }
 
-
   useEffect(() => {
-    getLengthOfEachType()
+    categorizeDataByType()
   }, [])
 
   const getExpandDataIndexByID = (boxID) => {
-    if (boxID.startsWith('journal'))  return parseInt(boxID.split('-')[1]) -1
-    else if (boxID.startsWith('scenography')) return typeLengthRef.current.journalLength + parseInt(boxID.split('-')[1]) -1 
-    else if (boxID.startsWith('video')) return typeLengthRef.current.journalLength + typeLengthRef.current.ScenographyLength + parseInt(boxID.split('-')[1]) -1
+    let { journal, scenography, video} = articleByTypeRef.current
+    
+    if (boxID.startsWith('journal')) return journal.find(item => item.id === parseInt(boxID.split('-')[1]) )
+    else if (boxID.startsWith('scenography')) return scenography.find(item => item.id === parseInt(boxID.split('-')[1]) )
+    else if (boxID.startsWith('video')) return video.find(item => item.id === parseInt(boxID.split('-')[1]) )
   }
 
   const handleExpand = (expandIndex, id) => {
@@ -130,44 +129,46 @@ export default function Agenda({ data }) {
    */
   useEffect(() => {
     setExpandContent({
-      id : data[activeExpandData]?.id || null,
-      title : data[activeExpandData]?.title || '',
-      title_zh : data[activeExpandData]?.title_zh || '',
-      type : data[activeExpandData]?.type || '',
-      start_date : data[activeExpandData]?.start_date || '',
-      end_date : data[activeExpandData]?.end_date || '',
-      artist : data[activeExpandData]?.artist || '',
-      producer : data[activeExpandData]?.producer || '',
-      curator : data[activeExpandData]?.curator || '',
-      language : data[activeExpandData]?.language || '',
+      id : activeExpandData?.id || null,
+      title : activeExpandData?.title || '',
+      title_zh : activeExpandData?.title_zh || '',
+      type : activeExpandData?.type || '',
+      start_date : activeExpandData?.start_date || '',
+      end_date : activeExpandData?.end_date || '',
+      artist : activeExpandData?.artist || '',
+      producer : activeExpandData?.producer || '',
+      curator : activeExpandData?.curator || '',
+      language : activeExpandData?.language || '',
+      status : activeExpandData?.status || ''
     })
   }, [activeExpand])
 
   return (
     <StyledAgenda
-    className='agenda-container'
-    as={motion.div}
-    id="cursor-area" 
-    ref={cursorAreaRef}
-    onMouseMove={e => handleMouseMove(e)}
-    animate={{
-      rotateX: mousePosition.centerX * 20,
-      rotateY: mousePosition.centerY * 20
-    }}
-  >
+      className='agenda-container'
+      as={motion.div}
+      id="cursor-area" 
+      ref={cursorAreaRef}
+      onMouseMove={e => handleMouseMove(e)}
+      animate={{
+        rotateX: mousePosition.centerX * 20,
+        rotateY: mousePosition.centerY * 20
+      }}
+    >
     <Cursor mousePosition={mousePosition} hoverEvent={hoverEvent} />
 
       <StyledAgendaWrap>
         <StyledAgendaTableWrap>
           <AgendaTable expandContent={expandContent} />
-          {expandContent?.id && 
+          <div style={{ postion:"relative", width: "100%", display:"flex", justifyContent:"end" }}>
+          {expandContent?.status !== 'draft' && 
               <Link href={
                 !process.env.NODE_ENV || process.env.NODE_ENV === 'development' 
                 ?
                 `http://localhost:3000/article-${expandContent?.type}/${expandContent?.id}`
                 : `${process.env.NEXT_PUBLIC_DOMAIN}/article-${expandContent?.type}/${expandContent?.id} ` 
                 }>
-                  <a style={{ postion:"relative", display:"flex", justifyContent:"end" }}>
+                  <a >
                     <svg height="80" width="200" >
                       <ellipse cx="100" cy="40" rx="60" ry="20" style={{fill:"none", stroke:"#000", strokeWidth:1, background:"transparent" }} />
                       <text  x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" width="200"fill="#000" style={{ fontSize: ".8rem" }}> VIEW </text>                    
@@ -175,6 +176,7 @@ export default function Agenda({ data }) {
                   </a>
               </Link>
           } 
+          </div>
         </StyledAgendaTableWrap>
 
         <StyledAgendaFilter> 
@@ -184,8 +186,7 @@ export default function Agenda({ data }) {
                 {time.map( (el, i) => 
                     <AgendaFliterLabel key={i} item={filterData[el]} filter={filter} setFilter={setFilter} filtersInitArray={filtersInitArray}/>)
                 }
-            </StyledHiddenGrid>
-
+              </StyledHiddenGrid>
             </StyledMainGrid>
 
             <StyledMainGrid  whileHover={{ height: "20px" }}>

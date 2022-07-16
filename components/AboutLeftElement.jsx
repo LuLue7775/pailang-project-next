@@ -80,8 +80,11 @@ const StyledLeftColContainer = styled(motion.div)`
     ${({ isHovered }) =>  isHovered && "background-image: url('/about.jpg')" };
     background-size: cover;
     background-repeat: no-repeat;
+
 `;
 const StyledPersonaContainer = styled(motion.div)`
+// padding: 100px;
+
 `;
 
 const StyledLeftTitle = styled.div`

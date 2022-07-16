@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import Nav from '../components/Nav';
 import styled from "styled-components";
 import { GlobalStyles } from '../styles/globalStyles';
@@ -6,19 +6,22 @@ import '../styles/globals.css';
 import { useRouter } from 'next/router';
 import CursorProvider from '../context/cursorContext';
 
-function MyApp({ Component, pageProps, data }) {
+function MyApp({ Component, pageProps }) {
   const router = useRouter();
+
+  // Modal effect
+  const [modalShow, setModalShow] = useState(true); 
 
   return (
     <CursorProvider>
       <GlobalStyles/>
       <StyledApp className='app' id='app'>
           <StyledHeader className='header' route={router.pathname}>
-            <Nav route={router.pathname} />
+            <Nav modalShow={modalShow} />
           </StyledHeader>
         
           <StyledLayout route={router.pathname}>
-            <Component {...pageProps} />
+            <Component {...pageProps} modalShow={modalShow} setModalShow={setModalShow}/>
           </StyledLayout>
         </StyledApp>    
     </CursorProvider>
@@ -52,7 +55,6 @@ const StyledLayout = styled.div`
     position:relative;
     bottom: 0;
     z-index: 0;
-    
   } };
 `;
 

@@ -15,10 +15,7 @@ const tableVariant = {
 const childVariant = { 
     initial:{ x: "100%" },
     exit:{ x: 0 },
-    animate:{ 
-        x: 0 ,
-    //   transition: { duration: 2, delay:.3 } 
-    }
+    animate:{ x: 0 }
   }
 
   
@@ -41,27 +38,27 @@ export default function AgendaTable({ expandContent }) {
                 >
                 <motion.tr >
                     <StyledAgendaTd>Date</StyledAgendaTd>
-                    <motion.td variants={childVariant} key={id}>{ start_date } - { end_date }</motion.td>
+                    <motion.td variants={childVariant} key={title}>{ start_date } - { end_date }</motion.td>
                 </motion.tr>
                 <motion.tr  >
                     <StyledAgendaTd>Type</StyledAgendaTd>
-                    <motion.td variants={childVariant} key={id}>{ type } </motion.td>
+                    <motion.td variants={childVariant} key={title}>{ type } </motion.td>
                 </motion.tr>
                 <motion.tr >
                     <StyledAgendaTd>Artist</StyledAgendaTd>
-                    <motion.td variants={childVariant} key={id}>{artist}</motion.td>
+                    <motion.td variants={childVariant} key={title}>{artist}</motion.td>
                 </motion.tr>
                 <motion.tr >
                     <StyledAgendaTd>Producer</StyledAgendaTd>
-                    <motion.td variants={childVariant} key={id}>{ producer } </motion.td>
+                    <motion.td variants={childVariant} key={title}>{ producer } </motion.td>
                 </motion.tr>
                 <motion.tr >
                     <StyledAgendaTd>Curator</StyledAgendaTd>
-                    <motion.td variants={childVariant} key={id}>{ curator } </motion.td>
+                    <motion.td variants={childVariant} key={title}>{ curator } </motion.td>
                 </motion.tr>
                 <motion.tr >
                     <StyledAgendaTd>Language</StyledAgendaTd>
-                    <motion.td variants={childVariant} key={id}>{ language } </motion.td>
+                    <motion.td variants={childVariant} key={title}>{ language } </motion.td>
                 </motion.tr>
 
 

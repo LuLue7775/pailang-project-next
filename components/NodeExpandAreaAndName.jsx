@@ -29,18 +29,19 @@ const expand = {
     }
   };
   
-  const parseContent = (type, content, isWindow) => {
+  const parseContent = (type, content, isWindow, isOpen) => {
     if (type === 'text') {
       return content || ''
     } else if ( type === 'image' ) {
       return (
        content &&
          <Image 
-          alt="" 
+          alt="image" 
+          src={ content }
           width="100%"
           height="100%"
-          src={ content }
           layout="responsive"
+          objectFit={ isOpen ? 'contain' : 'cover'}
           crossOrigin="true"
         />
       
@@ -90,7 +91,7 @@ export default function NodeExpandAreaAndName({ id, isOpen, toggleOpen, content,
             isOpen={isOpen.includes(id)} 
             hasContent={content}
           >
-            { parseContent(type, content, isWindow ) } 
+            { parseContent(type, content, isWindow, isOpen.includes(id) ) } 
           </StyledExpand>
       </StyledExpandContainer>
 )

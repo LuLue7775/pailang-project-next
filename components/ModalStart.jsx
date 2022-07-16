@@ -23,7 +23,6 @@ export default function ModalStart({ setModalShow, modalData }) {
                 onMouseLeave={() => setHoverEvent("default")}  
             > 
                 <EllipseBtnSVG texts={"Start"}/>
-            
              </div>
         </StyledModal>
     )
@@ -49,7 +48,6 @@ const StyledModal = styled.div`
     align-items: center;
     justify-content: center;
     line-height: 1.4rem;
-
 `;
 const StyledModalTitle = styled.div`
     text-align: center;
