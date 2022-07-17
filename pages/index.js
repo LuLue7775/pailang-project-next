@@ -92,10 +92,14 @@ export default function Home({ modalData, randomArticleData, modalShow, setModal
               {modalData && <ModalStart setModalShow={setModalShow} modalData={modalData}/>}
             </motion.div>
         </Cover>
-{/** @TODO These two keep rerendering */}
-        {!modalShow && <ArticlesHeader data={randomArticleData} slideTo={slideTo} spring={spring} />}
-        <JournalContent data={randomArticleData} spring={spring} />
         
+{/** @TODO fix rerendering */}
+        {!modalShow && 
+          <>
+            <ArticlesHeader data={randomArticleData} slideTo={slideTo} spring={spring} />
+            <JournalContent data={randomArticleData} spring={spring} />
+          </>
+        }
     </StyledContainer>
 
   )
