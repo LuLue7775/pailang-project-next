@@ -7,9 +7,9 @@ html {
 body {
   padding: 0;
   margin: 0;
-  
-  user-select: none;    
-  }
+
+  user-select: none;
+}
 
 a {
   color: inherit;
@@ -21,7 +21,9 @@ a {
   box-sizing: border-box;
   scrollbar-width: none; /* Firefox */
 }
-::-webkit-scrollbar { width: 0; };
+::-webkit-scrollbar {
+  width: 0;
+}
 
 :root {
   --title-font-en: 'Ogg';
@@ -29,14 +31,13 @@ a {
   --subtitle-font-en: 'Baskervville';
   --subtitle-font-zh: 'Noto Serif TC';
   --main-font-en: 'Gotu';
-  --main-font-zh: 'Noto Sans TC'
+  --main-font-zh: 'Noto Sans TC';
 }
 
 .App {
   font-family: sans-serif;
   text-align: center;
   box-sizing: border-box;
-
 }
 
 .react-flow__node-selectorNode {
@@ -47,13 +48,12 @@ a {
   text-align: center;
 }
 
-
 h1 {
-  font-family: var( --title-font-en, serif);
+  font-family: var(--title-font-en, serif);
   font-size: 6rem;
 }
 h2 {
-  font-family: var( --title-font-zh, serif);
+  font-family: var(--title-font-zh, serif);
   font-size: 1.5rem;
   font-weight: 100;
 }
@@ -67,34 +67,36 @@ h4 {
   font-size: 1.2rem;
 }
 
-div.en, p.en {
+div.en,
+p.en {
   font-family: 'Gotu', sans-serif;
-  font-size:.8rem;
+  font-size: 0.8rem;
 }
 
-div.zh, p.zh {
+div.zh,
+p.zh {
   font-family: 'Noto Serif TC', sans-serif;
-  font-size: .8rem;
+  font-size: 0.8rem;
   letter-spacing: 2px;
 }
 
-span { 
-  font-family: var( --title-font-en, serif);
-  min-width: 15px; 
- }
-span.zh { 
-  font-family:  var( --title-font-zh, serif) ; 
- }
+span {
+  font-family: var(--title-font-en, serif);
+  min-width: 15px;
+}
+span.zh {
+  font-family: var(--title-font-zh, serif);
+}
 
 @font-face {
-  font-family: "Ogg";
-  src: url("/fonts/OggBold.ttf") format("truetype");
+  font-family: 'Ogg';
+  src: url('/fonts/OggBold.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
-  font-family: "Ogg" ;
-  src: url("/fonts/OggRegular.ttf") format("truetype");
+  font-family: 'Ogg';
+  src: url('/fonts/OggRegular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }

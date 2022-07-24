@@ -1,19 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext, useState } from 'react'
 
-export const CursorContext = createContext([
-    'default',
-    () => {}
-]);
+export const CursorContext = createContext(['default', () => {}])
 
 const CursorProvider = ({ children }) => {
-    const [hoverEvent, setHoverEvent] = useState("default")
+  const [hoverEvent, setHoverEvent] = useState('default')
 
-    const value = { hoverEvent, setHoverEvent }
-    return (
-      <CursorContext.Provider value={value}>
-        {children}
-      </CursorContext.Provider>
-    );
-  };
+  const value = { hoverEvent, setHoverEvent }
+  return <CursorContext.Provider value={value}>{children}</CursorContext.Provider>
+}
 
-export default CursorProvider;
+export default CursorProvider

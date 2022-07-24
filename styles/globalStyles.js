@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
 html {
@@ -13,23 +13,17 @@ html {
     --main-font-en: 'Gotu';
     --main-font-zh: 'Noto Sans TC'
     --main-color: #DF6000;
-    --line-color1: #rgba(250, 170, 50,1)  ;
-    --line-color2: #rgba(250, 170, 50,1)  ;
     
-  
-    --color-set1-1: rgba(250, 170, 50,1) ;
-    --color-set1-2:  rgba(250, 97, 55,1);
-    --color-set1-3: rgba(247, 138, 119,1);
-    --color-set1-4: rgba(230, 70, 50,1);
-    --color-set1-5:  hsla(36,65%,63%,1);
-  
-    --color-set2-1: rgb(36, 9, 131);
-    --color-set2-2:  rgb(55, 240, 250);
-    --color-set2-3: rgb(187, 215, 224);
-    --color-set2-4: rgb(225, 183, 230);
-    --color-set2-5:  rgb(99, 105, 222);
-  
-    --color-set3-1: rgba(250, 170, 50,1) ;
+    --node-bg-color: #000000A0;
+    --node-expandBg-color: #cc5e0ae0;
+    --node-border-color: #f09c5d;
+    --node-svg-color: #706d68a0;
+    --node-connetor-color: #eb6c0c;
+    --node-tooltip-color: #c2a05d50;
+    --node-handle-color: #e3bc6f;
+    --node-height: 200px;
+    --node-width: 300px;
+
   }
   
-`;
+`

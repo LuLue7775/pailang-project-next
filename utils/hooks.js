@@ -1,40 +1,40 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
 export function useMediaQuery(query) {
-  const [matches, setMatches] = useState(false);
+  const [matches, setMatches] = useState(false)
 
   useEffect(() => {
-    const media = window.matchMedia(query);
+    const media = window.matchMedia(query)
     if (media.matches !== matches) {
-      setMatches(media.matches);
+      setMatches(media.matches)
     }
-    const listener = () => setMatches(media.matches);
-    window.addEventListener("resize", listener);
-    return () => window.removeEventListener("resize", listener);
-  }, [matches, query]);
+    const listener = () => setMatches(media.matches)
+    window.addEventListener('resize', listener)
+    return () => window.removeEventListener('resize', listener)
+  }, [matches, query])
 
-  return matches;
+  return matches
 }
 
 export function useWindowSize() {
   const [windowSize, setWindowSize] = useState({
     windowWidth: undefined,
-    windowHeight: undefined,
-  });
-  
+    windowHeight: undefined
+  })
+
   useEffect(() => {
     function handleResize() {
       setWindowSize({
         windowWidth: window.innerWidth,
-        windowHeight: window.innerHeight,
-      });
+        windowHeight: window.innerHeight
+      })
     }
 
-    window.addEventListener("resize", handleResize);
-    handleResize();
+    window.addEventListener('resize', handleResize)
+    handleResize()
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, []); 
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
-  return windowSize;
+  return windowSize
 }
