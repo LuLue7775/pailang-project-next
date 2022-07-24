@@ -28,7 +28,6 @@ export default function Video({ data }) {
       ref={cursorAreaRef}
     >
       <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
-
       <ArticleVideoTemplate data={data} spring={spring} setHoverEvent={setHoverEvent} />
     </StyledContainer>
   )
@@ -47,8 +46,6 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  // const id = dataJson.pages.first;
-  // console.log(id)
   return {
     paths: [{ params: { id: '1' } }, { params: { id: '2' } }, { params: { id: '3' } }],
     fallback: 'blocking'
