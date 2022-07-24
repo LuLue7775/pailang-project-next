@@ -3,6 +3,7 @@ import { LineSVG, DownChevronSVG } from './Svgs'
 import { CursorContext } from '../context/cursorContext'
 import styled from 'styled-components'
 import ArticleHeaderTitles from './ArticleHeaderTitles'
+import ArticleHeaderSubtitles from './ArticleHeaderSubtitles'
 
 export default function ArticlesHeader({ data, slideTo, spring }) {
   const { setHoverEvent } = useContext(CursorContext)
@@ -11,7 +12,13 @@ export default function ArticlesHeader({ data, slideTo, spring }) {
     <StyledHeader>
       <LineSVG />
       <ArticleHeaderTitles title={data?.title} title_zh={data?.title_zh}/>
-
+      <ArticleHeaderSubtitles 
+        artist={data?.artist} 
+        producer={data?.producer} 
+        curator={data?.curator}
+        start_date={data?.start_date} 
+        end_date={data?.end_date}
+      />
       <div
         onClick={() => slideTo(document.getElementById('section2').offsetTop, spring)}
         onMouseOver={() => setHoverEvent('expand')}

@@ -3,20 +3,20 @@ import { LeftCrossSVG, RightCrossSVG } from './Svgs'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-export default function ArticleHeaderSubtitles() {
+export default function ArticleHeaderSubtitles({ artist, producer, curator, start_date, end_date }) {
   return (
     <StyledSubtitlesWrap className="zh">
         <LeftCrossSVG />
         <StyledSubtitles as={motion.div} variants={subtitles} initial="initial" animate="animate">
-        <div> {data?.artist} </div>
+        <div> {artist} </div>
         <div>
-            <div> {data?.producer && `製作單位 Produced by ${data?.producer} `} </div>
-            <div> {data?.curator && `策展 Curated by ${data?.curator}`} </div>
+            <div> {producer && `製作單位 Produced by ${producer} `} </div>
+            <div> {curator && `策展 Curated by ${curator}`} </div>
         </div>
         <div>
-            <div> {data?.start_date} </div>
-            <div> | </div>
-            <div> {data?.start_date} </div>
+            <div> {start_date} </div>
+            <div> / </div>
+            <div> {end_date} </div>
         </div>
         </StyledSubtitles>
         <RightCrossSVG />
