@@ -65,6 +65,6 @@ const StyledJournalRightCol = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  border-left: 1px var(--main-color, #e0954f) dashed;
+  border-left: 1px var(--main-color, #e0954f) solid;
   overflow-y: scroll;
 `

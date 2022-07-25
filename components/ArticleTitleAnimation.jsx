@@ -8,7 +8,7 @@ export default function AnimatedTitles({ title, language, textLengthRef, windowW
   return (
     <StyledAnimTitle
       as={motion.span}
-      className={`row-title ${language === 'zh' ? 'zh' : ''}`}
+      className={`row-title ${language === 'zh' ? 'zh' : 'en'}`}
       variants={banner}
       initial="initial"
       animate="animate"

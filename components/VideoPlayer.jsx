@@ -15,15 +15,13 @@ export const VideoPlayer = React.forwardRef((props, ref) => {
   const handlePlayPause = () => {
     setPlaying(!playing)
   }
+
   const handleClickFullscreen = async () => {
     if (screenfull.isEnabled) {
-      screenfull.request(document.querySelector('.video-wrap'))
+      screenfull.request(ref.current.wrapper)
     }
   }
 
-  /**
-   * @TODO seek
-   */
   const handleSeekMouseDown = (e) => {
     setSeeking(true)
   }
@@ -60,15 +58,16 @@ export const VideoPlayer = React.forwardRef((props, ref) => {
           ref={ref}
           url={video}
           className="react-player"
-          width="100%"
+          width="min(100%, 600px)"
           height="100%"
-          controls={false}
+          controls={ true }
           volume={0.8}
           playing={playing}
           onProgress={handleProgress}
           onDuration={handleDuration}
         />
       )}
+
       <ReactController>
         <StyledButton onClick={handlePlayPause}>
           {playing ? (
@@ -134,7 +133,10 @@ const ReactPlayerWrap = styled.div`
   z-index: 10;
 
   height: 400px;
+  // width: min(100%, 600px);
   width: 100%;
+  display: flex;
+  justify-content: center;
 `
 const ReactController = styled.div`
   position: absolute;
@@ -146,14 +148,15 @@ const ReactController = styled.div`
 
   height: 50px;
   width: 100%;
-  background-color: #4f4537;
+  background-color: var(--main-bg-color);
   border-radius: 10px;
 `
 
 const StyledButton = styled.button`
   height: 50px;
   width: 60px;
-  border: 1px solid var(--main-color, #e0954f);
+  border: 1px solid #FFF;
+  // border: 1px solid var(--main-color, #e0954f);
   background: none;
   &:hover {
     cursor: pointer;
@@ -168,28 +171,28 @@ const StyledInput = styled.input`
 
   ::-webkit-slider-runnable-track {
     width: 100%;
-    height: 12px;
+    height: 6px;
     cursor: pointer;
     animate: 0.2s;
-    box-shadow: 1px 1px 1px #002200;
-    background: #b5a999;
+    // box-shadow: 1px 1px 1px #002200;
+    background: #fff;
     border-radius: 1px;
-    border: 1px solid var(--main-color, #e0954f);
+    // border: 1px solid var(--main-color, #e0954f);
   }
 
   ::-webkit-slider-thumb {
-    box-shadow: 3px 3px 3px #b6b207;
-    border: 2px solid var(--main-color, #e0954f);
-    height: 23px;
-    width: 23px;
+    // box-shadow: 3px 3px 3px #b6b207;
+    // border: 2px solid var(--main-color, #e0954f);
+    height: 10px;
+    width: 10px;
     border-radius: 23px;
-    background: #4c2b1f;
+    background: var(--main-color, #e0954f);
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -7px;
+    margin-top: -3px;
     &:hover {
       cursor: pointer;
-      background: #fff;
+      background: var(--node-connetor-color, #eb6c0c );
     }
   }
 `

@@ -83,7 +83,7 @@ p.zh {
   letter-spacing: 2px;
 }
 
-span.en {
+span {
   font-family: var(--title-font-en, serif);
   min-width: 15px;
 }

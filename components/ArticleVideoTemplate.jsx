@@ -1,13 +1,11 @@
 import { useRef } from 'react'
-
-import ArticlesHeader from './ArticlesHeader'
-import VideoPlayer from './VideoPlayer'
-
 import { UpChevronSVG } from './Svgs'
-import { useMediaQuery } from '../utils/hooks'
-import { slideTo } from '../utils/functions'
-import styled from 'styled-components'
+import VideoPlayer from './VideoPlayer'
 import { motion } from 'framer-motion'
+import { slideTo } from '../utils/functions'
+import ArticlesHeader from './ArticlesHeader'
+import { useMediaQuery } from '../utils/hooks'
+import styled from 'styled-components'
 import parse from 'html-react-parser'
 
 export default function ArticleVideoTemplate({ data, spring, setHoverEvent }) {
@@ -98,10 +96,13 @@ const StyledChevron = styled.div`
 
 const StyledLeftCol = styled(motion.div)`
   position: relative;
-  border-right: ${({ isMobile }) => (isMobile ? '' : 'var(--main-color, #e0954f) dashed')};
+  border-right: ${({ isMobile }) => (isMobile ? '' : '1px var(--main-color, #e0954f) solid')};
   padding: 20px;
-  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+  color: #000;
   height: 100%;
   overflow-y: scroll;
 `
@@ -120,8 +121,9 @@ const StyledRightCol = styled(motion.div)`
 
 const StyledVideoContainer = styled.div`
   height: 450px;
-  width: 100%;
+  width: min(100%, 700px);
   border-radius: 10px;
-  background-color: #0000005f;
+  background-color: #000000;
   border: 1px solid var(--main-color, #e0954f);
+  
 `
