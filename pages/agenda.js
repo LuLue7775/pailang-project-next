@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef, useContext } from 'react'
 import { CursorContext } from '../context/cursorContext'
-import { getRelativeCoordinates } from '../utils/functions'
+import { fetchData } from '../utils/functions'
+import { contentWrapVariant  } from '../utils/framerVariantsAgenda'
 import Cursor from '../components/Cursor'
 import AgendaElement from '../components/AgendaElement'
-import { fetchData } from '../utils/functions'
+import AgendaFliterLabel from '../components/AgendaFliterLabel'
 
 import styled from 'styled-components'
-import AgendaFliterLabel from '../components/AgendaFliterLabel'
 import { motion, AnimatePresence, onHover } from 'framer-motion'
 import AgendaTable from '../components/AgendaTable'
 import Link from 'next/link'
@@ -31,14 +31,7 @@ const setRefs = (el, ref, dataLength) => {
   ref.current.push(el)
 }
 
-const contentWrapVariant = {
-  initial: { opacity: 0 },
-  exit: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: { duration: 2, delay: 0.3 }
-  }
-}
+
 
 export default function Agenda({ data }) {
   const [filteredData, setFilteredData] = useState(data)
@@ -56,12 +49,7 @@ export default function Agenda({ data }) {
 
   // Cursor efffect
   const cursorAreaRef = useRef()
-  const [mousePosition, setMousePosition] = useState({})
   const { hoverEvent, setHoverEvent } = useContext(CursorContext)
-
-  const handleMouseMove = (e) => {
-    setMousePosition(getRelativeCoordinates(e, cursorAreaRef.current))
-  }
 
   /**
    * Sorting
@@ -102,66 +90,67 @@ export default function Agenda({ data }) {
       })
 
     setFilteredData(filterResult)
-    setExpandContent({})
     setActiveExpand(null)
+    // setExpandContent({})
   }, [filter])
 
   /**
    *  Categorize data so we can find data by id when box expands.
    *  (note: because there're same id in three types)
    */
-  const categorizeDataByType = () => {
-    let article = {
-      journal: [],
-      scenography: [],
-      video: []
-    }
-    data?.forEach((item, i) => {
-      if (item?.type === 'journal') article.journal.push(item)
-      if (item?.type === 'scenography') article.scenography.push(item)
-      if (item?.type === 'video') article.video.push(item)
-    })
-    articleByTypeRef.current = article
-  }
+  // const categorizeDataByType = () => {
+  //   let article = {
+  //     journal: [],
+  //     scenography: [],
+  //     video: []
+  //   }
+  //   data?.forEach((item, i) => {
+  //     if (item?.type === 'journal') article.journal.push(item)
+  //     if (item?.type === 'scenography') article.scenography.push(item)
+  //     if (item?.type === 'video') article.video.push(item)
+  //   })
+  //   articleByTypeRef.current = article
+  // }
 
-  useEffect(() => {
-    categorizeDataByType()
-  }, [])
+  // useEffect(() => {
+  //   categorizeDataByType()
+  // }, [])
 
-  const getExpandDataIndexByID = (boxID) => {
-    let { journal, scenography, video } = articleByTypeRef.current
+  // const getExpandDataIndexByID = (boxID) => {
+  //   let { journal, scenography, video } = articleByTypeRef.current
 
-    if (boxID.startsWith('journal'))
-      return journal.find((item) => item.id === parseInt(boxID.split('-')[1]))
-    else if (boxID.startsWith('scenography'))
-      return scenography.find((item) => item.id === parseInt(boxID.split('-')[1]))
-    else if (boxID.startsWith('video'))
-      return video.find((item) => item.id === parseInt(boxID.split('-')[1]))
-  }
+  //   if (boxID.startsWith('journal'))
+  //     return journal.find((item) => item.id === parseInt(boxID.split('-')[1]))
+  //   else if (boxID.startsWith('scenography'))
+  //     return scenography.find((item) => item.id === parseInt(boxID.split('-')[1]))
+  //   else if (boxID.startsWith('video'))
+  //     return video.find((item) => item.id === parseInt(boxID.split('-')[1]))
+  // }
 
   const handleExpand = (expandIndex, id) => {
     setActiveExpand(expandIndex)
-    setActiveExpandData(getExpandDataIndexByID(id))
+
+    // setActiveExpandData(getExpandDataIndexByID(id))
   }
 
   /**
    * @TODO use useReducer
    */
-  useEffect(() => {
-    setExpandContent({
-      id: activeExpandData?.id || null,
-      title: activeExpandData?.title || '',
-      title_zh: activeExpandData?.title_zh || '',
-      type: activeExpandData?.type || '',
-      start_date: activeExpandData?.start_date || '',
-      end_date: activeExpandData?.end_date || '',
-      artist: activeExpandData?.artist || '',
-      producer: activeExpandData?.producer || '',
-      curator: activeExpandData?.curator || '',
-      language: activeExpandData?.language || '',
-      status: activeExpandData?.status || ''
-    })
-  }, [activeExpand])
+  // useEffect(() => {
+  //   setExpandContent({
+  //     id: activeExpandData?.id || null,
+  //     title: activeExpandData?.title || '',
+  //     title_zh: activeExpandData?.title_zh || '',
+  //     type: activeExpandData?.type || '',
+  //     start_date: activeExpandData?.start_date || '',
+  //     end_date: activeExpandData?.end_date || '',
+  //     artist: activeExpandData?.artist || '',
+  //     producer: activeExpandData?.producer || '',
+  //     curator: activeExpandData?.curator || '',
+  //     language: activeExpandData?.language || '',
+  //     status: activeExpandData?.status || ''
+  //   })
+  // }, [activeExpand])
 
   return (
     <StyledAgenda
@@ -169,21 +158,16 @@ export default function Agenda({ data }) {
       as={motion.div}
       id="cursor-area"
       ref={cursorAreaRef}
-      onMouseMove={(e) => handleMouseMove(e)}
-      animate={{
-        rotateX: mousePosition.centerX * 20,
-        rotateY: mousePosition.centerY * 20
-      }}
     >
-      <Cursor mousePosition={mousePosition} hoverEvent={hoverEvent} />
+      <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
 
       <StyledAgendaWrap>
         <StyledAgendaTableWrap>
-          <AgendaTable expandContent={expandContent} />
+          {/* <AgendaTable expandContent={expandContent} />
           <div
             style={{ postion: 'relative', width: '100%', display: 'flex', justifyContent: 'end' }}
           >
-            {expandContent?.status !== 'draft' && (
+            { expandContent?.status !== 'draft' && (
               <Link
                 href={
                   !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
@@ -191,43 +175,15 @@ export default function Agenda({ data }) {
                     : `${process.env.NEXT_PUBLIC_DOMAIN}/article-${expandContent?.type}/${expandContent?.id} `
                 }
               >
-                <a>
-                  <svg height="80" width="200">
-                    <ellipse
-                      cx="100"
-                      cy="40"
-                      rx="60"
-                      ry="20"
-                      style={{
-                        fill: 'none',
-                        stroke: '#000',
-                        strokeWidth: 1,
-                        background: 'transparent'
-                      }}
-                    />
-                    <text
-                      x="50%"
-                      y="50%"
-                      dominantBaseline="middle"
-                      textAnchor="middle"
-                      width="200"
-                      fill="#000"
-                      style={{ fontSize: '.8rem' }}
-                    >
-                      {' '}
-                      VIEW{' '}
-                    </text>
-                  </svg>
-                </a>
               </Link>
             )}
-          </div>
+          </div> */}
         </StyledAgendaTableWrap>
 
         <StyledAgendaFilter>
           <StyledMainGrid whileHover={{ height: '20px' }}>
-            <StyledFilterName as={motion.div}> filter by schedule </StyledFilterName>
-            <StyledHiddenGrid as={motion.div}>
+            <StyledFilterName> filter by schedule </StyledFilterName>
+            <StyledHiddenGrid>
               {time.map((el, i) => (
                 <AgendaFliterLabel
                   key={i}
@@ -241,8 +197,8 @@ export default function Agenda({ data }) {
           </StyledMainGrid>
 
           <StyledMainGrid whileHover={{ height: '20px' }}>
-            <StyledFilterName as={motion.div}> filter by event type </StyledFilterName>
-            <StyledHiddenGrid as={motion.div}>
+            <StyledFilterName> filter by event type </StyledFilterName>
+            <StyledHiddenGrid>
               {form.map((el, i) => (
                 <AgendaFliterLabel
                   key={i}
@@ -268,10 +224,12 @@ export default function Agenda({ data }) {
               exit="exit"
               key={`${i}-${item?.id}`}
               id={`${item.type}-${item?.id}`}
-              onClick={() => handleExpand(i, `${item.type}-${item?.id}`)}
               ref={(el) => setRefs(el, boxRefs, data.length)}
               className={`${item.type} ${item.status}`}
-              onMouseOver={() => setHoverEvent('expand')}
+              onMouseOver={() => { 
+                setHoverEvent('expand')
+                handleExpand(i, `${item.type}-${item?.id}`)
+              }}
               onMouseLeave={() => setHoverEvent('default')}
             >
               <AgendaElement item={item} activeExpand={activeExpand} expandIndex={i} />
@@ -319,8 +277,8 @@ const StyledAgendaWrap = styled.div`
 const StyledAgendaTableWrap = styled.div`
   width: 90%;
   color: #000;
-  border-right: 1px solid #000;
-  border-bottom: 2px solid #000;
+  // border-right: 1px solid #000;
+  // border-bottom: 2px solid #000;
   overflow: hidden;
 `
 
@@ -336,20 +294,23 @@ const StyledAgendaFilter = styled(motion.div)`
   overflow: hidden;
 `
 
-const StyledFilterName = styled(motion.div)`
+
+const StyledMainGrid = styled.div`
+  height: 100px;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  border-bottom: 1px solid #000;
+  z-index: 1;
+  background: #fff;
+  border: 1px solid #000;
+`
+const StyledFilterName = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-`
-const StyledMainGrid = styled(motion.div)`
-  height: 100px;
-  width: 100%;
-  border-bottom: 1px solid #000;
-  z-index: 1;
-  background: #fff;
-  border: 1px solid #000;
 `
 const StyledHiddenGrid = styled.div`
   display: grid;
@@ -361,7 +322,7 @@ const StyledHiddenGrid = styled.div`
 const StyledAgendaGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 300px;
+  grid-auto-rows: 350px;
   position: relative;
   gap: 1.4rem;
   margin: 20px;

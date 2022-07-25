@@ -1,52 +1,16 @@
 import { useEffect, useState } from 'react'
+import { imgWrapVariant, slideVariant } from '../utils/framerVariantsAgenda'
+import Link from 'next/link'
 import styled from 'styled-components'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
-const imgWrapVariant = {
-  open: {
-    height: 'auto',
-    transition: {
-      duration: 0.5,
-      delay: 0.3
-    }
-  },
-  closed: {
-    height: '100px',
-    transition: {
-      duration: 0.5
-    }
-  },
-  initial: {
-    height: '100px'
-  }
-}
-
-const slideVariant = {
-  initial: {
-    // x: "150%",
-    y: '-150%',
-    skewY: 25
-  },
-  open: {
-    // x: 0,
-    y: 0,
-    skewY: 0,
-    transition: {
-      duration: 0.5
-    }
-  },
-  closed: {
-    // x: "150%",
-    y: '-150%',
-    skewY: 25
-  }
-}
 
 export default function AgendaElement({ item, activeExpand, expandIndex }) {
-  const { title, title_zh, cover, start_date, end_date, type } = item
+  const { title, title_zh, cover, start_date, end_date, type, language, artist, id, status } = item
   const [isexpand, setExpand] = useState(false)
 
+  // one expand card at a time
   useEffect(() => {
     if (activeExpand === expandIndex) setExpand(true)
     else setExpand(false)
@@ -61,18 +25,48 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
         animate={isexpand ? 'open' : 'closed'}
         initial="initial"
       >
-        {cover && (
-          <Image
-            alt=""
-            width="100%"
-            height="100%"
-            src={cover}
-            layout="responsive"
-            crossOrigin="true"
-            // loading="eager"
-            // style={{objectFit: "cover", maxHeight: 300 }}
-          />
-        )}
+          { status !== 'draft' ? (
+              <>
+                <Link
+                  href={
+                    !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+                      ? `http://localhost:3000/article-${type}/${id}`
+                      : `${process.env.NEXT_PUBLIC_DOMAIN}/article-${type}/${id} `
+                  }
+                >
+                    { cover && (
+                        <Image
+                          alt=""
+                          width="100%"
+                          height="100%"
+                          src={cover}
+                          layout="responsive"
+                          objectFit='cover'
+                          crossOrigin="true"
+                        />
+                    )}
+                </Link>
+
+                { isexpand && <StyledTooltip> view event </StyledTooltip>}
+              </>
+            )
+          :
+            cover && (
+              <Image
+                alt=""
+                width="100%"
+                height="100%"
+                src={cover}
+                layout="responsive"
+                crossOrigin="true"
+              />
+            )
+          
+             
+        
+          }
+
+
       </StyledImgContainer>
 
       <StyledSlide as={motion.div} variants={slideVariant} animate={isexpand ? 'open' : 'closed'}>
@@ -81,11 +75,11 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
 
       <div>
         <StyledSm className="zh">{type} </StyledSm>
-        <StyledTitle className="en">{title} </StyledTitle>
-        <div className="zh">{title_zh} </div>
-        <div className="zh">
-          {start_date}-{end_date}{' '}
-        </div>
+        <StyledMainTitle >{title} </StyledMainTitle>
+        <StyledZhTitle className="zh" > {title_zh} </StyledZhTitle>
+        <StyledTitle > {artist} </StyledTitle>
+        <StyledTitle > {start_date}-{end_date}{' '} </StyledTitle>
+        <StyledTitle > {language} </StyledTitle>
       </div>
     </>
   )
@@ -100,13 +94,25 @@ const StyledImgContainer = styled(motion.div)`
   margin: 10px 0 10px 0;
 
   overflow: hidden;
+  z-index: 0;
+
 `
 
 const StyledSm = styled.div`
   color: #00000090;
 `
+const StyledMainTitle = styled.div`
+  font-size: 1.1rem;
+  font-family: var(--title-font-en);
+`
+const StyledZhTitle = styled.div`
+  font-weight: 600;
+`
 const StyledTitle = styled.div`
-  line-height: 1.4rem;
+  font-size: .8rem;
+  line-height: 1.3rem;
+  font-family: var(--title-font-zh);
+
 `
 const StyledSlide = styled(motion.div)`
   position: absolute;
@@ -115,6 +121,33 @@ const StyledSlide = styled(motion.div)`
   height: 100%;
   width: 100%;
   max-width: 310px;
-  background-color: rgba(250, 170, 50, 1);
+  background-color: var(--agenda-slide-color, #f2e446);
   z-index: -1;
+`
+
+const StyledTooltip = styled.div`
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  height: 1.5rem;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  background-color: var(--agenda-tooltip-color, #f2e446);
+  border-radius: 10px;
+  z-index: 1;
+
+  &:after {
+    border-right: solid 10px transparent;
+    border-left: solid 10px transparent;
+    border-bottom: solid 10px var(--agenda-tooltip-color, #f2e446);
+    transform: translateX(-50%);
+    position: absolute;
+    z-index: 1;
+    content: '';
+    bottom: 100%;
+    left: 50%;
+    height: 0;
+    width: 0;
+  }
 `

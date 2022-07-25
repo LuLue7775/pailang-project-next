@@ -36,7 +36,7 @@ export default function AgendaFliterLabel({ item, filter, setFilter, filtersInit
 const StyledLabel = styled(motion.div)`
   position: relative;
   // width: 100%;
-  background: ${({ checked }) => (checked ? 'rgba(250, 170, 50,1)  ' : '#0a0323a0')};
+  background-color: ${({ checked }) => checked ? 'var(--main-color, #e0954f)' : '#0a0323a0' };
 
   border: 1px solid #fff;
   display: flex;

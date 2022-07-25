@@ -1,18 +1,19 @@
-import { useRef, useContext } from 'react'
+import { useRef, useContext, useEffect } from 'react'
 import { CursorContext } from '../context/cursorContext'
 import styled from 'styled-components'
 import { EllipseBtnSVG } from './Svgs'
 
 export default function ModalStart({ setModalShow, modalData }) {
-  const { hoverEvent, setHoverEvent } = useContext(CursorContext)
+  const { setHoverEvent } = useContext(CursorContext)
   const modalRef = useRef()
   const { title, title_zh, content, content_zh } = modalData || {}
+
 
   return (
     <StyledModal className="modal" ref={modalRef}>
       <StyledModalTitle className="modal-title">
-        <h3> {title} </h3>
         <h4 className="ch"> {title_zh} </h4>
+        <h3> {title} </h3>
       </StyledModalTitle>
       <StyledModalContent>
         <div className="ch"> {content_zh} </div>
@@ -32,7 +33,7 @@ export default function ModalStart({ setModalShow, modalData }) {
 const StyledModal = styled.div`
   position: absolute;
   height: 500px;
-  width: 700px;
+  width: min(700px, 80vw);
   left: 0;
   right: 0;
   top: 0;
@@ -59,4 +60,5 @@ const StyledModalContent = styled.div`
   max-width: 80%;
   overflow: hidden;
   font-size: 0.8rem;
+
 `

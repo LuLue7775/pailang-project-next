@@ -11,8 +11,8 @@ html {
     --subtitle-font-en: 'Baskervville';
     --subtitle-font-zh: 'Noto Serif TC'
     --main-font-en: 'Gotu';
-    --main-font-zh: 'Noto Sans TC'
-    --main-color: #DF6000;
+    --main-font-zh: 'Noto Sans TC';
+    --main-color: #e0954f;
     
     --node-bg-color: #000000A0;
     --node-expandBg-color: #cc5e0ae0;
@@ -23,6 +23,9 @@ html {
     --node-handle-color: #e3bc6f;
     --node-height: 200px;
     --node-width: 300px;
+
+    --agenda-slide-color: #b89858;
+    --agenda-tooltip-color: #f2e446;
 
   }
   

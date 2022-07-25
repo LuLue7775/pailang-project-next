@@ -1,44 +1,21 @@
-import { useState, useLayoutEffect, useEffect, useRef, useContext } from 'react'
-import { fetchData, slideTo } from '../utils/functions'
-import styled from 'styled-components'
-import { motion, useSpring } from 'framer-motion'
+import { useLayoutEffect, useEffect, useRef, useContext } from 'react'
+import { fetchData } from '../utils/functions'
+
+import Cover from '../components/Cover'
+import Cursor from '../components/Cursor'
 import ModalStart from '../components/ModalStart'
+import HomeArticle from '../components/HomeArticle'
+import { CursorContext } from '../context/cursorContext'
+import { modalVariant } from '../utils/framerVariantsHome'
 
 import Image from 'next/image'
-import ArticlesHeader from '../components/ArticlesHeader'
-import JournalContent from '../components/JournalContent'
-import Cursor from '../components/Cursor'
-import { getRelativeCoordinates } from '../utils/functions'
-import { CursorContext } from '../context/cursorContext'
-import Cover from '../components/Cover'
-
-const modalVariant = {
-  initial: {
-    opacity: 1
-  },
-  open: {
-    opacity: 1,
-    transition: {
-      duration: 0.5
-    }
-  },
-  closed: {
-    opacity: 0,
-    transition: {
-      duration: 1
-    }
-  }
-}
+import styled from 'styled-components'
+import { motion, useSpring } from 'framer-motion'
 
 export default function Home({ modalData, randomArticleData, modalShow, setModalShow }) {
   // Cursor efffect
   const cursorAreaRef = useRef()
-  const [mousePosition, setMousePosition] = useState({})
   const { hoverEvent, setHoverEvent } = useContext(CursorContext)
-
-  const handleMouseMove = (e) => {
-    setMousePosition(getRelativeCoordinates(e, cursorAreaRef.current))
-  }
 
   // Chevron effect
   const spring = useSpring(0, { damping: 100, stiffness: 1000 })
@@ -65,13 +42,8 @@ export default function Home({ modalData, randomArticleData, modalShow, setModal
       as={motion.div}
       id="cursor-area"
       ref={cursorAreaRef}
-      onMouseMove={(e) => handleMouseMove(e)}
-      animate={{
-        rotateX: mousePosition.centerX * 20,
-        rotateY: mousePosition.centerY * 20
-      }}
     >
-      <Cursor mousePosition={mousePosition} hoverEvent={hoverEvent} />
+      <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
       <Cover modalShow={modalShow}>
         <Image src="/homeBG.jpg" alt="gradient" height="100vh" width="100vw" layout="fill" />
         <motion.div variants={modalVariant} animate={modalShow ? 'open' : 'closed'}>
@@ -80,26 +52,19 @@ export default function Home({ modalData, randomArticleData, modalShow, setModal
       </Cover>
 
       {/** @TODO fix rerendering */}
-      {!modalShow && (
-        <>
-          <ArticlesHeader data={randomArticleData} slideTo={slideTo} spring={spring} />
-          <JournalContent data={randomArticleData} spring={spring} />
-        </>
-      )}
+      <HomeArticle randomArticleData={randomArticleData} spring={spring} setHoverEvent={setHoverEvent}/>
     </StyledContainer>
   )
 }
 
 export async function getStaticProps() {
   const modalData = await fetchData('/modal').catch((e) => console.log(e))
-  const randomArticleData = await fetchData('/random-article?type=journal').catch((e) =>
-    console.log(e)
-  )
+  const randomArticleData = await fetchData('/random-article').catch((e) => console.log(e) )
 
   return {
     props: {
       modalData: modalData?.data || {},
-      randomArticleData: randomArticleData?.data || {}
+      randomArticleData: randomArticleData || {}
     },
     revalidate: 60
   }

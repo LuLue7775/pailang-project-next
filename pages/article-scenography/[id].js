@@ -27,7 +27,6 @@ export default function Scenography({ data }) {
       ref={cursorAreaRef}
     >
       <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
-
       <ArticleScenographyTemplate data={data} spring={spring} setHoverEvent={setHoverEvent} />
     </StyledContainer>
   )
