@@ -59,7 +59,7 @@ export const VideoPlayer = React.forwardRef((props, ref) => {
           url={video}
           className="react-player"
           width="min(100%, 600px)"
-          height="100%"
+          height="110%"
           controls={ true }
           volume={0.8}
           playing={playing}
