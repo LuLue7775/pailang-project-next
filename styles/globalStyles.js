@@ -13,7 +13,7 @@ html {
     --main-font-en: 'Gotu';
     --main-font-zh: 'Noto Sans TC';
     --main-color: #e0954f;
-    --main-bg-color: #cc5e0ae0;
+    --main-bg-color: #cc5e0a;
     
     --node-bg-color: #000000A0;
     --node-expandBg-color: #cc5e0ae0;
