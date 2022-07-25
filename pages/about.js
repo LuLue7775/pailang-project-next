@@ -1,11 +1,10 @@
-import { useEffect, useContext, useRef, useState } from 'react'
+import { useEffect, useContext, useRef } from 'react'
 import AboutLeftElement from '../components/AboutLeftElement'
 import AboutMidElement from '../components/AboutMidElement'
 import AboutRightElement from '../components/AboutRightElement'
 import { fetchData } from '../utils/functions'
 import Cursor from '../components/Cursor'
 import { CursorContext } from '../context/cursorContext'
-import { getRelativeCoordinates } from '../utils/functions'
 
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
@@ -18,12 +17,7 @@ export default function About({ data }) {
 
   // Cursor efffect
   const cursorAreaRef = useRef()
-  const [mousePosition, setMousePosition] = useState({})
   const { hoverEvent } = useContext(CursorContext)
-
-  const handleMouseMove = (e) => {
-    setMousePosition(getRelativeCoordinates(e, cursorAreaRef.current))
-  }
 
   // force refresh to recalculate
   useEffect(() => {
@@ -41,20 +35,15 @@ export default function About({ data }) {
       as={motion.div}
       id="cursor-area"
       ref={cursorAreaRef}
-      onMouseMove={(e) => handleMouseMove(e)}
-      animate={{
-        rotateX: mousePosition.centerX * 20,
-        rotateY: mousePosition.centerY * 20
-      }}
+
     >
-      <Cursor mousePosition={mousePosition} hoverEvent={hoverEvent} />
+      <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
 
       <StyledAboutLeftCol>
         <AboutLeftElement roles={roles} parse={parse} />
       </StyledAboutLeftCol>
 
       <StyledAboutMidCol>
-        <StyledSideLines />
         <AboutMidElement content={content} content_zh={content_zh} parse={parse} />
       </StyledAboutMidCol>
 

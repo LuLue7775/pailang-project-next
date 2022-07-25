@@ -76,7 +76,7 @@ export const VideoPlayer = React.forwardRef((props, ref) => {
               xmlns="http://www.w3.org/2000/svg"
               width="30"
               height="30"
-              fill="rgba(250, 170, 50,1)  "
+              fill="var(--main-color, #e0954f)"
               className="pause"
               viewBox="0 0 16 16"
             >
@@ -87,7 +87,7 @@ export const VideoPlayer = React.forwardRef((props, ref) => {
               xmlns="http://www.w3.org/2000/svg"
               width="30"
               height="30"
-              fill="rgba(250, 170, 50,1)  "
+              fill="var(--main-color, #e0954f)"
               className="play"
               viewBox="0 0 16 16"
             >
@@ -100,7 +100,7 @@ export const VideoPlayer = React.forwardRef((props, ref) => {
             xmlns="http://www.w3.org/2000/svg"
             width="20"
             height="20"
-            fill="rgba(250, 170, 50,1)  "
+            fill="var(--main-color, #e0954f)"
             className="play"
             viewBox="0 0 16 16"
           >
@@ -153,7 +153,7 @@ const ReactController = styled.div`
 const StyledButton = styled.button`
   height: 50px;
   width: 60px;
-  border: 1px solid rgba(250, 170, 50, 1);
+  border: 1px solid var(--main-color, #e0954f);
   background: none;
   &:hover {
     cursor: pointer;
@@ -174,12 +174,12 @@ const StyledInput = styled.input`
     box-shadow: 1px 1px 1px #002200;
     background: #b5a999;
     border-radius: 1px;
-    border: 1px solid rgba(250, 170, 50, 1);
+    border: 1px solid var(--main-color, #e0954f);
   }
 
   ::-webkit-slider-thumb {
     box-shadow: 3px 3px 3px #b6b207;
-    border: 2px solid rgba(250, 170, 50, 1);
+    border: 2px solid var(--main-color, #e0954f);
     height: 23px;
     width: 23px;
     border-radius: 23px;

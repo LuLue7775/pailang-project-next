@@ -230,7 +230,10 @@ export default function Agenda({ data }) {
                 setHoverEvent('expand')
                 handleExpand(i, `${item.type}-${item?.id}`)
               }}
-              onMouseLeave={() => setHoverEvent('default')}
+              onMouseLeave={() => {
+                setHoverEvent('default')
+                setActiveExpand(null)
+              }}
             >
               <AgendaElement item={item} activeExpand={activeExpand} expandIndex={i} />
             </StyledContentWrap>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import Image from 'next/image'
 import { LineSVGFull } from './Svgs'
 import { containerLeftMotion, BGMotion, containerTextMotion } from '../utils/framerVariants'
+import Image from 'next/image'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
@@ -40,7 +40,6 @@ export default function AboutLeftElement({ roles, parse }) {
             <h3> {elem?.name} </h3>
             <h4> {elem?.name_zh} </h4>
           </StyledLeftTitle>
-          <StyledImgContainer className="persona-img-continer">
             <Image
               className="persona-img"
               alt="pailang-persona"
@@ -48,8 +47,8 @@ export default function AboutLeftElement({ roles, parse }) {
               width="100%"
               height="100%"
               layout="responsive"
+              objectFit= 'contain'
             />
-          </StyledImgContainer>
           <StyledPersonaEn className="persona-en en">
             {elem?.introduction && parse(elem?.introduction)}
           </StyledPersonaEn>
@@ -88,12 +87,7 @@ const StyledLeftTitle = styled.div`
   font-weight: bold;
   font-size: 1.1rem;
 `
-const StyledImgContainer = styled.div`
-  padding-left: 10px;
-  height: 150px;
-  width: 300px;
-  overflow: hidden;
-`
+
 const StyledPersonaEn = styled.div`
   padding: 10px;
 `

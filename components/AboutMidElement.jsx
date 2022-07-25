@@ -31,6 +31,8 @@ export default function AboutMidElement({ content, content_zh, parse }) {
         variants={containerTextMotion}
       >
         <StyledMidTitle> Pailang Settlers Museum </StyledMidTitle>
+        <StyledMidZhTitle> 白浪的定居殖民博物館 </StyledMidZhTitle>
+
         <StyledMidEn className="en">{content && parse(content)}</StyledMidEn>
         <StyledMidCh className="zh">{content_zh && parse(content_zh)}</StyledMidCh>
       </StyledMidContent>
@@ -68,11 +70,21 @@ const StyledMidContent = styled.div`
 
 const StyledMidTitle = styled.h3`
   text-align: center;
-  padding: 100px 10px 10px 10px;
+  padding: 100px 10px 0 10px;
 `
+const StyledMidZhTitle = styled.div`
+  text-align: center;
+  padding: 0 10px 10px 10px;
+  font-size: 1rem;
+  font-family: var(--subtitle-font-zh, serif);
+
+`
+
 const StyledMidEn = styled.div`
   padding: 15px 0 15px 0;
 `
 const StyledMidCh = styled.div`
   padding: 15px 0 15px 0;
+  font-family: var(--main-font-zh, serif);
+
 `

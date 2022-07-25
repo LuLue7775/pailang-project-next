@@ -31,7 +31,7 @@ const css = {
     backgroundColor: 'transparent',
     width: 80,
     height: 80,
-    border: '1px solid rgba(250, 170, 50,1) ',
+    border: '1px solid var(--main-color, #e0954f)',
     borderRadius: '40px',
     left: '-30px',
     top: '-30px'

@@ -63,6 +63,7 @@ h3 {
   font-size: 2rem;
   padding: 3px;
 }
+
 h4 {
   font-family: var(--subtitle-font-zh, serif);
   font-size: 1.2rem;
@@ -82,7 +83,7 @@ p.zh {
   letter-spacing: 2px;
 }
 
-span {
+span.en {
   font-family: var(--title-font-en, serif);
   min-width: 15px;
 }

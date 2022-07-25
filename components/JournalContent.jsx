@@ -62,12 +62,9 @@ const StyledJournalLeftCol = styled.div`
 `
 
 const StyledJournalRightCol = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
-
-  height: 100%;
-
-  border-left: 1px rgba(250, 170, 50, 1) dashed;
-
+  border-left: 1px var(--main-color, #e0954f) dashed;
   overflow-y: scroll;
 `

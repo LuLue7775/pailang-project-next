@@ -98,7 +98,7 @@ const StyledChevron = styled.div`
 
 const StyledLeftCol = styled(motion.div)`
   position: relative;
-  border-right: ${({ isMobile }) => (isMobile ? '' : '1px rgba(250, 170, 50,1)   dashed')};
+  border-right: ${({ isMobile }) => (isMobile ? '' : 'var(--main-color, #e0954f) dashed')};
   padding: 20px;
   color: #000;
 
@@ -123,5 +123,5 @@ const StyledVideoContainer = styled.div`
   width: 100%;
   border-radius: 10px;
   background-color: #0000005f;
-  border: 1px solid rgba(250, 170, 50, 1);
+  border: 1px solid var(--main-color, #e0954f);
 `

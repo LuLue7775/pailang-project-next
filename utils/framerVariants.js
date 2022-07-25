@@ -1,8 +1,7 @@
 export const containerTextMotion = {
   rest: { color: '#000' },
   hover: {
-    color: '#FFF',
-    backgroundColor: '#00000040',
+    backgroundColor: '#ffffff10',
     padding: '100px 30px',
     transition: {
       delay: 0.4,

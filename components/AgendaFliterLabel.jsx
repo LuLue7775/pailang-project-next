@@ -35,14 +35,14 @@ export default function AgendaFliterLabel({ item, filter, setFilter, filtersInit
 
 const StyledLabel = styled(motion.div)`
   position: relative;
-  // width: 100%;
-  background-color: ${({ checked }) => checked ? 'var(--main-color, #e0954f)' : '#0a0323a0' };
-
   border: 1px solid #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.6rem;
+
+  background-color: ${({ checked }) => checked ? 'var(--main-color, #e0954f)' : '#0a0323a0' };
+  &:hover { background-color: var(--agenda-tooltip-color, #f2e446) };
 `
 
 const StyledInput = styled.input`
