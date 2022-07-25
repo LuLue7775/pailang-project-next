@@ -64,7 +64,7 @@ export default function NodeBoxAndSVG({
 
     // intial svg, BUT DONT do it untill the whole nodePosRefs is imported.
     // meaning this will be execute only on nodePosRefs?.current[lastNode]
-    if (nodePosRefs?.current.length !== allElementsData?.length) return
+    // if (nodePosRefs?.current.length !== allElementsData?.length) return
     initialPath(allElementsData[node_i]?.id, allElementsData, nodeRefs, pathRefs, nodePosRefs)
   }, [])
 
