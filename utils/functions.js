@@ -76,7 +76,7 @@ export const getWindowDimensions = () => {
   return { width, height }
 }
 
-const toggleOpen = (id, isOpen, setOpen) => {
+export const toggleOpen = (id, isOpen, setOpen) => {
   if (isOpen.includes(id)) {
     if (isOpen.indexOf(id) > -1) setOpen((isOpen) => isOpen.splice(id, 1))
   } else {
@@ -89,44 +89,43 @@ const toggleOpen = (id, isOpen, setOpen) => {
 /**
  * 此component已經是一單位node，也就是遍歷是在上層；initialPath裡面直接針對某node畫svg
  */
-export function initialPath(nodeID, allElementsData, nodeRefs, pathRefs, nodePosRefs) {
-  // NOTE: to check all TAIL connected svg
+export function initialPath(elementData, nodeRefs, pathRefs, nodePosRefs, allElementsData ) {
+    // NOTE: to check all TAIL connected svg
 
-  // 從所有nodeData中找到id是此nodeID的那個object
-  allElementsData?.find((elem) => {
-    //第一步先排除，若沒有設定svg，就不用做接下來的校對
-    if (!elem?.connectors.length) return
+    allElementsData?.forEach((elem) => { 
+      if (!elem?.connectors.length) return
 
-    if (elem.id === nodeID) {
-      // 遍歷一條條svg
       elem.connectors?.forEach((lineObj) => {
-        // 找出此node的在陣列中的資料，為了要取得此node_pos
-        const selfHandleIndex = nodeRefs.current?.findIndex(
-          (handle) => handle?.getAttribute('id') === nodeID.toString()
-        )
+          // 找出此node的在陣列中的資料，為了要取得此node_pos
+          const selfHandleIndex = nodeRefs.current?.findIndex(
+            (handle) => handle?.getAttribute('id') === elem.id.toString()
+          )
 
-        const HandleConnectToID = lineObj.connected_node.toString()
-        // 找出此尾端連接的node的在陣列中的資料，為了要取得連接的node_pos
-        const HandleConnectToIndex = nodeRefs.current?.findIndex(
-          (handle) => handle?.getAttribute('id') === HandleConnectToID
-        )
-        // 找出此svg的在陣列中的資料，為了要填入此svg的座標
-        const tailSvgIndex = pathRefs.current.findIndex(
-          (path) => path?.getAttribute('id') === `${nodeID}-${HandleConnectToID}`
-        )
-        // console.log(nodePosRefs.current[HandleConnectToIndex])
-        let x1 = nodePosRefs.current[selfHandleIndex]?.x
-        let y1 = nodePosRefs.current[selfHandleIndex]?.y
-        let x2 = nodePosRefs.current[HandleConnectToIndex]?.x
-        let y2 = nodePosRefs.current[HandleConnectToIndex]?.y
+          const HandleConnectToID = lineObj.connected_node.toString()
+          
+          // 找出此尾端連接的node的在陣列中的資料，為了要取得連接的node_pos
+          const HandleConnectToIndex = nodeRefs.current?.findIndex(
+            (handle) => handle?.getAttribute('id') === HandleConnectToID
+          )
+          // 找出此svg的在陣列中的資料，為了要填入此svg的座標
+          const tailSvgIndex = pathRefs.current.findIndex(
+            (path) =>  path?.getAttribute('id') === `${elem.id}-${HandleConnectToID}`
+          )
+          let x1 = nodePosRefs.current[selfHandleIndex]?.x
+          let y1 = nodePosRefs.current[selfHandleIndex]?.y
+          let x2 = nodePosRefs.current[HandleConnectToIndex]?.x
+          let y2 = nodePosRefs.current[HandleConnectToIndex]?.y
 
-        let data = `M${x1} ${y1} L ${x2} ${y2}`
-        pathRefs.current[tailSvgIndex]?.setAttribute('d', data)
+          let data = `M${x1} ${y1} L ${x2} ${y2}`
+          pathRefs.current[tailSvgIndex]?.setAttribute('d', data)
+          console.log("tailSvgIndex:", tailSvgIndex)
+          console.log("pathRef:", pathRefs.current[tailSvgIndex])
       })
-
-      return
-    }
   })
+
+
+
+  
 }
 
 export function updatePath(

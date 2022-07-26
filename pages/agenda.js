@@ -5,9 +5,9 @@ import { contentWrapVariant  } from '../utils/framerVariantsAgenda'
 import Cursor from '../components/Cursor'
 import AgendaElement from '../components/AgendaElement'
 import AgendaFliterLabel from '../components/AgendaFliterLabel'
-
+import { setRefs } from '../utils/functions'
 import styled from 'styled-components'
-import { motion, AnimatePresence, onHover } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import AgendaTable from '../components/AgendaTable'
 import Link from 'next/link'
 
@@ -25,13 +25,6 @@ const time = ['published', 'draft', 'archived']
 const form = ['video', 'journal', 'scenography']
 
 const filtersInitArray = Object.keys(filterData)
-
-const setRefs = (el, ref, dataLength) => {
-  if (ref.current.length === dataLength) return
-  ref.current.push(el)
-}
-
-
 
 export default function Agenda({ data }) {
   const [filteredData, setFilteredData] = useState(data)
@@ -180,7 +173,14 @@ export default function Agenda({ data }) {
           </div> */}
         </StyledAgendaTableWrap>
 
-        <StyledAgendaFilter>
+        <StyledAgendaFilter
+          as={motion.div}
+          initial={{ opacity: 0 }}
+          animate={{ 
+              opacity: 1,
+              transition: { duration: 3 }
+           }}
+        >
           <StyledMainGrid whileHover={{ height: '20px' }}>
             <StyledFilterName> filter by schedule </StyledFilterName>
             <StyledHiddenGrid>

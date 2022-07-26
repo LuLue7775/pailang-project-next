@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
 
@@ -16,17 +16,22 @@ import {
 import NodeSVGArea from './NodeSVGArea'
 import NodeName from './NodeName'
 
+
 export default function NodeBoxAndSVG({
   allElementsData,
   elementData,
   node_i,
   nodeRefs,
   pathRefs,
-  nodePosRefs
+  nodePosRefs, 
+  totalConnectors
 }) {
+
   const router = useRouter()
 
+/** @TODO need usecallback */
   const [windowDimensions] = useState(() => getWindowDimensions())
+/** @TODO need usecallback */
   const [boxPos] = useState(genRandomPos(windowDimensions?.width, allElementsData, router.asPath))
   const [isOpen, setOpen] = useState([])
   const [tooltip, setTooltip] = useState(false)
@@ -35,6 +40,8 @@ export default function NodeBoxAndSVG({
   const y = useMotionValue(boxPos[node_i].y)
 
   useEffect(() => {
+    
+
     // fill in nodePosRefs with new gen boxpos
     setRefs({ x: boxPos[node_i].x, y: boxPos[node_i].y }, nodePosRefs, allElementsData?.length)
 
@@ -64,9 +71,12 @@ export default function NodeBoxAndSVG({
 
     // intial svg, BUT DONT do it untill the whole nodePosRefs is imported.
     // meaning this will be execute only on nodePosRefs?.current[lastNode]
-    // if (nodePosRefs?.current.length !== allElementsData?.length) return
-    initialPath(allElementsData[node_i]?.id, allElementsData, nodeRefs, pathRefs, nodePosRefs)
+    if( nodePosRefs?.current.length !== allElementsData?.length ) return
+    initialPath(elementData, nodeRefs, pathRefs, nodePosRefs, allElementsData)
   }, [])
+
+   
+
 
   return (
     <AnimatePresence>
@@ -91,7 +101,7 @@ export default function NodeBoxAndSVG({
         <NodeExpandAreaAndName
           id={elementData?.id}
           isOpen={isOpen}
-          toggleOpen={() => toggleOpen(allElementsData[node_i].id, isOpen, setOpen)}
+          toggleOpen={() => toggleOpen(allElementsData[node_i]?.id, isOpen, setOpen)}
           content={elementData?._value}
           contentZh={elementData?.text_zh}
           type={elementData?.type}
@@ -116,6 +126,8 @@ export default function NodeBoxAndSVG({
         connectors={elementData?.connectors}
         nodeID={elementData?.id}
         pathRefs={pathRefs}
+        totalConnectors={totalConnectors}
+        elementData={elementData}
       />
     </AnimatePresence>
   )

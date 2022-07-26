@@ -1,17 +1,24 @@
+import { useEffect } from 'react'
 import styled from 'styled-components'
-import { setRefs } from '../utils/functions'
+import { setRefs, initialPath } from '../utils/functions'
 
-export default function NodeSVGArea({ elementAmount, connectors, nodeID, pathRefs }) {
+export default function NodeSVGArea({ elementAmount, connectors, nodeID, pathRefs, totalConnectors, elementData }) {
+
+  // useEffect(() => {
+  //   setRefs(elementData, pathRefs, totalConnectors)
+  //   console.log(totalConnectors)
+  // }, [totalConnectors])
+
   return (
     <StyledSvgArea className="svg-area" elementAmount={elementAmount}>
-      {connectors.length &&
+      {connectors.length && 
         connectors.map((lineObj, i) => (
           <StyledPath
             linestyle={lineObj?.border_style}
             key={`svg-${nodeID}-${i}`}
-            id={`${nodeID}-${lineObj.connected_node}`}
+            id={`${nodeID}-${lineObj?.connected_node}`}
             className={`${nodeID} path`}
-            ref={(elementData) => setRefs(elementData, pathRefs)}
+            ref={(elementData) => setRefs(elementData, pathRefs, 20)}
             strokeDasharray={
               lineObj?.line_style === 'dashed'
                 ? '10, 10'
