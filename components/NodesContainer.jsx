@@ -3,9 +3,6 @@ import NodeBoxAndSVG from './NodeBoxAndSVG'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-const calcConnectors = ( allElementsData, totalConnectorsRef ) => {
-  return allElementsData.reduce( (total, node) => node.connectors.length += total, 0 )
-}
 
 export default function NodesContainer({ data }) {
   const nodeRefs = useRef([])

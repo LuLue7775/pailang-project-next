@@ -118,8 +118,8 @@ export function initialPath(elementData, nodeRefs, pathRefs, nodePosRefs, allEle
 
           let data = `M${x1} ${y1} L ${x2} ${y2}`
           pathRefs.current[tailSvgIndex]?.setAttribute('d', data)
-          console.log("tailSvgIndex:", tailSvgIndex)
-          console.log("pathRef:", pathRefs.current[tailSvgIndex])
+          // console.log("tailSvgIndex:", tailSvgIndex)
+          // console.log("pathRef:", pathRefs.current[tailSvgIndex])
       })
   })
 
