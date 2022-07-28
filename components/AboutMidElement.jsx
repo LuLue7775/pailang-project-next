@@ -18,6 +18,7 @@ export default function AboutMidElement({ content, content_zh, createMarkup }) {
       as={motion.div}
       variants={containerMidMotion}
       initial="rest"
+      exit="exit"
       whileHover="hover"
       animate="rest"
       onMouseEnter={() => setHovered(true)}
