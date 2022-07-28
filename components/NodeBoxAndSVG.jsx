@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
 
@@ -40,8 +40,6 @@ export default function NodeBoxAndSVG({
   const y = useMotionValue(boxPos[node_i].y)
 
   useEffect(() => {
-    
-
     // fill in nodePosRefs with new gen boxpos
     setRefs({ x: boxPos[node_i].x, y: boxPos[node_i].y }, nodePosRefs, allElementsData?.length)
 
@@ -72,7 +70,7 @@ export default function NodeBoxAndSVG({
     // intial svg, BUT DONT do it untill the whole nodePosRefs is imported.
     // meaning this will be execute only on nodePosRefs?.current[lastNode]
     if( nodePosRefs?.current.length !== allElementsData?.length ) return
-    initialPath(elementData, nodeRefs, pathRefs, nodePosRefs, allElementsData)
+    initialPath( nodeRefs, pathRefs, nodePosRefs, allElementsData )
   }, [])
 
    
@@ -127,7 +125,6 @@ export default function NodeBoxAndSVG({
         nodeID={elementData?.id}
         pathRefs={pathRefs}
         totalConnectors={totalConnectors}
-        elementData={elementData}
       />
     </AnimatePresence>
   )

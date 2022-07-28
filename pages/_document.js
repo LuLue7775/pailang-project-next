@@ -34,6 +34,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          <title>Pailang Museum</title>
           <link
             rel="preload"
             href="/fonts/OggBold.ttf"

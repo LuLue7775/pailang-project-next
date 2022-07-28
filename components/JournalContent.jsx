@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { slideTo } from '../utils/functions'
 
 export default function JournalContent({ data, spring, setHoverEvent }) {
+
   return (
     <StyledJournal id="section2">
       <StyledChevron

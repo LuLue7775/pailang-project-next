@@ -2,23 +2,23 @@ import styled from 'styled-components'
 import parse from 'html-react-parser'
 
 export default function JournalLeftCol({ content, content_zh, comment, comment_zh }) {
-  const sanitizedData = (data) => ({
-    __html: DOMPurify.sanitize(data)
-  })
-  // console.log(sanitizedData(comment))
+  function createMarkup(htmlStr) {
+    return {__html: htmlStr};
+  }
+  // console.log(content_zh)
 
   return (
     <StyledLeftColContainer className="left-col-content">
       <StyledContentItems className="en"> {content && parse(content)} </StyledContentItems>
-
       <StyledSeperate />
 
       <StyledNote>
+        {/* <StyledContentSmItems  dangerouslySetInnerHTML={ comment && createMarkup(comment)}/> */}
         <StyledContentSmItems> {comment && parse(comment)} </StyledContentSmItems>
       </StyledNote>
 
+      {/* <StyledContentItems dangerouslySetInnerHTML={ content_zh && createMarkup(content_zh)}/> */}
       <StyledContentItems> {content_zh && parse(content_zh)} </StyledContentItems>
-
       <StyledSeperate />
 
       <StyledNote>
@@ -53,7 +53,6 @@ const StyledContentSmItems = styled.div`
   padding: 20px;
   margin: 0 50px 0 25px;
   font-size: 0.9rem;
-  font-style: italic;
 `
 
 const StyledBio = styled.div`

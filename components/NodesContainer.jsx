@@ -1,4 +1,4 @@
-import { useRef, useEffect, useMemo, useCallback, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import NodeBoxAndSVG from './NodeBoxAndSVG'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
@@ -9,7 +9,7 @@ export default function NodesContainer({ data }) {
   const pathRefs = useRef([])
   const nodePosRefs = useRef([])
   
-  const [totalConnectors, setTotalConnectors] = useState(0)
+  const [totalConnectors, setTotalConnectors] = useState()
 
   useEffect(() => {
     setTotalConnectors( data?.nodes.reduce( (total, node) => node.connectors.length + total, 0 ) )
@@ -18,7 +18,8 @@ export default function NodesContainer({ data }) {
 
   return (
     <StyledNodeContainer id="section2" as={motion.div} element_amount={data?.nodes?.length}>
-      {data?.nodes?.map((elementData, node_i) => (
+      {totalConnectors && 
+        data?.nodes?.map((elementData, node_i) => (
         <NodeBoxAndSVG
           key={`box${elementData?.id}`}
           allElementsData={data?.nodes}

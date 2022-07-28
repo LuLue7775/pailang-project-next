@@ -89,9 +89,8 @@ export const toggleOpen = (id, isOpen, setOpen) => {
 /**
  * 此component已經是一單位node，也就是遍歷是在上層；initialPath裡面直接針對某node畫svg
  */
-export function initialPath(elementData, nodeRefs, pathRefs, nodePosRefs, allElementsData ) {
+export function initialPath(nodeRefs, pathRefs, nodePosRefs, allElementsData ) {
     // NOTE: to check all TAIL connected svg
-
     allElementsData?.forEach((elem) => { 
       if (!elem?.connectors.length) return
 
