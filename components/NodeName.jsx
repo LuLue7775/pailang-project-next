@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import useSound from "use-sound" // made by ian
+import React, { useState } from 'react' // made by ian
 
 export default function NodeName({
   hasContent,
@@ -9,17 +11,33 @@ export default function NodeName({
   name_zh,
   source,
   tooltip,
-  setTooltip
+  setTooltip, 
 }) {
+  
+  // made by ian
+  const [index, setIndex] = useState(1); 
+  const [index2, setIndex2] = useState(1); 
+
+  // made by ian
+  function changeSound() {
+    let newIndex = Math.floor(Math.random() * (10 - 0) + 0); 
+    let newIndex2 = Math.floor(Math.random() * (3 - 0) + 0);
+    setIndex(newIndex);
+    setIndex2(newIndex2);
+  }
+
+  // made by ian
+  const [play] = useSound('/sounds/' + index2 + '_0' + index + '.wav');
+  
   return (
     <StyledName hasContent={hasContent} hasSource={hasSource} isOpen={isOpen}>
       <div
-        onClick={() => source && window.open(source)}
-        onMouseOver={() => setTooltip(true)}
-        onMouseLeave={() => setTooltip(false)}
+        onClick={() => { source && window.open(source); changeSound(); play();}} // made by ian
+        onMouseOver={() => {setTooltip(true);}}
+        onMouseLeave={() => {setTooltip(false);}}
       >
-        <div className='en'> {name} </div>
-        <div className='zh'> {name_zh} </div>
+        <div> {name} </div>
+        <div> {name_zh} </div>
         {tooltip && source && <StyledTooltip> view source </StyledTooltip>}
       </div>
     </StyledName>

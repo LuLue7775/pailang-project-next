@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { LayoutGroup } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { SoundPlaying, SoundSetPlay } from './Svgs'
+import useSound from "use-sound" 
 
 
 export default function Nav() {
@@ -34,6 +35,8 @@ export default function Nav() {
     }
   }, [])
 
+  const [ play, { stop } ] = useSound('/sounds/pailang_soundtrack.wav');
+
   return (
     <LayoutGroup type="crossfade">
       <StyledNavContainer className="nav-container ">
@@ -63,7 +66,10 @@ export default function Nav() {
               </a>
             </Link>
 
-            <div onClick={() => setSoundPlay(!isSoundPlay)}>
+            <div onClick={() => { 
+              setSoundPlay(!isSoundPlay);
+              !isSoundPlay ? play() : stop();
+               } }>
               { isSoundPlay 
                 ? ( 
                   <SoundPlaying/> 

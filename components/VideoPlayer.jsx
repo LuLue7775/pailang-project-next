@@ -133,7 +133,6 @@ const ReactPlayerWrap = styled.div`
   z-index: 10;
 
   height: 400px;
-  // width: min(100%, 600px);
   width: 100%;
   display: flex;
   justify-content: center;
