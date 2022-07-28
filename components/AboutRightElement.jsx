@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { LineSVGFull } from './Svgs'
 
-export default function AboutRightElement({ credits, parse }) {
+export default function AboutRightElement({ credits, createMarkup }) {
   const [isHovered, setHovered] = useState(false)
 
   // calculate scroll height
@@ -15,7 +15,7 @@ export default function AboutRightElement({ credits, parse }) {
 
   return (
     <StyledRightColContainer
-      className="leftcol-container zh"
+      className="leftcol-container"
       id="right"
       as={motion.div}
       variants={containerRightMotion}
@@ -36,10 +36,9 @@ export default function AboutRightElement({ credits, parse }) {
           variants={containerTextMotion}
         >
           <LineSVGFull />
-          <StyledTitle className="zh"> {elem?.title} </StyledTitle>
-          <StyledElement className="credit-ch zh">
-            {elem?.content && parse(elem?.content)}
-          </StyledElement>
+          <StyledTitle> {elem?.title} </StyledTitle>
+          <StyledElement dangerouslySetInnerHTML={ elem?.content && createMarkup(elem?.content)} /> 
+
         </StyledElementContainer>
       )) || ''}
     </StyledRightColContainer>
@@ -60,6 +59,7 @@ const StyledRightColContainer = styled.div`
   height: 100%;
   width: 30%;
   overflow-y: scroll;
+  padding-bottom: 100px;
   ${({ isHovered }) => isHovered && "background-image: url('/about.jpg')"};
   background-size: cover;
   background-repeat: no-repeat;
@@ -67,6 +67,7 @@ const StyledRightColContainer = styled.div`
 
 const StyledElementContainer = styled(motion.div)``
 const StyledTitle = styled.div`
+  font-size: 1.2rem;
   font-weight: bold;
   padding: 15px 0;
 `

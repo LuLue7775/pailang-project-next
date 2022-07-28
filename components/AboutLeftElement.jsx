@@ -5,7 +5,7 @@ import Image from 'next/image'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-export default function AboutLeftElement({ roles, parse }) {
+export default function AboutLeftElement({ roles, createMarkup }) {
   const [isHovered, setHovered] = useState(false)
 
   // calculate scroll height
@@ -29,38 +29,42 @@ export default function AboutLeftElement({ roles, parse }) {
     >
       <MotionBG variants={BGMotion} scrollHeight={scrollHeight} />
       {roles?.map((elem, i) => (
-        <StyledPersonaContainer
+        <motion.div
           className="persona-container"
           key={i}
-          as={motion.div}
           variants={containerTextMotion}
         >
           <LineSVGFull />
           <StyledLeftTitle className="persona-title">
-            <h3> {elem?.name} </h3>
-            <h4> {elem?.name_zh} </h4>
+            <StyledEnTitle > {elem?.name} </StyledEnTitle>
+            <StyledZhTitle > {elem?.name_zh} </StyledZhTitle>
           </StyledLeftTitle>
+
+          <ImageContainer>
             <Image
-              className="persona-img"
-              alt="pailang-persona"
-              src={elem?.cover || 'https://via.placeholder.com/300X150.png'}
-              width="100%"
-              height="100%"
-              layout="responsive"
-              objectFit= 'contain'
-            />
-          <StyledPersonaEn className="persona-en en">
-            {elem?.introduction && parse(elem?.introduction)}
-          </StyledPersonaEn>
-          <StyledPersonaCh className="persona-ch zh">
-            {elem?.introduction_zh && parse(elem?.introduction_zh)}
-          </StyledPersonaCh>
-        </StyledPersonaContainer>
+                className="persona-img"
+                alt="pailang-persona"
+                src={elem?.cover || 'https://via.placeholder.com/300X150.png'}
+                width="100%"
+                height="100%"
+                layout="responsive"
+                objectFit= 'contain'
+              />
+          </ImageContainer>
+
+          <StyledPersonaEn className="persona-en" dangerouslySetInnerHTML={ elem?.introduction && createMarkup(elem?.introduction)} /> 
+
+          <StyledPersonaCh className="persona-ch" dangerouslySetInnerHTML={ elem?.introduction_zh && createMarkup(elem?.introduction_zh)} /> 
+
+        </motion.div>
       )) || ''}
     </StyledLeftColContainer>
   )
 }
 
+const ImageContainer = styled.div`
+  width: min(200px, 100%);
+`
 const MotionBG = styled(motion.div)`
   position: absolute;
   // height: ${({ scrollHeight }) => scrollHeight && `${scrollHeight}px`};
@@ -72,20 +76,29 @@ const MotionBG = styled(motion.div)`
 const StyledLeftColContainer = styled(motion.div)`
   position: absolute;
   height: 100%;
-  overflow-y: scroll;
   width: 30%;
+  overflow-y: scroll;
+  padding-bottom: 100px;
+
   ${({ isHovered }) => isHovered && "background-image: url('/about.jpg')"};
   background-size: cover;
   background-repeat: no-repeat;
 `
-const StyledPersonaContainer = styled(motion.div)`
-  // padding: 100px;
-`
 
 const StyledLeftTitle = styled.div`
   padding: 10px;
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-weight: 600;
+`
+
+const StyledEnTitle = styled.div`
+  font-size: 1.2rem;
+  // font-family: var(--main-font-en, sans-serif);
+
+`
+const StyledZhTitle = styled.div`
+  font-size: 1.2rem;
+  // font-family: var(--main-font-zh, sans-serif);
+
 `
 
 const StyledPersonaEn = styled.div`

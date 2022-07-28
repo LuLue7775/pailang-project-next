@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState, useContext, useEffect } from 'react'
+import { useLayoutEffect, useRef, useContext } from 'react'
 import { CursorContext } from '../../context/cursorContext'
 import Cursor from '../../components/Cursor'
 import ArticleScenographyTemplate from '../../components/ArticleScenographyTemplate'
@@ -63,4 +63,5 @@ const StyledContainer = styled.div`
   height: 200vh;
   width: 100%;
   overflow: hidden;
+  position: relative;
 `

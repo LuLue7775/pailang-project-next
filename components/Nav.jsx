@@ -1,36 +1,23 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
-import { LayoutGroup, AnimatePresence, motion } from 'framer-motion'
+import { LayoutGroup } from 'framer-motion'
 import { useRouter } from 'next/router'
+import { SoundPlaying, SoundSetPlay } from './Svgs'
 
-const container = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 1, delayChildren: 1, staggerDirection: -1 }
-  }
-}
 
-const transition = {
-  ease: [0.5, 0.01, -0.05, 0.9]
-}
-const child = {
-  hidden: {
-    y: 400
-  },
-  visible: {
-    y: 0,
-    transition: { duration: 2, ...transition }
-  }
-}
-
-export default function Nav({ modalShow }) {
+export default function Nav() {
   const router = useRouter()
   const [isRouteChange, setRouteChange] = useState(false)
+  const [ isSoundPlay, setSoundPlay] = useState(false)
 
   const isArticle = router.pathname.startsWith('/article-scenography')
-  const parseURL = `${router.pathname.split('/')[1]}/${router.query.id}`
+  const parseURL = () => {
+    if ( router.pathname.startsWith('/article-journal') ) return '誌 PAILANG’S journal'
+    else if ( router.pathname.startsWith('/article-scenography') ) return '圖表 PAILANG’S diagram'
+    else if ( router.pathname.startsWith('/article-video') ) return '放映 PAILANG’S video'
+    
+  }
 
   useEffect(() => {
     const handleRouteChange = () => setRouteChange(false)
@@ -52,16 +39,19 @@ export default function Nav({ modalShow }) {
       <StyledNavContainer className="nav-container ">
         <StyledNavLeft>
           {isArticle && (
-            <Link href={`/${parseURL}`}>
+            <div onClick={() => router.reload(window.location.pathname)} >
               <a>
-                <StyledNavItem> live versioning</StyledNavItem>
+                <StyledNavItem>
+                  {parseURL()}
+                </StyledNavItem>
               </a>
-            </Link>
+            </div>
           )}
         </StyledNavLeft>
 
         <StyledNavRight>
           <>
+
             <Link href="/about">
               <a>
                 <StyledNavItem> ABOUT </StyledNavItem>
@@ -72,6 +62,16 @@ export default function Nav({ modalShow }) {
                 <StyledNavItem> AGENDA </StyledNavItem>
               </a>
             </Link>
+
+            <div onClick={() => setSoundPlay(!isSoundPlay)}>
+              { isSoundPlay 
+                ? ( 
+                  <SoundPlaying/> 
+                )
+                : <SoundSetPlay/>
+              }
+            </div>
+            
           </>
         </StyledNavRight>
       </StyledNavContainer>
@@ -91,9 +91,12 @@ const StyledNavContainer = styled.div`
 const StyledNavLeft = styled.div`
   display: flex;
   color: #000;
+  cursor: pointer;
 `
 const StyledNavRight = styled.div`
   display: flex;
+  align-items: center;
+  gap: 10px;
 `
 const StyledNavItem = styled.div`
   padding: 0 6px 0 6px;

@@ -18,8 +18,8 @@ export default function NodeName({
         onMouseOver={() => setTooltip(true)}
         onMouseLeave={() => setTooltip(false)}
       >
-        <div> {name} </div>
-        <div> {name_zh} </div>
+        <div className='en'> {name} </div>
+        <div className='zh'> {name_zh} </div>
         {tooltip && source && <StyledTooltip> view source </StyledTooltip>}
       </div>
     </StyledName>

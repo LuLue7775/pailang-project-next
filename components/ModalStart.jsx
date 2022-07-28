@@ -12,11 +12,11 @@ export default function ModalStart({ setModalShow, modalData }) {
   return (
     <StyledModal className="modal" ref={modalRef}>
       <StyledModalTitle className="modal-title">
-        <h4 className="ch"> {title_zh} </h4>
+        <h4> {title_zh} </h4>
         <h3> {title} </h3>
       </StyledModalTitle>
       <StyledModalContent>
-        <div className="ch"> {content_zh} </div>
+        <div className="zh"> {content_zh} </div>
         <div className="en"> {content} </div>
       </StyledModalContent>
       <div
@@ -56,7 +56,6 @@ const StyledModalTitle = styled.div`
   padding-bottom: 15px;
 `
 const StyledModalContent = styled.div`
-  // max-height: 50%;
   max-width: 80%;
   overflow: hidden;
   font-size: 0.8rem;

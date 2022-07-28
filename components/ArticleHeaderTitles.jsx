@@ -1,13 +1,14 @@
 import { useRef } from 'react'
 import { useWindowSize } from '../utils/hooks'
+import { createMarkup } from '../utils/functions'
+import { subtitles } from '../utils/framerVariantsHeader'
 import AnimatedTitles from "./ArticleTitleAnimation"
 import styled from 'styled-components'
-
+import { motion } from 'framer-motion'
 export default function ArticleHeaderTitles({ title, title_zh }) {
     const titleRef = useRef(title?.length > 60 ? true : false)
-    const titleZhRef = useRef(title_zh?.length > 40 ? true : false)
     const { windowWidth } = useWindowSize()
-
+    
   return (
     <StyledTitles>
         <div>
@@ -18,25 +19,27 @@ export default function ArticleHeaderTitles({ title, title_zh }) {
             windowWidth={windowWidth}
           />
         </div>
-        <div>
-          <AnimatedTitles
-            title={title_zh}
-            language={'zh'}
-            textLengthRef={titleZhRef}
-            windowWidth={windowWidth}
-          />
-        </div>
+        <StyledZhTitles 
+          as={motion.div} 
+          variants={subtitles}
+          initial="initial" 
+          animate="animate"
+          dangerouslySetInnerHTML={ title_zh && createMarkup(title_zh)} 
+          /> 
     </StyledTitles>
   )
 }
 
 
-/**
- * @TODO media query on height and fontsize
- */
  const StyledTitles = styled.div`
- text-align: center;
- height: max(300px, 50vh);
- overflow: hidden;
  width: 100%;
+ height: max(300px, 50vh);
+ text-align: center;
+ overflow: hidden;
+`
+ const StyledZhTitles = styled(motion.div)`
+ font-size: 1.3rem;
+  p {
+    font-size: 1.3rem;
+  }
 `

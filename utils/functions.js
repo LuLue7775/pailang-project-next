@@ -181,3 +181,7 @@ export function updatePath(
     })
   })
 }
+
+export function createMarkup(htmlStr) {
+  return {__html: htmlStr};
+}

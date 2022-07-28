@@ -2,11 +2,10 @@ import { useRef } from 'react'
 import { UpChevronSVG } from './Svgs'
 import VideoPlayer from './VideoPlayer'
 import { motion } from 'framer-motion'
-import { slideTo } from '../utils/functions'
+import { slideTo, createMarkup } from '../utils/functions'
 import ArticlesHeader from './ArticlesHeader'
 import { useMediaQuery } from '../utils/hooks'
 import styled from 'styled-components'
-import parse from 'html-react-parser'
 
 export default function ArticleVideoTemplate({ data, spring, setHoverEvent }) {
   const isMobile = useMediaQuery('(max-width: 768px)')
@@ -41,12 +40,18 @@ export default function ArticleVideoTemplate({ data, spring, setHoverEvent }) {
           }}
         >
           <StyledVideoContainer>
-            {data?.video && <VideoPlayer ref={videoPlayerRef} video={data?.video} />}
+            {data?.video 
+              ? <VideoPlayer ref={videoPlayerRef} video={data?.video} />
+              : (<StyledVideoNotifier>
+                <div className='en'> This work is no longer on view. Please scroll down for an introduction to the film or contact us through the About page if you require further information.</div>
+                <div className='zh'> 本件作品已過展期。如需更多訊息，請向下滾動查閱影片介紹，或通過關於頁面與我們聯繫。 </div>
+              </StyledVideoNotifier>)
+            }
           </StyledVideoContainer>
-          <StyledLeftText className="left-text">
-            {' '}
-            {data?.description && parse(data?.description)}{' '}
-          </StyledLeftText>
+
+          <StyledLeftText className="left-text" dangerouslySetInnerHTML={ data?.description && createMarkup(data?.description)} /> 
+
+          <StyledFooter className="author-bio" dangerouslySetInnerHTML={ data?.author_bio && createMarkup(data?.author_bio)} /> 
         </StyledLeftCol>
 
         <StyledRightCol
@@ -62,9 +67,9 @@ export default function ArticleVideoTemplate({ data, spring, setHoverEvent }) {
             duration: 3,
             ease: 'easeInOut'
           }}
-        >
-          {data?.content && parse(data?.content)}
-        </StyledRightCol>
+          dangerouslySetInnerHTML={ data?.content && createMarkup(data?.content)}
+        />
+        
       </StyledVideo>
     </>
   )
@@ -110,6 +115,7 @@ const StyledLeftText = styled.div`
   position: relative;
   height: auto;
   padding: 20px;
+  margin-top: 100px;
 `
 const StyledRightCol = styled(motion.div)`
   color: #000;
@@ -125,5 +131,30 @@ const StyledVideoContainer = styled.div`
   border-radius: 10px;
   background-color: #000000;
   border: 1px solid var(--main-color, #e0954f);
-  
+`
+
+const StyledVideoNotifier = styled.div`
+  position: relative;
+  z-index: 10;
+
+  height: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  color: #fff;
+`
+
+
+const StyledFooter = styled.div`
+  position: relative;
+  width: max(300px, 50%);
+  min-height: 120px;
+  left: 0;
+  right: 0; 
+  margin: 50px auto;
+  padding-bottom: 200px;
+  text-align: center;
+  z-index: 5;
 `

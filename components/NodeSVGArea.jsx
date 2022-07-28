@@ -43,7 +43,7 @@ const StyledSvgArea = styled.svg`
   position: absolute;
   top: calc(var(--node-height, 200px) / 2);
   width: 100%;
-  height: ${({ elementAmount }) => elementAmount * 250}px;
+  height: ${({ elementAmount }) => elementAmount * 200}px;
   display: flex;
   flex-direction: column;
   align-items: center;

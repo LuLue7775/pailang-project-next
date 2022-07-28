@@ -6,20 +6,20 @@ import { slideTo } from '../utils/functions'
 import styled from 'styled-components'
 
 export default function ArticleScenographyTemplate({ data, spring, setHoverEvent }) {
+
   return (
     <>
       <ArticlesHeader data={data} slideTo={slideTo} spring={spring} />
-      <div>
-        <StyledChevron
-          onClick={() => slideTo(0, spring)}
-          onMouseOver={() => setHoverEvent('expand')}
-          onMouseLeave={() => setHoverEvent('default')}
-        >
-          <UpChevronSVG />
-        </StyledChevron>
+      
+      <StyledChevron
+        onClick={() => slideTo(0, spring)}
+        onMouseOver={() => setHoverEvent('expand')}
+        onMouseLeave={() => setHoverEvent('default')}
+      >
+        <UpChevronSVG />
+      </StyledChevron>
 
-        <NodesContainer data={data} slideTo={slideTo} />
-      </div>
+      <NodesContainer data={data} slideTo={slideTo} />
     </>
   )
 }

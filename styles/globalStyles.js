@@ -9,15 +9,16 @@ html {
     --title-font-en: 'Ogg';
     --title-font-zh: 'Noto Serif TC'
     --subtitle-font-en: 'Baskervville';
-    --subtitle-font-zh: 'Noto Serif TC'
-    --main-font-en: 'Gotu';
+    --subtitle-font-zh: 'Noto Serif TC';
+    --main-font-en: 'IBM Plex Sans';
     --main-font-zh: 'Noto Sans TC';
     --main-color: #e0954f;
     --main-bg-color: #cc5e0a;
     
-    --node-bg-color: #000000A0;
-    --node-expandBg-color: #cc5e0ae0;
-    --node-border-color: #f09c5d;
+    --node-bg-color: #000000D0;
+    --node-text-expandBg-color: #000000E0;
+    --node-image-video-expandBg-color: transparent;
+    --node-border-color: #000;
     --node-svg-color: #706d68a0;
     --node-connetor-color: #eb6c0c;
     --node-tooltip-color: #c2a05d50;
@@ -29,5 +30,6 @@ html {
     --agenda-tooltip-color: #f2e446;
 
   }
-  
+
 `
+

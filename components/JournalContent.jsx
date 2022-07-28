@@ -28,6 +28,8 @@ export default function JournalContent({ data, spring, setHoverEvent }) {
       <StyledJournalRightCol className="right-col">
         <NodesContainer data={data} />
       </StyledJournalRightCol>
+
+
     </StyledJournal>
   )
 }
@@ -68,4 +70,16 @@ const StyledJournalRightCol = styled.div`
   flex-direction: column;
   border-left: 1px var(--main-color, #e0954f) solid;
   overflow-y: scroll;
+`
+
+const StyledFooter = styled.div`
+  position: relative;
+  width: max(300px, 50%);
+  min-height: 120px;
+  left: 0;
+  right: 0; 
+  margin: 0 auto;
+  padding-bottom: 100px;
+  text-align: center;
+  z-index: 5;
 `

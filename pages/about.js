@@ -2,14 +2,13 @@ import { useEffect, useContext, useRef } from 'react'
 import AboutLeftElement from '../components/AboutLeftElement'
 import AboutMidElement from '../components/AboutMidElement'
 import AboutRightElement from '../components/AboutRightElement'
-import { fetchData } from '../utils/functions'
+import { fetchData, createMarkup } from '../utils/functions'
 import Cursor from '../components/Cursor'
 import { CursorContext } from '../context/cursorContext'
 
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import parse from 'html-react-parser'
 
 export default function About({ data }) {
   const { content, content_zh, credits, roles } = data
@@ -40,15 +39,15 @@ export default function About({ data }) {
       <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
 
       <StyledAboutLeftCol>
-        <AboutLeftElement roles={roles} parse={parse} />
+        <AboutLeftElement roles={roles} createMarkup={createMarkup}/>
       </StyledAboutLeftCol>
 
       <StyledAboutMidCol>
-        <AboutMidElement content={content} content_zh={content_zh} parse={parse} />
+        <AboutMidElement content={content} content_zh={content_zh} createMarkup={createMarkup}/>
       </StyledAboutMidCol>
 
       <StyledAboutRightCol>
-        <AboutRightElement credits={credits} parse={parse} />
+        <AboutRightElement credits={credits} createMarkup={createMarkup}/>
       </StyledAboutRightCol>
     </StyledAbout>
   )

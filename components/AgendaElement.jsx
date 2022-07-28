@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { imgWrapVariant, slideVariant } from '../utils/framerVariantsAgenda'
+import { createMarkup } from '../utils/functions'
 import Link from 'next/link'
 import styled from 'styled-components'
 import Image from 'next/image'
@@ -61,11 +62,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
                 crossOrigin="true"
               />
             )
-          
-             
-        
           }
-
 
       </StyledImgContainer>
 
@@ -76,7 +73,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
       <div>
         <StyledSm className="zh">{type} </StyledSm>
         <StyledMainTitle >{title} </StyledMainTitle>
-        <StyledZhTitle className="zh" > {title_zh} </StyledZhTitle>
+        <StyledZhTitle className="zh"  dangerouslySetInnerHTML={ title_zh && createMarkup(title_zh)} /> 
         <StyledTitle > {artist} </StyledTitle>
         <StyledTitle > {start_date}-{end_date}{' '} </StyledTitle>
         <StyledTitle > {language} </StyledTitle>
@@ -99,7 +96,14 @@ const StyledImgContainer = styled(motion.div)`
 `
 
 const StyledSm = styled.div`
-  color: #00000090;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+  border-radius: 5px;
+  background: var(--main-color);
+
+  color: #fff;
 `
 const StyledMainTitle = styled.div`
   font-size: 1.1rem;

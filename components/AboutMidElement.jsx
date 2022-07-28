@@ -3,7 +3,7 @@ import { containerMidMotion, BGMotion, containerTextMotion } from '../utils/fram
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-export default function AboutMidElement({ content, content_zh, parse }) {
+export default function AboutMidElement({ content, content_zh, createMarkup }) {
   const [isHovered, setHovered] = useState(false)
 
   // calculate scroll height
@@ -30,11 +30,12 @@ export default function AboutMidElement({ content, content_zh, parse }) {
         as={motion.div}
         variants={containerTextMotion}
       >
-        <StyledMidTitle> Pailang Settlers Museum </StyledMidTitle>
+        <StyledMidTitle> Pailang Museum of Settler Colonialism </StyledMidTitle>
         <StyledMidZhTitle> 白浪的定居殖民博物館 </StyledMidZhTitle>
 
-        <StyledMidEn className="en">{content && parse(content)}</StyledMidEn>
-        <StyledMidCh className="zh">{content_zh && parse(content_zh)}</StyledMidCh>
+        <StyledMidEn dangerouslySetInnerHTML={ content && createMarkup(content)} /> 
+
+        <StyledMidCh dangerouslySetInnerHTML={ content_zh && createMarkup(content_zh)} /> 
       </StyledMidContent>
     </StyledMidColContainer>
   )
@@ -66,17 +67,23 @@ const StyledMidColContainer = styled(motion.div)`
 const StyledMidContent = styled.div`
   position: absolute;
   top: 0;
+
 `
 
-const StyledMidTitle = styled.h3`
+const StyledMidTitle = styled.div`
   text-align: center;
   padding: 100px 10px 0 10px;
+  font-size: 1.6rem;
+  font-weight:600;
+  line-height: 1.2em;
+
 `
 const StyledMidZhTitle = styled.div`
   text-align: center;
   padding: 0 10px 10px 10px;
-  font-size: 1rem;
-  font-family: var(--subtitle-font-zh, serif);
+  font-size: 1.1rem;
+  font-family: var(--main-font-zh, sans-serif);
+  line-height: 1.2em;
 
 `
 

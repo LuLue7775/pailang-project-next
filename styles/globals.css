@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Baskervville&family=Gotu&family=Noto+Sans+TC:wght@100;300&family=Noto+Serif+TC:wght@200;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baskervville&family=IBM+Plex+Sans:ital,wght@0,200;0,600;1,200;1,400;1,500;1,600&family=Noto+Sans+TC:wght@100;300&family=Noto+Serif+TC:wght@200;400;600&display=swap');
 
 html {
   font-size: 16px;
@@ -30,7 +30,7 @@ a {
   --title-font-zh: 'Noto Serif TC';
   --subtitle-font-en: 'Baskervville';
   --subtitle-font-zh: 'Noto Serif TC';
-  --main-font-en: 'Gotu';
+  --main-font-en: 'IBM Plex Sans';
   --main-font-zh: 'Noto Sans TC';
 }
 
@@ -67,29 +67,45 @@ h3 {
 h4 {
   font-family: var(--subtitle-font-zh, serif);
   font-size: 1.2rem;
-  padding: 3px;
+  padding: .8rem;
 }
 
-div.en,
-p.en {
-  font-family: 'Gotu', sans-serif;
-  font-size: 0.8rem;
-}
 
-div.zh,
-p.zh {
-  font-family: 'Noto Serif TC', sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-}
-
-span {
+span.row-letter {
   font-family: var(--title-font-en, serif);
   min-width: 15px;
 }
-span.zh {
-  font-family: var(--title-font-zh, serif);
+
+span, div, p {
+  font-family: custom-sans-serif, sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.3rem;
+  letter-spacing: 1px;
 }
+
+@font-face {
+  font-family: custom-sans-serif;
+  src: local("Noto Sans TC");
+  unicode-range: U+4E00-9FFF;
+
+}
+
+@font-face{
+    font-family: custom-sans-serif;
+    src: url('/fonts/IBMPlexSans-ExtraLight.ttf') format('truetype');
+    /* src: local('IBM Plex Sans') format('truetype'); */
+    unicode-range: U+00-024F;
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face{
+    font-family: custom-sans-serif;
+    src: url('/fonts/IBMPlexSans-Medium.ttf') format('truetype');
+    unicode-range: U+00-024F;
+    font-weight: 600;
+    font-style: normal;
+}
+
 
 @font-face {
   font-family: 'Ogg';

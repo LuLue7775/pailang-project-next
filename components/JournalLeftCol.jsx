@@ -1,28 +1,23 @@
 import styled from 'styled-components'
-import parse from 'html-react-parser'
+import { createMarkup } from '../utils/functions';
 
 export default function JournalLeftCol({ content, content_zh, comment, comment_zh }) {
-  function createMarkup(htmlStr) {
-    return {__html: htmlStr};
-  }
-  // console.log(content_zh)
+
 
   return (
     <StyledLeftColContainer className="left-col-content">
-      <StyledContentItems className="en"> {content && parse(content)} </StyledContentItems>
+      <StyledContentItems className="en" dangerouslySetInnerHTML={ content && createMarkup(content)} /> 
       <StyledSeperate />
 
       <StyledNote>
-        {/* <StyledContentSmItems  dangerouslySetInnerHTML={ comment && createMarkup(comment)}/> */}
-        <StyledContentSmItems> {comment && parse(comment)} </StyledContentSmItems>
+        <StyledContentSmItems  dangerouslySetInnerHTML={ comment && createMarkup(comment)}/>
       </StyledNote>
 
-      {/* <StyledContentItems dangerouslySetInnerHTML={ content_zh && createMarkup(content_zh)}/> */}
-      <StyledContentItems> {content_zh && parse(content_zh)} </StyledContentItems>
+      <StyledContentItems dangerouslySetInnerHTML={ content_zh && createMarkup(content_zh)}/>
       <StyledSeperate />
 
       <StyledNote>
-        <StyledContentSmItems> {comment_zh && parse(comment_zh)} </StyledContentSmItems>
+        <StyledContentSmItems dangerouslySetInnerHTML={ comment_zh && createMarkup(comment_zh)} /> 
       </StyledNote>
     </StyledLeftColContainer>
   )

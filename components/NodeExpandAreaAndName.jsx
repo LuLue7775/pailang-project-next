@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { CursorContext } from '../context/cursorContext'
 
 import styled from 'styled-components'
-import { expand } from '../utils/framerVariantsNode'
+import { textExpand, imageVideoExpand } from '../utils/framerVariantsNode'
 import { motion } from 'framer-motion'
 import ReactPlayer from 'react-player/lazy'
 
@@ -73,12 +73,12 @@ export default function NodeExpandAreaAndName({
         ref={expandRef}
         as={motion.div}
         onClick={() => expandRef.current?.scrollHeight > 100 && toggleOpen(id)}
-        variants={expand}
+        variants={ type==='text' ? textExpand : imageVideoExpand}
         isOpen={isOpen.includes(id)}
         hasContent={content}
       >
-        <div>{parseContent(type, content, isWindow, isOpen.includes(id))}</div>
-        <div>{parseContent(type, contentZh, isWindow, isOpen.includes(id))}</div>
+        <div className='en'>{parseContent(type, content, isWindow, isOpen.includes(id))}</div>
+        <div className='zh'>{parseContent(type, contentZh, isWindow, isOpen.includes(id))}</div>
       </StyledExpand>
     </StyledExpandContainer>
   )
@@ -95,8 +95,8 @@ const StyledExpandContainer = styled(motion.div)`
 const StyledExpand = styled(motion.div)`
   width: 100%;
   overflow: hidden;
-  margin: 10px 10px 0 10px;
-  padding: 0 10px;
+  margin: 10px 10px 0 5px;
+  // padding: 0 10px;
   // background-color: ${({ hasContent }) =>
     hasContent ? 'var( --node-bg-color, #000000a0)' : 'transparent'};
   overflow-y: ${({ isOpen }) => (isOpen ? 'scroll' : 'hidden')};
