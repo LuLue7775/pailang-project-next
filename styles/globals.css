@@ -78,6 +78,7 @@ span.row-letter {
 
 span, div, p {
   font-family: custom-sans-serif, sans-serif;
+  font-size: 0.8rem;
   line-height: 1.3rem;
   letter-spacing: 1px;
 }
