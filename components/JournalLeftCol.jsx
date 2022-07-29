@@ -47,7 +47,7 @@ const StyledNote = styled.div`
 const StyledContentSmItems = styled.div`
   padding: 20px;
   margin: 0 50px 0 25px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 `
 
 const StyledBio = styled.div`
