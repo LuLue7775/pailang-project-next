@@ -1,4 +1,5 @@
-import { useLayoutEffect, useRef, useContext } from 'react'
+import { useRef, useContext } from 'react'
+import { useIsomorphicLayoutEffect } from '../../utils/hooks'
 import { CursorContext } from '../../context/cursorContext'
 import Cursor from '../../components/Cursor'
 import ArticleScenographyTemplate from '../../components/ArticleScenographyTemplate'
@@ -13,7 +14,7 @@ export default function Scenography({ data }) {
   const { hoverEvent, setHoverEvent } = useContext(CursorContext)
 
   const spring = useSpring(0, { damping: 100, stiffness: 1000 })
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     spring.onChange((latest) => {
       window.scrollTo(0, latest)
     })

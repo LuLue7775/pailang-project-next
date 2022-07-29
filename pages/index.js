@@ -1,4 +1,5 @@
-import { useLayoutEffect, useEffect, useRef, useContext } from 'react'
+import { useEffect, useRef, useContext } from 'react'
+import { useIsomorphicLayoutEffect } from '../utils/hooks'
 import { fetchData } from '../utils/functions'
 
 import Cover from '../components/Cover'
@@ -19,7 +20,7 @@ export default function Home({ modalData, randomArticleData, modalShow, setModal
 
   // Chevron effect
   const spring = useSpring(0, { damping: 100, stiffness: 1000 })
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     spring.onChange((latest) => {
       window.scrollTo(0, latest)
     })

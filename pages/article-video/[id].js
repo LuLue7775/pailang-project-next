@@ -1,4 +1,5 @@
-import { useRef, useContext, useLayoutEffect } from 'react'
+import { useRef, useContext } from 'react'
+import { useIsomorphicLayoutEffect } from '../../utils/hooks'
 import { CursorContext } from '../../context/cursorContext'
 import { fetchData } from '../../utils/functions'
 import Cursor from '../../components/Cursor'
@@ -14,7 +15,7 @@ export default function Video({ data }) {
 
   // chevron
   const spring = useSpring(0, { damping: 100, stiffness: 1000 })
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     spring.onChange((latest) => {
       window.scrollTo(0, latest)
     })

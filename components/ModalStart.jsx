@@ -1,4 +1,4 @@
-import { useRef, useContext, useEffect } from 'react'
+import { useRef, useContext } from 'react'
 import { CursorContext } from '../context/cursorContext'
 import styled from 'styled-components'
 import { EllipseBtnSVG } from './Svgs'

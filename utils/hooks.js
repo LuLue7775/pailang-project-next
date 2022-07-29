@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 
 export function useMediaQuery(query) {
   const [matches, setMatches] = useState(false)
@@ -38,3 +38,5 @@ export function useWindowSize() {
 
   return windowSize
 }
+
+export const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
