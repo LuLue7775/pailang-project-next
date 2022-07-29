@@ -50,6 +50,8 @@ const StyledModal = styled.div`
   align-items: center;
   justify-content: center;
   line-height: 1.4rem;
+  text-align: justify;
+
 `
 const StyledModalTitle = styled.div`
   text-align: center;
