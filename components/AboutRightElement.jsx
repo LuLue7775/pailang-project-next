@@ -48,7 +48,6 @@ const MotionBG = styled(motion.div)`
   position: absolute;
   // height: ${({ scrollHeight }) => scrollHeight && `${scrollHeight}px`};
   height: auto;
-
   z-index: -1;
   width: 100%;
 `
@@ -66,11 +65,13 @@ const StyledRightColContainer = styled.div`
 `
 
 const StyledElementContainer = styled(motion.div)``
+
 const StyledTitle = styled.div`
   font-size: 1.2rem;
   font-weight: bold;
   padding: 15px 0;
 `
 const StyledElement = styled.div`
-  padding: 20px 0;
+  padding: 20px 10px;
+  
 `

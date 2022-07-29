@@ -74,6 +74,7 @@ const StyledAbout = styled.div`
   height: 100vh;
   color: #000;
   overflow: hidden;
+  text-align: justify;
 `
 
 const StyledAboutLeftCol = styled(motion.div)`

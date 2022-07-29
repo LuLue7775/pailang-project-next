@@ -96,7 +96,7 @@ const StyledExpand = styled(motion.div)`
   width: 100%;
   overflow: hidden;
   margin: 10px 10px 0 5px;
-  // padding: 0 10px;
+  padding: 0 10px;
   // background-color: ${({ hasContent }) =>
     hasContent ? 'var( --node-bg-color, #000000a0)' : 'transparent'};
   overflow-y: ${({ isOpen }) => (isOpen ? 'scroll' : 'hidden')};

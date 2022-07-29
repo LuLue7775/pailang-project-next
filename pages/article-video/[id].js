@@ -56,4 +56,5 @@ const StyledContainer = styled.div`
   height: 200vh;
   width: 100%;
   overflow: hidden;
+  text-align: justify;
 `
