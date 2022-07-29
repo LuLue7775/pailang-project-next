@@ -23,10 +23,10 @@ export default function ArticleVideoTemplate({ data, spring, setHoverEvent }) {
         <UpChevronSVG />
       </StyledChevron>
 
-      <StyledVideo id="section2" isMobile={isMobile}>
+      <StyledVideo id="section2" $isMobile={isMobile}>
         <StyledLeftCol
           className="left-col en"
-          isMobile={isMobile}
+          $isMobile={isMobile}
           as={motion.div}
           initial={{ x: '-100%', y: '200px' }}
           animate={{ x: 0, y: 0 }}
@@ -76,7 +76,7 @@ export default function ArticleVideoTemplate({ data, spring, setHoverEvent }) {
 }
 
 const StyledVideo = styled.div`
-  display: ${({ isMobile }) => (isMobile ? 'flex' : 'grid')};
+  display: ${({ $isMobile }) => ($isMobile ? 'flex' : 'grid')};
   flex-direction: column;
   grid-template-columns: 4fr 2fr;
   position: relative;
@@ -101,7 +101,7 @@ const StyledChevron = styled.div`
 
 const StyledLeftCol = styled(motion.div)`
   position: relative;
-  border-right: ${({ isMobile }) => (isMobile ? '' : '1px var(--main-color, #e0954f) solid')};
+  border-right: ${({ $isMobile }) => ($isMobile ? '' : '1px var(--main-color, #e0954f) solid')};
   padding: 20px;
   display: flex;
   flex-direction: column;

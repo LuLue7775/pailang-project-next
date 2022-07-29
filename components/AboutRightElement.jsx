@@ -24,7 +24,7 @@ export default function AboutRightElement({ credits, createMarkup }) {
       animate="rest"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      isHovered={isHovered}
+      $isHovered={isHovered}
     >
       <MotionBG variants={BGMotion} scrollHeight={scrollHeight} />
 
@@ -59,7 +59,7 @@ const StyledRightColContainer = styled.div`
   width: 30%;
   overflow-y: scroll;
   padding-bottom: 100px;
-  ${({ isHovered }) => isHovered && "background-image: url('/about.jpg')"};
+  ${({ $isHovered }) => $isHovered && "background-image: url('/about.jpg')"};
   background-size: cover;
   background-repeat: no-repeat;
 `

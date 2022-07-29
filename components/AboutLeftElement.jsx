@@ -25,7 +25,7 @@ export default function AboutLeftElement({ roles, createMarkup }) {
       animate="rest"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      isHovered={isHovered}
+      $isHovered={isHovered}
     >
       <MotionBG variants={BGMotion} scrollHeight={scrollHeight} />
       {roles?.map((elem, i) => (
@@ -80,7 +80,7 @@ const StyledLeftColContainer = styled(motion.div)`
   overflow-y: scroll;
   padding-bottom: 100px;
 
-  ${({ isHovered }) => isHovered && "background-image: url('/about.jpg')"};
+  ${({ $isHovered }) => $isHovered && "background-image: url('/about.jpg')"};
   background-size: cover;
   background-repeat: no-repeat;
 `
@@ -92,12 +92,9 @@ const StyledLeftTitle = styled.div`
 
 const StyledEnTitle = styled.div`
   font-size: 1.2rem;
-  // font-family: var(--main-font-en, sans-serif);
-
 `
 const StyledZhTitle = styled.div`
   font-size: 1.2rem;
-  // font-family: var(--main-font-zh, sans-serif);
 
 `
 

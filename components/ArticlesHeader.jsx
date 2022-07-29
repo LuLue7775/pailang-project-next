@@ -45,15 +45,15 @@ const StyledHeader = styled.div`
 /**
  * now replaced by StyledAnimTitle. leave it here just for reference.
  */
-const StyledTitle = styled.h1`
-  line-height: 5rem;
-  font-size: ${({ isTitleExceed, windowWidth }) =>
-    isTitleExceed ? `min(${((windowWidth / 20) * 100) / windowWidth}vw, 80px)` : 'min(8vw, 90px)'};
-  margin-bottom: 6px;
-`
-const StyledTitleZh = styled.h2`
-  line-height: 5rem;
-  font-size: ${({ isTitleExceed, windowWidth }) =>
-    isTitleExceed ? `min(${((windowWidth / 60) * 100) / windowWidth}vw, 80px)` : 'min(2vw, 32px)'};
-  margin-bottom: 6px;
-`
+// const StyledTitle = styled.h1`
+//   line-height: 5rem;
+//   font-size: ${({ $isTitleExceed, $windowWidth }) =>
+//     $isTitleExceed ? `min(${((windowWidth / 20) * 100) / windowWidth}vw, 80px)` : 'min(8vw, 90px)'};
+//   margin-bottom: 6px;
+// `
+// const StyledTitleZh = styled.h2`
+//   line-height: 5rem;
+//   font-size: ${({ $isTitleExceed, $windowWidth }) =>
+//     $isTitleExceed ? `min(${((windowWidth / 60) * 100) / windowWidth}vw, 80px)` : 'min(2vw, 32px)'};
+//   margin-bottom: 6px;
+// `

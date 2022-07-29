@@ -23,7 +23,7 @@ export default function AboutMidElement({ content, content_zh, createMarkup }) {
       animate="rest"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      isHovered={isHovered}
+      $isHovered={isHovered}
     >
       <MotionBG variants={BGMotion} scrollHeight={scrollHeight} />
       <StyledMidContent
@@ -61,7 +61,7 @@ const StyledMidColContainer = styled(motion.div)`
   justify-content: center;
 
   overflow-y: scroll;
-  ${({ isHovered }) => isHovered && "background-image: url('/about.jpg')"};
+  ${({ $isHovered }) => $isHovered && "background-image: url('/about.jpg')"};
   background-size: cover;
   background-repeat: no-repeat;
 `

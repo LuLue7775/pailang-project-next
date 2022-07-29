@@ -9,7 +9,7 @@ import { motion } from 'framer-motion'
 
 export default function AgendaElement({ item, activeExpand, expandIndex }) {
   const { title, title_zh, cover, start_date, end_date, type, language, artist, id, status } = item
-  const [isexpand, setExpand] = useState(false)
+  const [isExpand, setExpand] = useState(false)
 
   // one expand card at a time
   useEffect(() => {
@@ -20,10 +20,10 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
   return (
     <>
       <StyledImgContainer
-        isexpand={isexpand}
+        $isExpand={isExpand}
         as={motion.div}
         variants={imgWrapVariant}
-        animate={isexpand ? 'open' : 'closed'}
+        animate={isExpand ? 'open' : 'closed'}
         initial="initial"
       >
           { status !== 'draft' ? (
@@ -48,7 +48,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
                     )}
                 </Link>
 
-                { isexpand && <StyledTooltip> view event </StyledTooltip>}
+                { isExpand && <StyledTooltip> view event </StyledTooltip>}
               </>
             )
           :
@@ -66,7 +66,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
 
       </StyledImgContainer>
 
-      <StyledSlide as={motion.div} variants={slideVariant} animate={isexpand ? 'open' : 'closed'}>
+      <StyledSlide as={motion.div} variants={slideVariant} animate={isExpand ? 'open' : 'closed'}>
         {' '}
       </StyledSlide>
 
@@ -85,7 +85,6 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
 const StyledImgContainer = styled(motion.div)`
   position: relative;
   width: min(300px, 100%);
-  // height: ${({ isexpand }) => (isexpand ? '300px' : '100px')};
 
   background-color: #000;
   margin: 10px 0 10px 0;
