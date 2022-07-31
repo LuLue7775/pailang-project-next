@@ -40,18 +40,32 @@ export default function ArticleVideoTemplate({ data, spring, setHoverEvent }) {
           }}
         >
           <StyledVideoContainer>
-            {data?.video 
-              ? <VideoPlayer ref={videoPlayerRef} video={data?.video} />
-              : (<StyledVideoNotifier>
-                <div className='en'> This work is no longer on view. Please scroll down for an introduction to the film or contact us through the About page if you require further information.</div>
-                <div className='zh'> 本件作品已過展期。如需更多訊息，請向下滾動查閱影片介紹，或通過關於頁面與我們聯繫。 </div>
-              </StyledVideoNotifier>)
-            }
+            {data?.video ? (
+              <VideoPlayer ref={videoPlayerRef} video={data?.video} />
+            ) : (
+              <StyledVideoNotifier>
+                <div className="en">
+                  {' '}
+                  This work is no longer on view. Please scroll down for an introduction to the film
+                  or contact us through the About page if you require further information.
+                </div>
+                <div className="zh">
+                  {' '}
+                  本件作品已過展期。如需更多訊息，請向下滾動查閱影片介紹，或通過關於頁面與我們聯繫。{' '}
+                </div>
+              </StyledVideoNotifier>
+            )}
           </StyledVideoContainer>
 
-          <StyledLeftText className="left-text" dangerouslySetInnerHTML={ data?.description && createMarkup(data?.description)} /> 
+          <StyledLeftText
+            className="left-text"
+            dangerouslySetInnerHTML={data?.description && createMarkup(data?.description)}
+          />
 
-          <StyledFooter className="author-bio" dangerouslySetInnerHTML={ data?.author_bio && createMarkup(data?.author_bio)} /> 
+          <StyledFooter
+            className="author-bio"
+            dangerouslySetInnerHTML={data?.author_bio && createMarkup(data?.author_bio)}
+          />
         </StyledLeftCol>
 
         <StyledRightCol
@@ -67,9 +81,8 @@ export default function ArticleVideoTemplate({ data, spring, setHoverEvent }) {
             duration: 3,
             ease: 'easeInOut'
           }}
-          dangerouslySetInnerHTML={ data?.content && createMarkup(data?.content)}
+          dangerouslySetInnerHTML={data?.content && createMarkup(data?.content)}
         />
-        
       </StyledVideo>
     </>
   )
@@ -146,13 +159,12 @@ const StyledVideoNotifier = styled.div`
   color: #fff;
 `
 
-
 const StyledFooter = styled.div`
   position: relative;
   width: max(300px, 50%);
   min-height: 120px;
   left: 0;
-  right: 0; 
+  right: 0;
   margin: 50px auto;
   padding-bottom: 200px;
   text-align: center;

@@ -8,7 +8,6 @@ export default function ModalStart({ setModalShow, modalData }) {
   const modalRef = useRef()
   const { title, title_zh, content, content_zh } = modalData || {}
 
-
   return (
     <StyledModal className="modal" ref={modalRef}>
       <StyledModalTitle className="modal-title">
@@ -51,7 +50,6 @@ const StyledModal = styled.div`
   justify-content: center;
   line-height: 1.4rem;
   text-align: justify;
-
 `
 const StyledModalTitle = styled.div`
   text-align: center;
@@ -61,5 +59,4 @@ const StyledModalContent = styled.div`
   max-width: 80%;
   overflow: hidden;
   font-size: 0.8rem;
-
 `

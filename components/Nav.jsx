@@ -4,20 +4,18 @@ import styled from 'styled-components'
 import { LayoutGroup } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { SoundPlaying, SoundSetPlay } from './Svgs'
-import useSound from "use-sound" 
-
+import useSound from 'use-sound'
 
 export default function Nav() {
   const router = useRouter()
   const [isRouteChange, setRouteChange] = useState(false)
-  const [ isSoundPlay, setSoundPlay] = useState(false)
+  const [isSoundPlay, setSoundPlay] = useState(false)
 
   const isArticle = router.pathname.startsWith('/article-scenography')
   const parseURL = () => {
-    if ( router.pathname.startsWith('/article-journal') ) return '誌 PAILANG’S journal'
-    else if ( router.pathname.startsWith('/article-scenography') ) return '圖表 PAILANG’S diagram'
-    else if ( router.pathname.startsWith('/article-video') ) return '放映 PAILANG’S video'
-    
+    if (router.pathname.startsWith('/article-journal')) return '誌 PAILANG’S journal'
+    else if (router.pathname.startsWith('/article-scenography')) return '圖表 PAILANG’S diagram'
+    else if (router.pathname.startsWith('/article-video')) return '放映 PAILANG’S video'
   }
 
   useEffect(() => {
@@ -35,18 +33,16 @@ export default function Nav() {
     }
   }, [])
 
-  const [ play, { stop } ] = useSound('/sounds/pailang_soundtrack.wav');
+  const [play, { stop }] = useSound('/sounds/pailang_soundtrack.wav')
 
   return (
     <LayoutGroup type="crossfade">
       <StyledNavContainer className="nav-container ">
         <StyledNavLeft>
           {isArticle && (
-            <div onClick={() => router.reload(window.location.pathname)} >
+            <div onClick={() => router.reload(window.location.pathname)}>
               <a>
-                <StyledNavItem>
-                  {parseURL()}
-                </StyledNavItem>
+                <StyledNavItem>{parseURL()}</StyledNavItem>
               </a>
             </div>
           )}
@@ -54,7 +50,6 @@ export default function Nav() {
 
         <StyledNavRight>
           <>
-
             <Link href="/about">
               <a>
                 <StyledNavItem> ABOUT </StyledNavItem>
@@ -66,18 +61,14 @@ export default function Nav() {
               </a>
             </Link>
 
-            <div onClick={() => { 
-              setSoundPlay(!isSoundPlay);
-              !isSoundPlay ? play() : stop();
-               } }>
-              { isSoundPlay 
-                ? ( 
-                  <SoundPlaying/> 
-                )
-                : <SoundSetPlay/>
-              }
+            <div
+              onClick={() => {
+                setSoundPlay(!isSoundPlay)
+                !isSoundPlay ? play() : stop()
+              }}
+            >
+              {isSoundPlay ? <SoundPlaying /> : <SoundSetPlay />}
             </div>
-            
           </>
         </StyledNavRight>
       </StyledNavContainer>

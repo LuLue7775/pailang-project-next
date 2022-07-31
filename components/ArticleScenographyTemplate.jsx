@@ -6,11 +6,10 @@ import { slideTo } from '../utils/functions'
 import styled from 'styled-components'
 
 export default function ArticleScenographyTemplate({ data, spring, setHoverEvent }) {
-
   return (
     <>
       <ArticlesHeader data={data} slideTo={slideTo} spring={spring} />
-      
+
       <StyledChevron
         onClick={() => slideTo(0, spring)}
         onMouseOver={() => setHoverEvent('expand')}

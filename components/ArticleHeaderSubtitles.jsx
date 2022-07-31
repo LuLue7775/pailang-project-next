@@ -3,39 +3,49 @@ import { LeftCrossSVG, RightCrossSVG } from './Svgs'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-export default function ArticleHeaderSubtitles({ artist, producer, curator, start_date, end_date }) {
+export default function ArticleHeaderSubtitles({
+  artist,
+  producer,
+  curator,
+  start_date,
+  end_date
+}) {
   return (
     <StyledSubtitlesWrap className="zh">
-        <LeftCrossSVG />
-        <StyledSubtitles as={motion.div} variants={subtitles} initial="initial" animate="animate">
+      <LeftCrossSVG />
+      <StyledSubtitles as={motion.div} variants={subtitles} initial="initial" animate="animate">
         <div> {artist} </div>
         <div>
-            <div> {producer && 
-              (<> 
-                <div> 製作單位 Produced by  </div> 
+          <div>
+            {' '}
+            {producer && (
+              <>
+                <div> 製作單位 Produced by </div>
                 <div>{producer} </div>
-                </> )}
-            </div>
-            
-            <div> {curator && 
-            (<> 
-                <div> 策展 Curated by </div> 
-                <div>{producer} </div>
-                </> )}
-            </div>
+              </>
+            )}
+          </div>
 
+          <div>
+            {' '}
+            {curator && (
+              <>
+                <div> 策展 Curated by </div>
+                <div>{producer} </div>
+              </>
+            )}
+          </div>
         </div>
         <div>
-            <div> {start_date} </div>
-            <div> / </div>
-            <div> {end_date} </div>
+          <div> {start_date} </div>
+          <div> / </div>
+          <div> {end_date} </div>
         </div>
-        </StyledSubtitles>
-        <RightCrossSVG />
+      </StyledSubtitles>
+      <RightCrossSVG />
     </StyledSubtitlesWrap>
   )
 }
-
 
 const StyledSubtitlesWrap = styled.div`
   width: 100%;

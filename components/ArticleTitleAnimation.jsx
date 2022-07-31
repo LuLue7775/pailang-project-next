@@ -38,7 +38,9 @@ export default function AnimatedTitles({ title, language, textLengthRef, windowW
 
 const StyledAnimTitle = styled(motion.span)`
   font-size: ${({ $isTitleExceed, $windowWidth }) =>
-    $isTitleExceed ? `min(${(($windowWidth / 20) * 100) / windowWidth}vw, 80px)` : 'min(8vw, 90px)'};
+    $isTitleExceed
+      ? `min(${(($windowWidth / 20) * 100) / windowWidth}vw, 80px)`
+      : 'min(8vw, 90px)'};
   line-height: 5rem;
   font-weight: 500;
   margin-bottom: 6px;

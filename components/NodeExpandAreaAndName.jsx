@@ -73,12 +73,12 @@ export default function NodeExpandAreaAndName({
         ref={expandRef}
         as={motion.div}
         onClick={() => expandRef.current?.scrollHeight > 100 && toggleOpen(id)}
-        variants={ type==='text' ? textExpand : imageVideoExpand}
+        variants={type === 'text' ? textExpand : imageVideoExpand}
         isOpen={isOpen.includes(id)}
         hasContent={content}
       >
-        <div className='en'>{parseContent(type, content, isWindow, isOpen.includes(id))}</div>
-        <div className='zh'>{parseContent(type, contentZh, isWindow, isOpen.includes(id))}</div>
+        <div className="en">{parseContent(type, content, isWindow, isOpen.includes(id))}</div>
+        <div className="zh">{parseContent(type, contentZh, isWindow, isOpen.includes(id))}</div>
       </StyledExpand>
     </StyledExpandContainer>
   )

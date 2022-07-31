@@ -2,7 +2,7 @@ export const textExpand = {
   open: () => ({
     width: '300px',
     height: '300px',
-    backgroundColor:  'var(--node-text-expandBg-color, #000000E0)' ,
+    backgroundColor: 'var(--node-text-expandBg-color, #000000E0)',
     transition: {
       type: 'spring',
       stiffness: 20
@@ -23,7 +23,7 @@ export const imageVideoExpand = {
   open: () => ({
     width: '350px',
     height: '350px',
-    backgroundColor:  'var(--node-image-video-expandBg-color, transparent)',
+    backgroundColor: 'var(--node-image-video-expandBg-color, transparent)',
     transition: {
       type: 'spring',
       stiffness: 20

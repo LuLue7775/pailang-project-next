@@ -60,7 +60,7 @@ export const VideoPlayer = React.forwardRef((props, ref) => {
           className="react-player"
           width="min(100%, 600px)"
           height="110%"
-          controls={ true }
+          controls={true}
           volume={0.8}
           playing={playing}
           onProgress={handleProgress}
@@ -154,7 +154,7 @@ const ReactController = styled.div`
 const StyledButton = styled.button`
   height: 50px;
   width: 60px;
-  border: 1px solid #FFF;
+  border: 1px solid #fff;
   // border: 1px solid var(--main-color, #e0954f);
   background: none;
   &:hover {
@@ -191,7 +191,7 @@ const StyledInput = styled.input`
     margin-top: -3px;
     &:hover {
       cursor: pointer;
-      background: var(--node-connetor-color, #eb6c0c );
+      background: var(--node-connetor-color, #eb6c0c);
     }
   }
 `

@@ -41,8 +41,10 @@ const StyledLabel = styled(motion.div)`
   justify-content: center;
   font-size: 0.6rem;
 
-  background-color: ${({ checked }) => checked ? 'var(--main-color, #e0954f)' : '#0a0323a0' };
-  &:hover { background-color: var(--agenda-tooltip-color, #f2e446) };
+  background-color: ${({ checked }) => (checked ? 'var(--main-color, #e0954f)' : '#0a0323a0')};
+  &:hover {
+    background-color: var(--agenda-tooltip-color, #f2e446);
+  }
 `
 
 const StyledInput = styled.input`

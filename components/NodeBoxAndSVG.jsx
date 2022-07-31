@@ -16,22 +16,20 @@ import {
 import NodeSVGArea from './NodeSVGArea'
 import NodeName from './NodeName'
 
-
 export default function NodeBoxAndSVG({
   allElementsData,
   elementData,
   node_i,
   nodeRefs,
   pathRefs,
-  nodePosRefs, 
+  nodePosRefs,
   totalConnectors
 }) {
-
   const router = useRouter()
 
-/** @TODO need usecallback */
+  /** @TODO need usecallback */
   const [windowDimensions] = useState(() => getWindowDimensions())
-/** @TODO need usecallback */
+  /** @TODO need usecallback */
   const [boxPos] = useState(genRandomPos(windowDimensions?.width, allElementsData, router.asPath))
   const [isOpen, setOpen] = useState([])
   const [tooltip, setTooltip] = useState(false)
@@ -69,12 +67,9 @@ export default function NodeBoxAndSVG({
 
     // intial svg, BUT DONT do it untill the whole nodePosRefs is imported.
     // meaning this will be execute only on nodePosRefs?.current[lastNode]
-    if( nodePosRefs?.current.length !== allElementsData?.length ) return
-    initialPath( nodeRefs, pathRefs, nodePosRefs, allElementsData )
+    if (nodePosRefs?.current.length !== allElementsData?.length) return
+    initialPath(nodeRefs, pathRefs, nodePosRefs, allElementsData)
   }, [])
-
-   
-
 
   return (
     <AnimatePresence>
@@ -143,8 +138,8 @@ const StyledBoxContainer = styled(motion.div)`
   ${({ hasContent }) => (hasContent ? 'border: 1px solid var(--node-border-color, #f09c5d);' : '')}
   border-radius: ${({ borderstyle }) => (borderstyle === 'oval' ? '50px' : '5px')};
   cursor: grab;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;  
-  `
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+`
 
 const StyledDot = styled(motion.div)`
   position: absolute;

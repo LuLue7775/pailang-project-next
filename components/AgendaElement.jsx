@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-
 export default function AgendaElement({ item, activeExpand, expandIndex }) {
   const { title, title_zh, cover, start_date, end_date, type, language, artist, id, status } = item
   const [isExpand, setExpand] = useState(false)
@@ -26,44 +25,42 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
         animate={isExpand ? 'open' : 'closed'}
         initial="initial"
       >
-          { status !== 'draft' ? (
-              <>
-                <Link
-                  href={
-                    !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
-                      ? `http://localhost:3000/article-${type}/${id}`
-                      : `${process.env.NEXT_PUBLIC_DOMAIN}/article-${type}/${id} `
-                  }
-                >
-                    { cover && (
-                        <Image
-                          alt=""
-                          width="100%"
-                          height="100%"
-                          src={cover}
-                          layout="responsive"
-                          objectFit='cover'
-                          crossOrigin="true"
-                        />
-                    )}
-                </Link>
+        {status !== 'draft' ? (
+          <>
+            <Link
+              href={
+                !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+                  ? `http://localhost:3000/article-${type}/${id}`
+                  : `${process.env.NEXT_PUBLIC_DOMAIN}/article-${type}/${id} `
+              }
+            >
+              {cover && (
+                <Image
+                  alt=""
+                  width="100%"
+                  height="100%"
+                  src={cover}
+                  layout="responsive"
+                  objectFit="cover"
+                  crossOrigin="true"
+                />
+              )}
+            </Link>
 
-                { isExpand && <StyledTooltip> view event </StyledTooltip>}
-              </>
-            )
-          :
-            cover && (
-              <Image
-                alt=""
-                width="100%"
-                height="100%"
-                src={cover}
-                layout="responsive"
-                crossOrigin="true"
-              />
-            )
-          }
-
+            {isExpand && <StyledTooltip> view event </StyledTooltip>}
+          </>
+        ) : (
+          cover && (
+            <Image
+              alt=""
+              width="100%"
+              height="100%"
+              src={cover}
+              layout="responsive"
+              crossOrigin="true"
+            />
+          )
+        )}
       </StyledImgContainer>
 
       <StyledSlide as={motion.div} variants={slideVariant} animate={isExpand ? 'open' : 'closed'}>
@@ -72,11 +69,17 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
 
       <div>
         <StyledSm className="zh">{type} </StyledSm>
-        <StyledMainTitle >{title} </StyledMainTitle>
-        <StyledZhTitle className="zh"  dangerouslySetInnerHTML={ title_zh && createMarkup(title_zh)} /> 
-        <StyledTitle > {artist} </StyledTitle>
-        <StyledTitle > {start_date}-{end_date}{' '} </StyledTitle>
-        <StyledTitle > {language} </StyledTitle>
+        <StyledMainTitle>{title} </StyledMainTitle>
+        <StyledZhTitle
+          className="zh"
+          dangerouslySetInnerHTML={title_zh && createMarkup(title_zh)}
+        />
+        <StyledTitle> {artist} </StyledTitle>
+        <StyledTitle>
+          {' '}
+          {start_date}-{end_date}{' '}
+        </StyledTitle>
+        <StyledTitle> {language} </StyledTitle>
       </div>
     </>
   )
@@ -91,7 +94,6 @@ const StyledImgContainer = styled(motion.div)`
 
   overflow: hidden;
   z-index: 0;
-
 `
 
 const StyledSm = styled.div`
@@ -112,10 +114,9 @@ const StyledZhTitle = styled.div`
   font-weight: 600;
 `
 const StyledTitle = styled.div`
-  font-size: .8rem;
+  font-size: 0.8rem;
   line-height: 1.3rem;
   font-family: var(--title-font-zh);
-
 `
 const StyledSlide = styled(motion.div)`
   position: absolute;

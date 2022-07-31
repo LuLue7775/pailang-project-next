@@ -26,7 +26,7 @@ export const containerLeftMotion = {
       ease: 'easeInOut',
       duration: 1.2
     }
-  },
+  }
   // exit:  { x: '0', zIndex: 0, scale:0.9 }
 }
 
@@ -44,8 +44,8 @@ export const containerMidMotion = {
       ease: 'easeInOut',
       duration: 1.2
     }
-  }, 
-  exit:  { x: '0', zIndex: 0, scale:0.9 }
+  },
+  exit: { x: '0', zIndex: 0, scale: 0.9 }
 }
 export const containerRightMotion = {
   rest: { x: '0', zIndex: 0 },
@@ -61,7 +61,7 @@ export const containerRightMotion = {
       ease: 'easeInOut',
       duration: 1.2
     }
-  },
+  }
   // exit:  { x: '0', zIndex: 0, scale:0.9 }
 }
 

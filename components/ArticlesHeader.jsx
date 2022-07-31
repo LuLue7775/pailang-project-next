@@ -11,12 +11,12 @@ export default function ArticlesHeader({ data, slideTo, spring }) {
   return (
     <StyledHeader>
       <LineSVG />
-      <ArticleHeaderTitles title={data?.title} title_zh={data?.title_zh}/>
-      <ArticleHeaderSubtitles 
-        artist={data?.artist} 
-        producer={data?.producer} 
+      <ArticleHeaderTitles title={data?.title} title_zh={data?.title_zh} />
+      <ArticleHeaderSubtitles
+        artist={data?.artist}
+        producer={data?.producer}
         curator={data?.curator}
-        start_date={data?.start_date} 
+        start_date={data?.start_date}
         end_date={data?.end_date}
       />
       <div
@@ -30,7 +30,6 @@ export default function ArticlesHeader({ data, slideTo, spring }) {
   )
 }
 
-
 const StyledHeader = styled.div`
   height: 100vh;
   width: 100%;
@@ -39,7 +38,6 @@ const StyledHeader = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 `
 
 /**

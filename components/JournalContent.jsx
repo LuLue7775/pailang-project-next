@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import { slideTo } from '../utils/functions'
 
 export default function JournalContent({ data, spring, setHoverEvent }) {
-
   return (
     <StyledJournal id="section2">
       <StyledChevron
@@ -28,8 +27,6 @@ export default function JournalContent({ data, spring, setHoverEvent }) {
       <StyledJournalRightCol className="right-col">
         <NodesContainer data={data} />
       </StyledJournalRightCol>
-
-
     </StyledJournal>
   )
 }
@@ -77,7 +74,7 @@ const StyledFooter = styled.div`
   width: max(300px, 50%);
   min-height: 120px;
   left: 0;
-  right: 0; 
+  right: 0;
   margin: 0 auto;
   padding-bottom: 100px;
   text-align: center;

@@ -34,9 +34,9 @@ export default function AboutMidElement({ content, content_zh, createMarkup }) {
         <StyledMidTitle> Pailang Museum of Settler Colonialism </StyledMidTitle>
         <StyledMidZhTitle> 白浪的定居殖民博物館 </StyledMidZhTitle>
 
-        <StyledMidEn dangerouslySetInnerHTML={ content && createMarkup(content)} /> 
+        <StyledMidEn dangerouslySetInnerHTML={content && createMarkup(content)} />
 
-        <StyledMidCh dangerouslySetInnerHTML={ content_zh && createMarkup(content_zh)} /> 
+        <StyledMidCh dangerouslySetInnerHTML={content_zh && createMarkup(content_zh)} />
       </StyledMidContent>
     </StyledMidColContainer>
   )
@@ -68,16 +68,14 @@ const StyledMidColContainer = styled(motion.div)`
 const StyledMidContent = styled.div`
   position: absolute;
   top: 0;
-
 `
 
 const StyledMidTitle = styled.div`
   text-align: center;
   padding: 100px 10px 0 10px;
   font-size: 1.6rem;
-  font-weight:600;
+  font-weight: 600;
   line-height: 1.2em;
-
 `
 const StyledMidZhTitle = styled.div`
   text-align: center;
@@ -85,7 +83,6 @@ const StyledMidZhTitle = styled.div`
   font-size: 1.1rem;
   font-family: var(--main-font-zh, sans-serif);
   line-height: 1.2em;
-
 `
 
 const StyledMidEn = styled.div`
@@ -94,5 +91,4 @@ const StyledMidEn = styled.div`
 const StyledMidCh = styled.div`
   padding: 15px 0 15px 0;
   font-family: var(--main-font-zh, serif);
-
 `

@@ -1,23 +1,24 @@
 import styled from 'styled-components'
-import { createMarkup } from '../utils/functions';
+import { createMarkup } from '../utils/functions'
 
 export default function JournalLeftCol({ content, content_zh, comment, comment_zh }) {
-
-
   return (
     <StyledLeftColContainer className="left-col-content">
-      <StyledContentItems className="en" dangerouslySetInnerHTML={ content && createMarkup(content)} /> 
+      <StyledContentItems
+        className="en"
+        dangerouslySetInnerHTML={content && createMarkup(content)}
+      />
       <StyledSeperate />
 
       <StyledNote>
-        <StyledContentSmItems  dangerouslySetInnerHTML={ comment && createMarkup(comment)}/>
+        <StyledContentSmItems dangerouslySetInnerHTML={comment && createMarkup(comment)} />
       </StyledNote>
 
-      <StyledContentItems dangerouslySetInnerHTML={ content_zh && createMarkup(content_zh)}/>
+      <StyledContentItems dangerouslySetInnerHTML={content_zh && createMarkup(content_zh)} />
       <StyledSeperate />
 
       <StyledNote>
-        <StyledContentSmItems dangerouslySetInnerHTML={ comment_zh && createMarkup(comment_zh)} /> 
+        <StyledContentSmItems dangerouslySetInnerHTML={comment_zh && createMarkup(comment_zh)} />
       </StyledNote>
     </StyledLeftColContainer>
   )

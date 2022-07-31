@@ -89,42 +89,38 @@ export const toggleOpen = (id, isOpen, setOpen) => {
 /**
  * 此component已經是一單位node，也就是遍歷是在上層；initialPath裡面直接針對某node畫svg
  */
-export function initialPath(nodeRefs, pathRefs, nodePosRefs, allElementsData ) {
-    // NOTE: to check all TAIL connected svg
-    allElementsData?.forEach((elem) => { 
-      if (!elem?.connectors.length) return
+export function initialPath(nodeRefs, pathRefs, nodePosRefs, allElementsData) {
+  // NOTE: to check all TAIL connected svg
+  allElementsData?.forEach((elem) => {
+    if (!elem?.connectors.length) return
 
-      elem.connectors?.forEach((lineObj) => {
-          // 找出此node的在陣列中的資料，為了要取得此node_pos
-          const selfHandleIndex = nodeRefs.current?.findIndex(
-            (handle) => handle?.getAttribute('id') === elem.id.toString()
-          )
+    elem.connectors?.forEach((lineObj) => {
+      // 找出此node的在陣列中的資料，為了要取得此node_pos
+      const selfHandleIndex = nodeRefs.current?.findIndex(
+        (handle) => handle?.getAttribute('id') === elem.id.toString()
+      )
 
-          const HandleConnectToID = lineObj.connected_node.toString()
-          
-          // 找出此尾端連接的node的在陣列中的資料，為了要取得連接的node_pos
-          const HandleConnectToIndex = nodeRefs.current?.findIndex(
-            (handle) => handle?.getAttribute('id') === HandleConnectToID
-          )
-          // 找出此svg的在陣列中的資料，為了要填入此svg的座標
-          const tailSvgIndex = pathRefs.current.findIndex(
-            (path) =>  path?.getAttribute('id') === `${elem.id}-${HandleConnectToID}`
-          )
-          let x1 = nodePosRefs.current[selfHandleIndex]?.x
-          let y1 = nodePosRefs.current[selfHandleIndex]?.y
-          let x2 = nodePosRefs.current[HandleConnectToIndex]?.x
-          let y2 = nodePosRefs.current[HandleConnectToIndex]?.y
+      const HandleConnectToID = lineObj.connected_node.toString()
 
-          let data = `M${x1} ${y1} L ${x2} ${y2}`
-          pathRefs.current[tailSvgIndex]?.setAttribute('d', data)
-          // console.log("tailSvgIndex:", tailSvgIndex)
-          // console.log("pathRef:", pathRefs.current[tailSvgIndex])
-      })
+      // 找出此尾端連接的node的在陣列中的資料，為了要取得連接的node_pos
+      const HandleConnectToIndex = nodeRefs.current?.findIndex(
+        (handle) => handle?.getAttribute('id') === HandleConnectToID
+      )
+      // 找出此svg的在陣列中的資料，為了要填入此svg的座標
+      const tailSvgIndex = pathRefs.current.findIndex(
+        (path) => path?.getAttribute('id') === `${elem.id}-${HandleConnectToID}`
+      )
+      let x1 = nodePosRefs.current[selfHandleIndex]?.x
+      let y1 = nodePosRefs.current[selfHandleIndex]?.y
+      let x2 = nodePosRefs.current[HandleConnectToIndex]?.x
+      let y2 = nodePosRefs.current[HandleConnectToIndex]?.y
+
+      let data = `M${x1} ${y1} L ${x2} ${y2}`
+      pathRefs.current[tailSvgIndex]?.setAttribute('d', data)
+      // console.log("tailSvgIndex:", tailSvgIndex)
+      // console.log("pathRef:", pathRefs.current[tailSvgIndex])
+    })
   })
-
-
-
-  
 }
 
 export function updatePath(
@@ -183,5 +179,43 @@ export function updatePath(
 }
 
 export function createMarkup(htmlStr) {
-  return {__html: htmlStr};
+  return { __html: htmlStr }
+}
+
+export const sortAgenda = (filter, filterData, data) => {
+  const timeFilter = filter.reduce((timeFilter, factor) => {
+    if (filterData[factor].type === 'time') {
+      timeFilter.push(factor)
+    }
+    return timeFilter
+  }, [])
+  const typeFilter = filter.reduce((timeFilter, factor) => {
+    if (filterData[factor].type === 'form') {
+      timeFilter.push(factor)
+    }
+    return timeFilter
+  }, [])
+  const filterResult = data
+    ?.filter((data) => {
+      var isContain = false
+      for (let i = 0; i < timeFilter.length; i++) {
+        if (timeFilter[i] === data.status) {
+          isContain = true
+          break
+        }
+      }
+      return isContain
+    })
+    .filter((data) => {
+      var isContain = false
+      for (let i = 0; i < typeFilter.length; i++) {
+        if (typeFilter[i] === data.type) {
+          isContain = true
+          break
+        }
+      }
+      return isContain
+    })
+
+  return filterResult
 }

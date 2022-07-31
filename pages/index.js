@@ -53,14 +53,18 @@ export default function Home({ modalData, randomArticleData, modalShow, setModal
       </Cover>
 
       {/** @TODO fix rerendering */}
-      <HomeArticle randomArticleData={randomArticleData} spring={spring} setHoverEvent={setHoverEvent}/>
+      <HomeArticle
+        randomArticleData={randomArticleData}
+        spring={spring}
+        setHoverEvent={setHoverEvent}
+      />
     </StyledContainer>
   )
 }
 
 export async function getStaticProps() {
   const modalData = await fetchData('/modal').catch((e) => console.log(e))
-  const randomArticleData = await fetchData('/random-article').catch((e) => console.log(e) )
+  const randomArticleData = await fetchData('/random-article').catch((e) => console.log(e))
 
   return {
     props: {

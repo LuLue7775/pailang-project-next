@@ -29,25 +29,19 @@ export default function About({ data }) {
   }, [])
 
   return (
-    <StyledAbout
-      className="about-container"
-      as={motion.div}
-      id="cursor-area"
-      ref={cursorAreaRef}
-
-    >
+    <StyledAbout className="about-container" as={motion.div} id="cursor-area" ref={cursorAreaRef}>
       <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
 
       <StyledAboutLeftCol>
-        <AboutLeftElement roles={roles} createMarkup={createMarkup}/>
+        <AboutLeftElement roles={roles} createMarkup={createMarkup} />
       </StyledAboutLeftCol>
 
       <StyledAboutMidCol>
-        <AboutMidElement content={content} content_zh={content_zh} createMarkup={createMarkup}/>
+        <AboutMidElement content={content} content_zh={content_zh} createMarkup={createMarkup} />
       </StyledAboutMidCol>
 
       <StyledAboutRightCol>
-        <AboutRightElement credits={credits} createMarkup={createMarkup}/>
+        <AboutRightElement credits={credits} createMarkup={createMarkup} />
       </StyledAboutRightCol>
     </StyledAbout>
   )

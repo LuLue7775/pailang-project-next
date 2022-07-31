@@ -37,8 +37,7 @@ export default function AboutRightElement({ credits, createMarkup }) {
         >
           <LineSVGFull />
           <StyledTitle> {elem?.title} </StyledTitle>
-          <StyledElement dangerouslySetInnerHTML={ elem?.content && createMarkup(elem?.content)} /> 
-
+          <StyledElement dangerouslySetInnerHTML={elem?.content && createMarkup(elem?.content)} />
         </StyledElementContainer>
       )) || ''}
     </StyledRightColContainer>
@@ -73,5 +72,4 @@ const StyledTitle = styled.div`
 `
 const StyledElement = styled.div`
   padding: 20px 10px;
-  
 `

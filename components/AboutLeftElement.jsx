@@ -29,33 +29,34 @@ export default function AboutLeftElement({ roles, createMarkup }) {
     >
       <MotionBG variants={BGMotion} scrollHeight={scrollHeight} />
       {roles?.map((elem, i) => (
-        <motion.div
-          className="persona-container"
-          key={i}
-          variants={containerTextMotion}
-        >
+        <motion.div className="persona-container" key={i} variants={containerTextMotion}>
           <LineSVGFull />
           <StyledLeftTitle className="persona-title">
-            <StyledEnTitle > {elem?.name} </StyledEnTitle>
-            <StyledZhTitle > {elem?.name_zh} </StyledZhTitle>
+            <StyledEnTitle> {elem?.name} </StyledEnTitle>
+            <StyledZhTitle> {elem?.name_zh} </StyledZhTitle>
           </StyledLeftTitle>
 
           <ImageContainer>
             <Image
-                className="persona-img"
-                alt="pailang-persona"
-                src={elem?.cover || 'https://via.placeholder.com/300X150.png'}
-                width="100%"
-                height="100%"
-                layout="responsive"
-                objectFit= 'contain'
-              />
+              className="persona-img"
+              alt="pailang-persona"
+              src={elem?.cover || 'https://via.placeholder.com/300X150.png'}
+              width="100%"
+              height="100%"
+              layout="responsive"
+              objectFit="contain"
+            />
           </ImageContainer>
 
-          <StyledPersonaEn className="persona-en" dangerouslySetInnerHTML={ elem?.introduction && createMarkup(elem?.introduction)} /> 
+          <StyledPersonaEn
+            className="persona-en"
+            dangerouslySetInnerHTML={elem?.introduction && createMarkup(elem?.introduction)}
+          />
 
-          <StyledPersonaCh className="persona-ch" dangerouslySetInnerHTML={ elem?.introduction_zh && createMarkup(elem?.introduction_zh)} /> 
-
+          <StyledPersonaCh
+            className="persona-ch"
+            dangerouslySetInnerHTML={elem?.introduction_zh && createMarkup(elem?.introduction_zh)}
+          />
         </motion.div>
       )) || ''}
     </StyledLeftColContainer>
@@ -95,7 +96,6 @@ const StyledEnTitle = styled.div`
 `
 const StyledZhTitle = styled.div`
   font-size: 1.2rem;
-
 `
 
 const StyledPersonaEn = styled.div`
