@@ -16,7 +16,7 @@
 此網站無特別支援行動裝置。
 
 ## 使用方式
-[前端live demp](https://pailangmuseum.com/)
+[前端live demo](https://pailangmuseum.com/)
 
 [後端repo連結](https://github.com/seanmars/pailang-admin)
 
