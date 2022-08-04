@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 export default function AgendaElement({ item, activeExpand, expandIndex }) {
-  const { title, title_zh, cover, start_date, end_date, type, language, artist, id, status } = item
+  const { title, title_zh, cover, start_date, end_date, type, language, artist, id, status } = item 
   const [isExpand, setExpand] = useState(false)
 
   // one expand card at a time
@@ -34,7 +34,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
                   : `${process.env.NEXT_PUBLIC_DOMAIN}/article-${type}/${id} `
               }
             >
-              {cover && (
+              {cover ? (
                 <Image
                   alt=""
                   width="100%"
@@ -44,7 +44,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
                   objectFit="cover"
                   crossOrigin="true"
                 />
-              )}
+              ): ''}
             </Link>
 
             {isExpand && <StyledTooltip> view event </StyledTooltip>}
@@ -69,7 +69,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
 
       <div>
         <StyledSm className="zh">{type} </StyledSm>
-        <StyledMainTitle>{title} </StyledMainTitle>
+        <StyledMainTitle> {title} </StyledMainTitle>
         <StyledZhTitle
           className="zh"
           dangerouslySetInnerHTML={title_zh && createMarkup(title_zh)}
@@ -112,6 +112,8 @@ const StyledMainTitle = styled.div`
 `
 const StyledZhTitle = styled.div`
   font-weight: 600;
+  padding-top: .4rem;
+  padding-bottom: .4rem;
 `
 const StyledTitle = styled.div`
   font-size: 0.8rem;

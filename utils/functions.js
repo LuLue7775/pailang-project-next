@@ -28,6 +28,8 @@ export function slideTo(to, spring) {
 }
 
 export function getRelativeCoordinates(eventPageX, eventPageY, referenceElement) {
+  if (!referenceElement) return
+  
   const position = {
     x: eventPageX,
     y: eventPageY
@@ -104,12 +106,18 @@ export function initialPath(nodeRefs, pathRefs, nodePosRefs, allElementsData) {
 
       // 找出此尾端連接的node的在陣列中的資料，為了要取得連接的node_pos
       const HandleConnectToIndex = nodeRefs.current?.findIndex(
-        (handle) => handle?.getAttribute('id') === HandleConnectToID
+        (handle) => handle?.getAttribute('id') === HandleConnectToID 
       )
+    
+
       // 找出此svg的在陣列中的資料，為了要填入此svg的座標
       const tailSvgIndex = pathRefs.current.findIndex(
         (path) => path?.getAttribute('id') === `${elem.id}-${HandleConnectToID}`
       )
+      
+      if (HandleConnectToIndex === -1 || tailSvgIndex === -1) return
+
+
       let x1 = nodePosRefs.current[selfHandleIndex]?.x
       let y1 = nodePosRefs.current[selfHandleIndex]?.y
       let x2 = nodePosRefs.current[HandleConnectToIndex]?.x
@@ -143,6 +151,8 @@ export function updatePath(
       return path?.getAttribute('id') === `${draggedID}-${HandleConnectToID}`
     })
 
+    if ( HandleConnectToIndex === -1 || tailSvgIndex === -1 ) return
+
     let x1 = nodePosRefs.current[selfHandleIndex].x
     let y1 = nodePosRefs.current[selfHandleIndex].y
     let x2 = nodePosRefs.current[HandleConnectToIndex].x
@@ -165,6 +175,8 @@ export function updatePath(
         const headSvgIndex = pathRefs.current.findIndex(
           (path) => path?.getAttribute('id') === `${elem.id}-${draggedID}`
         )
+
+        if ( HandleConnectToIndex === -1 || headSvgIndex === -1 ) return
 
         let x1 = nodePosRefs.current[selfHandleIndex].x
         let y1 = nodePosRefs.current[selfHandleIndex].y
