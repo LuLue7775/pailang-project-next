@@ -57,8 +57,8 @@ const StyledFooter = styled.div`
   min-height: 120px;
   left: 0;
   right: 0;
-  margin: 0 auto;
-  padding-bottom: 100px;
+  margin: 200px auto ;
+  // padding-bottom: 100px;
   text-align: center;
   z-index: 5;
 `
