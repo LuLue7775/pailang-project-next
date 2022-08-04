@@ -22,8 +22,8 @@ export default function AnimatedTitles({ title, language, textLengthRef, windowW
           key={i}
           className="row-letter"
           variants={letterAni}
-          isTitleExceed={textLengthRef.current}
-          windowWidth={windowWidth}
+          $isTitleExceed={textLengthRef.current}
+          $windowWidth={windowWidth}
           style={{
             fontFamily: language === 'zh' && 'Noto Serif TC',
             fontSize: language === 'zh' && '1.5rem'

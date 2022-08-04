@@ -27,8 +27,6 @@ export default function Agenda({ data }) {
 
   const [activeExpand, setActiveExpand] = useState(null)
 
-  const boxRefs = useRef([])
-
   // Cursor efffect
   const cursorAreaRef = useRef()
   const { hoverEvent, setHoverEvent } = useContext(CursorContext)
@@ -79,7 +77,6 @@ export default function Agenda({ data }) {
         setHoverEvent={setHoverEvent}
         setActiveExpand={setActiveExpand}
         activeExpand={activeExpand}
-        boxRefs={boxRefs}
         dataAmount={data?.length}
       />
     </StyledAgenda>

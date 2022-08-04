@@ -1,10 +1,32 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { imgWrapVariant, slideVariant } from '../utils/framerVariantsAgenda'
 import { createMarkup } from '../utils/functions'
 import Link from 'next/link'
 import styled from 'styled-components'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+
+
+const ImageWithLink = React.forwardRef( (props, ref) => {
+  const { cover } = props 
+  return (
+    cover ? (
+      <div ref={ref} >
+        <Image
+          alt=""
+          width="100%"
+          height="100%"
+          src={cover}
+          layout="responsive"
+          objectFit="cover"
+          crossOrigin="true"
+        />
+      </div>
+    ): ''
+
+  );
+});
+ImageWithLink.displayName = 'ImageWithLink'
 
 export default function AgendaElement({ item, activeExpand, expandIndex }) {
   const { title, title_zh, cover, start_date, end_date, type, language, artist, id, status } = item 
@@ -15,6 +37,8 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
     if (activeExpand === expandIndex) setExpand(true)
     else setExpand(false)
   }, [activeExpand])
+
+  const imageRef = useRef(null);
 
   return (
     <>
@@ -34,17 +58,9 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
                   : `${process.env.NEXT_PUBLIC_DOMAIN}/article-${type}/${id} `
               }
             >
-              {cover ? (
-                <Image
-                  alt=""
-                  width="100%"
-                  height="100%"
-                  src={cover}
-                  layout="responsive"
-                  objectFit="cover"
-                  crossOrigin="true"
-                />
-              ): ''}
+              <a>
+                <ImageWithLink ref={imageRef} cover={cover}/>
+              </a>
             </Link>
 
             {isExpand && <StyledTooltip> view event </StyledTooltip>}

@@ -1,5 +1,4 @@
 import AgendaElement from './AgendaElement'
-import { setRefs } from '../utils/functions'
 import { contentWrapVariant } from '../utils/framerVariantsAgenda'
 import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
@@ -9,7 +8,6 @@ export default function AgendaGrid({
   setHoverEvent,
   setActiveExpand,
   activeExpand,
-  boxRefs,
   dataAmount
 }) {
   const handleExpand = (expandIndex) => {
@@ -28,7 +26,6 @@ export default function AgendaGrid({
             exit="exit"
             key={`${i}-${item?.id}`}
             id={`${item.type}-${item?.id}`}
-            ref={(el) => setRefs(el, boxRefs, dataAmount)}
             className={`${item.type} ${item.status}`}
             onMouseOver={() => {
               setHoverEvent('expand')
