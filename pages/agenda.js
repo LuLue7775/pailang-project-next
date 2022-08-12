@@ -8,12 +8,12 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
 const filterData = {
-  published: { id: 'currentCheck', value: 'published', label: 'Current', type: 'time' },
-  draft: { id: 'upcomingCheck', value: 'draft', label: 'Upcoming', type: 'time' },
-  archived: { id: 'pastCheck', value: 'archived', label: 'Past', type: 'time' },
-  video: { id: 'videoCheck', value: 'video', label: 'Video', type: 'form' },
-  journal: { id: 'journalCheck', value: 'journal', label: 'Journal', type: 'form' },
-  scenography: { id: 'scenographyCheck', value: 'scenography', label: 'Scenography', type: 'form' }
+  published: { id: 'currentCheck', value: 'published', label: 'Current', labelZh: '當期', type: 'time' },
+  draft: { id: 'upcomingCheck', value: 'draft', label: 'Upcoming', labelZh: '未來', type: 'time' },
+  archived: { id: 'pastCheck', value: 'archived', label: 'Past', labelZh: '往期', type: 'time' },
+  video: { id: 'videoCheck', value: 'video', label: 'Video', labelZh: '電影', ype: 'form' },
+  journal: { id: 'journalCheck', value: 'journal', label: 'Journal', labelZh: '雜誌', type: 'form' },
+  scenography: { id: 'scenographyCheck', value: 'scenography', label: 'Scenography', labelZh: '圖表', type: 'form' }
 }
 
 const time = ['published', 'draft', 'archived']
@@ -22,8 +22,10 @@ const form = ['video', 'journal', 'scenography']
 const filtersInitArray = Object.keys(filterData)
 
 export default function Agenda({ data }) {
+  
+  const [ initalData, setInitialData ] = useState(data)
   const [filteredData, setFilteredData] = useState(data)
-  const [filter, setFilter] = useState(filtersInitArray)
+  const [filter, setFilter] = useState([])
 
   const [activeExpand, setActiveExpand] = useState(null)
 
@@ -38,6 +40,8 @@ export default function Agenda({ data }) {
     setFilteredData(sortAgenda(filter, filterData, data))
     setActiveExpand(null)
   }, [filter])
+  
+
 
   return (
     <StyledAgenda className="agenda-container" as={motion.div} id="cursor-area" ref={cursorAreaRef}>
@@ -77,6 +81,9 @@ export default function Agenda({ data }) {
         setActiveExpand={setActiveExpand}
         activeExpand={activeExpand}
         dataAmount={data?.length}
+
+        filter={filter}
+        initalData={initalData}
       />
     </StyledAgenda>
   )

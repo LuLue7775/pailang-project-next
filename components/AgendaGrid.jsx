@@ -8,6 +8,8 @@ export default function AgendaGrid({
   setHoverEvent,
   setActiveExpand,
   activeExpand,
+  filter, 
+  initalData
 }) {
   const handleExpand = (expandIndex) => {
     setActiveExpand(expandIndex)
@@ -16,7 +18,33 @@ export default function AgendaGrid({
   return (
     <AnimatePresence>
       <StyledAgendaGrid>
-        {filteredData?.map((item, i) => (
+        { filter.length === 0 ?
+         initalData?.map((item, i) => (
+            <StyledContentWrap
+              as={motion.div}
+              variants={contentWrapVariant}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              key={`${i}-${item?.id}`}
+              id={`${item.type}-${item?.id}`}
+              className={`${item.type} ${item.status}`}
+              onMouseOver={() => {
+                setHoverEvent('expand')
+                handleExpand(i, `${item.type}-${item?.id}`)
+              }}
+              onMouseLeave={() => {
+                setHoverEvent('default')
+                setActiveExpand(null)
+              }}
+            >
+              <AgendaElement item={item} activeExpand={activeExpand} expandIndex={i} />
+            </StyledContentWrap>
+          ))
+
+
+
+        :filteredData?.map((item, i) => (
           <StyledContentWrap
             as={motion.div}
             variants={contentWrapVariant}
