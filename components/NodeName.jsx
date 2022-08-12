@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import useSound from 'use-sound' // made by ian
-import React, { useState } from 'react' // made by ian
+import useSound from 'use-sound'
 
 export default function NodeName({
   $hasContent,
@@ -13,29 +13,25 @@ export default function NodeName({
   tooltip,
   setTooltip
 }) {
-  // made by ian
-  const [index, setIndex] = useState(1)
-  const [index2, setIndex2] = useState(1)
+  const [index, setIndex] = useState(() => Math.floor(Math.random() * 9))
 
-  // made by ian
   function changeSound() {
-    let newIndex = Math.floor(Math.random() * (10 - 0) + 0)
-    let newIndex2 = Math.floor(Math.random() * (3 - 0) + 0)
+    let newIndex = Math.floor(Math.random() * 9)
     setIndex(newIndex)
-    setIndex2(newIndex2)
   }
 
-  // made by ian
-  const [play] = useSound('/sounds/' + index2 + '_0' + index + '.wav')
+  const [ play ] = useSound('/sounds/' + index + '.mp3')
+  useEffect(() => {
+    play()
+  }, [index])
 
   return (
     <StyledName $hasContent={$hasContent} $hasSource={$hasSource} $isOpen={$isOpen}>
       <div
         onClick={() => {
-          source && window.open(source)
           changeSound()
-          play()
-        }} // made by ian
+          source && window.open(source)
+        }} 
         onMouseOver={() => {
           setTooltip(true)
         }}
