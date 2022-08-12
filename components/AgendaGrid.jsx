@@ -47,9 +47,9 @@ const StyledAgendaGrid = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 350px;
+  grid-auto-rows: 300px;
   position: relative;
-  gap: 1.4rem;
+  gap: 1rem;
   padding-top: 20px;
   margin: 20px;
   place-items: center;

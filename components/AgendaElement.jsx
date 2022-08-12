@@ -104,10 +104,8 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
 const StyledImgContainer = styled(motion.div)`
   position: relative;
   width: min(300px, 100%);
-
   background-color: #000;
   margin: 10px 0 10px 0;
-
   overflow: hidden;
   z-index: 0;
 `
@@ -130,6 +128,7 @@ const StyledBadgeHighlight = styled.span`
 `
 const StyledMainTitle = styled.div`
   margin-top: 10px;
+  line-height: 1.3rem;
   font-size: 1.1rem;
   font-family: var(--title-font-en);
 `
