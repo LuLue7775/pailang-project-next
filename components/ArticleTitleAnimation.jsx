@@ -21,11 +21,6 @@ export default function AnimatedTitles({ title, language, textLengthRef, windowW
           className="row-letter"
           $isTitleExceed={textLengthRef.current}
           $windowWidth={windowWidth}
-          style={{
-            fontFamily: language === 'zh' && 'Noto Serif TC',
-            fontSize: language === 'zh' && '1.5rem',
-            lineHeight: '7rem'
-          }}
         >
           {title}
         </StyledAnimTitle>
@@ -62,5 +57,7 @@ const StyledAnimTitle = styled(motion.span)`
   margin-bottom: 6px;
   position: relative;
   display: inline-block;
+  line-eight: '7rem'
+
 
 `

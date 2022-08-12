@@ -40,11 +40,6 @@ export default function JournalRightCol() {
               <div
                 key={i}
                 className={`draggable-wrap ${elem.id}`}
-                // style={{
-                // position: "relative",
-                // height: "inherit",
-                // width: "inherit"
-                // }}
               >
                 <DraggableBox
                   boxIndex={i}
