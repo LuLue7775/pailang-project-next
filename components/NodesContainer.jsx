@@ -32,6 +32,9 @@ export default function NodesContainer({ data }) {
             />
           ))}
       </StyledNodeBoxContainer>
+      
+      <StyledSeperate />
+
       <StyledFooter
         className="author-bio"
         dangerouslySetInnerHTML={data?.author_bio && createMarkup(data?.author_bio)}
@@ -50,15 +53,24 @@ const StyledNodeContainer = styled(motion.div)`
 const StyledNodeBoxContainer = styled.div`
   position: relative;
   height: ${({ elementAmount }) => elementAmount * 200}px;
+
+
 `
+
+const StyledSeperate = styled.div`
+  margin: 150px 0 0px 0;
+  border-bottom: 1px var(--main-color, #e0954f) solid;
+  `
+
 const StyledFooter = styled.div`
   position: relative;
-  width: max(300px, 50%);
+  width: max(300px, 70%);
   min-height: 120px;
   left: 0;
   right: 0;
-  margin: 200px auto ;
-  // padding-bottom: 100px;
-  text-align: center;
+  margin: 100px auto ;
+  text-align: justify;
   z-index: 5;
+
+  
 `
