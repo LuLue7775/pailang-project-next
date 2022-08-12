@@ -62,8 +62,6 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
                 <ImageWithLink ref={imageRef} cover={cover}/>
               </a>
             </Link>
-
-            {isExpand && <StyledTooltip> view event </StyledTooltip>}
           </>
         ) : (
           cover && (
@@ -84,7 +82,9 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
       </StyledSlide>
 
       <div>
-        <StyledSm className="zh">{type} </StyledSm>
+        <StyledBadge className="zh">{type} </StyledBadge>
+        { status === 'draft' && <StyledBadgeHighlight> upcomming </StyledBadgeHighlight>}
+
         <StyledMainTitle> {title} </StyledMainTitle>
         <StyledZhTitle
           className="zh"
@@ -112,17 +112,24 @@ const StyledImgContainer = styled(motion.div)`
   z-index: 0;
 `
 
-const StyledSm = styled.div`
+const StyledBadge = styled.span`
   width: 100px;
-  display: flex;
-  justify-content: center;
-  margin: 5px 0;
+  padding: 5px 3px;
+  margin: 10px 5px;
   border-radius: 5px;
-  background: var(--main-color);
-
+  background: var(--main-color, #e0954f);
   color: #fff;
 `
+const StyledBadgeHighlight = styled.span`
+  width: 100px;
+  padding: 5px 3px;
+  margin: 10px 5px;
+  border-radius: 5px;
+  background-color: var(--agenda-tooltip-color, #f2e446);
+  color: #000;
+`
 const StyledMainTitle = styled.div`
+  margin-top: 10px;
   font-size: 1.1rem;
   font-family: var(--title-font-en);
 `
@@ -145,31 +152,4 @@ const StyledSlide = styled(motion.div)`
   max-width: 310px;
   background-color: var(--agenda-slide-color, #f2e446);
   z-index: -1;
-`
-
-const StyledTooltip = styled.div`
-  position: absolute;
-  bottom: 50px;
-  left: 50px;
-  height: 1.5rem;
-  width: 120px;
-  display: flex;
-  justify-content: center;
-  background-color: var(--agenda-tooltip-color, #f2e446);
-  border-radius: 10px;
-  z-index: 1;
-
-  &:after {
-    border-right: solid 10px transparent;
-    border-left: solid 10px transparent;
-    border-bottom: solid 10px var(--agenda-tooltip-color, #f2e446);
-    transform: translateX(-50%);
-    position: absolute;
-    z-index: 1;
-    content: '';
-    bottom: 100%;
-    left: 50%;
-    height: 0;
-    width: 0;
-  }
 `
