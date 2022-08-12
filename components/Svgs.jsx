@@ -130,30 +130,30 @@ export function EllipseBtnSVG({ texts }) {
 export function DragHandleSVG() {
   return (
     <svg width="20" height="40" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="2.5" cy="0.5" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="2.5" cy="2.5" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="2.5" cy="4.5" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="2.5" cy="6.499" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="2.5" cy="8.499" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="2.5" cy="10.498" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="2.5" cy="12.498" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="2.5" cy="14.498" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="4.5" cy="0.5" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="4.5" cy="2.5" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="4.5" cy="4.5" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="4.5" cy="6.499" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="4.5" cy="8.499" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="4.5" cy="10.498" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="4.5" cy="12.498" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="4.5" cy="14.498" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="6.499" cy="0.5" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="6.499" cy="2.5" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="6.499" cy="4.5" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="6.499" cy="6.499" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="6.499" cy="8.499" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="6.499" cy="10.498" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="6.499" cy="12.498" r=".6" fill="var(--node-handle-color, #cfa876" />
-      <circle cx="6.499" cy="14.498" r=".6" fill="var(--node-handle-color, #cfa876" />
+      <circle cx="2.5" cy="0.5" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="2.5" cy="2.5" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="2.5" cy="4.5" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="2.5" cy="6.499" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="2.5" cy="8.499" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="2.5" cy="10.498" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="2.5" cy="12.498" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="2.5" cy="14.498" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="4.5" cy="0.5" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="4.5" cy="2.5" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="4.5" cy="4.5" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="4.5" cy="6.499" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="4.5" cy="8.499" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="4.5" cy="10.498" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="4.5" cy="12.498" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="4.5" cy="14.498" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="6.499" cy="0.5" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="6.499" cy="2.5" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="6.499" cy="4.5" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="6.499" cy="6.499" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="6.499" cy="8.499" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="6.499" cy="10.498" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="6.499" cy="12.498" r=".6" fill="var(--node-handle-color, #FFF" />
+      <circle cx="6.499" cy="14.498" r=".6" fill="var(--node-handle-color, #FFF" />
     </svg>
   )
 }

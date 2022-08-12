@@ -22,7 +22,7 @@ html {
     --node-svg-color: #706d68a0;
     --node-connetor-color: #eb6c0c;
     --node-tooltip-color: #c2a05d50;
-    --node-handle-color: #e3bc6f;
+    --node-handle-color: #FFF;
     --node-height: 200px;
     --node-width: 300px;
 

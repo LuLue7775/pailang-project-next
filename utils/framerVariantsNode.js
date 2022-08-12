@@ -9,8 +9,8 @@ export const textExpand = {
     }
   }),
   closed: {
-    width: '250px',
-    height: '180px',
+    width: '280px',
+    height: '200px',
     transition: {
       delay: 0.5,
       type: 'spring',
@@ -30,8 +30,8 @@ export const imageVideoExpand = {
     }
   }),
   closed: {
-    width: '250px',
-    height: '180px',
+    width: '280px',
+    height: '200px',
     transition: {
       delay: 0.5,
       type: 'spring',

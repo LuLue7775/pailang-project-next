@@ -16,6 +16,7 @@ const parseContent = (type, content, $isWindow, $isOpen) => {
         <Image
           alt="image"
           src={content}
+
           width="100%"
           height="100%"
           layout="responsive"
@@ -86,7 +87,7 @@ export default function NodeExpandAreaAndName({
 
 const StyledExpandContainer = styled(motion.div)`
   height: 180px;
-  width: 250px;
+  width: 280px;
   z-index: 1;
   cursor: pointer;
   ${({ $hasContent }) => !$hasContent && `pointer-events: none;`}
@@ -95,8 +96,8 @@ const StyledExpandContainer = styled(motion.div)`
 const StyledExpand = styled(motion.div)`
   width: 100%;
   overflow: hidden;
-  margin: 10px 10px 0 5px;
-  padding: 0 10px;
+  margin: 0 8px ;
+  padding: 0 0 0 10px ;
   // background-color: ${({ $hasContent }) =>
     $hasContent ? 'var( --node-bg-color, #000000a0)' : 'transparent'};
   overflow-y: ${({ $isOpen }) => ($isOpen ? 'scroll' : 'hidden')};
