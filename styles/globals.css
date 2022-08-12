@@ -89,6 +89,16 @@ div {
   line-height: 1rem;
 }
 
+hr {
+  border-top: .6px solid #000;
+  border-bottom: .6px solid transparent;
+
+}
+
+.font-ogg {
+  font-family: var(--title-font-en, serif);
+}
+
 @font-face {
   font-family: custom-sans-serif;
   src: local('Noto Sans TC');

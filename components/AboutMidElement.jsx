@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { containerMidMotion, BGMotion, containerTextMotion } from '../utils/framerVariants'
+import { containerMidMotion, BGMotion, containerTextMotion } from '../utils/framerVariantsAbout'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
@@ -31,7 +31,7 @@ export default function AboutMidElement({ content, content_zh, createMarkup }) {
         as={motion.div}
         variants={containerTextMotion}
       >
-        <StyledMidTitle> Pailang Museum of Settler Colonialism </StyledMidTitle>
+        <StyledMidTitle className='font-ogg'> Pailang Museum of Settler Colonialism </StyledMidTitle>
         <StyledMidZhTitle> 白浪的定居殖民博物館 </StyledMidZhTitle>
 
         <StyledMidEn dangerouslySetInnerHTML={content && createMarkup(content)} />
@@ -54,6 +54,7 @@ const StyledMidColContainer = styled(motion.div)`
   position: absolute;
   height: 100%;
   width: 30%;
+  padding: 0 10px 100px 10px;
 
   display: flex;
   flex-direction: column;

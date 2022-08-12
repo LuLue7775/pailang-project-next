@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { containerRightMotion, BGMotion, containerTextMotion } from '../utils/framerVariants'
+import { containerRightMotion, BGMotion, containerTextMotion } from '../utils/framerVariantsAbout'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { LineSVGFull } from './Svgs'
@@ -29,16 +29,15 @@ export default function AboutRightElement({ credits, createMarkup }) {
       <MotionBG variants={BGMotion} scrollHeight={scrollHeight} />
 
       {credits?.map((elem, i) => (
-        <StyledElementContainer
+        <motion.div
           className="element-container"
           key={i}
-          as={motion.div}
           variants={containerTextMotion}
         >
           <LineSVGFull />
-          <StyledTitle> {elem?.title} </StyledTitle>
+          <StyledTitle className='font-ogg'> {elem?.title} </StyledTitle>
           <StyledElement dangerouslySetInnerHTML={elem?.content && createMarkup(elem?.content)} />
-        </StyledElementContainer>
+        </motion.div>
       )) || ''}
     </StyledRightColContainer>
   )
@@ -57,13 +56,12 @@ const StyledRightColContainer = styled.div`
   height: 100%;
   width: 30%;
   overflow-y: scroll;
-  padding-bottom: 100px;
+  padding: 0 10px 100px 10px;
+  
   ${({ $isHovered }) => $isHovered && "background-image: url('/about.jpg')"};
   background-size: cover;
   background-repeat: no-repeat;
 `
-
-const StyledElementContainer = styled(motion.div)``
 
 const StyledTitle = styled.div`
   font-size: 1.2rem;
@@ -72,4 +70,5 @@ const StyledTitle = styled.div`
 `
 const StyledElement = styled.div`
   padding: 20px 10px;
+  background-color: transparent;
 `

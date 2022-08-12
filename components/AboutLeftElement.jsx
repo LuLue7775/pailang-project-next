@@ -1,18 +1,12 @@
 import { useEffect, useState } from 'react'
 import { LineSVGFull } from './Svgs'
-import { containerLeftMotion, BGMotion, containerTextMotion } from '../utils/framerVariants'
+import { containerLeftMotion, BGMotion, containerTextMotion } from '../utils/framerVariantsAbout'
 import Image from 'next/image'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 export default function AboutLeftElement({ roles, createMarkup }) {
   const [isHovered, setHovered] = useState(false)
-
-  // calculate scroll height
-  const [scrollHeight, setScrollHeight] = useState()
-  useEffect(() => {
-    setScrollHeight(document.getElementById('mid').scrollHeight)
-  }, [])
 
   return (
     <StyledLeftColContainer
@@ -27,12 +21,14 @@ export default function AboutLeftElement({ roles, createMarkup }) {
       onMouseLeave={() => setHovered(false)}
       $isHovered={isHovered}
     >
-      <MotionBG variants={BGMotion} scrollHeight={scrollHeight} />
+      <MotionBG variants={BGMotion}  />
+      
       {roles?.map((elem, i) => (
         <motion.div className="persona-container" key={i} variants={containerTextMotion}>
           <LineSVGFull />
+
           <StyledLeftTitle className="persona-title">
-            <StyledEnTitle> {elem?.name} </StyledEnTitle>
+            <StyledEnTitle className='font-ogg'> {elem?.name} </StyledEnTitle>
             <StyledZhTitle> {elem?.name_zh} </StyledZhTitle>
           </StyledLeftTitle>
 
@@ -68,7 +64,6 @@ const ImageContainer = styled.div`
 `
 const MotionBG = styled(motion.div)`
   position: absolute;
-  // height: ${({ scrollHeight }) => scrollHeight && `${scrollHeight}px`};
   height: auto;
   z-index: -1;
   width: 100%;
@@ -79,7 +74,7 @@ const StyledLeftColContainer = styled(motion.div)`
   height: 100%;
   width: 30%;
   overflow-y: scroll;
-  padding-bottom: 100px;
+  padding: 0 10px 100px 10px;
 
   ${({ $isHovered }) => $isHovered && "background-image: url('/about.jpg')"};
   background-size: cover;
