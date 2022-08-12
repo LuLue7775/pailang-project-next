@@ -84,28 +84,28 @@ export default function NodeBoxAndSVG({
         whileTap={{ cursor: 'grabbing', zIndex: 10 }}
         drag
         dragMomentum={false}
-        hasContent={elementData?._value ? true : false}
+        $hasContent={elementData?._value ? true : false}
       >
         <StyledDot />
-        <StyledHandle hasContent={elementData?._value ? true : false}>
+        <StyledHandle $hasContent={elementData?._value ? true : false}>
           <DragHandleSVG />
         </StyledHandle>
 
         <NodeExpandAreaAndName
           id={elementData?.id}
-          isOpen={isOpen}
+          $isOpen={isOpen}
           toggleOpen={() => toggleOpen(allElementsData[node_i]?.id, isOpen, setOpen)}
           content={elementData?._value}
           contentZh={elementData?.text_zh}
           type={elementData?.type}
           source={elementData?.source}
-          hasContent={elementData?._value ? true : false}
+          $hasContent={elementData?._value ? true : false}
         />
 
         <NodeName
-          hasContent={elementData?._value ? true : false}
-          hasSource={elementData?.source ? true : false}
-          isOpen={isOpen}
+          $hasContent={elementData?._value ? true : false}
+          $hasSource={elementData?.source ? true : false}
+          $isOpen={isOpen}
           source={elementData?.source}
           name={elementData?.name}
           name_zh={elementData?.name_zh}
@@ -127,7 +127,7 @@ export default function NodeBoxAndSVG({
 
 const StyledBoxContainer = styled(motion.div)`
   position: absolute;
-  height: ${({ hasContent }) => (hasContent ? 'var(--node-height, 200px)' : '0')};
+  height: ${({ $hasContent }) => ($hasContent ? 'var(--node-height, 200px)' : '0')};
   width: var(--node-width, 300px);
   display: flex;
   justify-content: center;
@@ -135,7 +135,7 @@ const StyledBoxContainer = styled(motion.div)`
   color: #fff;
   background-color: var(--node-bg-color, #000000a0);
 
-  ${({ hasContent }) => (hasContent ? 'border: 1px solid var(--node-border-color, #f09c5d);' : '')}
+  ${({ $hasContent }) => ($hasContent ? 'border: 1px solid var(--node-border-color, #f09c5d);' : '')}
   border-radius: ${({ borderstyle }) => (borderstyle === 'oval' ? '50px' : '5px')};
   cursor: grab;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
@@ -153,9 +153,9 @@ const StyledDot = styled(motion.div)`
 const StyledHandle = styled(motion.div)`
   position: absolute;
   left: 5px;
-  top: ${({ hasContent }) => hasContent && '0'};
+  top: ${({ $hasContent }) => $hasContent && '0'};
   bottom: 0;
-  opacity: ${({ hasContent }) => !hasContent && 0};
+  opacity: ${({ $hasContent }) => !$hasContent && 0};
   margin: auto 0;
   height: 50px;
   width: 15px;

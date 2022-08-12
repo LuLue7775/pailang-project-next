@@ -4,9 +4,9 @@ import useSound from 'use-sound' // made by ian
 import React, { useState } from 'react' // made by ian
 
 export default function NodeName({
-  hasContent,
-  hasSource,
-  isOpen,
+  $hasContent,
+  $hasSource,
+  $isOpen,
   name,
   name_zh,
   source,
@@ -29,7 +29,7 @@ export default function NodeName({
   const [play] = useSound('/sounds/' + index2 + '_0' + index + '.wav')
 
   return (
-    <StyledName hasContent={hasContent} hasSource={hasSource} isOpen={isOpen}>
+    <StyledName $hasContent={$hasContent} $hasSource={$hasSource} $isOpen={$isOpen}>
       <div
         onClick={() => {
           source && window.open(source)
@@ -53,14 +53,14 @@ export default function NodeName({
 
 const StyledName = styled(motion.div)`
   position: absolute;
-  top: ${({ hasContent }) =>
-    hasContent ? 'var(--node-height, 200px) ' : 'calc(var(--node-height, 200px)/2 )'};
-  left: ${({ hasContent }) => (hasContent ? '10px' : '-10px')};
+  top: ${({ $hasContent }) =>
+    $hasContent ? 'var(--node-height, 200px) ' : 'calc(var(--node-height, 200px)/2 )'};
+  left: ${({ $hasContent }) => ($hasContent ? '10px' : '-10px')};
   padding-top: 5px;
-  padding-left: ${({ hasContent }) => (hasContent ? '0px' : '30px')};
+  padding-left: ${({ $hasContent }) => ($hasContent ? '0px' : '30px')};
   color: #000;
-  z-index: ${({ isOpen }) => (isOpen ? -1 : 2)};
-  cursor: ${({ hasSource }) => (hasSource ? 'pointer' : 'none')};
+  z-index: ${({ $isOpen }) => ($isOpen ? -1 : 2)};
+  cursor: ${({ $hasSource }) => ($hasSource ? 'pointer' : 'none')};
 `
 
 const StyledTooltip = styled.div`
