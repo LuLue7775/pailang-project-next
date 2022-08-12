@@ -31,7 +31,7 @@ export default function ArticleHeaderSubtitles({
             {curator && (
               <>
                 <div> 策展 Curated by </div>
-                <div>{producer} </div>
+                <div>{curator} </div>
               </>
             )}
           </div>
