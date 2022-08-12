@@ -44,7 +44,6 @@ export default function Agenda({ data }) {
       <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
 
       <StyledAgendaWrap>
-        <StyledAgendaTableWrap />
         <StyledAgendaFilter
           as={motion.div}
           initial={{ opacity: 0 }}
@@ -97,30 +96,26 @@ export async function getStaticProps() {
 const StyledAgenda = styled.div`
   display: grid;
   grid-template-columns: 33% 66%;
-  padding-top: 20px;
   width: 100%;
-  height: calc(100vh - 60px);
+  height: 100vh;
   color: #000;
 
-  font-family: 'Noto Serif TC', serif;
-  font-weight: 200;
-  letter-spacing: 1px;
+  overflow: hidden;
 `
 
 const StyledAgendaWrap = styled.div`
+  height: 100vh;
   display: grid;
-  grid-template-rows: 60vh 25vh;
+  grid-template-rows: 30vh 10vh;
 
   justify-items: end;
   align-content: end;
   padding-bottom: 1rem;
   font-size: 0.8rem;
-`
-const StyledAgendaTableWrap = styled.div`
-  width: 90%;
-  color: #000;
   overflow: hidden;
+
 `
+
 
 const StyledAgendaFilter = styled(motion.div)`
   display: grid;

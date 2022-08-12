@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect } from 'react'
-import { motion, transform } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { useRouter } from 'next/router'
 import { getRelativeCoordinates } from '../utils/functions'
 import styled from 'styled-components'
 
@@ -53,13 +54,9 @@ const circleAnimate = {
   })
 }
 
-//   transition={{
-//     duration: 1.8,
-//     delay: 1,
-//     ease: [0.8, 0.01, -0.05, 0.95],
-//   }}
-
 export default function Cursor({ hoverEvent, cursorAreaRef }) {
+  const router = useRouter()
+
   const [mousePosition, setMousePosition] = useState({})
 
   useEffect(() => {
@@ -94,7 +91,7 @@ export default function Cursor({ hoverEvent, cursorAreaRef }) {
   }, [hoverEvent])
 
   return (
-    <StyledContainer className="cursor-container">
+    <StyledContainer className="cursor-container" $route={router.pathname}>
       <motion.div
         style={css.fly}
         animate={{
@@ -127,7 +124,7 @@ const StyledContainer = styled.div`
   position: absolute;
   pointer-events: none;
 
-  height: 200vh;
+  height: ${({ $route }) => $route === '/agenda' ? "100vh" : "200vh"};
   width: 100%;
   overflow: hidden;
 `

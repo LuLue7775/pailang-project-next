@@ -73,14 +73,15 @@ const StyledAbout = styled.div`
 
 const StyledAboutLeftCol = styled(motion.div)`
   height: 100%;
+
 `
 
 const StyledAboutMidCol = styled(motion.div)`
   height: 100%;
+
 `
 const StyledAboutRightCol = styled(motion.div)`
   height: 100%;
-  overflow-y: scroll;
   overflow-x: hidden;
 `
 

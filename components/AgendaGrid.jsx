@@ -8,7 +8,6 @@ export default function AgendaGrid({
   setHoverEvent,
   setActiveExpand,
   activeExpand,
-  dataAmount
 }) {
   const handleExpand = (expandIndex) => {
     setActiveExpand(expandIndex)
@@ -45,16 +44,19 @@ export default function AgendaGrid({
 }
 
 const StyledAgendaGrid = styled.div`
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: 350px;
   position: relative;
   gap: 1.4rem;
+  padding-top: 20px;
   margin: 20px;
   place-items: center;
   align-items: start;
 
   overflow-y: scroll;
+  
 `
 
 const StyledContentWrap = styled(motion.div)`
