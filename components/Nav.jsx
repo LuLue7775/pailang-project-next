@@ -11,7 +11,6 @@ export default function Nav() {
   const [isRouteChange, setRouteChange] = useState(false)
   const [isSoundPlay, setSoundPlay] = useState(false)
 
-  const isArticle = router.pathname.startsWith('/article-scenography')
   const parseURL = () => {
     if (router.pathname.startsWith('/article-journal')) return '誌 PAILANG’S journal'
     else if (router.pathname.startsWith('/article-scenography')) return '圖表 PAILANG’S diagram'
@@ -39,13 +38,11 @@ export default function Nav() {
     <LayoutGroup type="crossfade">
       <StyledNavContainer className="nav-container ">
         <StyledNavLeft>
-          {isArticle && (
             <div onClick={() => router.reload(window.location.pathname)}>
               <a>
                 <StyledNavItem>{parseURL()}</StyledNavItem>
               </a>
             </div>
-          )}
         </StyledNavLeft>
 
         <StyledNavRight>
