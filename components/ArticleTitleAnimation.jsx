@@ -47,10 +47,4 @@ const StyledAnimTitle = styled(motion.span)`
   position: relative;
   display: inline-block;
 
-  // @media (max-width: $layout-breakpoint-xsmall) {
-  //   font-size: 13rem;
-  // }
-
-  // font-family: ${({ language }) =>
-    language === 'en' ? 'var( --title-font-en, serif);' : '"Noto Serif TC", serif);'}
 `
