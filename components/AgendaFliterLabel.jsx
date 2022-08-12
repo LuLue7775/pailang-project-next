@@ -10,7 +10,6 @@ export default function AgendaFliterLabel({ item, filter, setFilter }) {
 
     if (checked) setFilter([].concat(filter, value))
     else setFilter(filter.filter((currentFilter) => currentFilter !== value))
-
   }
 
   return (
@@ -37,7 +36,7 @@ const StyledLabel = styled(motion.div)`
   justify-content: center;
   font-size: 0.6rem;
   border-radius: 6px;
-  color: #FFF;
+  color: #fff;
 
   background-color: ${({ checked }) => (checked ? 'var(--main-color, #e0954f)' : '#0a0323a0')};
   &:hover {

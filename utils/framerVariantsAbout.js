@@ -28,7 +28,7 @@ export const containerLeftMotion = {
       duration: 1.2
     }
   },
-  exit:  { x: '0', y:'0px', zIndex: 0, scale: 0.9 }
+  exit: { x: '0', y: '0px', zIndex: 0, scale: 0.9 }
 }
 
 export const containerMidMotion = {
@@ -47,7 +47,7 @@ export const containerMidMotion = {
       duration: 1.2
     }
   },
-  exit:  { x: '0', y:'0px', zIndex: 0, scale: 0.9 }
+  exit: { x: '0', y: '0px', zIndex: 0, scale: 0.9 }
 }
 export const containerRightMotion = {
   rest: { x: '0', zIndex: 0 },
@@ -66,7 +66,7 @@ export const containerRightMotion = {
       duration: 1.2
     }
   },
-  exit:  { x: '0', y:'0px', zIndex: 0, scale: 0.9 }
+  exit: { x: '0', y: '0px', zIndex: 0, scale: 0.9 }
 }
 
 export const BGMotion = {

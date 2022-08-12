@@ -21,14 +21,14 @@ export default function AboutLeftElement({ roles, createMarkup }) {
       onMouseLeave={() => setHovered(false)}
       $isHovered={isHovered}
     >
-      <MotionBG variants={BGMotion}  />
-      
+      <MotionBG variants={BGMotion} />
+
       {roles?.map((elem, i) => (
         <motion.div className="persona-container" key={i} variants={containerTextMotion}>
           <LineSVGFull />
 
           <StyledLeftTitle className="persona-title">
-            <StyledEnTitle className='font-ogg'> {elem?.name} </StyledEnTitle>
+            <StyledEnTitle className="font-ogg"> {elem?.name} </StyledEnTitle>
             <StyledZhTitle> {elem?.name_zh} </StyledZhTitle>
           </StyledLeftTitle>
 

@@ -8,14 +8,13 @@ export default function JournalLeftCol({ content, content_zh, comment, comment_z
         className="en"
         dangerouslySetInnerHTML={content && createMarkup(content)}
       />
-        <StyledSeperate />
+      <StyledSeperate />
 
-        <StyledNote>
-          <StyledContentSmItems dangerouslySetInnerHTML={comment && createMarkup(comment)} />
-        </StyledNote>
+      <StyledNote>
+        <StyledContentSmItems dangerouslySetInnerHTML={comment && createMarkup(comment)} />
+      </StyledNote>
 
       <StyledSeperateFull />
-
 
       <StyledNote>
         <StyledContentItems dangerouslySetInnerHTML={content_zh && createMarkup(content_zh)} />

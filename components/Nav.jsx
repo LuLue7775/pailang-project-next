@@ -38,11 +38,11 @@ export default function Nav() {
     <LayoutGroup type="crossfade">
       <StyledNavContainer className="nav-container ">
         <StyledNavLeft>
-            <div onClick={() => router.reload(window.location.pathname)}>
-              <a>
-                <StyledNavItem>{parseURL()}</StyledNavItem>
-              </a>
-            </div>
+          <div onClick={() => router.reload(window.location.pathname)}>
+            <a>
+              <StyledNavItem>{parseURL()}</StyledNavItem>
+            </a>
+          </div>
         </StyledNavLeft>
 
         <StyledNavRight>

@@ -20,7 +20,7 @@ export default function NodeName({
     setIndex(newIndex)
   }
 
-  const [ play ] = useSound('/sounds/' + index + '.mp3')
+  const [play] = useSound('/sounds/' + index + '.mp3')
   useEffect(() => {
     play()
   }, [index])
@@ -31,7 +31,7 @@ export default function NodeName({
         onClick={() => {
           changeSound()
           source && window.open(source)
-        }} 
+        }}
         onMouseOver={() => {
           setTooltip(true)
         }}

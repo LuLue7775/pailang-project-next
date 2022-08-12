@@ -1,5 +1,3 @@
-
-
 export const banner = {
   initial: { y: 600 },
   animate: {
@@ -40,7 +38,7 @@ export const subtitles = {
     opacity: 1,
     transition: {
       duration: 2,
-      delay: .7
+      delay: 0.7
     }
   }
 }

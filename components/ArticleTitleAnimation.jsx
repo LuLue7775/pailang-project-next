@@ -16,16 +16,15 @@ export default function AnimatedTitles({ title, language, textLengthRef, windowW
       $windowWidth={windowWidth}
       language={language}
     >
-        <StyledAnimTitle
-          as={motion.span}
-          className="row-letter"
-          $isTitleExceed={textLengthRef.current}
-          $windowWidth={windowWidth}
-        >
-          {title}
-        </StyledAnimTitle>
+      <StyledAnimTitle
+        as={motion.span}
+        className="row-letter"
+        $isTitleExceed={textLengthRef.current}
+        $windowWidth={windowWidth}
+      >
+        {title}
+      </StyledAnimTitle>
 
-      
       {/* staggering version
       {[...title].map((letter, i) => (
         <StyledAnimTitle
@@ -57,7 +56,5 @@ const StyledAnimTitle = styled(motion.span)`
   margin-bottom: 6px;
   position: relative;
   display: inline-block;
-  line-eight: '7rem'
-
-
+  line-eight: '7rem';
 `

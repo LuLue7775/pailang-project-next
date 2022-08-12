@@ -29,13 +29,9 @@ export default function AboutRightElement({ credits, createMarkup }) {
       <MotionBG variants={BGMotion} scrollHeight={scrollHeight} />
 
       {credits?.map((elem, i) => (
-        <motion.div
-          className="element-container"
-          key={i}
-          variants={containerTextMotion}
-        >
+        <motion.div className="element-container" key={i} variants={containerTextMotion}>
           <LineSVGFull />
-          <StyledTitle className='font-ogg'> {elem?.title} </StyledTitle>
+          <StyledTitle className="font-ogg"> {elem?.title} </StyledTitle>
           <StyledElement dangerouslySetInnerHTML={elem?.content && createMarkup(elem?.content)} />
         </motion.div>
       )) || ''}
@@ -57,7 +53,7 @@ const StyledRightColContainer = styled.div`
   width: 30%;
   overflow-y: scroll;
   padding: 0 10px 100px 10px;
-  
+
   ${({ $isHovered }) => $isHovered && "background-image: url('/about.jpg')"};
   background-size: cover;
   background-repeat: no-repeat;

@@ -31,7 +31,10 @@ export default function AboutMidElement({ content, content_zh, createMarkup }) {
         as={motion.div}
         variants={containerTextMotion}
       >
-        <StyledMidTitle className='font-ogg'> Pailang Museum of Settler Colonialism </StyledMidTitle>
+        <StyledMidTitle className="font-ogg">
+          {' '}
+          Pailang Museum of Settler Colonialism{' '}
+        </StyledMidTitle>
         <StyledMidZhTitle> 白浪的定居殖民博物館 </StyledMidZhTitle>
 
         <StyledMidEn dangerouslySetInnerHTML={content && createMarkup(content)} />

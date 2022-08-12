@@ -32,7 +32,7 @@ export default function NodesContainer({ data }) {
             />
           ))}
       </StyledNodeBoxContainer>
-      
+
       <StyledSeperate />
 
       <StyledFooter
@@ -53,14 +53,12 @@ const StyledNodeContainer = styled(motion.div)`
 const StyledNodeBoxContainer = styled.div`
   position: relative;
   height: ${({ elementAmount }) => elementAmount * 200}px;
-
-
 `
 
 const StyledSeperate = styled.div`
   margin: 150px 0 0px 0;
   border-bottom: 1px var(--main-color, #e0954f) solid;
-  `
+`
 
 const StyledFooter = styled.div`
   position: relative;
@@ -68,9 +66,7 @@ const StyledFooter = styled.div`
   min-height: 120px;
   left: 0;
   right: 0;
-  margin: 100px auto ;
+  margin: 100px auto;
   text-align: justify;
   z-index: 5;
-
-  
 `

@@ -37,10 +37,7 @@ export default function JournalRightCol() {
         Object.keys(rightCol)?.map((topic, i) => (
           <Xwrapper key={i}>
             {rightCol[topic].map((elem, i) => (
-              <div
-                key={i}
-                className={`draggable-wrap ${elem.id}`}
-              >
+              <div key={i} className={`draggable-wrap ${elem.id}`}>
                 <DraggableBox
                   boxIndex={i}
                   id={elem.id}

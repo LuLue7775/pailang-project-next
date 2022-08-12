@@ -6,30 +6,28 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-
-const ImageWithLink = React.forwardRef( (props, ref) => {
-  const { cover } = props 
-  return (
-    cover ? (
-      <div ref={ref} >
-        <Image
-          alt=""
-          width="100%"
-          height="100%"
-          src={cover}
-          layout="responsive"
-          objectFit="cover"
-          crossOrigin="true"
-        />
-      </div>
-    ): ''
-
-  );
-});
+const ImageWithLink = React.forwardRef((props, ref) => {
+  const { cover } = props
+  return cover ? (
+    <div ref={ref}>
+      <Image
+        alt=""
+        width="100%"
+        height="100%"
+        src={cover}
+        layout="responsive"
+        objectFit="cover"
+        crossOrigin="true"
+      />
+    </div>
+  ) : (
+    ''
+  )
+})
 ImageWithLink.displayName = 'ImageWithLink'
 
 export default function AgendaElement({ item, activeExpand, expandIndex }) {
-  const { title, title_zh, cover, start_date, end_date, type, language, artist, id, status } = item 
+  const { title, title_zh, cover, start_date, end_date, type, language, artist, id, status } = item
   const [isExpand, setExpand] = useState(false)
 
   // one expand card at a time
@@ -38,7 +36,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
     else setExpand(false)
   }, [activeExpand])
 
-  const imageRef = useRef(null);
+  const imageRef = useRef(null)
 
   return (
     <>
@@ -59,7 +57,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
               }
             >
               <a>
-                <ImageWithLink ref={imageRef} cover={cover}/>
+                <ImageWithLink ref={imageRef} cover={cover} />
               </a>
             </Link>
           </>
@@ -83,7 +81,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
 
       <div>
         <StyledBadge className="zh">{type} </StyledBadge>
-        { status === 'draft' && <StyledBadgeHighlight> upcomming </StyledBadgeHighlight>}
+        {status === 'draft' && <StyledBadgeHighlight> upcomming </StyledBadgeHighlight>}
 
         <StyledMainTitle> {title} </StyledMainTitle>
         <StyledZhTitle
@@ -134,8 +132,8 @@ const StyledMainTitle = styled.div`
 `
 const StyledZhTitle = styled.div`
   font-weight: 600;
-  padding-top: .4rem;
-  padding-bottom: .4rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
 `
 const StyledTitle = styled.div`
   font-size: 0.8rem;

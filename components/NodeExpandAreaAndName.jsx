@@ -16,7 +16,6 @@ const parseContent = (type, content, $isWindow, $isOpen) => {
         <Image
           alt="image"
           src={content}
-
           width="100%"
           height="100%"
           layout="responsive"
@@ -96,8 +95,8 @@ const StyledExpandContainer = styled(motion.div)`
 const StyledExpand = styled(motion.div)`
   width: 100%;
   overflow: hidden;
-  margin: 0 8px ;
-  padding: 0 0 0 10px ;
+  margin: 0 8px;
+  padding: 0 0 0 10px;
   // background-color: ${({ $hasContent }) =>
     $hasContent ? 'var( --node-bg-color, #000000a0)' : 'transparent'};
   overflow-y: ${({ $isOpen }) => ($isOpen ? 'scroll' : 'hidden')};

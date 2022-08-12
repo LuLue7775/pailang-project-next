@@ -1,7 +1,8 @@
 export const textExpand = {
   open: () => ({
-    width: '300px',
+    width: '320px',
     height: '300px',
+    padding: '10px',
     backgroundColor: 'var(--node-text-expandBg-color, #000000E0)',
     transition: {
       type: 'spring',
@@ -9,8 +10,8 @@ export const textExpand = {
     }
   }),
   closed: {
-    width: '280px',
-    height: '200px',
+    width: '250px',
+    height: '180px',
     transition: {
       delay: 0.5,
       type: 'spring',
