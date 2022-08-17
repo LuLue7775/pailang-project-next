@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { createMarkup } from '../utils/functions'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import useSound from 'use-sound'
@@ -39,8 +40,8 @@ export default function NodeName({
           setTooltip(false)
         }}
       >
-        <div> {name} </div>
-        <div> {name_zh} </div>
+        <div dangerouslySetInnerHTML={name && createMarkup(name)}/>
+        <div dangerouslySetInnerHTML={name_zh && createMarkup(name_zh)}/>
         {tooltip && source && <StyledTooltip> view source </StyledTooltip>}
       </div>
     </StyledName>

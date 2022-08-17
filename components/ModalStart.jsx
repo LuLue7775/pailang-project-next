@@ -1,7 +1,8 @@
 import { useRef, useContext } from 'react'
+import { EllipseBtnSVG } from './Svgs'
+import { createMarkup } from '../utils/functions'
 import { CursorContext } from '../context/cursorContext'
 import styled from 'styled-components'
-import { EllipseBtnSVG } from './Svgs'
 
 export default function ModalStart({ setModalShow, modalData }) {
   const { setHoverEvent } = useContext(CursorContext)
@@ -15,8 +16,12 @@ export default function ModalStart({ setModalShow, modalData }) {
         <h3> {title} </h3>
       </StyledModalTitle>
       <StyledModalContent>
-        <div className="zh"> {content_zh} </div>
-        <div className="en"> {content} </div>
+        <div className="zh"
+          dangerouslySetInnerHTML={content_zh && createMarkup(content_zh)}
+        /> 
+        <div className="en"         
+          dangerouslySetInnerHTML={content && createMarkup(content)}
+        /> 
       </StyledModalContent>
       <div
         onClick={() => setModalShow(false)}

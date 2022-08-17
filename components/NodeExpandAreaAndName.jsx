@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, useContext } from 'react'
 import Image from 'next/image'
 import { CursorContext } from '../context/cursorContext'
-
+import { createMarkup } from '../utils/functions'
 import styled from 'styled-components'
 import { textExpand, imageVideoExpand } from '../utils/framerVariantsNode'
 import { motion } from 'framer-motion'
@@ -9,7 +9,9 @@ import ReactPlayer from 'react-player/lazy'
 
 const parseContent = (type, content, $isWindow, $isOpen) => {
   if (type === 'text') {
-    return content || ''
+
+    return <div dangerouslySetInnerHTML={content && createMarkup(content)} /> || ''
+
   } else if (type === 'image') {
     return (
       content && (

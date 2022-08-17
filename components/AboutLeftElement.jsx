@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { LineSVGFull } from './Svgs'
 import { containerLeftMotion, BGMotion, containerTextMotion } from '../utils/framerVariantsAbout'
 import Image from 'next/image'

@@ -1,4 +1,5 @@
-import { banner, letterAni } from '../utils/framerVariantsHeader'
+import { banner } from '../utils/framerVariantsHeader'
+import { createMarkup } from '../utils/functions'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
@@ -21,9 +22,9 @@ export default function AnimatedTitles({ title, language, textLengthRef, windowW
         className="row-letter"
         $isTitleExceed={textLengthRef.current}
         $windowWidth={windowWidth}
-      >
-        {title}
-      </StyledAnimTitle>
+        dangerouslySetInnerHTML={title && createMarkup(title)}
+
+      />
 
       {/* staggering version
       {[...title].map((letter, i) => (
