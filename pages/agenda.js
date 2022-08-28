@@ -49,7 +49,6 @@ export default function Agenda({ data }) {
   // Cursor efffect
   const cursorAreaRef = useRef()
   const { hoverEvent, setHoverEvent } = useContext(CursorContext)
-console.log(data)
   /**
    * Sorting
    */
