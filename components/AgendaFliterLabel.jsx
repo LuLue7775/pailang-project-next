@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { useEffect } from 'react'
 
 export default function AgendaFliterLabel({ item, filter, setFilter }) {
   let isChecked = filter.indexOf(item.value) > -1
@@ -21,7 +20,7 @@ export default function AgendaFliterLabel({ item, filter, setFilter }) {
         checked={isChecked}
         onChange={handleFilterChange}
       />
-      <div> {item?.label} </div>
+      <div> { item?.label === 'Video' ? 'Cinema' : item.label } </div>
       <div> {item?.labelZh} </div>
     </StyledLabel>
   )

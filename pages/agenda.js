@@ -17,7 +17,7 @@ const filterData = {
   },
   draft: { id: 'upcomingCheck', value: 'draft', label: 'Upcoming', labelZh: '未來', type: 'time' },
   archived: { id: 'pastCheck', value: 'archived', label: 'Past', labelZh: '往期', type: 'time' },
-  video: { id: 'videoCheck', value: 'video', label: 'Video', labelZh: '電影', ype: 'form' },
+  video: { id: 'videoCheck', value: 'video', label: 'Video', labelZh: '電影', type: 'form' },
   journal: {
     id: 'journalCheck',
     value: 'journal',
@@ -49,7 +49,7 @@ export default function Agenda({ data }) {
   // Cursor efffect
   const cursorAreaRef = useRef()
   const { hoverEvent, setHoverEvent } = useContext(CursorContext)
-
+console.log(data)
   /**
    * Sorting
    */

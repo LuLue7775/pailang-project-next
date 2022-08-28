@@ -12,7 +12,7 @@ export default function ModalStart({ setModalShow, modalData }) {
   return (
     <StyledModal className="modal" ref={modalRef}>
       <StyledModalTitle className="modal-title">
-        <h4> {title_zh} </h4>
+        <StyledChTitle className='font-zh-sans'> {title_zh} </StyledChTitle>
         <h3> {title} </h3>
       </StyledModalTitle>
       <StyledModalContent>
@@ -36,7 +36,7 @@ export default function ModalStart({ setModalShow, modalData }) {
 
 const StyledModal = styled.div`
   position: absolute;
-  height: 500px;
+  height: 520px;
   width: min(700px, 80vw);
   left: 0;
   right: 0;
@@ -59,6 +59,12 @@ const StyledModal = styled.div`
 const StyledModalTitle = styled.div`
   text-align: center;
   padding-bottom: 15px;
+`
+const StyledChTitle = styled.div`
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  padding: 15px;
+
 `
 const StyledModalContent = styled.div`
   max-width: 80%;

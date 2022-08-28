@@ -16,18 +16,16 @@ export default function ArticleHeaderSubtitles({
       <StyledSubtitles as={motion.div} variants={subtitles} initial="initial" animate="animate">
         <div> {artist} </div>
         <div>
-          <div>
-            {' '}
+          <StyledSubtitlesMid>
             {producer && (
               <>
                 <div> 製作單位 Produced by </div>
                 <div>{producer} </div>
               </>
             )}
-          </div>
+          </StyledSubtitlesMid>
 
           <div>
-            {' '}
             {curator && (
               <>
                 <div> 策展 Curated by </div>
@@ -47,6 +45,10 @@ export default function ArticleHeaderSubtitles({
   )
 }
 
+const StyledSubtitlesMid = styled.div`
+  padding-bottom: .8rem;
+
+`
 const StyledSubtitlesWrap = styled.div`
   width: 100%;
   height: 20vh;

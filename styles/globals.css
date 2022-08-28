@@ -63,7 +63,7 @@ h3 {
 }
 
 h4 {
-  font-family: var(--subtitle-font-zh, serif);
+  font-family: var(--subtitle-sans-zh, serif);
   font-size: 1.2rem;
   padding: 0.8rem;
   padding-bottom: 1.2rem;
@@ -92,8 +92,30 @@ hr {
   border-bottom: 0.6px solid transparent;
 }
 
+
+
+.font-ogg > p {
+  font-family: var(--title-font-en, serif);
+  margin-top: 10px;
+  line-height: 1.3rem;
+  font-size: 1.1rem;
+}
+.header1 > p {
+  font-size: 6rem;
+}
+
+
+.font-zh-sans > p {
+  font-family: custom-sans-serif, sans-serif;
+  line-height: 1.3rem;
+  font-size: .9rem;
+}
+
 .font-ogg {
   font-family: var(--title-font-en, serif);
+}
+.font-zh-sans {
+  font-family: custom-sans-serif, sans-serif;
 }
 
 @font-face {

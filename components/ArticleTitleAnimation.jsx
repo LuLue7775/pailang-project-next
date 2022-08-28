@@ -19,11 +19,10 @@ export default function AnimatedTitles({ title, language, textLengthRef, windowW
     >
       <StyledAnimTitle
         as={motion.span}
-        className="row-letter"
+        className="row-letter font-ogg header1"
         $isTitleExceed={textLengthRef.current}
         $windowWidth={windowWidth}
         dangerouslySetInnerHTML={title && createMarkup(title)}
-
       />
 
       {/* staggering version

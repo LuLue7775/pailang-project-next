@@ -31,11 +31,12 @@ export default function AboutMidElement({ content, content_zh, createMarkup }) {
         as={motion.div}
         variants={containerTextMotion}
       >
+
+        <StyledMidZhTitle> 白浪的定居殖民博物館 </StyledMidZhTitle>
         <StyledMidTitle className="font-ogg">
           {' '}
           Pailang Museum of Settler Colonialism{' '}
         </StyledMidTitle>
-        <StyledMidZhTitle> 白浪的定居殖民博物館 </StyledMidZhTitle>
 
         <StyledMidEn dangerouslySetInnerHTML={content && createMarkup(content)} />
 
@@ -76,17 +77,17 @@ const StyledMidContent = styled.div`
 
 const StyledMidTitle = styled.div`
   text-align: center;
-  padding: 100px 10px 0 10px;
+  padding: 0px 10px 0 10px;
   font-size: 1.6rem;
   font-weight: 600;
   line-height: 1.2em;
 `
 const StyledMidZhTitle = styled.div`
   text-align: center;
-  padding: 0 10px 10px 10px;
-  font-size: 1.1rem;
+  padding: 100px 10px 10px 10px;
+  font-size: 1.3rem;
   font-family: var(--main-font-zh, sans-serif);
-  line-height: 1.2em;
+  line-height: 1.5rem;
 `
 
 const StyledMidEn = styled.div`

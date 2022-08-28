@@ -12,9 +12,9 @@ export default function Nav() {
   const [isSoundPlay, setSoundPlay] = useState(false)
 
   const parseURL = () => {
-    if (router.pathname.startsWith('/article-journal')) return '誌 PAILANG’S journal'
-    else if (router.pathname.startsWith('/article-scenography')) return '圖表 PAILANG’S diagram'
-    else if (router.pathname.startsWith('/article-video')) return '放映 PAILANG’S video'
+    if (router.pathname.startsWith('/article-journal')) return '白浪雜誌 Journal of Settler Selves'
+    else if (router.pathname.startsWith('/article-scenography')) return '白浪圖表 Scenography of Settler Selves'
+    else if (router.pathname.startsWith('/article-video')) return '白浪電影 Cinema of Settler Selves'
   }
 
   useEffect(() => {

@@ -28,8 +28,8 @@ export default function AboutLeftElement({ roles, createMarkup }) {
           <LineSVGFull />
 
           <StyledLeftTitle className="persona-title">
+            <StyledZhTitle > {elem?.name_zh} </StyledZhTitle>
             <StyledEnTitle className="font-ogg"> {elem?.name} </StyledEnTitle>
-            <StyledZhTitle> {elem?.name_zh} </StyledZhTitle>
           </StyledLeftTitle>
 
           <ImageContainer>
@@ -83,14 +83,17 @@ const StyledLeftColContainer = styled(motion.div)`
 
 const StyledLeftTitle = styled.div`
   padding: 10px;
-  font-weight: 600;
 `
-
+  
 const StyledEnTitle = styled.div`
   font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.5rem;
 `
 const StyledZhTitle = styled.div`
   font-size: 1.2rem;
+  padding-bottom: 1rem;
+  line-height: 1.5rem;  
 `
 
 const StyledPersonaEn = styled.div`

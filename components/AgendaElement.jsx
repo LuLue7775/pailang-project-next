@@ -29,7 +29,6 @@ ImageWithLink.displayName = 'ImageWithLink'
 export default function AgendaElement({ item, activeExpand, expandIndex }) {
   const { title, title_zh, cover, start_date, end_date, type, language, artist, id, status } = item
   const [isExpand, setExpand] = useState(false)
-
   // one expand card at a time
   useEffect(() => {
     if (activeExpand === expandIndex) setExpand(true)
@@ -80,12 +79,12 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
       </StyledSlide>
 
       <div>
-        <StyledBadge className="zh">{type} </StyledBadge>
+        <StyledBadge > {type === 'video' ? 'cinema' : type } </StyledBadge>
         {status === 'draft' && <StyledBadgeHighlight> upcomming </StyledBadgeHighlight>}
 
-        <StyledMainTitle> {title} </StyledMainTitle>
+        <StyledMainTitle className='font-ogg' dangerouslySetInnerHTML={title && createMarkup(title)} />
         <StyledZhTitle
-          className="zh"
+          className="font-zh-sans"
           dangerouslySetInnerHTML={title_zh && createMarkup(title_zh)}
         />
         <StyledTitle> {artist} </StyledTitle>
@@ -127,8 +126,7 @@ const StyledBadgeHighlight = styled.span`
 const StyledMainTitle = styled.div`
   margin-top: 10px;
   line-height: 1.3rem;
-  font-size: 1.1rem;
-  font-family: var(--title-font-en);
+  font-size: 1.2rem;
 `
 const StyledZhTitle = styled.div`
   font-weight: 600;
