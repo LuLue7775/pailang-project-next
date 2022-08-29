@@ -83,10 +83,6 @@ p {
   letter-spacing: 1px;
 }
 
-div {
-  line-height: 1rem;
-}
-
 hr {
   border-top: 0.6px solid #000;
   border-bottom: 0.6px solid transparent;
@@ -102,6 +98,8 @@ hr {
 }
 .header1 > p {
   font-size: 6rem;
+  line-height: 5rem;
+
 }
 
 
