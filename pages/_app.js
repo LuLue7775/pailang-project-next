@@ -5,6 +5,7 @@ import { GlobalStyles } from '../styles/globalStyles'
 import '../styles/globals.css'
 import { useRouter } from 'next/router'
 import CursorProvider from '../context/cursorContext'
+import HomeArticleTypeProvider from '../context/homeArticleTypeContext'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
@@ -14,16 +15,18 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <CursorProvider>
-      <GlobalStyles />
-      <StyledApp className="app" id="app">
-        <StyledHeader className="header" route={router.pathname}>
-          <Nav modalShow={modalShow} />
-        </StyledHeader>
+      <HomeArticleTypeProvider>
+        <GlobalStyles />
+        <StyledApp className="app" id="app">
+          <StyledHeader className="header" route={router.pathname}>
+            <Nav modalShow={modalShow} />
+          </StyledHeader>
 
-        <StyledLayout route={router.pathname}>
-          <Component {...pageProps} modalShow={modalShow} setModalShow={setModalShow} />
-        </StyledLayout>
-      </StyledApp>
+          <StyledLayout route={router.pathname}>
+            <Component {...pageProps} modalShow={modalShow} setModalShow={setModalShow} />
+          </StyledLayout>
+        </StyledApp>
+      </HomeArticleTypeProvider>
     </CursorProvider>
   )
 }

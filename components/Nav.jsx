@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { HomeArticleTypeContext } from '../context/homeArticleTypeContext'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { LayoutGroup } from 'framer-motion'
@@ -11,10 +12,11 @@ export default function Nav() {
   const [isRouteChange, setRouteChange] = useState(false)
   const [isSoundPlay, setSoundPlay] = useState(false)
 
+  const { currentArticle } = useContext(HomeArticleTypeContext)
   const parseURL = () => {
-    if (router.pathname.startsWith('/article-journal')) return '白浪雜誌 Journal of Settler Selves'
-    else if (router.pathname.startsWith('/article-scenography')) return '白浪圖表 Scenography of Settler Selves'
-    else if (router.pathname.startsWith('/article-video')) return '白浪電影 Cinema of Settler Selves'
+    if (router.pathname.startsWith('/article-journal') || currentArticle === 'journal' ) return '白浪雜誌 Journal of Settler Selves'
+    else if (router.pathname.startsWith('/article-scenography') || currentArticle === 'scenography') return '白浪圖表 Scenography of Settler Selves'
+    else if (router.pathname.startsWith('/article-video') || currentArticle === 'video' ) return '白浪電影 Cinema of Settler Selves'
   }
 
   useEffect(() => {

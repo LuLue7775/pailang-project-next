@@ -8,12 +8,19 @@ import ModalStart from '../components/ModalStart'
 import HomeArticle from '../components/HomeArticle'
 import { CursorContext } from '../context/cursorContext'
 import { modalVariant } from '../utils/framerVariantsHome'
+import { HomeArticleTypeContext } from '../context/homeArticleTypeContext'
 
 import Image from 'next/image'
 import styled from 'styled-components'
 import { motion, useSpring } from 'framer-motion'
 
 export default function Home({ modalData, randomArticleData, modalShow, setModalShow }) {
+  
+  const { setCurrentArticle } = useContext(HomeArticleTypeContext)
+  useEffect(() => {
+    setCurrentArticle(randomArticleData.type)
+  }, [randomArticleData])
+
   // Cursor efffect
   const cursorAreaRef = useRef()
   const { hoverEvent, setHoverEvent } = useContext(CursorContext)
