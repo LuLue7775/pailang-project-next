@@ -79,10 +79,13 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
       </StyledSlide>
 
       <div>
-        <StyledBadge > {type === 'video' ? 'cinema' : type } </StyledBadge>
+        <StyledBadge> {type === 'video' ? 'cinema' : type} </StyledBadge>
         {status === 'draft' && <StyledBadgeHighlight> upcomming </StyledBadgeHighlight>}
 
-        <StyledMainTitle className='font-ogg' dangerouslySetInnerHTML={title && createMarkup(title)} />
+        <StyledMainTitle
+          className="font-ogg"
+          dangerouslySetInnerHTML={title && createMarkup(title)}
+        />
         <StyledZhTitle
           className="font-zh-sans"
           dangerouslySetInnerHTML={title_zh && createMarkup(title_zh)}

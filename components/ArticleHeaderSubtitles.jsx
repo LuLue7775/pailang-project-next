@@ -46,8 +46,7 @@ export default function ArticleHeaderSubtitles({
 }
 
 const StyledSubtitlesMid = styled.div`
-  padding-bottom: .8rem;
-
+  padding-bottom: 0.8rem;
 `
 const StyledSubtitlesWrap = styled.div`
   width: 100%;

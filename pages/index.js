@@ -15,7 +15,6 @@ import styled from 'styled-components'
 import { motion, useSpring } from 'framer-motion'
 
 export default function Home({ modalData, randomArticleData, modalShow, setModalShow }) {
-  
   const { setCurrentArticle } = useContext(HomeArticleTypeContext)
   useEffect(() => {
     setCurrentArticle(randomArticleData.type)

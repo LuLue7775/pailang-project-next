@@ -14,9 +14,13 @@ export default function Nav() {
 
   const { currentArticle } = useContext(HomeArticleTypeContext)
   const parseURL = () => {
-    if (router.pathname.startsWith('/article-journal') || currentArticle === 'journal' ) return '白浪雜誌 Journal of Settler Selves'
-    else if (router.pathname.startsWith('/article-scenography') || currentArticle === 'scenography') return '白浪圖表 Scenography of Settler Selves'
-    else if (router.pathname.startsWith('/article-video') || currentArticle === 'video' ) return '白浪電影 Cinema of Settler Selves'
+    if (router.pathname === '/agenda' || router.pathname === '/about') return
+    if (router.pathname.startsWith('/article-journal') || currentArticle === 'journal')
+      return '白浪雜誌 Journal of Settler Selves'
+    else if (router.pathname.startsWith('/article-scenography') || currentArticle === 'scenography')
+      return '白浪圖表 Scenography of Settler Selves'
+    else if (router.pathname.startsWith('/article-video') || currentArticle === 'video')
+      return '白浪電影 Cinema of Settler Selves'
   }
 
   useEffect(() => {
@@ -26,8 +30,6 @@ export default function Nav() {
     router.events.on('routeChangeStart', handleRouteChange)
     router.events.on('routeChangeComplete', handleRouteComplete)
 
-    // If the component is unmounted, unsubscribe
-    // from the event with the `off` method:
     return () => {
       router.events.off('routeChangeStart', handleRouteChange)
       router.events.off('routeChangeComplete', handleRouteComplete)

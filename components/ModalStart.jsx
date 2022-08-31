@@ -12,16 +12,12 @@ export default function ModalStart({ setModalShow, modalData }) {
   return (
     <StyledModal className="modal" ref={modalRef}>
       <StyledModalTitle className="modal-title">
-        <StyledChTitle className='font-zh-sans'> {title_zh} </StyledChTitle>
+        <StyledChTitle className="font-zh-sans"> {title_zh} </StyledChTitle>
         <h3> {title} </h3>
       </StyledModalTitle>
       <StyledModalContent>
-        <div className="zh"
-          dangerouslySetInnerHTML={content_zh && createMarkup(content_zh)}
-        /> 
-        <div className="en"         
-          dangerouslySetInnerHTML={content && createMarkup(content)}
-        /> 
+        <div className="zh" dangerouslySetInnerHTML={content_zh && createMarkup(content_zh)} />
+        <div className="en" dangerouslySetInnerHTML={content && createMarkup(content)} />
       </StyledModalContent>
       <div
         onClick={() => setModalShow(false)}
@@ -64,7 +60,6 @@ const StyledChTitle = styled.div`
   font-size: 1.2rem;
   letter-spacing: 1px;
   padding: 15px;
-
 `
 const StyledModalContent = styled.div`
   max-width: 80%;

@@ -20,7 +20,7 @@ export default function AgendaFliterLabel({ item, filter, setFilter }) {
         checked={isChecked}
         onChange={handleFilterChange}
       />
-      <div> { item?.label === 'Video' ? 'Cinema' : item.label } </div>
+      <div> {item?.label === 'Video' ? 'Cinema' : item.label} </div>
       <div> {item?.labelZh} </div>
     </StyledLabel>
   )

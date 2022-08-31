@@ -40,8 +40,8 @@ export default function NodeName({
           setTooltip(false)
         }}
       >
-        <div dangerouslySetInnerHTML={name && createMarkup(name)}/>
-        <div dangerouslySetInnerHTML={name_zh && createMarkup(name_zh)}/>
+        <div dangerouslySetInnerHTML={name && createMarkup(name)} />
+        <div dangerouslySetInnerHTML={name_zh && createMarkup(name_zh)} />
         {tooltip && source && <StyledTooltip> view source </StyledTooltip>}
       </div>
     </StyledName>

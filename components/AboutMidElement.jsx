@@ -31,7 +31,6 @@ export default function AboutMidElement({ content, content_zh, createMarkup }) {
         as={motion.div}
         variants={containerTextMotion}
       >
-
         <StyledMidZhTitle> 白浪的定居殖民博物館 </StyledMidZhTitle>
         <StyledMidTitle className="font-ogg">
           {' '}

@@ -9,9 +9,7 @@ import ReactPlayer from 'react-player/lazy'
 
 const parseContent = (type, content, $isWindow, $isOpen) => {
   if (type === 'text') {
-
     return <div dangerouslySetInnerHTML={content && createMarkup(content)} /> || ''
-
   } else if (type === 'image') {
     return (
       content && (

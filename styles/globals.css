@@ -88,8 +88,6 @@ hr {
   border-bottom: 0.6px solid transparent;
 }
 
-
-
 .font-ogg > p {
   font-family: var(--title-font-en, serif);
   margin-top: 10px;
@@ -99,14 +97,12 @@ hr {
 .header1 > p {
   font-size: 6rem;
   line-height: 5rem;
-
 }
-
 
 .font-zh-sans > p {
   font-family: custom-sans-serif, sans-serif;
   line-height: 1.3rem;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .font-ogg {
