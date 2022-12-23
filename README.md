@@ -18,6 +18,7 @@
 ## 使用方式
 [前端live demo](https://pailangmuseum.com/)
 
+[後端登入](https://data.pailangmuseum.com/admin/login)
 [後端repo連結](https://github.com/seanmars/pailang-admin)
 
 可直接觀看live demo，也歡迎`git clone`此repo
