@@ -5,6 +5,7 @@ import { subtitles } from '../utils/framerVariantsHeader'
 import AnimatedTitles from './ArticleTitleAnimation'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+
 export default function ArticleHeaderTitles({ title, title_zh }) {
   const titleRef = useRef(title?.length > 60 ? true : false)
   const { windowWidth } = useWindowSize()
