@@ -56,6 +56,8 @@ export async function getStaticPaths() {
 }
 
 const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 200vh;
   width: 100%;
   overflow: hidden;

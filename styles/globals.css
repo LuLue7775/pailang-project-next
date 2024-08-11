@@ -28,7 +28,7 @@ a {
   --title-font-zh: 'Noto Serif TC';
   --subtitle-font-en: 'Baskervville';
   --subtitle-font-zh: 'Noto Serif TC';
-  --main-font-en: 'IBM Plex Sans';
+  --main-font-en: 'EB Garamond';
   --main-font-zh: 'Noto Sans TC';
 }
 
@@ -120,7 +120,7 @@ hr {
 
 @font-face {
   font-family: custom-sans-serif;
-  src: url('/fonts/IBMPlexSans-ExtraLight.ttf') format('truetype');
+  src: url('/fonts/EBGaramond-VariableFont_wght.ttf') format('truetype');
   /* src: local('IBM Plex Sans') format('truetype'); */
   unicode-range: U+00-024F;
   font-weight: 400;
@@ -128,7 +128,7 @@ hr {
 }
 @font-face {
   font-family: custom-sans-serif;
-  src: url('/fonts/IBMPlexSans-Medium.ttf') format('truetype');
+  src: url('/fonts/EBGaramond-VariableFont_wght.ttf') format('truetype');
   unicode-range: U+00-024F;
   font-weight: 600;
   font-style: normal;
