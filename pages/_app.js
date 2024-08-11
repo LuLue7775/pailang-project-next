@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useState } from 'react'
 import Nav from '../components/Nav'
 import styled from 'styled-components'
@@ -14,20 +15,25 @@ function MyApp({ Component, pageProps }) {
   const [modalShow, setModalShow] = useState(true)
 
   return (
-    <CursorProvider>
-      <HomeArticleTypeProvider>
-        <GlobalStyles />
-        <StyledApp className="app" id="app">
-          <StyledHeader className="header" route={router.pathname}>
-            <Nav modalShow={modalShow} />
-          </StyledHeader>
+    <>
+      <Head>
+        <title>Pailang Museum</title>
+      </Head>
+      <CursorProvider>
+        <HomeArticleTypeProvider>
+          <GlobalStyles />
+          <StyledApp className="app" id="app">
+            <StyledHeader className="header" route={router.pathname}>
+              <Nav modalShow={modalShow} />
+            </StyledHeader>
 
-          <StyledLayout route={router.pathname}>
-            <Component {...pageProps} modalShow={modalShow} setModalShow={setModalShow} />
-          </StyledLayout>
-        </StyledApp>
-      </HomeArticleTypeProvider>
-    </CursorProvider>
+            <StyledLayout route={router.pathname}>
+              <Component {...pageProps} modalShow={modalShow} setModalShow={setModalShow} />
+            </StyledLayout>
+          </StyledApp>
+        </HomeArticleTypeProvider>
+      </CursorProvider>
+    </>
   )
 }
 

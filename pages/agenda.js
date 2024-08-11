@@ -104,7 +104,6 @@ export default function Agenda({ data }) {
 
 export async function getStaticProps() {
   const data = await fetchData('/agenda').catch((e) => console.log(e))
-
   return {
     props: {
       data: data?.data || {}
