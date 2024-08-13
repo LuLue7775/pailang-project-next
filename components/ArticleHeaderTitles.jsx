@@ -31,15 +31,21 @@ export default function ArticleHeaderTitles({ title, title_zh }) {
   )
 }
 
+
 const StyledTitles = styled.div`
   width: 100%;
-  height: max(300px, 50vh);
+  height: max-content;
   text-align: center;
   overflow: hidden;
 `
 const StyledZhTitles = styled(motion.div)`
   font-size: 1.3rem;
   p {
-    font-size: 1.3rem;
+    font-size: 1rem;
+    padding: 0 10px;
+
+    @media (min-width: 768px) {
+      font-size: 1.2rem;
+    }
   }
 `

@@ -4,14 +4,25 @@ import { CursorContext } from '../context/cursorContext'
 import styled from 'styled-components'
 import ArticleHeaderTitles from './ArticleHeaderTitles'
 import ArticleHeaderSubtitles from './ArticleHeaderSubtitles'
+import Image from 'next/image'
 
 export default function ArticlesHeader({ data, slideTo, spring }) {
   const { setHoverEvent } = useContext(CursorContext)
 
   return (
     <StyledHeader>
-      <LineSVG />
       <ArticleHeaderTitles title={data?.title} title_zh={data?.title_zh} />
+      <StyledImageWrap>
+        <Image
+          src="/cover-test.jpg"
+          alt="cover image"
+          width={640}
+          height={350}
+          layout="responsive"
+          objectFit="contain"
+        />
+      </StyledImageWrap>
+
       <ArticleHeaderSubtitles
         artist={data?.artist}
         producer={data?.producer}
@@ -22,22 +33,35 @@ export default function ArticlesHeader({ data, slideTo, spring }) {
       <div
         onClick={() => slideTo(document.getElementById('section2').offsetTop, spring)}
         onMouseOver={() => setHoverEvent('expand')}
-        onMouseLeave={() => setHoverEvent('default')}
-      >
+        onMouseLeave={() => setHoverEvent('default')}>
         <DownChevronSVG />
       </div>
     </StyledHeader>
   )
 }
+const StyledImageWrap = styled.div`
+  max-width: min(90vw, 500px);
+  position: relative;
+  width: 100%;
+  margin: 10px auto;
+  overflow: hidden;
+  @media (min-width: 768px) {
+    max-height: 200px;
+  }
+`
 
 const StyledHeader = styled.div`
-  height: 100vh;
   width: 100%;
   padding-top: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  height: auto;
+  @media (min-width: 768px) and (min-height: 600px) {
+    height: 100vh;
+  }
 `
 
 /**

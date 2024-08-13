@@ -94,10 +94,7 @@ hr {
   line-height: 1.3rem;
   font-size: 1.1rem;
 }
-.header1 > p {
-  font-size: 6rem;
-  line-height: 5rem;
-}
+
 
 .font-zh-sans > p {
   font-family: custom-sans-serif, sans-serif;

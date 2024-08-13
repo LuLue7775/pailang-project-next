@@ -54,8 +54,12 @@ export async function getStaticPaths() {
 }
 
 const StyledContainer = styled.div`
-  height: 200vh;
   width: 100%;
   overflow: hidden;
   text-align: justify;
+
+  height: auto;
+  @media (min-width: 768px) {
+    height: 200vh;
+  }
 `

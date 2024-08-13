@@ -16,17 +16,19 @@ export default function Nav() {
   const parseURL = () => {
     if (router.pathname === '/agenda' || router.pathname === '/about') return
     if (router.pathname === '/') {
-      if ( currentArticle === 'journal' ) return '白浪雜誌 Journal of Settler Selves'
-      if ( currentArticle === 'scenography' ) return '白浪圖表 Scenography of Settler Selves'
-      if ( currentArticle === 'video' ) return '白浪電影 Cinema of Settler Selves'
+      if (currentArticle === 'journal')
+        return { __html: '白浪雜誌 <br/> Journal of Settler Selves' }
+      if (currentArticle === 'scenography')
+        return { __html: '白浪圖表 <br/> Scenography of Settler Selves' }
+      if (currentArticle === 'video') return { __html: '白浪電影 <br/> Cinema of Settler Selves' }
     }
 
-    if (router.pathname.startsWith('/article-journal') )
-      return '白浪雜誌 Journal of Settler Selves'
-    else if (router.pathname.startsWith('/article-scenography') )
-      return '白浪圖表 Scenography of Settler Selves'
-    else if (router.pathname.startsWith('/article-video') )
-      return '白浪電影 Cinema of Settler Selves'
+    if (router.pathname.startsWith('/article-journal'))
+      return { __html: '白浪雜誌 <br/> Journal of Settler Selves' }
+    else if (router.pathname.startsWith('/article-scenography'))
+      return { __html: '白浪圖表 <br/> Scenography of Settler Selves' }
+    else if (router.pathname.startsWith('/article-video'))
+      return { __html: '白浪電影 <br/> Cinema of Settler Selves' }
   }
 
   useEffect(() => {
@@ -50,7 +52,7 @@ export default function Nav() {
         <StyledNavLeft>
           <div onClick={() => router.reload(window.location.pathname)}>
             <a>
-              <StyledNavItem>{parseURL()}</StyledNavItem>
+              <StyledNavItem dangerouslySetInnerHTML={parseURL()} />
             </a>
           </div>
         </StyledNavLeft>
@@ -72,8 +74,7 @@ export default function Nav() {
               onClick={() => {
                 setSoundPlay(!isSoundPlay)
                 !isSoundPlay ? play() : stop()
-              }}
-            >
+              }}>
               {isSoundPlay ? <SoundPlaying /> : <SoundSetPlay />}
             </div>
           </>

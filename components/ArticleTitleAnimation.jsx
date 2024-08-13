@@ -15,8 +15,7 @@ export default function AnimatedTitles({ title, language, textLengthRef, windowW
       animate="animate"
       $isTitleExceed={textLengthRef.current}
       $windowWidth={windowWidth}
-      language={language}
-    >
+      language={language}>
       <StyledAnimTitle
         as={motion.span}
         className="row-letter font-ogg header1"
@@ -47,14 +46,31 @@ export default function AnimatedTitles({ title, language, textLengthRef, windowW
 }
 
 const StyledAnimTitle = styled(motion.span)`
-  font-size: ${({ $isTitleExceed, $windowWidth }) =>
-   $isTitleExceed
-      ? `min(${(($windowWidth / 20) * 100) / $windowWidth}vw, 80px)`
-      : 'min(8vw, 90px)'};
-  line-height: 5rem;
   font-weight: 500;
-  margin-bottom: 6px;
+  margin-bottom: 0.5em;
   position: relative;
   display: inline-block;
-  line-eight: '7rem';
+
+  p {
+    padding: 0 10px;
+    font-size: clamp(24px, 4vw, 80px);
+    line-height: clamp(1.2em, 8vw, 1.5em);
+
+    @media (max-width: 768px) {
+      font-size: clamp(20px, 5vw, 60px);
+      line-height: clamp(1.3em, 7vw, 1.4em);
+    }
+
+    @media (max-width: 480px) {
+      font-size: clamp(18px, 6vw, 40px);
+      line-height: clamp(1.4em, 6vw, 1.3em);
+    }
+
+    ${({ $isTitleExceed, $windowWidth }) =>
+      $isTitleExceed &&
+      `
+    font-size: clamp(18px, ${(($windowWidth / 25) * 70) / $windowWidth}vw, 60px);
+    line-height: clamp(1.2em, ${(($windowWidth / 20) * 70) / $windowWidth}vw, 1.5em);
+  `}
+  }
 `
