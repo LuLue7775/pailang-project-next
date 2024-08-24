@@ -36,8 +36,7 @@ export default function AgendaGrid({
                 onMouseLeave={() => {
                   setHoverEvent('default')
                   setActiveExpand(null)
-                }}
-              >
+                }}>
                 <AgendaElement item={item} activeExpand={activeExpand} expandIndex={i} />
               </StyledContentWrap>
             ))
@@ -58,8 +57,7 @@ export default function AgendaGrid({
                 onMouseLeave={() => {
                   setHoverEvent('default')
                   setActiveExpand(null)
-                }}
-              >
+                }}>
                 <AgendaElement item={item} activeExpand={activeExpand} expandIndex={i} />
               </StyledContentWrap>
             ))}
@@ -69,24 +67,28 @@ export default function AgendaGrid({
 }
 
 const StyledAgendaGrid = styled.div`
-  height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 300px;
-  position: relative;
-  gap: 1rem;
+  gap: 4rem;
   padding-top: 20px;
   margin: 20px;
   place-items: center;
   align-items: start;
 
-  overflow-y: scroll;
-`
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
 
+  width: 100%;
+  max-width: 1200px; // Adjust this value as needed
+  margin: 60px auto; // Center the grid
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+`
 const StyledContentWrap = styled(motion.div)`
   position: relative;
-  width: 85%;
-  height: min(300px, 100%);
+  width: 100%;
   overflow: hidden;
   cursor: pointer;
+  padding: 0 10px;
 `

@@ -26,7 +26,7 @@ html {
     --node-height: 200px;
     --node-width: 300px;
 
-    --agenda-slide-color: #b89858;
+    --agenda-slide-color: #d6c6a3;
     --agenda-tooltip-color: #f2e446;
 
   }

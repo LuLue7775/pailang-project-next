@@ -12,12 +12,13 @@ const ImageWithLink = React.forwardRef((props, ref) => {
     <div ref={ref}>
       <Image
         alt=""
-        width="100%"
-        height="100%"
+        width="100"
+        height="100"
         src={cover}
         layout="responsive"
         objectFit="cover"
         crossOrigin="true"
+        style={{ width: '100%', height: 'auto' }}
       />
     </div>
   ) : (
@@ -44,8 +45,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
         as={motion.div}
         variants={imgWrapVariant}
         animate={isExpand ? 'open' : 'closed'}
-        initial="initial"
-      >
+        initial="initial">
         {status !== 'draft' ? (
           <>
             <Link
@@ -53,30 +53,21 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
                 !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
                   ? `http://localhost:3000/article-${type}/${id}`
                   : `${process.env.NEXT_PUBLIC_DOMAIN}/article-${type}/${id} `
-              }
-            >
+              }>
               <a>
                 <ImageWithLink ref={imageRef} cover={cover} />
               </a>
             </Link>
           </>
         ) : (
-          cover && (
-            <Image
-              alt=""
-              width="100%"
-              height="100%"
-              src={cover}
-              layout="responsive"
-              crossOrigin="true"
-            />
-          )
+          cover && <ImageWithLink ref={imageRef} cover={cover} />
         )}
       </StyledImgContainer>
 
-      <StyledSlide as={motion.div} variants={slideVariant} animate={isExpand ? 'open' : 'closed'}>
-        {' '}
-      </StyledSlide>
+      <StyledSlide
+        as={motion.div}
+        variants={slideVariant}
+        animate={isExpand ? 'open' : 'closed'}></StyledSlide>
 
       <div>
         <StyledBadge> {type === 'video' ? 'cinema' : type} </StyledBadge>
@@ -92,8 +83,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
         />
         <StyledTitle> {artist} </StyledTitle>
         <StyledTitle>
-          {' '}
-          {start_date}-{end_date}{' '}
+          {start_date} {end_date && ` - ${end_date}`}
         </StyledTitle>
         <StyledTitle> {language} </StyledTitle>
       </div>
@@ -103,16 +93,15 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
 
 const StyledImgContainer = styled(motion.div)`
   position: relative;
-  width: min(300px, 100%);
-  background-color: #000;
-  margin: 10px 0 10px 0;
+  width: 100%;
+  margin: 10px 0;
   overflow: hidden;
-  z-index: 0;
+  background-color: #000;
 `
 
 const StyledBadge = styled.span`
-  width: 100px;
-  padding: 5px 3px;
+  width: fit-content;
+  padding: 4px;
   margin: 10px 5px;
   border-radius: 5px;
   background: var(--main-color, #e0954f);
@@ -120,7 +109,7 @@ const StyledBadge = styled.span`
 `
 const StyledBadgeHighlight = styled.span`
   width: 100px;
-  padding: 5px 3px;
+  padding: 4px;
   margin: 10px 5px;
   border-radius: 5px;
   background-color: var(--agenda-tooltip-color, #f2e446);

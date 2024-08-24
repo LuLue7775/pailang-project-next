@@ -40,6 +40,7 @@ const form = ['video', 'journal', 'scenography']
 const filtersInitArray = Object.keys(filterData)
 
 export default function Agenda({ data }) {
+  console.log(data)
   const [initalData, setInitialData] = useState(data)
   const [filteredData, setFilteredData] = useState(data)
   const [filter, setFilter] = useState([])
@@ -68,8 +69,15 @@ export default function Agenda({ data }) {
           animate={{
             opacity: 1,
             transition: { duration: 3 }
-          }}
-        >
+          }}>
+          <AgendaMainGrid
+            filterTitle={'filter by language'}
+            filterType={time}
+            filterData={filterData}
+            filter={filter}
+            setFilter={setFilter}
+            filtersInitArray={filtersInitArray}
+          />
           <AgendaMainGrid
             filterTitle={'filter by schedule'}
             filterType={time}
@@ -113,35 +121,46 @@ export async function getStaticProps() {
 }
 
 const StyledAgenda = styled.div`
-  display: grid;
-  grid-template-columns: 33% 66%;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: auto;
   color: #000;
 
-  overflow: hidden;
+  @media (min-width: 1080px) {
+    display: grid;
+    grid-template-columns: 33% 66%;
+  }
 `
 
 const StyledAgendaWrap = styled.div`
-  height: 100vh;
+  height: auto;
   display: grid;
   grid-template-rows: 30vh 10vh;
 
   justify-items: end;
   align-content: end;
-  padding-bottom: 1rem;
   font-size: 0.8rem;
-  overflow: hidden;
+
+  // padding-bottom: 1rem;
+  margin: 60px 10px 0 10px;
+  @media (min-width: 1080px) {
+    margin: 0;
+  }
 `
 
 const StyledAgendaFilter = styled(motion.div)`
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   margin-top: 1px;
-
-  width: 80%;
-  height: 200px;
+  width: 100%;
   color: #000;
   border: 1px solid #000;
-  overflow: hidden;
+
+  @media (min-width: 1080px) {
+    width: 30vw;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+  }
 `

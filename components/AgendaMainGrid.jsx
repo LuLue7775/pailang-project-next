@@ -29,17 +29,15 @@ export default function AgendaMainGrid({
 }
 
 const StyledMainGrid = styled.div`
-  height: 100px;
   width: 100%;
   display: grid;
-  grid-template-rows: 1fr 1fr;
   border-bottom: 1px solid #000;
   z-index: 1;
   background: #fff;
   border: 1px solid #000;
 `
 const StyledFilterName = styled.div`
-  height: 100%;
+  height: 20px;
   width: 100%;
   display: flex;
   align-items: center;

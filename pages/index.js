@@ -48,11 +48,10 @@ export default function Home({ modalData, randomArticleData, modalShow, setModal
       className="home-container"
       as={motion.div}
       id="cursor-area"
-      ref={cursorAreaRef}
-    >
+      ref={cursorAreaRef}>
       <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
       <Cover modalShow={modalShow}>
-        <Image src="/homeBG.jpg" alt="gradient" height="100vh" width="100vw" layout="fill" />
+        <Image src="/homeBG.jpg" alt="gradient" objectFit="cover" layout="fill" />
         <motion.div variants={modalVariant} animate={modalShow ? 'open' : 'closed'}>
           {modalData && <ModalStart setModalShow={setModalShow} modalData={modalData} />}
         </motion.div>
