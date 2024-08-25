@@ -142,7 +142,6 @@ const StyledAgendaWrap = styled.div`
   align-content: end;
   font-size: 0.8rem;
 
-  // padding-bottom: 1rem;
   margin: 60px 10px 0 10px;
   @media (min-width: 1080px) {
     margin: 0;

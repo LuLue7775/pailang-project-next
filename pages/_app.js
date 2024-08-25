@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import styled from 'styled-components'
 import { GlobalStyles } from '../styles/globalStyles'
@@ -13,6 +13,11 @@ function MyApp({ Component, pageProps }) {
 
   // Modal effect
   const [modalShow, setModalShow] = useState(true)
+  useEffect(() => {
+    if (router.pathname === '/') {
+      setModalShow(true)
+    }
+  }, [router.pathname])
 
   return (
     <>
@@ -62,5 +67,4 @@ const StyledLayout = styled.div`
   position: relative;
   bottom: 0;
   z-index: 0;
-  // overflow:hidden;
 `

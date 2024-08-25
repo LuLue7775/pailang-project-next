@@ -13,12 +13,22 @@ import { HomeArticleTypeContext } from '../context/homeArticleTypeContext'
 import Image from 'next/image'
 import styled from 'styled-components'
 import { motion, useSpring } from 'framer-motion'
+import { useRouter } from 'next/router'
 
 export default function Home({ modalData, randomArticleData, modalShow, setModalShow }) {
-  const { setCurrentArticle } = useContext(HomeArticleTypeContext)
+  // const { setCurrentArticle } = useContext(HomeArticleTypeContext)
+  // useEffect(() => {
+  //   setCurrentArticle(randomArticleData.type)
+  // }, [randomArticleData])
+
+  const router = useRouter()
+  const handleStartClick = () => {
+    setModalShow(false)
+    router.push('/agenda')
+  }
   useEffect(() => {
-    setCurrentArticle(randomArticleData.type)
-  }, [randomArticleData])
+    console.log('modalShow= ', modalShow)
+  }, [modalShow])
 
   // Cursor efffect
   const cursorAreaRef = useRef()
@@ -53,16 +63,16 @@ export default function Home({ modalData, randomArticleData, modalShow, setModal
       <Cover modalShow={modalShow}>
         <Image src="/homeBG.jpg" alt="gradient" objectFit="cover" layout="fill" />
         <motion.div variants={modalVariant} animate={modalShow ? 'open' : 'closed'}>
-          {modalData && <ModalStart setModalShow={setModalShow} modalData={modalData} />}
+          {modalData && <ModalStart handleStartClick={handleStartClick} modalData={modalData} />}
         </motion.div>
       </Cover>
 
       {/** @TODO fix rerendering */}
-      <HomeArticle
+      {/* <HomeArticle
         randomArticleData={randomArticleData}
         spring={spring}
         setHoverEvent={setHoverEvent}
-      />
+      /> */}
     </StyledContainer>
   )
 }
@@ -81,9 +91,8 @@ export async function getStaticProps() {
 }
 
 const StyledContainer = styled(motion.div)`
-  height: 200vh;
+  height: 100vh;
   width: 100%;
   overflow: hidden;
-
   perspective: 600;
 `

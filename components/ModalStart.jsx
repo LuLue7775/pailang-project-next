@@ -4,7 +4,7 @@ import { createMarkup } from '../utils/functions'
 import { CursorContext } from '../context/cursorContext'
 import styled from 'styled-components'
 
-export default function ModalStart({ setModalShow, modalData }) {
+export default function ModalStart({ handleStartClick, modalData }) {
   const { setHoverEvent } = useContext(CursorContext)
   const modalRef = useRef()
   const { title, title_zh, content, content_zh } = modalData || {}
@@ -20,10 +20,9 @@ export default function ModalStart({ setModalShow, modalData }) {
         <div className="en" dangerouslySetInnerHTML={content && createMarkup(content)} />
       </StyledModalContent>
       <div
-        onClick={() => setModalShow(false)}
+        onClick={handleStartClick}
         onMouseOver={() => setHoverEvent('expand')}
-        onMouseLeave={() => setHoverEvent('default')}
-      >
+        onMouseLeave={() => setHoverEvent('default')}>
         <EllipseBtnSVG texts={'Start'} />
       </div>
     </StyledModal>
