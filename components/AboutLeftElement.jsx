@@ -12,16 +12,16 @@ export default function AboutLeftElement({ roles, createMarkup }) {
     <StyledLeftColContainer
       id="left"
       className="leftcol-container"
-      as={motion.div}
-      variants={containerLeftMotion}
-      initial="rest"
-      whileHover="hover"
-      animate="rest"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      $isHovered={isHovered}
+      // as={motion.div}
+      // variants={containerLeftMotion}
+      // initial="rest"
+      // whileHover="hover"
+      // animate="rest"
+      // onMouseEnter={() => setHovered(true)}
+      // onMouseLeave={() => setHovered(false)}
+      // $isHovered={isHovered}
     >
-      <MotionBG variants={BGMotion} />
+      {/* <MotionBG variants={BGMotion} /> */}
 
       {roles?.map((elem, i) => (
         <motion.div className="persona-container" key={i} variants={containerTextMotion}>
@@ -62,23 +62,23 @@ export default function AboutLeftElement({ roles, createMarkup }) {
 const ImageContainer = styled.div`
   width: min(200px, 100%);
 `
-const MotionBG = styled(motion.div)`
-  position: absolute;
-  height: auto;
-  z-index: -1;
-  width: 100%;
-`
+// const MotionBG = styled(motion.div)`
+//   position: absolute;
+//   height: auto;
+//   z-index: -1;
+//   width: 100%;
+// `
 
 const StyledLeftColContainer = styled(motion.div)`
-  position: absolute;
+  width: 100%;
   height: 100%;
-  width: 30%;
-  overflow-y: scroll;
-  padding: 0 10px 100px 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 
-  ${({ $isHovered }) => $isHovered && "background-image: url('/about.jpg')"};
-  background-size: cover;
-  background-repeat: no-repeat;
+  // ${({ $isHovered }) => $isHovered && "background-image: url('/about.jpg')"};
+  // background-size: cover;
+  // background-repeat: no-repeat;
 `
 
 const StyledLeftTitle = styled.div`

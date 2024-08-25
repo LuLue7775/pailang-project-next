@@ -19,30 +19,30 @@ export default function About({ data }) {
   const { hoverEvent } = useContext(CursorContext)
 
   // force refresh to recalculate
-  useEffect(() => {
-    function handleResize() {
-      router.reload(window.location.pathname)
-    }
+  // useEffect(() => {
+  //   function handleResize() {
+  //     router.reload(window.location.pathname)
+  //   }
 
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  //   window.addEventListener('resize', handleResize)
+  //   return () => window.removeEventListener('resize', handleResize)
+  // }, [])
 
   return (
     <StyledAbout className="about-container" as={motion.div} id="cursor-area" ref={cursorAreaRef}>
       <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
 
-      <StyledAboutLeftCol>
+      <StyledAboutCol $order={2}>
         <AboutLeftElement roles={roles} createMarkup={createMarkup} />
-      </StyledAboutLeftCol>
+      </StyledAboutCol>
 
-      <StyledAboutMidCol>
+      <StyledAboutCol $order={1}>
         <AboutMidElement content={content} content_zh={content_zh} createMarkup={createMarkup} />
-      </StyledAboutMidCol>
+      </StyledAboutCol>
 
-      <StyledAboutRightCol>
+      <StyledAboutCol $order={3}>
         <AboutRightElement credits={credits} createMarkup={createMarkup} />
-      </StyledAboutRightCol>
+      </StyledAboutCol>
     </StyledAbout>
   )
 }
@@ -59,29 +59,47 @@ export async function getStaticProps() {
 }
 
 const StyledAbout = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  position: absolute;
-  top: 0;
-  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  padding-top: 80px;
   color: #000;
   overflow: hidden;
-  text-align: justify;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    height: 100vh;
+  }
 `
 
-const StyledAboutLeftCol = styled(motion.div)`
-  height: 100%;
+const StyledAboutCol = styled.div`
+  flex: 1;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+  padding: 15px;
+
+  @media (max-width: 767px) {
+    order: ${({ $order }) => $order};
+  }
+
+  @media (max-width: 767px) {
+    height: auto;
+    min-height: 33vh;
+  }
 `
 
-const StyledAboutMidCol = styled(motion.div)`
-  height: 100%;
-`
-const StyledAboutRightCol = styled(motion.div)`
-  height: 100%;
-  overflow-x: hidden;
-`
+// const StyledAboutLeftCol = styled(motion.div)`
+//   height: 100%;
+// `
+
+// const StyledAboutMidCol = styled(motion.div)`
+//   height: 100%;
+// `
+// const StyledAboutRightCol = styled(motion.div)`
+//   height: 100%;
+//   overflow-x: hidden;
+// `
 
 const StyledSideLines = styled.div`
   position: absolute;

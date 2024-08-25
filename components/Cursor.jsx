@@ -124,7 +124,8 @@ const StyledContainer = styled.div`
   position: absolute;
   pointer-events: none;
 
-  height: ${({ $route }) => ($route === '/agenda' ? '100vh' : '200vh')};
+  height: ${({ $route }) =>
+    $route === '/agenda' || $route === '/about' ? 'calc(100vh - 80px)' : '200vh'};
   width: 100%;
   overflow: hidden;
 `

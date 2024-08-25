@@ -8,25 +8,25 @@ export default function AboutRightElement({ credits, createMarkup }) {
   const [isHovered, setHovered] = useState(false)
 
   // calculate scroll height
-  const [scrollHeight, setScrollHeight] = useState()
-  useEffect(() => {
-    setScrollHeight(document.getElementById('mid').scrollHeight)
-  }, [])
+  // const [scrollHeight, setScrollHeight] = useState()
+  // useEffect(() => {
+  //   setScrollHeight(document.getElementById('mid').scrollHeight)
+  // }, [])
 
   return (
     <StyledRightColContainer
-      className="leftcol-container"
-      id="right"
-      as={motion.div}
-      variants={containerRightMotion}
-      initial="rest"
-      whileHover="hover"
-      animate="rest"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      $isHovered={isHovered}
+    // className="leftcol-container"
+    // id="right"
+    // as={motion.div}
+    // variants={containerRightMotion}
+    // initial="rest"
+    // whileHover="hover"
+    // animate="rest"
+    // onMouseEnter={() => setHovered(true)}
+    // onMouseLeave={() => setHovered(false)}
+    // $isHovered={isHovered}
     >
-      <MotionBG variants={BGMotion} scrollHeight={scrollHeight} />
+      {/* <MotionBG variants={BGMotion} scrollHeight={scrollHeight} /> */}
 
       {credits?.map((elem, i) => (
         <motion.div className="element-container" key={i} variants={containerTextMotion}>
@@ -38,25 +38,25 @@ export default function AboutRightElement({ credits, createMarkup }) {
     </StyledRightColContainer>
   )
 }
-const MotionBG = styled(motion.div)`
-  position: absolute;
-  // height: ${({ scrollHeight }) => scrollHeight && `${scrollHeight}px`};
-  height: auto;
-  z-index: -1;
-  width: 100%;
-`
+// const MotionBG = styled(motion.div)`
+//   position: absolute;
+//   // height: ${({ scrollHeight }) => scrollHeight && `${scrollHeight}px`};
+//   height: auto;
+//   z-index: -1;
+//   width: 100%;
+// `
 
 const StyledRightColContainer = styled.div`
-  position: absolute;
-  right: 0;
+  width: 100%;
   height: 100%;
-  width: 30%;
-  overflow-y: scroll;
-  padding: 0 10px 100px 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  ${({ $isHovered }) => $isHovered && "background-image: url('/about.jpg')"};
-  background-size: cover;
-  background-repeat: no-repeat;
+  // ${({ $isHovered }) => $isHovered && "background-image: url('/about.jpg')"};
+  // background-size: cover;
+  // background-repeat: no-repeat;
 `
 
 const StyledTitle = styled.div`
