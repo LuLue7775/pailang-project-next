@@ -104,7 +104,7 @@ const StyledNavRight = styled.div`
   gap: 10px;
 `
 const StyledNavItem = styled.div`
-  padding: 0 6px 0 6px;
+  padding: 0 6px;
   line-height: 1.3rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
 `

@@ -11,7 +11,7 @@ html {
     --subtitle-font-en: 'Baskervville';
     --subtitle-font-zh: 'Noto Serif TC';
     --main-font-en: 'Times New Roman';
-    --main-font-zh: 'Noto Sans TC';
+    --main-font-zh: 'Noto Serif TC';
     --main-color: #e0954f;
     --main-bg-color: #cc5e0a;
     
