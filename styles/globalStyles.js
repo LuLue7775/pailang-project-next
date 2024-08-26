@@ -10,7 +10,7 @@ html {
     --title-font-zh: 'Noto Serif TC'
     --subtitle-font-en: 'Baskervville';
     --subtitle-font-zh: 'Noto Serif TC';
-    --main-font-en: 'EB Garamond';
+    --main-font-en: 'Times New Roman';
     --main-font-zh: 'Noto Sans TC';
     --main-color: #e0954f;
     --main-bg-color: #cc5e0a;
