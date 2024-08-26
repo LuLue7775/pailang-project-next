@@ -1,7 +1,7 @@
 export const textExpand = {
   open: () => ({
     width: '320px',
-    height: '300px',
+    height: 'auto',
     padding: '10px',
     backgroundColor: 'var(--node-text-expandBg-color, #000000E0)',
     transition: {
