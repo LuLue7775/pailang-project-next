@@ -71,7 +71,7 @@ export default function Agenda({ data }) {
     const filtered = sortAgenda(filter, filterData, data)
     setFilteredData(filtered)
     setActiveExpand(null)
-  }, [filter])
+  }, [filter, data])
 
   return (
     <StyledAgenda className="agenda-container" as={motion.div} id="cursor-area" ref={cursorAreaRef}>
