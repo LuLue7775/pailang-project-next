@@ -11,16 +11,18 @@ export default function ArticlesHeader({ data, slideTo, spring }) {
   return (
     <StyledHeader>
       <ArticleHeaderTitles title={data?.title} title_zh={data?.title_zh} />
-      <StyledImageWrap>
-        <Image
-          src="/cover-test.jpg"
-          alt="cover image"
-          width={640}
-          height={350}
-          layout="responsive"
-          objectFit="contain"
-        />
-      </StyledImageWrap>
+      {data?.main_cover_image && (
+        <StyledImageWrap>
+          <Image
+            src={`https://data.pailangmuseum.com/assets/${data?.main_cover_image}`}
+            alt="cover image"
+            width={640}
+            height={350}
+            layout="responsive"
+            objectFit="contain"
+          />
+        </StyledImageWrap>
+      )}
 
       <ArticleHeaderSubtitles
         artists={data?.artists}
