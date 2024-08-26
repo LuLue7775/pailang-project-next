@@ -70,24 +70,25 @@ const StyledAgendaGrid = styled.div`
   display: grid;
   gap: 4rem;
   padding-top: 20px;
-  margin: 20px;
   place-items: center;
   align-items: start;
+  justify-items: start;
 
   grid-template-columns: 1fr;
   grid-auto-rows: auto;
 
   width: 100%;
-  max-width: 1200px; // Adjust this value as needed
-  margin: 60px auto; // Center the grid
+  margin: 60px auto; // center the grid
 
   @media (min-width: 768px) {
+    margin: 60px 0;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 `
 const StyledContentWrap = styled(motion.div)`
   position: relative;
   width: 100%;
+  max-width: 30vw;
   overflow: hidden;
   cursor: pointer;
   padding: 0 10px;
