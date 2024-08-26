@@ -40,7 +40,6 @@ const form = ['video', 'journal', 'scenography']
 const filtersInitArray = Object.keys(filterData)
 
 export default function Agenda({ data }) {
-  console.log(data)
   const [initalData, setInitialData] = useState(data)
   const [filteredData, setFilteredData] = useState(data)
   const [filter, setFilter] = useState([])

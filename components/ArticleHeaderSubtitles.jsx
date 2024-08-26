@@ -1,19 +1,18 @@
 import { subtitles } from '../utils/framerVariantsHeader'
+import { createMarkup } from '../utils/functions'
 import { LeftCrossSVG, RightCrossSVG } from './Svgs'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-export default function ArticleHeaderSubtitles({
-  artist,
-  producer,
-  curator,
-  start_date,
-  end_date
-}) {
+export default function ArticleHeaderSubtitles({ artists, extra_info, start_date, end_date }) {
   return (
     <StyledSubtitlesWrap className="zh">
       <StyledSubtitles as={motion.div} variants={subtitles} initial="initial" animate="animate">
-        <div> {artist} </div>
+        <div>
+          {artists?.map((artist) => (
+            <p key={artist.name}> {artist.name} </p>
+          ))}
+        </div>
 
         <StyledDate>
           <div> {start_date} </div>
@@ -25,25 +24,7 @@ export default function ArticleHeaderSubtitles({
           )}
         </StyledDate>
 
-        <div>
-          <StyledSubtitlesMid>
-            {producer && (
-              <>
-                <div> 製作單位 Produced by </div>
-                <div>{producer} </div>
-              </>
-            )}
-          </StyledSubtitlesMid>
-
-          <StyledSubtitlesMid>
-            {curator && (
-              <>
-                <div> 策展 Curated by </div>
-                <div>{curator} </div>
-              </>
-            )}
-          </StyledSubtitlesMid>
-        </div>
+        <div dangerouslySetInnerHTML={extra_info && createMarkup(extra_info)} />
       </StyledSubtitles>
     </StyledSubtitlesWrap>
   )
@@ -84,7 +65,7 @@ const StyledSubtitles = styled(motion.div)`
   margin-bottom: 10px;
   display: grid;
   grid-template-rows: repeat(3, auto);
-  gap: 10px;
+  gap: 20px;
   grid-template-columns: none;
   height: auto;
 
@@ -93,6 +74,5 @@ const StyledSubtitles = styled(motion.div)`
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: none;
     justify-content: space-between;
-    gap: 20px;
   }
 `

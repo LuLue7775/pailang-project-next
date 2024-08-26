@@ -1,6 +1,5 @@
 export async function fetchData(route) {
-  const DIRECTUS_API = process.env.DIRECTUS
-
+  const DIRECTUS_API = process.env.DIRECTUS_CUSTOM_ENDPOINT
   const res = await fetch(`${DIRECTUS_API + route}`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' }

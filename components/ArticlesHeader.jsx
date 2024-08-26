@@ -8,7 +8,6 @@ import Image from 'next/image'
 
 export default function ArticlesHeader({ data, slideTo, spring }) {
   const { setHoverEvent } = useContext(CursorContext)
-
   return (
     <StyledHeader>
       <ArticleHeaderTitles title={data?.title} title_zh={data?.title_zh} />
@@ -24,9 +23,8 @@ export default function ArticlesHeader({ data, slideTo, spring }) {
       </StyledImageWrap>
 
       <ArticleHeaderSubtitles
-        artist={data?.artist}
-        producer={data?.producer}
-        curator={data?.curator}
+        artists={data?.artists}
+        extra_info={data?.extra_info}
         start_date={data?.start_date}
         end_date={data?.end_date}
       />
