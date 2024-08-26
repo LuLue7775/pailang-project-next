@@ -29,6 +29,7 @@ export default function AgendaFliterLabel({ item, filter, setFilter }) {
 const StyledLabel = styled(motion.div)`
   flex: 1;
   margin: 0 5px;
+  line-height: 1.3rem;
 
   position: relative;
   border: 1px solid #fff;
@@ -36,7 +37,6 @@ const StyledLabel = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 0.6rem;
   border-radius: 6px;
   color: #fff;
 
@@ -44,6 +44,12 @@ const StyledLabel = styled(motion.div)`
   &:hover {
     background-color: var(--agenda-tooltip-color, #f2e446);
     color: #000;
+  }
+
+  div {
+    font-size: 1rem;
+
+    line-height: 1.3rem;
   }
 `
 

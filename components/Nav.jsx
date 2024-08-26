@@ -105,4 +105,5 @@ const StyledNavRight = styled.div`
 `
 const StyledNavItem = styled.div`
   padding: 0 6px 0 6px;
+  line-height: 1.3rem;
 `
