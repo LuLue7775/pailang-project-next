@@ -41,11 +41,7 @@ const StyledTitles = styled.div`
 const StyledZhTitles = styled(motion.div)`
   font-size: 1.3rem;
   p {
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 0 10px;
-
-    @media (min-width: 768px) {
-      font-size: 1.2rem;
-    }
   }
 `
