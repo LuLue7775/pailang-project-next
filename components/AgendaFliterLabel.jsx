@@ -27,6 +27,9 @@ export default function AgendaFliterLabel({ item, filter, setFilter }) {
 }
 
 const StyledLabel = styled(motion.div)`
+  flex: 1;
+  margin: 0 5px;
+
   position: relative;
   border: 1px solid #fff;
   display: flex;

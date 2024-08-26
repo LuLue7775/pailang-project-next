@@ -86,14 +86,6 @@ export default function Agenda({ data }) {
             transition: { duration: 3 }
           }}>
           <AgendaMainGrid
-            filterTitle={'filter by language'}
-            filterType={language}
-            filterData={filterData}
-            filter={filter}
-            setFilter={setFilter}
-            filtersInitArray={filtersInitArray}
-          />
-          <AgendaMainGrid
             filterTitle={'filter by schedule'}
             filterType={time}
             filterData={filterData}
@@ -104,6 +96,14 @@ export default function Agenda({ data }) {
           <AgendaMainGrid
             filterTitle={'filter by event type'}
             filterType={form}
+            filterData={filterData}
+            filter={filter}
+            setFilter={setFilter}
+            filtersInitArray={filtersInitArray}
+          />
+          <AgendaMainGrid
+            filterTitle={'filter by language'}
+            filterType={language}
             filterData={filterData}
             filter={filter}
             setFilter={setFilter}

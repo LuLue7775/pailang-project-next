@@ -44,8 +44,9 @@ const StyledFilterName = styled.div`
   justify-content: center;
 `
 const StyledHiddenGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
   height: 50px;
   z-index: -1;
+  width: 100%;
 `
