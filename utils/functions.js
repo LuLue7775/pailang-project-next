@@ -192,39 +192,17 @@ export function createMarkup(htmlStr) {
 }
 
 export const sortAgenda = (filter, filterData, data) => {
-  const timeFilter = filter.reduce((timeFilter, factor) => {
-    if (filterData[factor].type === 'time') {
-      timeFilter.push(factor)
-    }
-    return timeFilter
-  }, [])
-  const typeFilter = filter.reduce((timeFilter, factor) => {
-    if (filterData[factor].type === 'form') {
-      timeFilter.push(factor)
-    }
-    return timeFilter
-  }, [])
-  const filterResult = data
-    ?.filter((data) => {
-      var isContain = false
-      for (let i = 0; i < timeFilter.length; i++) {
-        if (timeFilter[i] === data.status) {
-          isContain = true
-          break
-        }
-      }
-      return isContain
-    })
-    .filter((data) => {
-      var isContain = false
-      for (let i = 0; i < typeFilter.length; i++) {
-        if (typeFilter[i] === data.type) {
-          isContain = true
-          break
-        }
-      }
-      return isContain
-    })
+  if (filter.length === 0) return data
 
-  return filterResult
+  const timeFilter = filter.filter((item) => filterData[item].type === 'time')
+  const formFilter = filter.filter((item) => filterData[item].type === 'form')
+  const languageFilter = filter.filter((item) => filterData[item].type === 'language')
+
+  return data.filter((item) => {
+    const matchesTime = timeFilter.length === 0 || timeFilter.includes(item.status)
+    const matchesForm = formFilter.length === 0 || formFilter.includes(item.type)
+    const matchesLanguage =
+      languageFilter.length === 0 || languageFilter.some((lang) => item.language.includes(lang))
+    return matchesTime && matchesForm && matchesLanguage
+  })
 }

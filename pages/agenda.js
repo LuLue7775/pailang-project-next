@@ -31,9 +31,24 @@ const filterData = {
     label: 'Scenography',
     labelZh: '圖表',
     type: 'form'
+  },
+  TC: {
+    id: 'zhCheck',
+    value: 'TC',
+    label: 'Chinese',
+    labelZh: '繁中',
+    type: 'language'
+  },
+  EN: {
+    id: 'enCheck',
+    value: 'EN',
+    label: 'English',
+    labelZh: '英文',
+    type: 'language'
   }
 }
 
+const language = ['TC', 'EN']
 const time = ['published', 'draft', 'archived']
 const form = ['video', 'journal', 'scenography']
 
@@ -53,7 +68,8 @@ export default function Agenda({ data }) {
    * Sorting
    */
   useEffect(() => {
-    setFilteredData(sortAgenda(filter, filterData, data))
+    const filtered = sortAgenda(filter, filterData, data)
+    setFilteredData(filtered)
     setActiveExpand(null)
   }, [filter])
 
@@ -71,7 +87,7 @@ export default function Agenda({ data }) {
           }}>
           <AgendaMainGrid
             filterTitle={'filter by language'}
-            filterType={time}
+            filterType={language}
             filterData={filterData}
             filter={filter}
             setFilter={setFilter}

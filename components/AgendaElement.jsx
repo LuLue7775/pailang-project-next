@@ -28,7 +28,7 @@ const ImageWithLink = React.forwardRef((props, ref) => {
 ImageWithLink.displayName = 'ImageWithLink'
 
 export default function AgendaElement({ item, activeExpand, expandIndex }) {
-  const { title, title_zh, cover, start_date, end_date, type, language, artist, id, status } = item
+  const { title, title_zh, cover, start_date, end_date, type, language, artists, id, status } = item
   const [isExpand, setExpand] = useState(false)
   // one expand card at a time
   useEffect(() => {
@@ -81,7 +81,12 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
           className="font-zh-sans"
           dangerouslySetInnerHTML={title_zh && createMarkup(title_zh)}
         />
-        <StyledTitle> {artist} </StyledTitle>
+        <StyledTitle>
+          {artists?.map((artist) => (
+            <p key={artist.name}> {artist.name} </p>
+          ))}
+        </StyledTitle>
+
         <StyledTitle>
           {start_date} {end_date && ` - ${end_date}`}
         </StyledTitle>
