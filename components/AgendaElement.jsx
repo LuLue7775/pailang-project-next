@@ -52,7 +52,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
               href={
                 !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
                   ? `http://localhost:3000/article-${type}/${id}`
-                  : `${process.env.NEXT_PUBLIC_DOMAIN}/article-${type}/${id} `
+                  : `${process.env.NEXT_PUBLIC_DOMAIN_DEV}/article-${type}/${id} `
               }>
               <a>
                 <ImageWithLink ref={imageRef} cover={cover} />

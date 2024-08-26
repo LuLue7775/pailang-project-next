@@ -88,7 +88,8 @@ const StyledAgendaGrid = styled.div`
 const StyledContentWrap = styled(motion.div)`
   position: relative;
   width: 100%;
-  max-width: 30vw;
+  max-width: 400px;
+  margin: 0 auto; // center the grid
   overflow: hidden;
   cursor: pointer;
   padding: 0 10px;

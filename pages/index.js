@@ -26,9 +26,6 @@ export default function Home({ modalData, randomArticleData, modalShow, setModal
     setModalShow(false)
     router.push('/agenda')
   }
-  useEffect(() => {
-    console.log('modalShow= ', modalShow)
-  }, [modalShow])
 
   // Cursor efffect
   const cursorAreaRef = useRef()
