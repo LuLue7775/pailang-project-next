@@ -1,7 +1,14 @@
 import styled from 'styled-components'
 import { createMarkup } from '../utils/functions'
 
-export default function JournalLeftCol({ content, content_zh, comment, comment_zh, author_bio }) {
+export default function JournalLeftCol({
+  content,
+  content_zh,
+  comment,
+  comment_zh,
+  author_bio,
+  author_bio_zh
+}) {
   return (
     <StyledLeftColContainer className="left-col-content">
       {content && (
@@ -15,8 +22,11 @@ export default function JournalLeftCol({ content, content_zh, comment, comment_z
         <>
           <StyledSeperateFull />
           <StyledWrap>
-            <h2 className="en"> Notes </h2>
-            <StyledContentSmItems dangerouslySetInnerHTML={comment && createMarkup(comment)} />
+            <h2 className="en text-bold"> Notes </h2>
+            <StyledContentSmItems
+              className="en"
+              dangerouslySetInnerHTML={comment && createMarkup(comment)}
+            />
           </StyledWrap>
         </>
       )}
@@ -25,9 +35,9 @@ export default function JournalLeftCol({ content, content_zh, comment, comment_z
         <>
           <StyledSeperateFull />
           <StyledWrap>
-            <h2 className="en"> Author </h2>
+            <h2 className="en text-bold"> Author </h2>
             <StyledFooter
-              className="author-bio"
+              className="author-bio en"
               dangerouslySetInnerHTML={author_bio && createMarkup(author_bio)}
             />
           </StyledWrap>
@@ -37,7 +47,10 @@ export default function JournalLeftCol({ content, content_zh, comment, comment_z
       {content_zh && (
         <>
           <StyledSeperateFull />
-          <StyledContentItems dangerouslySetInnerHTML={content_zh && createMarkup(content_zh)} />
+          <StyledContentItems
+            className="zh"
+            dangerouslySetInnerHTML={content_zh && createMarkup(content_zh)}
+          />
         </>
       )}
 
@@ -45,22 +58,23 @@ export default function JournalLeftCol({ content, content_zh, comment, comment_z
         <>
           <StyledSeperateFull />
           <StyledWrap>
-            <h2 className="zh"> 註解 </h2>
+            <h2 className="zh text-bold"> 註解 </h2>
             <StyledContentSmItems
+              className="zh"
               dangerouslySetInnerHTML={comment_zh && createMarkup(comment_zh)}
             />
           </StyledWrap>
         </>
       )}
 
-      {author_bio && (
+      {author_bio_zh && (
         <>
           <StyledSeperateFull />
           <StyledWrap>
-            <h2 className="zh"> 作者 </h2>
+            <h2 className="zh text-bold"> 作者 </h2>
             <StyledFooter
-              className="author-bio"
-              dangerouslySetInnerHTML={author_bio && createMarkup(author_bio)}
+              className="author-bio zh"
+              dangerouslySetInnerHTML={author_bio_zh && createMarkup(author_bio_zh)}
             />
           </StyledWrap>
         </>
@@ -87,8 +101,6 @@ const StyledLeftColContainer = styled.div`
 const StyledContentItems = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 70ch;
-  width: 100%;
   padding: 20px 0;
 
   img,
@@ -117,20 +129,15 @@ const StyledSeperateFull = styled.div`
 `
 
 const StyledContentSmItems = styled.div`
-  font-size: 0.8rem;
-  padding: 20px 0;
   margin: 1rem auto;
-  max-width: 70ch;
-  width: 100%;
-  padding: 0 1rem;
+
+  padding: 0 0 0 4rem;
 `
 
 const StyledFooter = styled.div`
   position: relative;
-  max-width: 70ch;
-  width: 100%;
   margin: 1rem auto;
-  padding: 0 1rem;
+  padding: 0 0 0 4rem;
   text-align: justify;
   z-index: 5;
 `

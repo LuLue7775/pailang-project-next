@@ -20,6 +20,7 @@ export default function JournalContent({ data, spring, setHoverEvent }) {
         comment={data?.comment}
         comment_zh={data?.comment_zh}
         author_bio={data?.author_bio}
+        author_bio_zh={data?.author_bio_zh}
       />
     </StyledJournal>
   )
