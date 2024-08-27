@@ -91,7 +91,9 @@ const StyledNavContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   font-size: 0.8rem;
-  font-family: var(--title-font-en), serif;
+  font-family: var(--main-font-zh, serif);
+  border-bottom: 1px #df600050 solid;
+  padding: 10px;
 `
 const StyledNavLeft = styled.div`
   display: flex;

@@ -54,7 +54,6 @@ const StyledHeader = styled.div`
   width: 100%;
   overflow: hidden;
   z-index: 1;
-  padding: 10px;
 
   a {
     text-decoration: none;
