@@ -47,8 +47,7 @@ const StyledLabel = styled(motion.div)`
   }
 
   div {
-    font-size: 1rem;
-
+    font-size: 0.8rem;
     line-height: 1.3rem;
   }
 `

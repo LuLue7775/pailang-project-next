@@ -107,5 +107,9 @@ const StyledNavRight = styled.div`
 `
 const StyledNavItem = styled.div`
   padding: 0 6px;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
+
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
+  }
 `

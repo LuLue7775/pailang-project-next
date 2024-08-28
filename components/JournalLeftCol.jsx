@@ -14,6 +14,7 @@ export default function JournalLeftCol({
       {content && (
         <StyledContentItems
           className="en"
+          style={{ maxWidth: '80ch' }}
           dangerouslySetInnerHTML={content && createMarkup(content)}
         />
       )}

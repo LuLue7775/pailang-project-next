@@ -111,6 +111,7 @@ const StyledBadge = styled.span`
   border-radius: 5px;
   background: var(--main-color, #e0954f);
   color: #fff;
+  font-size: 0.8rem;
 `
 const StyledBadgeHighlight = styled.span`
   width: 100px;
@@ -119,6 +120,7 @@ const StyledBadgeHighlight = styled.span`
   border-radius: 5px;
   background-color: var(--agenda-tooltip-color, #f2e446);
   color: #000;
+  font-size: 0.8rem;
 `
 const StyledMainTitle = styled.div`
   margin-top: 10px;
