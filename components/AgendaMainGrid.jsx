@@ -41,5 +41,10 @@ const StyledHiddenGrid = styled.div`
   display: flex;
   z-index: -1;
   width: 100%;
-  ${({ isLanguageFilter }) => isLanguageFilter && `justify-content: space-between;`}
+  ${({ isLanguageFilter }) =>
+    isLanguageFilter &&
+    `
+  justify-content: space-between;
+  align-items: center;
+  `}
 `
