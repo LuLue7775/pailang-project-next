@@ -113,7 +113,9 @@ const StyledContentItems = styled.div`
 
     @media (min-width: 768px) {
       width: 150%; /* Make the image wider on desktop */
-      max-width: none; /* Override the max-width */
+      max-width: 70vw;
+      max-height: 50vw;
+      object-fit: contain;
       transform: translateX(-17%); /* Center the wider image */
     }
   }

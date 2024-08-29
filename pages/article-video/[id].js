@@ -42,7 +42,7 @@ export async function getStaticProps({ params }) {
     props: {
       data: data?.data || {}
     },
-    revalidate: 60
+    revalidate: 1
   }
 }
 

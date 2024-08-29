@@ -83,7 +83,7 @@ export async function getStaticProps() {
       modalData: modalData?.data || {},
       randomArticleData: randomArticleData || {}
     },
-    revalidate: 60
+    revalidate: 1
   }
 }
 
