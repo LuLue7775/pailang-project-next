@@ -6,6 +6,7 @@ import AgendaGrid from '../components/AgendaGrid'
 import { CursorContext } from '../context/cursorContext'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
+import AgendaFliterLabel from '../components/AgendaFliterLabel'
 
 const filterData = {
   published: {
@@ -76,7 +77,6 @@ export default function Agenda({ data }) {
   return (
     <StyledAgenda className="agenda-container" as={motion.div} id="cursor-area" ref={cursorAreaRef}>
       <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
-
       <StyledAgendaWrap>
         <StyledAgendaFilter
           as={motion.div}
@@ -127,9 +127,15 @@ export default function Agenda({ data }) {
 
 export async function getStaticProps() {
   const data = await fetchData('/agenda').catch((e) => console.log(e))
+
+  const sortedData =
+    data?.data?.sort((a, b) => {
+      return new Date(b.date_created) - new Date(a.date_created)
+    }) || []
+
   return {
     props: {
-      data: data?.data || {}
+      data: sortedData || {}
     },
     revalidate: 1
   }

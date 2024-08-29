@@ -6,13 +6,13 @@ import { fetchData, createMarkup } from '../utils/functions'
 import Cursor from '../components/Cursor'
 import { CursorContext } from '../context/cursorContext'
 
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 export default function About({ data }) {
   const { content, content_zh, credits, roles } = data
-  const router = useRouter()
+  // const router = useRouter()
 
   // Cursor efffect
   const cursorAreaRef = useRef()
@@ -47,14 +47,13 @@ export default function About({ data }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await fetchData('/about').catch((e) => console.log(e))
 
   return {
     props: {
       data: data?.data || {}
-    },
-    revalidate: 1
+    }
   }
 }
 

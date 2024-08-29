@@ -20,7 +20,7 @@ export default function AgendaMainGrid({
             item={filterData[el]}
             filter={filter}
             setFilter={setFilter}
-            filtersInitArray={filtersInitArray}
+            isLanguageFilter={el === 'EN' || el === 'TC'}
           />
         ))}
       </StyledHiddenGrid>
