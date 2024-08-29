@@ -25,7 +25,7 @@ export default function JournalLeftCol({
           <StyledWrap>
             <h2 className="en text-bold"> Notes </h2>
             <StyledContentSmItems
-              className="en"
+              className="en comment"
               dangerouslySetInnerHTML={comment && createMarkup(comment)}
             />
           </StyledWrap>
@@ -61,7 +61,7 @@ export default function JournalLeftCol({
           <StyledWrap>
             <h2 className="zh text-bold"> 註解 </h2>
             <StyledContentSmItems
-              className="zh"
+              className="zh comment"
               dangerouslySetInnerHTML={comment_zh && createMarkup(comment_zh)}
             />
           </StyledWrap>
@@ -112,11 +112,15 @@ const StyledContentItems = styled.div`
     width: 100%;
 
     @media (min-width: 768px) {
-      width: 150%; /* Make the image wider on desktop */
+      margin: 0;
+
+      width: 150%;
       max-width: 70vw;
       max-height: 50vw;
       object-fit: contain;
-      transform: translateX(-17%); /* Center the wider image */
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 
@@ -133,7 +137,6 @@ const StyledSeperateFull = styled.div`
 
 const StyledContentSmItems = styled.div`
   margin: 1rem auto;
-
   padding: 0 0 0 4rem;
 `
 

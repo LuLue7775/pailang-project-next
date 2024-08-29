@@ -98,6 +98,8 @@ div.zh p {
   font-family: var(--main-font-zh, serif);
   font-size: 1.1rem;
   line-height: 1.8rem;
+
+
 }
 
 @media (min-width: 768px) {
@@ -109,12 +111,22 @@ div.zh p {
   div.zh p {
     line-height: 2.4rem;
   }
+
+  div.zh p span {
+    line-height: 1.2rem; /* Adjust this value as needed */
+    display: inline-block;
+  }
+
+  div.comment p {
+    font-size: .9rem;
+  }
 }
 
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   margin-bottom: 0.5em;
+  text-align: start;
 }
 
 
