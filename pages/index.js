@@ -74,7 +74,7 @@ export default function Home({ modalData, randomArticleData, modalShow, setModal
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const modalData = await fetchData('/modal').catch((e) => console.log(e))
   const randomArticleData = await fetchData('/random-article').catch((e) => console.log(e))
 
@@ -82,8 +82,7 @@ export async function getStaticProps() {
     props: {
       modalData: modalData?.data || {},
       randomArticleData: randomArticleData || {}
-    },
-    revalidate: 1
+    }
   }
 }
 

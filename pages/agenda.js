@@ -125,7 +125,7 @@ export default function Agenda({ data }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await fetchData('/agenda').catch((e) => console.log(e))
 
   const sortedData =
@@ -136,8 +136,7 @@ export async function getStaticProps() {
   return {
     props: {
       data: sortedData || {}
-    },
-    revalidate: 1
+    }
   }
 }
 
