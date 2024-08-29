@@ -36,7 +36,7 @@ const filterData = {
   TC: {
     id: 'zhCheck',
     value: 'TC',
-    label: 'Chinese',
+    label: '繁中',
     labelZh: '繁中',
     type: 'language'
   },
@@ -86,6 +86,15 @@ export default function Agenda({ data }) {
             transition: { duration: 3 }
           }}>
           <AgendaMainGrid
+            filterTitle={'filter by language'}
+            filterType={language}
+            filterData={filterData}
+            filter={filter}
+            setFilter={setFilter}
+            filtersInitArray={filtersInitArray}
+          />
+
+          <AgendaMainGrid
             filterTitle={'filter by schedule'}
             filterType={time}
             filterData={filterData}
@@ -96,14 +105,6 @@ export default function Agenda({ data }) {
           <AgendaMainGrid
             filterTitle={'filter by event type'}
             filterType={form}
-            filterData={filterData}
-            filter={filter}
-            setFilter={setFilter}
-            filtersInitArray={filtersInitArray}
-          />
-          <AgendaMainGrid
-            filterTitle={'filter by language'}
-            filterType={language}
             filterData={filterData}
             filter={filter}
             setFilter={setFilter}
@@ -174,7 +175,6 @@ const StyledAgendaFilter = styled(motion.div)`
   margin-top: 1px;
   width: 100%;
   color: #000;
-  border: 1px solid #000;
 
   @media (min-width: 1080px) {
     width: 30vw;

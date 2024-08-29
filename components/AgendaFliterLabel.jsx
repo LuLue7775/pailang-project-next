@@ -12,64 +12,62 @@ export default function AgendaFliterLabel({ item, filter, setFilter, isLanguageF
   }
 
   return (
-    <StyledLabel className="filter-btn" htmlFor={item?.id} as={motion.div} checked={isChecked}>
-      <StyledInput
-        className="form-input"
-        type="checkbox"
-        value={item?.value}
-        checked={isChecked}
-        onChange={handleFilterChange}
-      />
-      <div> {item?.label === 'Video' ? 'Cinema' : item.label} </div>
-      <div> {item?.labelZh} </div>
-    </StyledLabel>
+    <>
+      {!isLanguageFilter ? (
+        <StyledLabel className="filter-btn" htmlFor={item?.id} as={motion.div} checked={isChecked}>
+          <StyledInput
+            className="form-input"
+            type="checkbox"
+            value={item?.value}
+            checked={isChecked}
+            onChange={handleFilterChange}
+          />
+          <div> {item?.label === 'Video' ? 'Cinema' : item.label} </div>
+          <div> {item?.labelZh} </div>
+        </StyledLabel>
+      ) : (
+        <StyledLanguageLabel isActive={isChecked}>
+          <StyledLanguageInput
+            type="checkbox"
+            value={item?.value}
+            checked={isChecked}
+            onChange={handleFilterChange}
+          />
+          {item.label}
+        </StyledLanguageLabel>
+      )}
+    </>
   )
-  // console.log(isLanguageFilter)
-  // return !isLanguageFilter ? (
-  //   <StyledLabel className="filter-btn" htmlFor={item?.id} as={motion.div} checked={isChecked}>
-  //     <StyledInput
-  //       className="form-input"
-  //       type="checkbox"
-  //       value={item?.value}
-  //       checked={isChecked}
-  //       onChange={handleFilterChange}
-  //     />
-  //     <div> {item?.label === 'Video' ? 'Cinema' : item.label} </div>
-  //     <div> {item?.labelZh} </div>
-  //   </StyledLabel>
-  // ) : (
-  //   <StyledLanguageLabel htmlFor={item?.id} checked={isChecked}>
-  //     <input className="form-input" type="checkbox" value={item?.value} checked={isChecked} />
-  //     {item.label}
-  //   </StyledLanguageLabel>
-  // )
 }
+
 const StyledLanguageLabel = styled.span`
   cursor: pointer;
   padding: 5px 10px;
   margin: 0 5px;
   font-size: 14px;
   font-weight: ${({ isActive }) => (isActive ? 'bold' : 'normal')};
-  color: ${({ isActive }) => (isActive ? 'var(--main-color, #e0954f)' : '#fff')};
+  color: ${({ isActive }) => (isActive ? 'var(--main-color, #e0954f)' : '#000')};
   transition: color 0.3s ease;
+  position: relative;
 
   &:hover {
     color: var(--agenda-tooltip-color, #f2e446);
   }
 `
+
 const StyledLanguageInput = styled.input`
   position: absolute;
   width: 100%;
   height: 100%;
   cursor: pointer;
   opacity: 0;
+  top: 0;
+  left: 0;
 `
-
-
-
 const StyledLabel = styled(motion.div)`
   flex: 1;
   margin: 0 5px;
+  padding: 5px;
   line-height: 1.3rem;
 
   position: relative;

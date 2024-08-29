@@ -112,13 +112,12 @@ const StyledContentItems = styled.div`
     width: 100%;
 
     @media (min-width: 768px) {
-      margin: 0;
-
       width: 150%;
       max-width: 70vw;
       max-height: 50vw;
       object-fit: contain;
       position: relative;
+      margin: 0;
       left: 50%;
       transform: translateX(-50%);
     }
