@@ -22,7 +22,7 @@ const ImageWithLink = React.forwardRef((props, ref) => {
       />
     </div>
   ) : (
-    ''
+    <ImagePlaceholder />
   )
 })
 ImageWithLink.displayName = 'ImageWithLink'
@@ -103,6 +103,12 @@ const StyledImgContainer = styled(motion.div)`
   overflow: hidden;
   background-color: #000;
 `
+const ImagePlaceholder = styled.div`
+  width: 100%;
+  padding-bottom: 100%; // 1:1 aspect ratio
+  background-color: #000;
+`
+
 
 const StyledBadge = styled.span`
   width: fit-content;
