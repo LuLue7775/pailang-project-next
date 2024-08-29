@@ -71,7 +71,7 @@ export default function AgendaElement({ item, activeExpand, expandIndex }) {
 
       <div>
         <StyledBadge> {type === 'video' ? 'cinema' : type} </StyledBadge>
-        {status === 'draft' && <StyledBadgeHighlight> upcomming </StyledBadgeHighlight>}
+        {status === 'draft' && <StyledBadgeHighlight> upcoming </StyledBadgeHighlight>}
 
         <StyledMainTitle
           className="font-ogg"

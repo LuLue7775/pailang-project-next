@@ -16,19 +16,17 @@ export default function Nav() {
   const parseURL = () => {
     if (router.pathname === '/agenda' || router.pathname === '/about') return
     if (router.pathname === '/') {
-      if (currentArticle === 'journal')
-        return { __html: '白浪雜誌 <br/> Journal of Settler Selves' }
-      if (currentArticle === 'scenography')
-        return { __html: '白浪圖表 <br/> Scenography of Settler Selves' }
-      if (currentArticle === 'video') return { __html: '白浪電影 <br/> Cinema of Settler Selves' }
+      if (currentArticle === 'journal') return { __html: '白浪雜誌 <br/> Pailang Journal' }
+      if (currentArticle === 'scenography') return { __html: '白浪圖表 <br/> Pailang Scenography' }
+      if (currentArticle === 'video') return { __html: '白浪電影 <br/> Pailang Cinema' }
     }
 
     if (router.pathname.startsWith('/article-journal'))
-      return { __html: '白浪雜誌 <br/> Journal of Settler Selves' }
+      return { __html: '白浪雜誌 <br/> Pailang Journal' }
     else if (router.pathname.startsWith('/article-scenography'))
-      return { __html: '白浪圖表 <br/> Scenography of Settler Selves' }
+      return { __html: '白浪圖表 <br/> Pailang Scenography' }
     else if (router.pathname.startsWith('/article-video'))
-      return { __html: '白浪電影 <br/> Cinema of Settler Selves' }
+      return { __html: '白浪電影 <br/> Pailang Cinema' }
   }
 
   useEffect(() => {
