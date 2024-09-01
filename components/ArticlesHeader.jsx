@@ -46,7 +46,7 @@ const StyledImageWrap = styled.div`
   margin: 10px auto;
   overflow: hidden;
   @media (min-width: 768px) {
-    max-height: 200px;
+    max-height: 400px;
   }
 `
 

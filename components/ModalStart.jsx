@@ -13,7 +13,7 @@ export default function ModalStart({ handleStartClick, modalData }) {
     <StyledModal className="modal" ref={modalRef}>
       <StyledModalTitle className="modal-title">
         <StyledChTitle className="font-zh-sans"> {title_zh} </StyledChTitle>
-        <h3> {title} </h3>
+        <h3 style={{ textAlign: 'center' }}> {title} </h3>
       </StyledModalTitle>
       <StyledModalContent>
         <div className="zh" dangerouslySetInnerHTML={content_zh && createMarkup(content_zh)} />

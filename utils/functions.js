@@ -188,9 +188,39 @@ export function updatePath(
 }
 
 export function createMarkup(htmlStr) {
-  return { __html: htmlStr }
-}
+  // Convert common HTML entities to characters
+  const decodedStr = htmlStr
+    .replace(/&mdash;/g, '—')
+    .replace(/&ndash;/g, '–')
+    .replace(/&ldquo;/g, '"')
+    .replace(/&rdquo;/g, '"')
+    .replace(/&lsquo;/g, "'")
+    .replace(/&rsquo;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#39;/g, "'")
+    .replace(/&hellip;/g, '…')
+    .replace(/&bull;/g, '•')
+    .replace(/&deg;/g, '°')
+    .replace(/&plusmn;/g, '±')
+    .replace(/&copy;/g, '©')
+    .replace(/&reg;/g, '®')
+    .replace(/&trade;/g, '™')
 
+  const handleEnContent = decodedStr.replace(
+    /(<a[^>]*>.*?<\/a>)|(<[^>]*>)|(&nbsp;)|(\b[A-Za-z0-9]+(?:['']\w+)*(?:[-&,;:.!?()[\]/"\s](?![<>])(?:[A-Za-z0-9]+(?:['']\w+)*)?)*\b)/g,
+    (match, anchor, tag, nbsp, phrase) => {
+      if (anchor) return anchor // Return full anchor tags as-is
+      if (tag) return tag // Return other HTML tags as-is
+      if (nbsp) return '<br />' // Replace &nbsp; with a line break
+      if (phrase) return `<span class="en-term">${phrase}</span>` // Wrap English phrases
+      return match // Return other matches as-is
+    }
+  )
+  return { __html: handleEnContent }
+}
 export const sortAgenda = (filter, filterData, data) => {
   if (filter.length === 0) return data
 

@@ -64,8 +64,8 @@ const StyledAnimTitle = styled(motion.span)`
     ${({ $isTitleExceed, $windowWidth }) =>
       $isTitleExceed &&
       `
-    font-size: clamp(20px, ${(($windowWidth / 25) * 120) / $windowWidth}vw, 60px);
-    line-height: clamp(1.2em, ${(($windowWidth / 20) * 120) / $windowWidth}vw, 1.5em);
+    font-size: clamp(20px, ${(($windowWidth / 20) * 110) / $windowWidth}vw, 30px);
+    line-height: clamp(1.2em, ${(($windowWidth / 20) * 110) / $windowWidth}vw, 1.5em);
   `}
   }
 `

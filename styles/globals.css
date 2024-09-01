@@ -73,13 +73,6 @@ span.row-letter {
   min-width: 15px;
 }
 
-
-span, div, p {
-  font-family: var(--main-font-zh, serif);
-  letter-spacing: 1px;
-  
-}
-
 div.en p,
 div.zh p {
   letter-spacing: 1px;
@@ -98,8 +91,6 @@ div.zh p {
   font-family: var(--main-font-zh, serif);
   font-size: 1.1rem;
   line-height: 1.8rem;
-
-
 }
 
 @media (min-width: 768px) {
@@ -139,13 +130,26 @@ hr {
   border-bottom: 0.6px solid transparent;
 }
 
+/* 這邊給中文欄位的英文內容用，createMarkup中有處理英文字的regex*/
+/* .zh .en-term {
+  font-family: var(--main-font-en, sans-serif);
+  letter-spacing: normal;
+} */
+/* 以下避免標題被overide */
+/* .font-ogg .en-term,
+.row-letter.font-ogg {
+  font-family: var(--title-font-en, serif) !important;
+} */
+
 .font-ogg > p {
   font-family: var(--title-font-en, serif);
   margin-top: 10px;
   line-height: 1.3rem;
   font-size: 1.1rem;
 }
-
+.font-ogg {
+  font-family: var(--title-font-en, serif);
+}
 
 .font-zh-sans > p {
   /* font-family: custom-sans-serif, sans-serif; */
@@ -154,9 +158,6 @@ hr {
   font-size: 0.9rem;
 }
 
-.font-ogg {
-  font-family: var(--title-font-en, serif);
-}
 .font-zh-sans {
   /* font-family: custom-sans-serif, sans-serif; */
   font-family: var(--main-font-zh, serif);
@@ -167,6 +168,7 @@ hr {
   src: local('Noto Serif TC');
   unicode-range: U+4E00-9FFF;
 }
+
 
 @font-face {
   font-family: custom-sans-serif;
