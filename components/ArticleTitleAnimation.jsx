@@ -53,12 +53,12 @@ const StyledAnimTitle = styled(motion.span)`
 
   p {
     padding: 0 10px;
-    font-size: clamp(24px, 7vw, 80px);
-    line-height: clamp(1.2em, 8vw, 1.5em);
+    font-size: clamp(24px, 7vw, 40px);
+    line-height: clamp(1.4em, 6vw, 1.3em);
 
-    @media (max-width: 480px) {
-      font-size: clamp(20px, 7vw, 60px);
-      line-height: clamp(1.4em, 6vw, 1.3em);
+    @media (min-width: 480px) {
+      font-size: clamp(20px, 7vw, 50px);
+      line-height: clamp(1.2em, 8vw, 1.5em);
     }
 
     ${({ $isTitleExceed, $windowWidth }) =>
