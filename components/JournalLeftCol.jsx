@@ -26,6 +26,7 @@ export default function JournalLeftCol({
             <h2 className="en text-bold"> Notes </h2>
             <StyledContentSmItems
               className="en comment"
+              style={{ maxWidth: '80ch' }}
               dangerouslySetInnerHTML={comment && createMarkup(comment)}
             />
           </StyledWrap>
@@ -36,9 +37,10 @@ export default function JournalLeftCol({
         <>
           <StyledSeperateFull />
           <StyledWrap>
-            <h2 className="en text-bold"> Author </h2>
+            <h2 className="en text-bold"> Bio </h2>
             <StyledFooter
               className="author-bio en"
+              style={{ maxWidth: '80ch' }}
               dangerouslySetInnerHTML={author_bio && createMarkup(author_bio)}
             />
           </StyledWrap>
@@ -62,6 +64,7 @@ export default function JournalLeftCol({
             <h2 className="zh text-bold"> 註解 </h2>
             <StyledContentSmItems
               className="zh comment"
+              style={{ maxWidth: '100ch' }}
               dangerouslySetInnerHTML={comment_zh && createMarkup(comment_zh)}
             />
           </StyledWrap>
@@ -75,6 +78,7 @@ export default function JournalLeftCol({
             <h2 className="zh text-bold"> 作者 </h2>
             <StyledFooter
               className="author-bio zh"
+              style={{ maxWidth: '80ch' }}
               dangerouslySetInnerHTML={author_bio_zh && createMarkup(author_bio_zh)}
             />
           </StyledWrap>

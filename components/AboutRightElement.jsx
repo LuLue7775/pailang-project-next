@@ -29,11 +29,11 @@ export default function AboutRightElement({ credits, createMarkup }) {
       {/* <MotionBG variants={BGMotion} scrollHeight={scrollHeight} /> */}
 
       {credits?.map((elem, i) => (
-        <motion.div className="element-container" key={i} variants={containerTextMotion}>
+        <StyledContainer className="element-container" key={i} variants={containerTextMotion}>
           <LineSVGFull />
           <StyledTitle className="font-ogg"> {elem?.title} </StyledTitle>
           <StyledElement dangerouslySetInnerHTML={elem?.content && createMarkup(elem?.content)} />
-        </motion.div>
+        </StyledContainer>
       )) || ''}
     </StyledRightColContainer>
   )
@@ -46,6 +46,14 @@ export default function AboutRightElement({ credits, createMarkup }) {
 //   width: 100%;
 // `
 
+const StyledContainer = styled(motion.div)`
+  min-width: 100%;
+`
+const StyledTitle = styled.div`
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 15px 0;
+`
 const StyledRightColContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -59,11 +67,7 @@ const StyledRightColContainer = styled.div`
   // background-repeat: no-repeat;
 `
 
-const StyledTitle = styled.div`
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 15px 0;
-`
+
 const StyledElement = styled.div`
   padding: 20px 10px;
   background-color: transparent;

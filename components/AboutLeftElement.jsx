@@ -31,18 +31,19 @@ export default function AboutLeftElement({ roles, createMarkup }) {
             <StyledZhTitle> {elem?.name_zh} </StyledZhTitle>
             <StyledEnTitle className="font-ogg"> {elem?.name} </StyledEnTitle>
           </StyledLeftTitle>
-
-          <ImageContainer>
-            <Image
-              className="persona-img"
-              alt="pailang-persona"
-              src={elem?.cover || 'https://via.placeholder.com/300X150.png'}
-              width="100%"
-              height="100%"
-              layout="responsive"
-              objectFit="contain"
-            />
-          </ImageContainer>
+          {elem?.cover && (
+            <ImageContainer>
+              <Image
+                className="persona-img"
+                alt="pailang-persona"
+                src={elem?.cover}
+                width="100%"
+                height="100%"
+                layout="responsive"
+                objectFit="contain"
+              />
+            </ImageContainer>
+          )}
 
           <StyledPersonaEn
             className="persona-en"

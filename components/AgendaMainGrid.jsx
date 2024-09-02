@@ -8,7 +8,7 @@ export default function AgendaMainGrid({ filterTitle, filterType, filterData, fi
   return (
     <StyledMainGrid>
       {/* <StyledFilterName> {filterTitle} </StyledFilterName> */}
-      <StyledHiddenGrid $isLanguageFilter={isLanguageFilter}>
+      <StyledHiddenGrid isLanguageFilter={isLanguageFilter}>
         {filterType.map((el, i) => (
           <AgendaFliterLabel
             key={i}
@@ -44,7 +44,6 @@ const StyledHiddenGrid = styled.div`
   ${({ isLanguageFilter }) =>
     isLanguageFilter &&
     `
-  justify-content: space-between;
-  align-items: center;
+      align-items: center;
   `}
 `

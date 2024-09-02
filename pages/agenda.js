@@ -17,7 +17,7 @@ const filterData = {
     type: 'time'
   },
   draft: { id: 'upcomingCheck', value: 'draft', label: 'Upcoming', labelZh: '未來', type: 'time' },
-  archived: { id: 'pastCheck', value: 'archived', label: 'Past', labelZh: '往期', type: 'time' },
+  // archived: { id: 'pastCheck', value: 'archived', label: 'Past', labelZh: '往期', type: 'time' },
   video: { id: 'videoCheck', value: 'video', label: 'Video', labelZh: '電影', type: 'form' },
   journal: {
     id: 'journalCheck',
@@ -50,7 +50,7 @@ const filterData = {
 }
 
 const language = ['TC', 'EN']
-const time = ['published', 'draft', 'archived']
+const time = ['published', 'draft']
 const form = ['video', 'journal', 'scenography']
 
 const filtersInitArray = Object.keys(filterData)
