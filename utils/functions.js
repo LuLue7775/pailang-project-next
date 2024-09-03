@@ -187,7 +187,9 @@ export function updatePath(
   })
 }
 
-export function createMarkup(htmlStr) {
+export function createMarkup(htmlStr, className) {
+  if (className === 'en') return { __html: htmlStr }
+
   // Convert common HTML entities to characters
   const decodedStr = htmlStr
     .replace(/&mdash;/g, '—')
@@ -210,7 +212,7 @@ export function createMarkup(htmlStr) {
     .replace(/&trade;/g, '™')
 
   const handleEnContent = decodedStr.replace(
-    /(<a[^>]*>.*?<\/a>)|(<[^>]*>)|(&nbsp;)|(\b[A-Za-z0-9]+(?:['']\w+)*(?:[-&,;:.!?()[\]/"\s](?![<>])(?:[A-Za-z0-9]+(?:['']\w+)*)?)*\b)/g,
+    /(<a[^>]*>.*?<\/a>)|(<[^>]*>)|(&nbsp;)|(\b[A-Za-z]+(?:['']\w+)*(?:[-&,;:.!?()[\]/"\s](?![<>])(?:[A-Za-z]+(?:['']\w+)*)?)*\b)/g,
     (match, anchor, tag, nbsp, phrase) => {
       if (anchor) return anchor // Return full anchor tags as-is
       if (tag) return tag // Return other HTML tags as-is

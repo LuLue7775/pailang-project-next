@@ -21,7 +21,7 @@ export default function AnimatedTitles({ title, language, textLengthRef, windowW
         className="row-letter font-ogg header1"
         $isTitleExceed={textLengthRef.current}
         $windowWidth={windowWidth}
-        dangerouslySetInnerHTML={title && createMarkup(title)}
+        dangerouslySetInnerHTML={title && createMarkup(title, 'en')}
       />
 
       {/* staggering version

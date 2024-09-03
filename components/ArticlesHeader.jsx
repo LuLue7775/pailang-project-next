@@ -52,7 +52,7 @@ const StyledImageWrap = styled.div`
 
 const StyledHeader = styled.div`
   width: 100%;
-  padding-top: 10vh;
+  padding-top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;

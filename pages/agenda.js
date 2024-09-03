@@ -157,7 +157,6 @@ const StyledAgenda = styled.div`
 const StyledAgendaWrap = styled.div`
   height: auto;
   display: grid;
-  grid-template-rows: 30vh 10vh;
 
   justify-items: end;
   align-content: end;
@@ -165,6 +164,7 @@ const StyledAgendaWrap = styled.div`
 
   margin: 60px 10px 0 10px;
   @media (min-width: 1080px) {
+    grid-template-rows: 30vh 10vh;
     margin: 0;
   }
 `

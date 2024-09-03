@@ -78,7 +78,7 @@ const StyledAgendaGrid = styled.div`
   grid-auto-rows: auto;
 
   width: 100%;
-  margin: 60px auto; // center the grid
+  margin: 0 auto; // center the grid
 
   @media (min-width: 768px) {
     margin: 60px 0;

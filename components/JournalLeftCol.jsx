@@ -15,7 +15,7 @@ export default function JournalLeftCol({
         <StyledContentItems
           className="en"
           style={{ maxWidth: '80ch' }}
-          dangerouslySetInnerHTML={content && createMarkup(content)}
+          dangerouslySetInnerHTML={content && createMarkup(content, 'en')}
         />
       )}
 
@@ -27,7 +27,7 @@ export default function JournalLeftCol({
             <StyledContentSmItems
               className="en comment"
               style={{ maxWidth: '80ch' }}
-              dangerouslySetInnerHTML={comment && createMarkup(comment)}
+              dangerouslySetInnerHTML={comment && createMarkup(comment, 'en')}
             />
           </StyledWrap>
         </>
@@ -41,7 +41,7 @@ export default function JournalLeftCol({
             <StyledFooter
               className="author-bio en"
               style={{ maxWidth: '80ch' }}
-              dangerouslySetInnerHTML={author_bio && createMarkup(author_bio)}
+              dangerouslySetInnerHTML={author_bio && createMarkup(author_bio, 'en')}
             />
           </StyledWrap>
         </>
@@ -52,7 +52,7 @@ export default function JournalLeftCol({
           <StyledSeperateFull />
           <StyledContentItems
             className="zh"
-            dangerouslySetInnerHTML={content_zh && createMarkup(content_zh)}
+            dangerouslySetInnerHTML={content_zh && createMarkup(content_zh, 'zh')}
           />
         </>
       )}
@@ -65,7 +65,7 @@ export default function JournalLeftCol({
             <StyledContentSmItems
               className="zh comment"
               style={{ maxWidth: '100ch' }}
-              dangerouslySetInnerHTML={comment_zh && createMarkup(comment_zh)}
+              dangerouslySetInnerHTML={comment_zh && createMarkup(comment_zh, 'zh')}
             />
           </StyledWrap>
         </>
@@ -79,7 +79,7 @@ export default function JournalLeftCol({
             <StyledFooter
               className="author-bio zh"
               style={{ maxWidth: '80ch' }}
-              dangerouslySetInnerHTML={author_bio_zh && createMarkup(author_bio_zh)}
+              dangerouslySetInnerHTML={author_bio_zh && createMarkup(author_bio_zh, 'zh')}
             />
           </StyledWrap>
         </>
