@@ -24,7 +24,7 @@ export default function ArticleHeaderSubtitles({ artists, extra_info, start_date
           )}
         </StyledDate>
 
-        <div dangerouslySetInnerHTML={extra_info && createMarkup(extra_info)} />
+        <div className="zh" dangerouslySetInnerHTML={extra_info && createMarkup(extra_info)} />
       </StyledSubtitles>
     </StyledSubtitlesWrap>
   )
