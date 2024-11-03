@@ -12,8 +12,8 @@ const ImageWithLink = React.forwardRef((props, ref) => {
     <div ref={ref}>
       <Image
         alt=""
-        width="100"
-        height="100"
+        width={300}
+        height={300}
         src={cover}
         layout="responsive"
         objectFit="cover"
