@@ -127,7 +127,8 @@ export default function Agenda({ data }) {
 }
 
 export async function getServerSideProps() {
-  const data = await fetchData('/agenda').catch((e) => console.log(e))
+  const total = await fetchData('/agenda').catch((e) => console.log(e))
+  const data = await fetchData(`agenda?limit=${total}`)
 
   const sortedData =
     data?.data?.sort((a, b) => {

@@ -7,7 +7,8 @@ export default function JournalLeftCol({
   comment,
   comment_zh,
   author_bio,
-  author_bio_zh
+  author_bio_zh,
+  extra_media
 }) {
   return (
     <StyledLeftColContainer className="left-col-content">
@@ -26,7 +27,6 @@ export default function JournalLeftCol({
             <h2 className="en text-bold"> Notes </h2>
             <StyledContentSmItems
               className="en comment"
-              style={{ maxWidth: '80ch' }}
               dangerouslySetInnerHTML={comment && createMarkup(comment, 'en')}
             />
           </StyledWrap>
@@ -38,7 +38,7 @@ export default function JournalLeftCol({
           <StyledSeperateFull />
           <StyledWrap>
             <h2 className="en text-bold"> Bio </h2>
-            <StyledFooter
+            <StyledContentSmItems
               className="author-bio en"
               style={{ maxWidth: '80ch' }}
               dangerouslySetInnerHTML={author_bio && createMarkup(author_bio, 'en')}
@@ -64,7 +64,6 @@ export default function JournalLeftCol({
             <h2 className="zh text-bold"> 註解 </h2>
             <StyledContentSmItems
               className="zh comment"
-              style={{ maxWidth: '100ch' }}
               dangerouslySetInnerHTML={comment_zh && createMarkup(comment_zh, 'zh')}
             />
           </StyledWrap>
@@ -76,10 +75,21 @@ export default function JournalLeftCol({
           <StyledSeperateFull />
           <StyledWrap>
             <h2 className="zh text-bold"> 作者 </h2>
-            <StyledFooter
+            <StyledContentSmItems
               className="author-bio zh"
-              style={{ maxWidth: '80ch' }}
               dangerouslySetInnerHTML={author_bio_zh && createMarkup(author_bio_zh, 'zh')}
+            />
+          </StyledWrap>
+        </>
+      )}
+
+      {extra_media && (
+        <>
+          <StyledSeperateFull />
+          <StyledWrap>
+            <StyledContentItems
+              className="zh"
+              dangerouslySetInnerHTML={extra_media && createMarkup(extra_media, 'zh')}
             />
           </StyledWrap>
         </>
@@ -92,6 +102,9 @@ const StyledWrap = styled.div`
   display: flex;
   align-items: start;
   flex-direction: column;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 `
 const StyledLeftColContainer = styled.div`
   display: flex;
@@ -130,6 +143,11 @@ const StyledContentItems = styled.div`
   iframe {
     min-height: 75dvh;
   }
+
+  video {
+    max-width: 100%;
+    height: auto;
+  }
 `
 
 const StyledSeperateFull = styled.div`
@@ -139,14 +157,15 @@ const StyledSeperateFull = styled.div`
 `
 
 const StyledContentSmItems = styled.div`
-  margin: 1rem auto;
-  padding: 0 0 0 4rem;
-`
-
-const StyledFooter = styled.div`
   position: relative;
   margin: 1rem auto;
   padding: 0 0 0 4rem;
   text-align: justify;
   z-index: 5;
+  max-width: 100%;
+
+  @media (min-width: 768px) {
+    max-width: 80ch;
+  }
 `
+

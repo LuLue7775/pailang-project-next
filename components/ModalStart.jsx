@@ -64,4 +64,7 @@ const StyledModalContent = styled.div`
   max-width: 80%;
   overflow: hidden;
   font-size: 0.8rem;
+  .en-term {
+    line-height: 1.3rem;
+  }
 `

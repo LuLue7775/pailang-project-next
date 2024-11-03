@@ -1,3 +1,5 @@
+import he from 'he'
+
 export async function fetchData(route) {
   const DIRECTUS_API = process.env.DIRECTUS_CUSTOM_ENDPOINT
   const res = await fetch(`${DIRECTUS_API + route}`, {
@@ -191,25 +193,7 @@ export function createMarkup(htmlStr, className) {
   if (className === 'en') return { __html: htmlStr }
 
   // Convert common HTML entities to characters
-  const decodedStr = htmlStr
-    .replace(/&mdash;/g, '—')
-    .replace(/&ndash;/g, '–')
-    .replace(/&ldquo;/g, '"')
-    .replace(/&rdquo;/g, '"')
-    .replace(/&lsquo;/g, "'")
-    .replace(/&rsquo;/g, "'")
-    .replace(/&quot;/g, '"')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&#39;/g, "'")
-    .replace(/&hellip;/g, '…')
-    .replace(/&bull;/g, '•')
-    .replace(/&deg;/g, '°')
-    .replace(/&plusmn;/g, '±')
-    .replace(/&copy;/g, '©')
-    .replace(/&reg;/g, '®')
-    .replace(/&trade;/g, '™')
+  const decodedStr = he.decode(htmlStr)
 
   const handleEnContent = decodedStr.replace(
     /(<a[^>]*>.*?<\/a>)|(<[^>]*>)|(&nbsp;)|(\b[A-Za-z]+(?:['']\w+)*(?:[-&,;:.!?()[\]/"\s](?![<>])(?:[A-Za-z]+(?:['']\w+)*)?)*\b)/g,

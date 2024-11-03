@@ -40,8 +40,9 @@ const StyledTitles = styled.div`
 `
 const StyledZhTitles = styled(motion.div)`
   font-size: 1.3rem;
-  p {
-    font-size: 1.2rem;
-    padding: 0 10px;
+  p,
+  span {
+    font-size: 1.3rem;
+    padding: 0 2rem;
   }
 `
