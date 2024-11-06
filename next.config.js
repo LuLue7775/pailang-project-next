@@ -22,7 +22,22 @@ module.exports = {
     return [
       {
         source: '/_next/:path*',
-        headers: [{ key: 'Access-Control-Allow-Origin', value: 'http://localhost:3000' }]
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: 'http://localhost:3000'
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: `
+              frame-src 'self' https://www.youtube.com https://www.google.com https://*.google.com https://maps.gstatic.com https://*.googleapis.com;
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com https://maps.gstatic.com;
+              img-src 'self' data: https://*.googleapis.com https://*.gstatic.com https://*.google.com;
+            `
+              .replace(/\s{2,}/g, ' ')
+              .trim()
+          }
+        ]
       }
     ]
   }

@@ -190,23 +190,54 @@ export function updatePath(
 }
 
 export function createMarkup(htmlStr, className) {
+  if (!htmlStr) return { __html: '' }
   if (className === 'en') return { __html: htmlStr }
 
   // Convert common HTML entities to characters
   const decodedStr = he.decode(htmlStr)
 
-  const handleEnContent = decodedStr.replace(
-    /(<a[^>]*>.*?<\/a>)|(<[^>]*>)|(&nbsp;)|(\b[A-Za-z]+(?:['']\w+)*(?:[-&,;:.!?()[\]/"\s](?![<>])(?:[A-Za-z]+(?:['']\w+)*)?)*\b)/g,
+  // Handle iframes if present and if we're on the client side
+  const handleIframes =
+    typeof window !== 'undefined'
+      ? decodedStr.replace(/<iframe(.+?)<\/iframe>/g, (match) => {
+          const temp = document.createElement('div')
+          temp.innerHTML = match
+          const iframe = temp.querySelector('iframe')
+
+          if (iframe) {
+            // Add sandbox permissions
+            const sandboxValues = [
+              'allow-scripts',
+              'allow-same-origin',
+              'allow-popups',
+              'allow-forms',
+              'allow-presentation'
+            ].join(' ')
+
+            iframe.setAttribute('sandbox', sandboxValues)
+            return temp.innerHTML
+          }
+          return match
+        })
+      : decodedStr // Return as-is during SSR
+
+  // Then handle English content as before
+  const handleEnContent = handleIframes.replace(
+    /(<a[^>]*>.*?<\/a>)|(<[^>]*>)|(&nbsp;)|(\b[A-Za-z][A-Za-z\s,.'":\-()]*[A-Za-z]\b(?:[,.'":\-()]\s*(?:[A-Za-z][A-Za-z\s,.'":\-()]*[A-Za-z]\b)?)*)/g,
     (match, anchor, tag, nbsp, phrase) => {
-      if (anchor) return anchor // Return full anchor tags as-is
-      if (tag) return tag // Return other HTML tags as-is
-      if (nbsp) return '<br />' // Replace &nbsp; with a line break
-      if (phrase) return `<span class="en-term">${phrase}</span>` // Wrap English phrases
-      return match // Return other matches as-is
+      if (anchor) return anchor
+      if (tag) return tag
+      if (nbsp) return '<br />'
+      if (phrase) return `<span class="en-term">${phrase}</span>`
+      return match
     }
   )
+
   return { __html: handleEnContent }
 }
+
+
+
 export const sortAgenda = (filter, filterData, data) => {
   if (filter.length === 0) return data
 

@@ -1,6 +1,20 @@
 import styled from 'styled-components'
 import { createMarkup } from '../utils/functions'
 
+import dynamic from 'next/dynamic'
+
+// Create a client-side only component
+const ClientMediaContent = dynamic(
+  () =>
+    Promise.resolve(({ content }) => (
+      <StyledContentItems
+        className="zh"
+        dangerouslySetInnerHTML={content && createMarkup(content, 'zh')}
+      />
+    )),
+  { ssr: false }
+)
+
 export default function JournalLeftCol({
   content,
   content_zh,
@@ -87,10 +101,7 @@ export default function JournalLeftCol({
         <>
           <StyledSeperateFull />
           <StyledWrap>
-            <StyledContentItems
-              className="zh"
-              dangerouslySetInnerHTML={extra_media && createMarkup(extra_media, 'zh')}
-            />
+            <ClientMediaContent content={extra_media} />
           </StyledWrap>
         </>
       )}
@@ -142,6 +153,7 @@ const StyledContentItems = styled.div`
 
   iframe {
     min-height: 75dvh;
+    width: 100vw;
   }
 
   video {
