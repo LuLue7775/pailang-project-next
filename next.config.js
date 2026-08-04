@@ -2,6 +2,7 @@
 
 module.exports = {
   reactStrictMode: true,
+  optimizeFonts: false,
   compiler: {
     // ssr and displayName are configured by default
     styledComponents: true
