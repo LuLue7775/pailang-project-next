@@ -123,9 +123,16 @@ export default function Cursor({ hoverEvent, cursorAreaRef }) {
 const StyledContainer = styled.div`
   position: absolute;
   pointer-events: none;
+  /* 未指定 left 時會落在父層 padding 的靜態位置(x=padding)，
+     搭配 width:100% 會往右溢出 padding 寬度，露出右側白色 body。固定 left:0 對齊容器左緣。 */
+  left: 0;
 
   height: ${({ $route }) =>
-    $route === '/agenda' || $route === '/about' ? 'calc(100vh - 80px)' : '200vh'};
+    $route === '/agenda' || $route === '/about'
+      ? 'calc(100vh - 80px)'
+      : $route === '/'
+      ? '100vh'
+      : '200vh'};
   width: 100%;
   overflow: hidden;
 `

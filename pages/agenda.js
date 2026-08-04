@@ -1,127 +1,60 @@
 import { useState, useEffect, useRef, useContext } from 'react'
 import Cursor from '../components/Cursor'
-import { fetchData, sortAgenda } from '../utils/functions'
-import AgendaMainGrid from '../components/AgendaMainGrid'
+import { fetchData } from '../utils/functions'
 import AgendaGrid from '../components/AgendaGrid'
+import AgendaFliterLabel from '../components/AgendaFliterLabel'
 import { CursorContext } from '../context/cursorContext'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import AgendaFliterLabel from '../components/AgendaFliterLabel'
 
-const filterData = {
-  published: {
-    id: 'currentCheck',
-    value: 'published',
-    label: 'Current',
-    labelZh: '當期',
-    type: 'time'
-  },
-  draft: { id: 'upcomingCheck', value: 'draft', label: 'Upcoming', labelZh: '未來', type: 'time' },
-  // archived: { id: 'pastCheck', value: 'archived', label: 'Past', labelZh: '往期', type: 'time' },
-  video: { id: 'videoCheck', value: 'video', label: 'Video', labelZh: '電影', type: 'form' },
-  journal: {
-    id: 'journalCheck',
-    value: 'journal',
-    label: 'Journal',
-    labelZh: '雜誌',
-    type: 'form'
-  },
-  scenography: {
-    id: 'scenographyCheck',
-    value: 'scenography',
-    label: 'Scenography',
-    labelZh: '圖表',
-    type: 'form'
-  },
-  TC: {
-    id: 'zhCheck',
-    value: 'TC',
-    label: '繁中',
-    labelZh: '繁中',
-    type: 'language'
-  },
-  EN: {
-    id: 'enCheck',
-    value: 'EN',
-    label: 'English',
-    labelZh: '英文',
-    type: 'language'
-  }
-}
+// 只保留語言篩選（繁中 TC / 英 EN）
+const languageFilters = [
+  { value: 'TC', label: '繁中' },
+  { value: 'EN', label: 'English' }
+]
 
-const language = ['TC', 'EN']
-const time = ['published', 'draft']
-const form = ['video', 'journal', 'scenography']
-
-const filtersInitArray = Object.keys(filterData)
+// 語言判斷：只要 language 含 'EN'（涵蓋 'EN' / '英 EN'）即為英文，其餘一律視為繁中
+const isEnglish = (item) => (item?.language || '').includes('EN')
 
 export default function Agenda({ data }) {
-  const [initalData, setInitialData] = useState(data)
+  // 每個語言篩選是獨立的 boolean，預設全開（兩種語言都顯示）
+  const [filter, setFilter] = useState(['TC', 'EN'])
   const [filteredData, setFilteredData] = useState(data)
-  const [filter, setFilter] = useState([])
 
-  const [activeExpand, setActiveExpand] = useState(null)
-
-  // Cursor efffect
   const cursorAreaRef = useRef()
   const { hoverEvent, setHoverEvent } = useContext(CursorContext)
-  /**
-   * Sorting
-   */
+
   useEffect(() => {
-    const filtered = sortAgenda(filter, filterData, data)
-    setFilteredData(filtered)
-    setActiveExpand(null)
+    // 純 boolean：語言有被勾選才顯示；兩者都取消則為空（不再回退成「全部顯示」）
+    const wantEN = filter.includes('EN')
+    const wantTC = filter.includes('TC')
+    setFilteredData(
+      data.filter((item) => {
+        const en = isEnglish(item)
+        return (en && wantEN) || (!en && wantTC)
+      })
+    )
   }, [filter, data])
 
   return (
     <StyledAgenda className="agenda-container" as={motion.div} id="cursor-area" ref={cursorAreaRef}>
       <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
-      <StyledAgendaWrap>
-        <StyledAgendaFilter
-          as={motion.div}
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: 1,
-            transition: { duration: 3 }
-          }}>
-          <AgendaMainGrid
-            filterTitle={'filter by language'}
-            filterType={language}
-            filterData={filterData}
-            filter={filter}
-            setFilter={setFilter}
-            filtersInitArray={filtersInitArray}
-          />
 
-          <AgendaMainGrid
-            filterTitle={'filter by schedule'}
-            filterType={time}
-            filterData={filterData}
+      <StyledFilterBar
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 1.2 } }}>
+        {languageFilters.map((item) => (
+          <AgendaFliterLabel
+            key={item.value}
+            item={item}
             filter={filter}
             setFilter={setFilter}
-            filtersInitArray={filtersInitArray}
           />
-          <AgendaMainGrid
-            filterTitle={'filter by event type'}
-            filterType={form}
-            filterData={filterData}
-            filter={filter}
-            setFilter={setFilter}
-            filtersInitArray={filtersInitArray}
-          />
-        </StyledAgendaFilter>
-      </StyledAgendaWrap>
+        ))}
+      </StyledFilterBar>
 
-      <AgendaGrid
-        filteredData={filteredData}
-        setHoverEvent={setHoverEvent}
-        setActiveExpand={setActiveExpand}
-        activeExpand={activeExpand}
-        dataAmount={data?.length}
-        filter={filter}
-        initalData={initalData}
-      />
+      <AgendaGrid filteredData={filteredData} setHoverEvent={setHoverEvent} />
     </StyledAgenda>
   )
 }
@@ -134,56 +67,41 @@ export async function getServerSideProps() {
   const data = await fetchData(`/agenda?limit=${total}`).catch((e) => console.log(e))
 
   const sortedData =
-    data?.data?.sort((a, b) => {
-      return new Date(b.date_created) - new Date(a.date_created)
-    }) || []
+    data?.data
+      ?.filter((item) => item.type === 'journal' || item.type === 'field')
+      .sort((a, b) => new Date(b.date_created) - new Date(a.date_created)) || []
 
   return {
     props: {
-      data: sortedData || {}
+      data: sortedData
     }
   }
 }
 
 const StyledAgenda = styled.div`
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  height: auto;
+  min-height: 100vh;
+  padding: 90px 20px 60px;
+  background-color: var(--main-color, #FFC93C);
   color: #000;
+  overflow-x: clip; /* 防止任何子元素橫向溢出而露出右側白色 body */
 
-  @media (min-width: 1080px) {
-    display: grid;
-    grid-template-columns: 33% 66%;
+  @media (min-width: 768px) {
+    padding: 100px 40px 80px;
   }
 `
 
-const StyledAgendaWrap = styled.div`
-  height: auto;
-  display: grid;
-
-  justify-items: end;
-  align-content: end;
-  font-size: 0.8rem;
-
-  margin: 60px 10px 0 10px;
-  @media (min-width: 1080px) {
-    grid-template-rows: 30vh 10vh;
-    margin: 0;
-  }
-`
-
-const StyledAgendaFilter = styled(motion.div)`
+const StyledFilterBar = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  margin-top: 1px;
-  width: 100%;
-  color: #000;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 40px;
 
-  @media (min-width: 1080px) {
-    width: 30vw;
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 56px;
   }
 `

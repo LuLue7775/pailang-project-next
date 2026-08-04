@@ -98,7 +98,6 @@ const StyledVideo = styled.div`
 
   font-family: 'Noto Serif TC', serif;
   font-weight: 200;
-  letter-spacing: 1px;
 `
 
 const StyledChevron = styled.div`

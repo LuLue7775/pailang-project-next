@@ -6,11 +6,62 @@ html {
 body {
   padding: 0;
   margin: 0;
+  /* 明確指定基礎字體，避免中文落到系統預設 PingFang TC */
+  font-family: var(--main-font-en, 'Times New Roman'), var(--main-font-zh, 'Noto Serif TC'), serif;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  /* 全站連結 hover：輔助色由下往上長滿、文字轉白（與 agenda 標題一致的填色效果） */
+  background-image: linear-gradient(var(--aux-color, #2c558d), var(--aux-color, #2c558d));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0%;
+  padding: 0 2px 1px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 0.4s cubic-bezier(0.19, 1, 0.22, 1), color 0.3s ease;
+}
+
+a:hover {
+  background-size: 100% 100%;
+  color: #fff;
+}
+
+/* 連結內若是圖片／圖示／區塊（縮圖、logo、播放鍵…）就不套用填色 */
+a:has(img),
+a:has(svg),
+a:has(picture),
+a:has(> div) {
+  background-image: none;
+  padding: 0;
+}
+a:has(img):hover,
+a:has(svg):hover,
+a:has(picture):hover,
+a:has(> div):hover {
+  color: inherit;
+}
+
+/* 可點擊元件（非連結按鈕）滑鼠懸停回饋 */
+.hover-link {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.hover-link:hover {
+  opacity: 0.8;
+}
+a[href^='mailto:'],
+a[href^='http']:not([href*='pailangmuseum.com']) {
+  cursor: pointer;
+}
+
+/* 尊重使用者的減少動態偏好 */
+@media (prefers-reduced-motion: reduce) {
+  a {
+    transition: none;
+  }
 }
 
 * {
@@ -23,12 +74,13 @@ a {
 }
 
 :root {
-  --title-font-en: 'Ogg';
+  --title-font-en: 'Playfair Display';
   --title-font-zh: 'Noto Serif TC';
-  --subtitle-font-en: 'Baskervville';
   --subtitle-font-zh: 'Noto Serif TC';
   --main-font-en: 'Times New Roman';
   --main-font-zh: 'Noto Serif TC';
+  --main-color: #ffc93c;
+  --aux-color: #2c558d;
 }
 
 .App {
@@ -70,7 +122,6 @@ span.row-letter {
 
 div.en p,
 div.zh p {
-  letter-spacing: 1px;
   text-align: start;
 }
 
@@ -90,6 +141,8 @@ div.zh p {
   font-family: var(--main-font-zh, serif);
   font-size: 1.1rem;
   line-height: 1.8rem;
+  /* 中文字距需要 1px 較不擁擠；英文維持 normal */
+  letter-spacing: 1px;
 }
 
 div.zh p span {
@@ -141,18 +194,18 @@ hr {
   letter-spacing: normal;
 } */
 /* 以下避免標題被overide */
-/* .font-ogg .en-term,
-.row-letter.font-ogg {
+/* .font-title .en-term,
+.row-letter.font-title {
   font-family: var(--title-font-en, serif) !important;
 } */
 
-.font-ogg > p {
-  font-family: var(--title-font-en, serif);
+.font-title > p {
+  font-family: var(--title-font-en, serif), var(--title-font-zh, 'Noto Serif TC'), serif;
   line-height: 1.3rem;
   font-size: 1.1rem;
 }
-.font-ogg {
-  font-family: var(--title-font-en, serif);
+.font-title {
+  font-family: var(--title-font-en, serif), var(--title-font-zh, 'Noto Serif TC'), serif;
 }
 
 .font-zh-sans > p {

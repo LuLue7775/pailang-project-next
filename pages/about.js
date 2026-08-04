@@ -1,48 +1,47 @@
-import { useEffect, useContext, useRef } from 'react'
-import AboutLeftElement from '../components/AboutLeftElement'
-import AboutMidElement from '../components/AboutMidElement'
-import AboutRightElement from '../components/AboutRightElement'
+import { useContext, useRef } from 'react'
 import { fetchData, createMarkup } from '../utils/functions'
 import Cursor from '../components/Cursor'
 import { CursorContext } from '../context/cursorContext'
 
-// import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 export default function About({ data }) {
-  const { content, content_zh, credits, roles } = data
-  // const router = useRouter()
+  const { content, content_zh, credits } = data
 
   // Cursor efffect
   const cursorAreaRef = useRef()
   const { hoverEvent } = useContext(CursorContext)
 
-  // force refresh to recalculate
-  // useEffect(() => {
-  //   function handleResize() {
-  //     router.reload(window.location.pathname)
-  //   }
-
-  //   window.addEventListener('resize', handleResize)
-  //   return () => window.removeEventListener('resize', handleResize)
-  // }, [])
-
   return (
     <StyledAbout className="about-container" as={motion.div} id="cursor-area" ref={cursorAreaRef}>
       <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
 
-      <StyledAboutCol $order={2}>
-        <AboutLeftElement roles={roles} createMarkup={createMarkup} />
-      </StyledAboutCol>
+      <StyledInner>
+        {/* 標題 */}
+        <StyledHero>
+          <StyledEnHero className="font-title">Pailang Museum</StyledEnHero>
+          <StyledZhHero>白浪博物館</StyledZhHero>
+        </StyledHero>
 
-      <StyledAboutCol $order={1}>
-        <AboutMidElement content={content} content_zh={content_zh} createMarkup={createMarkup} />
-      </StyledAboutCol>
+        {/* 中文簡介 */}
+        <StyledIntro
+          className="zh"
+          dangerouslySetInnerHTML={content_zh && createMarkup(content_zh, 'zh')}
+        />
 
-      <StyledAboutCol $order={3}>
-        <AboutRightElement credits={credits} createMarkup={createMarkup} />
-      </StyledAboutCol>
+        {/* 英文簡介 */}
+        <StyledIntro className="en" dangerouslySetInnerHTML={content && createMarkup(content, 'en')} />
+
+        {/* Contact、Support */}
+        {credits?.map((elem, i) => (
+          <StyledCredit key={elem?.id ?? i}>
+            <StyledDivider />
+            <StyledCreditTitle className="font-title">{elem?.title}</StyledCreditTitle>
+            <div className="en" dangerouslySetInnerHTML={elem?.content && createMarkup(elem?.content, 'en')} />
+          </StyledCredit>
+        ))}
+      </StyledInner>
     </StyledAbout>
   )
 }
@@ -58,54 +57,64 @@ export async function getServerSideProps() {
 }
 
 const StyledAbout = styled.div`
-  display: flex;
-  flex-direction: column;
+  /* 電腦版與行動版皆為直式單欄 */
   width: 100%;
   min-height: 100vh;
-  padding-top: 80px;
+  padding: 90px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 配色照設計稿：黃底黑字 */
+  background-color: var(--main-color, #ffc93c);
   color: #000;
-  overflow: hidden;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    height: 100vh;
-  }
 `
 
-const StyledAboutCol = styled.div`
-  flex: 1;
-  height: calc(100vh - 80px);
-  overflow-y: auto;
-  padding: 15px;
-
-  @media (max-width: 767px) {
-    order: ${({ $order }) => $order};
-  }
-
-  @media (max-width: 767px) {
-    height: auto;
-    min-height: 33vh;
-  }
+const StyledInner = styled.div`
+  width: min(760px, 100%);
+  display: flex;
+  flex-direction: column;
 `
 
-// const StyledAboutLeftCol = styled(motion.div)`
-//   height: 100%;
-// `
+const StyledHero = styled.div`
+  text-align: center;
+  padding-bottom: 24px;
+`
 
-// const StyledAboutMidCol = styled(motion.div)`
-//   height: 100%;
-// `
-// const StyledAboutRightCol = styled(motion.div)`
-//   height: 100%;
-//   overflow-x: hidden;
-// `
+const StyledEnHero = styled.div`
+  font-family: var(--title-font-en, serif);
+  font-style: italic; 
+  font-weight: 1000;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 1.1;
+`
 
-const StyledSideLines = styled.div`
-  position: absolute;
+const StyledZhHero = styled.div`
+  font-family: var(--main-font-zh, serif);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 600;
+  padding-top: 8px;
+`
 
-  width: calc(100vw / 16 * 6 * 0.96);
-  height: 300px;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
+const StyledIntro = styled.div`
+  padding: 12px 0;
+`
+
+const StyledCredit = styled.div`
+  padding-top: 24px;
+`
+
+const StyledDivider = styled.hr`
+  border: none;
+  border-top: 1px solid #000;
+  /* full-bleed：突破置中容器，橫跨整個 viewport 寬度 */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-bottom: 16px;
+`
+
+const StyledCreditTitle = styled.div`
+  font-family: var(--title-font-en, serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding: 8px 0 12px;
 `

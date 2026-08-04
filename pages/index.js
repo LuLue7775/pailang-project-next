@@ -2,29 +2,20 @@ import { useEffect, useRef, useContext } from 'react'
 import { useIsomorphicLayoutEffect } from '../utils/hooks'
 import { fetchData } from '../utils/functions'
 
-import Cover from '../components/Cover'
 import Cursor from '../components/Cursor'
 import ModalStart from '../components/ModalStart'
-import HomeArticle from '../components/HomeArticle'
 import { CursorContext } from '../context/cursorContext'
 import { modalVariant } from '../utils/framerVariantsHome'
-import { HomeArticleTypeContext } from '../context/homeArticleTypeContext'
+import { useTransition } from '../context/transitionContext'
 
-import Image from 'next/image'
 import styled from 'styled-components'
 import { motion, useSpring } from 'framer-motion'
-import { useRouter } from 'next/router'
 
 export default function Home({ modalData, randomArticleData, modalShow, setModalShow }) {
-  // const { setCurrentArticle } = useContext(HomeArticleTypeContext)
-  // useEffect(() => {
-  //   setCurrentArticle(randomArticleData.type)
-  // }, [randomArticleData])
-
-  const router = useRouter()
+  const { slideTo } = useTransition()
   const handleStartClick = () => {
     setModalShow(false)
-    router.push('/agenda')
+    slideTo('/agenda')
   }
 
   // Cursor efffect
@@ -57,19 +48,9 @@ export default function Home({ modalData, randomArticleData, modalShow, setModal
       id="cursor-area"
       ref={cursorAreaRef}>
       <Cursor cursorAreaRef={cursorAreaRef} hoverEvent={hoverEvent} />
-      <Cover modalShow={modalShow}>
-        <Image src="/homeBG.jpg" alt="gradient" objectFit="cover" layout="fill" />
-        <motion.div variants={modalVariant} animate={modalShow ? 'open' : 'closed'}>
-          {modalData && <ModalStart handleStartClick={handleStartClick} modalData={modalData} />}
-        </motion.div>
-      </Cover>
-
-      {/** @TODO fix rerendering */}
-      {/* <HomeArticle
-        randomArticleData={randomArticleData}
-        spring={spring}
-        setHoverEvent={setHoverEvent}
-      /> */}
+      <motion.div variants={modalVariant} animate={modalShow ? 'open' : 'closed'}>
+        {modalData && <ModalStart handleStartClick={handleStartClick} modalData={modalData} />}
+      </motion.div>
     </StyledContainer>
   )
 }
@@ -87,8 +68,15 @@ export async function getServerSideProps() {
 }
 
 const StyledContainer = styled(motion.div)`
-  height: 100vh;
+  /* 不再限制 100vh，內容可隨承認文字往下延伸 */
+  position: relative;
+  min-height: 100vh;
   width: 100%;
-  overflow: hidden;
-  perspective: 600;
+  background-color: #000;
+  color: var(--main-color, #ffc93c);
+  /* 為固定的 header 預留上方空間 */
+  padding: 100px 20px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `

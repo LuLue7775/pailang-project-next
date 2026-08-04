@@ -31,7 +31,7 @@ export default function AboutRightElement({ credits, createMarkup }) {
       {credits?.map((elem, i) => (
         <StyledContainer className="element-container" key={i} variants={containerTextMotion}>
           <LineSVGFull />
-          <StyledTitle className="font-ogg"> {elem?.title} </StyledTitle>
+          <StyledTitle className="font-title"> {elem?.title} </StyledTitle>
           <StyledElement dangerouslySetInnerHTML={elem?.content && createMarkup(elem?.content)} />
         </StyledContainer>
       )) || ''}

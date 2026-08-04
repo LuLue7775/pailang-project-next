@@ -29,7 +29,7 @@ export default function AboutLeftElement({ roles, createMarkup }) {
 
           <StyledLeftTitle className="persona-title">
             <StyledZhTitle> {elem?.name_zh} </StyledZhTitle>
-            <StyledEnTitle className="font-ogg"> {elem?.name} </StyledEnTitle>
+            <StyledEnTitle className="font-title"> {elem?.name} </StyledEnTitle>
           </StyledLeftTitle>
           {elem?.cover && (
             <ImageContainer>

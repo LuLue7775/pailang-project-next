@@ -100,14 +100,16 @@ export function UpChevronSVG() {
 
 export function EllipseBtnSVG({ texts }) {
   return (
-    <a style={{ postion: 'relative', display: 'flex', justifyContent: 'end' }}>
+    <a
+      className="ellipse-btn hover-link"
+      style={{ position: 'relative', display: 'flex', justifyContent: 'center', color: 'inherit' }}>
       <svg height="80" width="200">
         <ellipse
           cx="100"
           cy="40"
           rx="60"
           ry="20"
-          style={{ fill: 'none', stroke: '#000', strokeWidth: 1, background: 'transparent' }}
+          style={{ fill: 'none', stroke: 'currentColor', strokeWidth: 1, background: 'transparent' }}
         />
         <text
           x="50%"
@@ -115,7 +117,7 @@ export function EllipseBtnSVG({ texts }) {
           dominantBaseline="middle"
           textAnchor="middle"
           width="200"
-          fill="#000"
+          fill="currentColor"
           style={{ fontSize: '.8rem' }}
         >
           {' '}

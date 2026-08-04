@@ -163,7 +163,9 @@ const StyledContentItems = styled.div`
 `
 
 const StyledSeperateFull = styled.div`
-  width: 100%;
+  /* 滿版分隔線：容器 align-items:center 會把它置中，100vw 即橫跨整個視窗寬度 */
+  width: 100vw;
+  max-width: 100vw;
   margin: 20px 0;
   border-bottom: 1px #df600050 solid;
 `

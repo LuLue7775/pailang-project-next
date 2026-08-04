@@ -33,6 +33,7 @@ export default function ArticleHeaderSubtitles({ artists, extra_info, start_date
 const StyledDate = styled.div`
   div {
     font-size: 1rem;
+    font-family: var(--title-font-en, serif);
 
     @media (min-width: 768px) {
       font-size: 1.2rem;

@@ -6,13 +6,13 @@ html {
   }
   
 :root {
-    --title-font-en: 'Ogg';
-    --title-font-zh: 'Noto Serif TC'
-    --subtitle-font-en: 'Baskervville';
+    --title-font-en: 'Playfair Display';
+    --title-font-zh: 'Noto Serif TC';
     --subtitle-font-zh: 'Noto Serif TC';
     --main-font-en: 'Times New Roman';
     --main-font-zh: 'Noto Serif TC';
-    --main-color: #e0954f;
+    --main-color: #FFC93C;
+    --aux-color: #2C558D;
     --main-bg-color: #cc5e0a;
     
     --node-bg-color: #000000D0;

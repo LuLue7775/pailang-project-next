@@ -18,7 +18,7 @@ export default function AnimatedTitles({ title, language, textLengthRef, windowW
       language={language}>
       <StyledAnimTitle
         as={motion.span}
-        className="row-letter font-ogg header1"
+        className="row-letter font-title header1"
         $isTitleExceed={textLengthRef.current}
         $windowWidth={windowWidth}
         dangerouslySetInnerHTML={title && createMarkup(title, 'en')}
@@ -46,7 +46,7 @@ export default function AnimatedTitles({ title, language, textLengthRef, windowW
 }
 
 const StyledAnimTitle = styled(motion.span)`
-  font-weight: 500;
+  font-weight: 800;
   margin-bottom: 0.5em;
   position: relative;
   display: inline-block;

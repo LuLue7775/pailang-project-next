@@ -6,7 +6,7 @@ import ArticleHeaderTitles from './ArticleHeaderTitles'
 import ArticleHeaderSubtitles from './ArticleHeaderSubtitles'
 import Image from 'next/image'
 
-export default function ArticlesHeader({ data, slideTo, spring }) {
+export default function ArticlesHeader({ data, slideTo, spring, hasChevron = true  }) {
   const { setHoverEvent } = useContext(CursorContext)
   return (
     <StyledHeader>
@@ -30,12 +30,15 @@ export default function ArticlesHeader({ data, slideTo, spring }) {
         start_date={data?.start_date}
         end_date={data?.end_date}
       />
-      <div
-        onClick={() => slideTo(document.getElementById('section2').offsetTop, spring)}
-        onMouseOver={() => setHoverEvent('expand')}
-        onMouseLeave={() => setHoverEvent('default')}>
-        <DownChevronSVG />
-      </div>
+      {
+        hasChevron && (
+          <div
+            onClick={() => slideTo(document.getElementById('section2').offsetTop, spring)}
+            onMouseOver={() => setHoverEvent('expand')}
+            onMouseLeave={() => setHoverEvent('default')}>
+            <DownChevronSVG />
+          </div>
+      )}
     </StyledHeader>
   )
 }
@@ -58,10 +61,11 @@ const StyledHeader = styled.div`
   align-items: center;
   justify-content: center;
 
-  height: auto;
-  @media (min-width: 768px) and (min-height: 600px) {
-    height: 100vh;
-  }
+  /* 所有 article header 維持整頁高度。
+     用 dvh（動態視窗高度）解決行動裝置、尤其 iOS Safari 下方網址列遮擋、以及各瀏覽器 100vh 不一致的問題；
+     min-height 讓內容超過一屏時仍可撐開不被裁切；舊瀏覽器 fallback 到 vh。 */
+  min-height: 100vh;
+  min-height: 100dvh;
 `
 
 /**

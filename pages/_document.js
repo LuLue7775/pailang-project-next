@@ -49,7 +49,7 @@ export default class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
           <link
-            href="https://fonts.googleapis.com/css2?family=Baskervville&family=IBM+Plex+Sans:ital,wght@0,200;0,600;1,200;1,400;1,500;1,600&family=Noto+Serif+TC:wght@200;400;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Baskervville&family=IBM+Plex+Sans:ital,wght@0,200;0,600;1,200;1,400;1,500;1,600&family=Noto+Serif+TC:wght@200;400;600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;1,400;1,900&display=swap"
             rel="stylesheet"
           />
         </Head>

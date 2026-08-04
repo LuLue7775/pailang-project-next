@@ -7,6 +7,7 @@ import '../styles/globals.css'
 import { useRouter } from 'next/router'
 import CursorProvider from '../context/cursorContext'
 import HomeArticleTypeProvider from '../context/homeArticleTypeContext'
+import TransitionProvider from '../context/transitionContext'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
@@ -26,16 +27,18 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <CursorProvider>
         <HomeArticleTypeProvider>
-          <GlobalStyles />
-          <StyledApp className="app" id="app">
-            <StyledHeader className="header" route={router.pathname}>
-              <Nav modalShow={modalShow} />
-            </StyledHeader>
+          <TransitionProvider>
+            <GlobalStyles />
+            <StyledApp className="app" id="app">
+              <StyledHeader className="header" route={router.pathname}>
+                <Nav modalShow={modalShow} />
+              </StyledHeader>
 
-            <StyledLayout route={router.pathname}>
-              <Component {...pageProps} modalShow={modalShow} setModalShow={setModalShow} />
-            </StyledLayout>
-          </StyledApp>
+              <StyledLayout route={router.pathname}>
+                <Component {...pageProps} modalShow={modalShow} setModalShow={setModalShow} />
+              </StyledLayout>
+            </StyledApp>
+          </TransitionProvider>
         </HomeArticleTypeProvider>
       </CursorProvider>
     </>
@@ -49,17 +52,26 @@ const StyledApp = styled.div`
   width: 100%;
 `
 const StyledHeader = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 0;
   height: 60px;
   width: 100%;
   overflow: hidden;
-  z-index: 1;
+  z-index: 10;
 
   a {
     text-decoration: none;
   }
 
-  background-color: transparent;
+  /* 首頁 header 黃底黑字；About / Agenda header 黑底黃字；其餘透明 */
+  background-color: ${({ route }) =>
+    route === '/'
+      ? 'var(--main-color, #ffc93c)'
+      : route === '/about' || route === '/agenda'
+      ? '#000'
+      : 'transparent'};
+  color: ${({ route }) =>
+    route === '/about' || route === '/agenda' ? 'var(--main-color, #ffc93c)' : '#000'};
 `
 
 const StyledLayout = styled.div`

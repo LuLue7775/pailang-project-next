@@ -11,14 +11,22 @@ export default function ModalStart({ handleStartClick, modalData }) {
 
   return (
     <StyledModal className="modal" ref={modalRef}>
-      <StyledModalTitle className="modal-title">
+      {/* 中文區塊：titleZh + contentZh */}
+      <StyledSection>
         <StyledChTitle className="font-zh-sans"> {title_zh} </StyledChTitle>
-        <h3 style={{ textAlign: 'center' }}> {title} </h3>
-      </StyledModalTitle>
-      <StyledModalContent>
-        <div className="zh" dangerouslySetInnerHTML={content_zh && createMarkup(content_zh)} />
-        <div className="en" dangerouslySetInnerHTML={content && createMarkup(content)} />
-      </StyledModalContent>
+        <StyledModalContent>
+          <div className="zh" dangerouslySetInnerHTML={content_zh && createMarkup(content_zh, 'zh')} />
+        </StyledModalContent>
+      </StyledSection>
+
+      {/* 英文區塊：title + content */}
+      <StyledSection>
+        <StyledEnTitle> {title} </StyledEnTitle>
+        <StyledModalContent>
+          <div className="en" dangerouslySetInnerHTML={content && createMarkup(content, 'en')} />
+        </StyledModalContent>
+      </StyledSection>
+
       <div
         onClick={handleStartClick}
         onMouseOver={() => setHoverEvent('expand')}
@@ -30,19 +38,13 @@ export default function ModalStart({ handleStartClick, modalData }) {
 }
 
 const StyledModal = styled.div`
-  position: absolute;
-  height: 520px;
-  width: min(700px, 80vw);
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  width: min(700px, 90vw);
   margin: auto;
-  padding-top: 20px;
+  padding: 40px min(6vw, 48px);
   border-radius: 20px;
-  background-color: #ffffff60;
-  color: #000;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 1px solid var(--main-color, #ffc93c);
+  background-color: transparent;
+  color: var(--main-color, #ffc93c);
 
   display: flex;
   flex-direction: column;
@@ -51,23 +53,31 @@ const StyledModal = styled.div`
   line-height: 1.4rem;
   text-align: justify;
 `
-const StyledModalTitle = styled.div`
+const StyledSection = styled.div`
+  width: 100%;
   text-align: center;
-  padding-bottom: 15px;
+  padding-bottom: 24px;
 `
 const StyledChTitle = styled.div`
-  font-size: 1.2rem;
-  letter-spacing: 1px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  padding: 15px;
+`
+const StyledEnTitle = styled.h3`
+  font-family: var(--title-font-en, serif);
+  font-size: 2rem;
+  text-align: center;
   padding: 15px;
 `
 const StyledModalContent = styled.div`
-  max-width: 80%;
+  margin: 0 auto;
   overflow: hidden;
-  font-size: 0.8rem;
-  .zh > p {
-    line-height: 1.6rem;
-  }
-  .en-term {
-    line-height: 1.3rem;
+
+  /* 行高與段落樣式對齊 article-journal（沿用 globals.css 的 div.en p / div.zh p） */
+  .zh > p,
+  .en > p {
+    max-width: none;
+    text-align: center;
   }
 `
