@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ArticlesHeader from './ArticlesHeader'
 import { CursorContext } from '../context/cursorContext'
@@ -24,6 +24,9 @@ const STRIP_HEIGHT = 56
 
 // timeline 的金黃色沿用主題色 --main-color（垂直線、圓點、地點標籤文字）
 const GOLD = 'var(--main-color, #e0a63c)'
+
+// 語言判斷：與 agenda 相同，language 含 'EN' 即為英文
+const isEnglish = (data) => (data?.language || '').includes('EN')
 
 // field 的圖片欄位存的是完整 URL，而 ArticlesHeader 會自行補上 assets 路徑，
 // 因此傳進 header 前先把前綴移除，避免路徑重複。
@@ -63,12 +66,28 @@ function ChevronIcon() {
  * - 行動版：初始收合成「只有地點名稱＋展開提示箭頭」，點擊名稱列展開，圖片＋圖說堆疊在
  *   名稱下方、同一欄（單欄）。
  * - 桌機版：維持雙欄（名稱 | 圖片），收合時圖片顯示為細長預覽條，點擊就地展開。
+ *   沒有圖片的子項目，圖說同樣收合成 STRIP_HEIGHT 高的預覽（與圖片收合高度一致）。
  */
-function TimelineDetail({ detail }) {
+function TimelineDetail({ detail, lang }) {
   const hasImage = !!detail.image
   const hasCaption = !!detail.caption
-  const collapsible = hasImage || hasCaption
   const [open, setOpen] = useState(false)
+
+  // 沒有圖片時：圖說本身若不超過預覽條高度，就不需要收合
+  const textRef = useRef(null)
+  const [textFits, setTextFits] = useState(false)
+  useEffect(() => {
+    const el = textRef.current
+    if (!el) return
+    // 行動版收合時元素被隱藏（高度 0），不量測，避免狀態來回切換
+    const measure = () => el.scrollHeight && setTextFits(el.scrollHeight <= STRIP_HEIGHT + 8)
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  const collapsible = hasImage || (hasCaption && !textFits)
   const { setHoverEvent } = useContext(CursorContext)
 
   const toggle = () => collapsible && setOpen((o) => !o)
@@ -76,7 +95,7 @@ function TimelineDetail({ detail }) {
   const hoverOut = collapsible ? () => setHoverEvent('default') : undefined
 
   const caption = hasCaption && (
-    <StyledCaption className="zh" dangerouslySetInnerHTML={createMarkup(detail.caption, 'zh')} />
+    <StyledCaption className={lang} dangerouslySetInnerHTML={createMarkup(detail.caption, lang)} />
   )
 
   return (
@@ -94,7 +113,9 @@ function TimelineDetail({ detail }) {
           onMouseLeave={hoverOut}
           role={collapsible ? 'button' : undefined}
           aria-expanded={collapsible ? open : undefined}>
-          <StyledName>{detail.name}</StyledName>
+          <StyledName $clickable={collapsible} $lang={lang}>
+            {detail.name}
+          </StyledName>
           {collapsible && (
             <StyledNameChevron $open={open} aria-hidden="true">
               <ChevronIcon />
@@ -137,11 +158,51 @@ function TimelineDetail({ detail }) {
               </AnimatePresence>
             </>
           ) : (
-            caption
+            hasCaption && (
+              <StyledTextClip
+                onClick={toggle}
+                onMouseEnter={hoverIn}
+                onMouseLeave={hoverOut}
+                animate={{ height: open || !collapsible ? 'auto' : STRIP_HEIGHT }}
+                initial={false}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                $clamped={collapsible && !open}
+                $clickable={collapsible}
+                role={collapsible ? 'button' : undefined}
+                aria-expanded={collapsible ? open : undefined}>
+                <StyledCaption
+                  ref={textRef}
+                  className={lang}
+                  dangerouslySetInnerHTML={createMarkup(detail.caption, lang)}
+                />
+                {collapsible && (
+                  <StyledExpandBtn $open={open}>
+                    <ChevronIcon />
+                  </StyledExpandBtn>
+                )}
+              </StyledTextClip>
+            )
           )}
         </StyledMedia>
       </StyledBody>
     </StyledDetail>
+  )
+}
+
+// 前言／後記共用：中英兩欄，皆無資料則不顯示
+function BilingualBlock({ zh, en, afterword }) {
+  if (!zh && !en) return null
+  return (
+    <StyledIntro $afterword={afterword}>
+      {zh && <StyledContentItems className="zh" dangerouslySetInnerHTML={createMarkup(zh, 'zh')} />}
+      {en && (
+        <StyledContentItems
+          className="en"
+          style={{ maxWidth: '80ch' }}
+          dangerouslySetInnerHTML={createMarkup(en, 'en')}
+        />
+      )}
+    </StyledIntro>
   )
 }
 
@@ -151,6 +212,8 @@ export default function ArticleFieldTemplate({ data, spring }) {
     title: wrapTitle(data?.title),
     main_cover_image: stripAssetPrefix(data?.main_cover_image)
   }
+  // 依後台 language 決定 timeline 內文（名稱、圖說）的中／英排版
+  const lang = isEnglish(data) ? 'en' : 'zh'
 
   return (
     <>
@@ -161,21 +224,7 @@ export default function ArticleFieldTemplate({ data, spring }) {
 
       <StyledContent id="section2">
         {/* 前言：先中文（content_zh）後英文（content），沒有資料則不顯示 */}
-        <StyledIntro>
-          {data?.content_zh && (
-            <StyledContentItems
-              className="zh"
-              dangerouslySetInnerHTML={createMarkup(data.content_zh, 'zh')}
-            />
-          )}
-          {data?.content && (
-            <StyledContentItems
-              className="en"
-              style={{ maxWidth: '80ch' }}
-              dangerouslySetInnerHTML={createMarkup(data.content, 'en')}
-            />
-          )}
-        </StyledIntro>
+        <BilingualBlock zh={data?.content_zh} en={data?.content} />
 
         {/* 行程 timeline */}
         {data?.timeline?.length > 0 && (
@@ -190,7 +239,7 @@ export default function ArticleFieldTemplate({ data, spring }) {
                     <StyledLocationBar>{section.location}</StyledLocationBar>
 
                     {section.details?.map((detail, j) => (
-                      <TimelineDetail key={`${detail.name}-${j}`} detail={detail} />
+                      <TimelineDetail key={`${detail.name}-${j}`} detail={detail} lang={lang} />
                     ))}
                   </StyledGroup>
                 </StyledSection>
@@ -198,6 +247,9 @@ export default function ArticleFieldTemplate({ data, spring }) {
             })}
           </StyledTimeline>
         )}
+
+        {/* 後記：旅程路線結束後、作者欄前；先中文（afterword_zh）後英文（afterword） */}
+        <BilingualBlock zh={data?.afterword_zh} en={data?.afterword} afterword />
       </StyledContent>
 
       <StyledSeperateFull />
@@ -241,7 +293,7 @@ const StyledContent = styled.div`
 
 const StyledIntro = styled.div`
   max-width: 760px;
-  margin: 0 auto 50px;
+  margin: ${({ $afterword }) => ($afterword ? '60px auto 0' : '0 auto 50px')};
 `
 
 const StyledContentItems = styled.div`
@@ -370,14 +422,19 @@ const StyledNameRow = styled.div`
   }
 `
 
-/* 展開提示箭頭：僅行動版顯示，收合時呼吸閃爍、展開時旋轉朝上 */
+/* 展開提示箭頭：僅行動版顯示，深色圓底按鈕；收合時呼吸閃爍、展開時旋轉朝上 */
 const StyledNameChevron = styled.span`
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 30px;
+  height: 30px;
   margin-left: auto;
+  border-radius: 50%;
+  background: #141414;
   color: ${GOLD};
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 
   svg {
     transition: transform 0.3s ease;
@@ -418,9 +475,19 @@ const StyledName = styled.h3`
   padding: 4px 8px 0 8px;
   font-size: 1rem;
   font-weight: 600;
-  font-family: var(--main-font-zh, serif);
+  font-family: ${({ $lang }) =>
+    $lang === 'en' ? 'var(--main-font-en, serif), var(--main-font-zh, serif)' : 'var(--main-font-zh, serif)'};
   line-height: 1.5;
   word-break: break-word;
+
+  /* 可展開的名稱加底線，提示可點擊 */
+  ${({ $clickable }) =>
+    $clickable &&
+    css`
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 5px;
+    `}
 
   @media (min-width: 768px) {
     font-size: 1.05rem;
@@ -445,6 +512,16 @@ const StyledMedia = styled.div`
     min-width: 0;
     max-width: 480px;
     margin-top: 0;
+  }
+`
+
+const StyledCaption = styled.div`
+  &,
+  p {
+    font-size: 0.85rem !important;
+    line-height: 1.6rem !important;
+    color: #222;
+    text-align: justify;
   }
 `
 
@@ -493,19 +570,45 @@ const StyledImageClip = styled(motion.div)`
   }
 `
 
+/* 沒有圖片時的圖說剪裁容器：收合時只露出 STRIP_HEIGHT（與圖片預覽條同高），底部淡出 */
+const StyledTextClip = styled(motion.div)`
+  position: relative;
+  overflow: hidden;
+  cursor: ${({ $clickable }) => ($clickable ? 'pointer' : 'auto')};
+
+  ${StyledCaption} {
+    ${({ $clamped }) =>
+      $clamped &&
+      css`
+        -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent);
+        mask-image: linear-gradient(to bottom, #000 30%, transparent);
+      `}
+  }
+
+  /* 行動版收合時整個區塊由 StyledMedia 隱藏，展開後顯示全文，不需要箭頭鈕 */
+  @media (max-width: 767px) {
+    height: auto !important;
+    ${StyledCaption} {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+`
+
 /* 展開／收合的圓形箭頭鈕（收合朝下、且呼吸閃爍提示可展開；展開旋轉朝上、停止閃爍） */
 const StyledExpandBtn = styled.span`
   position: absolute;
   right: 8px;
   bottom: 8px;
-  width: 26px;
-  height: 26px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
+  background: #141414;
+  color: ${GOLD};
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
   transition: background 0.2s ease;
 
   /* 箭頭方向由內部 svg 旋轉，讓外框可獨立做呼吸縮放動畫 */
@@ -520,8 +623,10 @@ const StyledExpandBtn = styled.span`
       animation: ${breathe} 1.8s ease-in-out infinite;
     `}
 
-  ${StyledImageClip}:hover & {
+  ${StyledImageClip}:hover &,
+  ${StyledTextClip}:hover & {
     background: ${GOLD};
+    color: #141414;
     animation: none;
     transform: scale(1);
     opacity: 1;
@@ -537,15 +642,6 @@ const StyledExpandBtn = styled.span`
   }
 `
 
-const StyledCaption = styled.div`
-  &,
-  p {
-    font-size: 0.85rem !important;
-    line-height: 1.6rem !important;
-    color: #222;
-    text-align: justify;
-  }
-`
 
 /* ------------------------------ Author -------------------------------- */
 

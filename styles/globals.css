@@ -151,8 +151,17 @@ div.zh p span {
 }
 
 div.en p span {
-  line-height: 1rem; 
+  line-height: 1rem;
   display: inline-block;
+}
+
+/* 中文段落中的英文片段：維持 inline 才能在片段內正常換行（inline-block 會整段不可斷行而跳到下一行），
+   並用英文字距 */
+div.zh p span.en-term,
+div.en p span.en-term {
+  display: inline;
+  line-height: inherit;
+  letter-spacing: normal;
 }
 
 

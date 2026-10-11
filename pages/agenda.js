@@ -7,33 +7,22 @@ import { CursorContext } from '../context/cursorContext'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-// 只保留語言篩選（繁中 TC / 英 EN）
-const languageFilters = [
-  { value: 'TC', label: '繁中' },
-  { value: 'EN', label: 'English' }
-]
-
 // 語言判斷：只要 language 含 'EN'（涵蓋 'EN' / '英 EN'）即為英文，其餘一律視為繁中
 const isEnglish = (item) => (item?.language || '').includes('EN')
 
 export default function Agenda({ data }) {
-  // 每個語言篩選是獨立的 boolean，預設全開（兩種語言都顯示）
-  const [filter, setFilter] = useState(['TC', 'EN'])
-  const [filteredData, setFilteredData] = useState(data)
+  // 語言切換：單一 toggle 按鈕（TC ⇄ EN），預設繁中
+  const [filter, setFilter] = useState('TC')
+  const [filteredData, setFilteredData] = useState(() =>
+    data.filter((item) => !isEnglish(item))
+  )
 
   const cursorAreaRef = useRef()
   const { hoverEvent, setHoverEvent } = useContext(CursorContext)
 
   useEffect(() => {
-    // 純 boolean：語言有被勾選才顯示；兩者都取消則為空（不再回退成「全部顯示」）
-    const wantEN = filter.includes('EN')
-    const wantTC = filter.includes('TC')
-    setFilteredData(
-      data.filter((item) => {
-        const en = isEnglish(item)
-        return (en && wantEN) || (!en && wantTC)
-      })
-    )
+    const wantEN = filter === 'EN'
+    setFilteredData(data.filter((item) => isEnglish(item) === wantEN))
   }, [filter, data])
 
   return (
@@ -44,14 +33,7 @@ export default function Agenda({ data }) {
         as={motion.div}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 1.2 } }}>
-        {languageFilters.map((item) => (
-          <AgendaFliterLabel
-            key={item.value}
-            item={item}
-            filter={filter}
-            setFilter={setFilter}
-          />
-        ))}
+        <AgendaFliterLabel filter={filter} setFilter={setFilter} />
       </StyledFilterBar>
 
       <AgendaGrid filteredData={filteredData} setHoverEvent={setHoverEvent} />

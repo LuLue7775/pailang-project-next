@@ -189,12 +189,33 @@ export function updatePath(
   })
 }
 
+/**
+ * 清理後台（TinyMCE）文字：
+ * - 字與字之間的 &nbsp;（貼上時常帶入）改回一般空白，避免英文無法正常換行；
+ *   整段只有 &nbsp; 的空白段落（<p>&nbsp;</p>）保留
+ * - 移除零寬字元（U+200B/200C/200D/2060/FEFF）
+ */
+function normalizeText(htmlStr) {
+  return htmlStr
+    .replace(/[\u200B-\u200D\u2060\uFEFF]/g, '')
+    .replace(/&nbsp;/g, '\u00A0')
+    .replace(/([^\s>])\u00A0(?=[^\s<])/g, '$1 ')
+}
+
+// 中文欄位中「英文片段」的判斷：以英文字母或數字開頭（可帶開頭引號），
+// 片段內允許空白、數字與常見半形/全形英文標點（含彎引號 ‘’“”、–—…），
+// 讓整段英文（含數字、引號）包在同一個 en-term 裡，不會被切成多段。
+const EN_CHARS = `A-Za-z0-9À-ÖØ-öø-ÿ`
+const EN_PUNCT = `\\s,.'"‘’“”:;!?%&/#()\\[\\]\\-–—…`
+const EN_PHRASE = `[‘“"'(]?[${EN_CHARS}](?:[${EN_CHARS}${EN_PUNCT}]*[${EN_CHARS}.,'"’”)!?%])?`
+
 export function createMarkup(htmlStr, className) {
   if (!htmlStr) return { __html: '' }
-  if (className === 'en') return { __html: htmlStr }
+  if (className === 'en') return { __html: normalizeText(htmlStr) }
 
-  // Convert common HTML entities to characters
-  const decodedStr = he.decode(htmlStr)
+  // 解碼 HTML entities（&ldquo; &rsquo; 等）讓英文判斷能涵蓋標點；
+  // &lt; &gt; &amp; 不解碼，避免文字中的 < > 被當成 HTML 標籤
+  const decodedStr = normalizeText(htmlStr).replace(/&(?!lt;|gt;|amp;)#?\w+;/g, (m) => he.decode(m))
 
   // Handle iframes if present and if we're on the client side
   const handleIframes =
@@ -221,13 +242,12 @@ export function createMarkup(htmlStr, className) {
         })
       : decodedStr // Return as-is during SSR
 
-  // Then handle English content as before
+  // 中文欄位中的英文片段包成 en-term（套英文字體），連結與標籤原樣保留
   const handleEnContent = handleIframes.replace(
-    /(<a[^>]*>.*?<\/a>)|(<[^>]*>)|(&nbsp;)|(\b[A-Za-z][A-Za-z\s,.'":\-()]*[A-Za-z]\b(?:[,.'":\-()]\s*(?:[A-Za-z][A-Za-z\s,.'":\-()]*[A-Za-z]\b)?)*)/g,
-    (match, anchor, tag, nbsp, phrase) => {
+    new RegExp(`(<a[^>]*>.*?<\\/a>)|(<[^>]*>)|(${EN_PHRASE})`, 'g'),
+    (match, anchor, tag, phrase) => {
       if (anchor) return anchor
       if (tag) return tag
-      if (nbsp) return '<br />'
       if (phrase) return `<span class="en-term">${phrase}</span>`
       return match
     }
